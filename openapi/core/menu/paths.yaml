@@ -1,0 +1,20 @@
+paths:
+  /api/menu:
+    get:
+      tags: [Menu]
+      summary: Get user menu
+      operationId: getMenu
+      description: Returns the main menu and favorites for the authenticated user based on their permissions.
+      responses:
+        '200':
+          description: Successful retrieval of menu
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/MenuResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

@@ -1,0 +1,30 @@
+openapi: 3.0.3
+
+info:
+  title: Lekhai API
+  description: API specification for Lekhai backend services
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+tags:
+  - name: Lekhai
+    description: Lekhai APIs
+
+paths:
+  $ref: ./paths.yaml
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+security:
+  - bearerAuth: []

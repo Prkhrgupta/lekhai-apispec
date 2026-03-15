@@ -1,0 +1,8 @@
+{
+  "name": "lekhai-api-spec",
+  "private": true,
+  "devDependencies": {
+    "@redocly/cli": "1.16.0",
+    "http-server": "^14.1.1"
+  }
+}

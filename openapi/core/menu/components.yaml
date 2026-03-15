@@ -1,0 +1,29 @@
+MenuItem:
+  type: object
+  required: [id, title, icon]
+  properties:
+    id:
+      type: string
+    title:
+      type: string
+    icon:
+      type: string
+    route:
+      type: string
+      nullable: true
+    children:
+      type: array
+      items:
+        $ref: '#/MenuItem'
+
+MenuResponse:
+  type: object
+  properties:
+    Main Menu:
+      type: array
+      items:
+        $ref: '#/MenuItem'
+    Favourites:
+      type: array
+      items:
+        $ref: '#/MenuItem'

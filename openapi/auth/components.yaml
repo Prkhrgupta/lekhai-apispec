@@ -1,0 +1,25 @@
+ShopMenu:
+  type: object
+  properties:
+    name:
+      type: string
+      example: "Firm Name"
+    shopCode:
+      type: integer
+      example: 1234
+    role:
+      type: string
+      enum: [SUPER_ADMIN, SHOP_OWNER, ADMIN, USER]
+      example: ADMIN
+
+LoginResponse:
+  type: object
+  properties:
+    shopMenu:
+      type: array
+      items:
+        $ref: '#/ShopMenu'
+    token:
+      type: string
+      nullable: true
+      example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."

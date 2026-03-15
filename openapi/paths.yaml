@@ -1,0 +1,10 @@
+/lekhai/login:
+  $ref: './auth/paths.yaml#/~1lekhai~1login'
+/lekhai/login/withShopCode:
+  $ref: './auth/paths.yaml#/~1lekhai~1login~1withShopCode'
+/area/create:
+  $ref: './accountmaster/area/paths.yaml#/paths/~1area~1create'
+/area/list-all:
+  $ref: './accountmaster/area/paths.yaml#/paths/~1area~1list-all'
+/api/menu:
+  $ref: './core/menu/paths.yaml#/paths/~1api~1menu'

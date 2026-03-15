@@ -1,0 +1,58 @@
+/lekhai/login:
+  get:
+    tags:
+      - Auth
+    summary: Login to the application
+    operationId: login
+    description: Authenticates the user using Basic Authentication and returns a JWT token or a list of shops if multiple are available.
+    security:
+      - basicAuth: []
+    responses:
+      '200':
+        description: Successful login
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/LoginResponse'
+      '401':
+        description: Unauthorized
+        content:
+          application/json:
+            schema:
+              $ref: '../common/components.yaml#/Error'
+      '500':
+        description: Internal Server Error
+        content:
+          application/json:
+            schema:
+              $ref: '../common/components.yaml#/Error'
+
+/lekhai/login/withShopCode:
+  get:
+    tags:
+      - Auth
+    summary: Login with Shop Code
+    operationId: generateTokenWithShopCode
+    description: Authenticates the user using Basic Authentication and a shop code provided in the header.
+    parameters:
+      - name: shop-code
+        in: header
+        required: true
+        description: The code of the shop to login to.
+        schema:
+          type: integer
+    security:
+      - basicAuth: []
+    responses:
+      '200':
+        description: Successful login
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/LoginResponse'
+      '401':
+        $ref: '../common/components.yaml#/responses/UnauthorizedError'
+      '403':
+        $ref: '../common/components.yaml#/responses/ForbiddenError'
+      '500':
+        $ref: '../common/components.yaml#/responses/InternalServerError'

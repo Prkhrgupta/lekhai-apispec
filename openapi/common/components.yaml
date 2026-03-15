@@ -1,0 +1,39 @@
+Error:
+  type: object
+  properties:
+    success:
+      type: boolean
+      example: false
+    message:
+      type: string
+      nullable: true
+      example: null
+    data:
+      type: object
+      nullable: true
+    error:
+      type: string
+      example: "Unexpected error"
+    timestamp:
+      type: string
+      format: date-time
+
+responses:
+  UnauthorizedError:
+    description: Access token is missing or invalid
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+  ForbiddenError:
+    description: User is not authorized to perform this action
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+  InternalServerError:
+    description: Internal server error
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'

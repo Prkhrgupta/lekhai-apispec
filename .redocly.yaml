@@ -1,0 +1,3 @@
+rules:
+  info-license: off
+  no-server-example.com: off
