@@ -9,7 +9,7 @@ GENERATOR_VERSION=7.20.0 # Should only be update, when jar is upgraded
 echo "Generating Flutter SDK version $VERSION..."
 
 java -jar "$GENERATOR$GENERATOR_VERSION.jar" generate \
-  -i generated/bundled.yaml \
+  -i docs/bundled.yaml \
   -g dart-dio \
   -o generated/flutter \
   --skip-validate-spec \
@@ -19,7 +19,7 @@ java -jar "$GENERATOR$GENERATOR_VERSION.jar" generate \
 echo "Generating Java SDK version $VERSION..."
 
 java -jar "$GENERATOR$GENERATOR_VERSION.jar" generate \
-  -i generated/bundled.yaml \
+  -i docs/bundled.yaml \
   -g spring \
   -o generated/spring \
   --additional-properties=artifactVersion="$VERSION",interfaceOnly=true,useSpringBoot3=true,useTags=true \

@@ -16,4 +16,4 @@ flutter-build:
 sandbox-local:
 	bash scripts/sandbox_local.sh
 
-all: lint bundle generate flutter-build
+all: lint bundle generate flutter-build docs

@@ -4,10 +4,10 @@ set -e
 echo "Bundling OpenAPI spec..."
 
 npx redocly bundle openapi/root.yaml \
-  -o generated/bundled.yaml
+  -o docs/bundled.yaml
 
 PORT="${PORT:-5050}"
 
 echo "Starting sandbox server..."
 
-npx http-server . -p "${PORT}"
+npx http-server docs -p "${PORT}"
