@@ -21,6 +21,7 @@ env:
   FLUTTER_BRANCH: flutter-sdk
   JAVA_VERSION: '17'
   NODE_VERSION: '20'
+  FLUTTER_VERSION: '3.24.0'
 
 jobs:
   validate:
@@ -34,6 +35,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: ${{ env.FLUTTER_VERSION }}
+          channel: 'stable'
 
       - name: Cache node_modules
         uses: actions/cache@v4
