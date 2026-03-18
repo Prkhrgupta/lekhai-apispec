@@ -1,0 +1,60 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+}
+
+group = 'com.lekhai'
+version = project.findProperty('version') ?: '1.0.0'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        gpr(MavenPublication) {
+            from components.java
+            artifactId = 'lekhai-api'
+            
+            pom {
+                name = 'Lekhai API'
+                description = 'Lekhai API Spring SDK generated from OpenAPI spec'
+                url = 'https://github.com/prkhrkatyal/lekhai-apispec'
+                
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://opensource.org/licenses/MIT'
+                    }
+                }
+                
+                developers {
+                    developer {
+                        id = 'prkhrkatyal'
+                        name = 'Prkhr Katyal'
+                    }
+                }
+                
+                scm {
+                    connection = 'scm:git@github.com:prkhrkatyal/lekhai-apispec.git'
+                    developerConnection = 'scm:git@github.com:prkhrkatyal/lekhai-apispec.git'
+                    url = 'https://github.com/prkhrkatyal/lekhai-apispec'
+                }
+            }
+        }
+    }
+    
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = 'https://maven.pkg.github.com/prkhrkatyal/lekhai-apispec'
+            credentials {
+                username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
+                password = project.findProperty('gpr.token') ?: System.getenv('GITHUB_TOKEN')
+            }
+        }
+    }
+}

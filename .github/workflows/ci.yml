@@ -1,0 +1,157 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      publish_flutter:
+        description: 'Publish Flutter SDK to flutter-sdk branch'
+        required: false
+        default: 'false'
+        type: boolean
+      publish_spring:
+        description: 'Publish Spring SDK to GitHub Packages'
+        required: false
+        default: 'false'
+        type: boolean
+
+env:
+  FLUTTER_BRANCH: flutter-sdk
+  JAVA_VERSION: '17'
+  NODE_VERSION: '20'
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint OpenAPI spec
+        run: make lint
+
+      - name: Bundle OpenAPI spec
+        run: make bundle
+
+      - name: Generate SDKs
+        run: make generate
+
+      - name: Build Flutter SDK
+        run: make flutter-build
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: bundled-spec
+          path: docs/bundled.yaml
+          retention-days: 7
+
+      - name: Upload Flutter SDK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-flutter
+          path: generated/flutter
+          retention-days: 7
+
+      - name: Upload Spring SDK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-spring
+          path: generated/spring
+          retention-days: 7
+
+  publish-flutter:
+    name: Publish Flutter SDK
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && (inputs.publish_flutter == true || inputs.publish_spring == true)
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Flutter SDK
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-flutter
+          path: generated/flutter
+
+      - name: Push to flutter-sdk branch
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          
+          git checkout ${{ env.FLUTTER_BRANCH }} || git checkout --orphan ${{ env.FLUTTER_BRANCH }}
+          git rm -rf . 2>/dev/null || true
+          
+          cp -r generated/flutter/* .
+          
+          git add .
+          git commit -m "chore: Update Flutter SDK from ${{ github.sha }}" || echo "No changes to commit"
+          git push origin ${{ env.FLUTTER_BRANCH }} --force
+
+  publish-spring:
+    name: Publish Spring SDK
+    needs: validate
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch' && inputs.publish_spring == true
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download Spring SDK
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-spring
+          path: generated/spring
+
+      - name: Read version
+        id: version
+        run: echo "VERSION=$(cat VERSION)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build and publish JAR
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Configure Gradle for GitHub Packages
+          cat >> gradle.properties << EOF
+          gpr.user=${{ github.actor }}
+          gpr.token=${{ secrets.GITHUB_TOKEN }}
+          gpr.repo=${{ github.repository }}
+          version=${{ steps.version.outputs.VERSION }}
+          EOF
+          
+          ./gradlew publish
