@@ -1,0 +1,121 @@
+paths:
+  /api/ledger/create:
+    post:
+      tags: [ledger]
+      summary: Create ledger
+      operationId: createLedger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../ledger/components.yaml#/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger created
+          content:
+            application/json:
+              schema:
+                $ref: '../ledger/components.yaml#/LedgerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /api/ledger/list-all:
+    get:
+      tags: [ledger]
+      summary: List all ledgers
+      operationId: listLedgers
+      responses:
+        '200':
+          description: List of ledgers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../ledger/components.yaml#/LedgerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /api/ledger/{id}:
+    get:
+      tags: [ledger]
+      summary: Get ledger by ID
+      operationId: getLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ledger details
+          content:
+            application/json:
+              schema:
+                $ref: '../ledger/components.yaml#/LedgerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [ledger]
+      summary: Update ledger
+      operationId: updateLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../ledger/components.yaml#/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger updated
+          content:
+            application/json:
+              schema:
+                $ref: '../ledger/components.yaml#/LedgerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /api/ledger/ledgers/summary:
+    get:
+      tags: [ ledger ]
+      summary: Get ledger summary
+      operationId: getLedgerSummaries
+      responses:
+        '200':
+          description: Ledger summary response
+          content:
+            application/json:
+              schema:
+                $ref: '../ledger/components.yaml#/LedgerSummaryResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

@@ -6,5 +6,27 @@
   $ref: './accountmaster/area/paths.yaml#/paths/~1area~1create'
 /area/list-all:
   $ref: './accountmaster/area/paths.yaml#/paths/~1area~1list-all'
+/api/account-group/create:
+  $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1api~1account-group~1create'
+/api/account-group/list-all:
+  $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1api~1account-group~1list-all'
+/api/broker/create:
+  $ref: './accountmaster/broker/paths.yaml#/paths/~1api~1broker~1create'
+/api/broker/list-all:
+  $ref: './accountmaster/broker/paths.yaml#/paths/~1api~1broker~1list-all'
+/api/ledger/create:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1api~1ledger~1create'
+/api/ledger/list-all:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1api~1ledger~1list-all'
+/api/ledger/{id}:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1api~1ledger~1{id}'
+/api/ledger/ledgers/summary:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1api~1ledger~1ledgers~1summary'
+/api/state/list-all:
+  $ref: './accountmaster/state/paths.yaml#/paths/~1api~1state~1list-all'
+/api/transport/create:
+  $ref: './accountmaster/transport/paths.yaml#/paths/~1api~1transport~1create'
+/api/transport/list-all:
+  $ref: './accountmaster/transport/paths.yaml#/paths/~1api~1transport~1list-all'
 /api/menu:
   $ref: './core/menu/paths.yaml#/paths/~1api~1menu'

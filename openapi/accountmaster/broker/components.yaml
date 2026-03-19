@@ -1,0 +1,26 @@
+BrokerRequest:
+  type: object
+  required: [name]
+  properties:
+    name:
+      type: string
+      example: Rajesh Kumar
+    phone:
+      type: string
+      example: '9876543210'
+
+BrokerResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Rajesh Kumar
+    phone:
+      type: string
+      example: '9876543210'
+    createdAt:
+      type: string
+      format: date-time

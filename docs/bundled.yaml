@@ -115,6 +115,287 @@ paths:
           $ref: '#/components/responses/ForbiddenError'
         '500':
           $ref: '#/components/responses/InternalServerError'
+  /api/account-group/create:
+    post:
+      tags:
+        - account-group
+      summary: Create account group
+      operationId: createAccountGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountGroupRequest'
+      responses:
+        '200':
+          description: Account group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGroupResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/account-group/list-all:
+    get:
+      tags:
+        - account-group
+      summary: List account groups
+      operationId: listAccountGroups
+      responses:
+        '200':
+          description: List of account groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AccountGroupResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/broker/create:
+    post:
+      tags:
+        - broker
+      summary: Create broker
+      operationId: createBroker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokerRequest'
+      responses:
+        '200':
+          description: Broker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/broker/list-all:
+    get:
+      tags:
+        - broker
+      summary: List brokers
+      operationId: listBrokers
+      responses:
+        '200':
+          description: List of brokers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/ledger/create:
+    post:
+      tags:
+        - ledger
+      summary: Create ledger
+      operationId: createLedger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/ledger/list-all:
+    get:
+      tags:
+        - ledger
+      summary: List all ledgers
+      operationId: listLedgers
+      responses:
+        '200':
+          description: List of ledgers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/ledger/{id}:
+    get:
+      tags:
+        - ledger
+      summary: Get ledger by ID
+      operationId: getLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ledger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - ledger
+      summary: Update ledger
+      operationId: updateLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/ledger/ledgers/summary:
+    get:
+      tags:
+        - ledger
+      summary: Get ledger summary
+      operationId: getLedgerSummaries
+      responses:
+        '200':
+          description: Ledger summary response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerSummaryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/state/list-all:
+    get:
+      tags:
+        - state
+      summary: List all states
+      operationId: listAllStates
+      responses:
+        '200':
+          description: List of states
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StateResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/transport/create:
+    post:
+      tags:
+        - transport
+      summary: Create transport
+      operationId: createTransport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransportRequest'
+      responses:
+        '200':
+          description: Transport created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/transport/list-all:
+    get:
+      tags:
+        - transport
+      summary: List transports
+      operationId: listTransports
+      responses:
+        '200':
+          description: List of transports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
   /api/menu:
     get:
       tags:
@@ -219,6 +500,350 @@ components:
         shopCode:
           type: integer
           example: 1234
+        createdAt:
+          type: string
+          format: date-time
+    AccountGroupRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Customers
+        parentId:
+          type: integer
+          format: int64
+          example: 1
+    AccountGroupResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Customers
+    BrokerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+    BrokerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+        createdAt:
+          type: string
+          format: date-time
+    AccountEntryType:
+      type: string
+      enum:
+        - DR
+        - CR
+    MailTo:
+      type: object
+      properties:
+        mail_to_line_1:
+          type: string
+        mail_to_line_2:
+          type: string
+        mail_to_line_3:
+          type: string
+    RegistrationType:
+      type: string
+      enum:
+        - COMPOSITION
+        - CUSTOMER
+        - REGULAR
+        - UNREGISTERED
+    PartyType:
+      type: string
+      enum:
+        - NOT_APPLICABLE
+        - DEEMED_EXPORT
+        - GOVERNMENT_ENTITY
+        - SEZ
+    GstInDetail:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    LedgerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        gst_in_number:
+          type: string
+        name:
+          type: string
+        account_group:
+          type: integer
+          format: int64
+        opening_balance:
+          type: number
+        account_entry_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        legal_name:
+          type: string
+        Location:
+          type: string
+        country_name:
+          type: string
+        state_and_code:
+          type: string
+        mail_to:
+          $ref: '#/components/schemas/MailTo'
+        area_id:
+          type: integer
+          format: int64
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        pan:
+          type: string
+        credit_limit:
+          type: number
+        transport_id:
+          type: integer
+          format: int64
+        tan_number:
+          type: string
+        broker_id:
+          type: integer
+          format: int64
+        gstInDetailsPresent:
+          type: boolean
+        gst_in_details:
+          $ref: '#/components/schemas/GstInDetail'
+        aadhaar_number:
+          type: string
+        image_uploaded:
+          type: boolean
+        email:
+          type: string
+        msme_number:
+          type: string
+        distance:
+          type: number
+          format: double
+        pin_code:
+          type: string
+        city:
+          type: string
+    LedgerArea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state_code:
+          type: string
+    LedgerBroker:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+    LedgerTransport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+        gst:
+          type: string
+    GstInDetailResponse:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    LedgerAddress:
+      type: object
+      properties:
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        address_line_3:
+          type: string
+        city:
+          type: string
+        state_id:
+          type: string
+        area_id:
+          type: integer
+          format: int64
+        pincode:
+          type: string
+        distance:
+          type: number
+    LedgerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        legal_name:
+          type: string
+        account_group_name:
+          type: string
+        opening_balance:
+          type: number
+        opening_balance_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        credit_limit:
+          type: number
+        pan:
+          type: string
+        aadhaar:
+          type: string
+        tan:
+          type: string
+        email:
+          type: string
+        msme:
+          type: string
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        gst_in_number:
+          type: string
+        location:
+          type: string
+        is_active:
+          type: boolean
+        area:
+          $ref: '#/components/schemas/LedgerArea'
+        broker:
+          $ref: '#/components/schemas/LedgerBroker'
+        transport:
+          $ref: '#/components/schemas/LedgerTransport'
+        gstin_details:
+          $ref: '#/components/schemas/GstInDetailResponse'
+        address:
+          $ref: '#/components/schemas/LedgerAddress'
+        created_at:
+          type: string
+          format: date-time
+    LedgerSummaryColumn:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        width:
+          type: integer
+          format: int32
+    LedgerSummaryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state:
+          type: string
+        area:
+          type: string
+        accountGroup:
+          type: string
+        gstin:
+          type: string
+    LedgerSummaryResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerSummaryColumn'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerSummaryItem'
+    StateResponse:
+      type: object
+      properties:
+        code:
+          type: string
+          example: UP
+        name:
+          type: string
+          example: Uttar Pradesh
+    TransportRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
+    TransportResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
         createdAt:
           type: string
           format: date-time

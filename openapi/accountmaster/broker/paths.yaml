@@ -1,0 +1,46 @@
+paths:
+  /api/broker/create:
+    post:
+      tags: [broker]
+      summary: Create broker
+      operationId: createBroker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../broker/components.yaml#/BrokerRequest'
+      responses:
+        '200':
+          description: Broker created
+          content:
+            application/json:
+              schema:
+                $ref: '../broker/components.yaml#/BrokerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /api/broker/list-all:
+    get:
+      tags: [broker]
+      summary: List brokers
+      operationId: listBrokers
+      responses:
+        '200':
+          description: List of brokers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../broker/components.yaml#/BrokerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

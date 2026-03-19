@@ -1,0 +1,46 @@
+paths:
+  /api/account-group/create:
+    post:
+      tags: [account-group]
+      summary: Create account group
+      operationId: createAccountGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../accountgroup/components.yaml#/AccountGroupRequest'
+      responses:
+        '200':
+          description: Account group created
+          content:
+            application/json:
+              schema:
+                $ref: '../accountgroup/components.yaml#/AccountGroupResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /api/account-group/list-all:
+    get:
+      tags: [account-group]
+      summary: List account groups
+      operationId: listAccountGroups
+      responses:
+        '200':
+          description: List of account groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../accountgroup/components.yaml#/AccountGroupResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

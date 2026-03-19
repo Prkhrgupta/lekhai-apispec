@@ -1,0 +1,259 @@
+AccountEntryType:
+  type: string
+  enum: [DR, CR]
+
+RegistrationType:
+  type: string
+  enum: [COMPOSITION, CUSTOMER, REGULAR, UNREGISTERED]
+
+PartyType:
+  type: string
+  enum: [NOT_APPLICABLE, DEEMED_EXPORT, GOVERNMENT_ENTITY, SEZ]
+
+LedgerRequest:
+  type: object
+  required: [name]
+  properties:
+    gst_in_number:
+      type: string
+    name:
+      type: string
+    account_group:
+      type: integer
+      format: int64
+    opening_balance:
+      type: number
+    account_entry_type:
+      $ref: '#/AccountEntryType'
+    legal_name:
+      type: string
+    Location:
+      type: string
+    country_name:
+      type: string
+    state_and_code:
+      type: string
+    mail_to:
+      $ref: '#/MailTo'
+    area_id:
+      type: integer
+      format: int64
+    contact_person:
+      type: string
+    phone_number:
+      type: integer
+      format: int64
+    pan:
+      type: string
+    credit_limit:
+      type: number
+    transport_id:
+      type: integer
+      format: int64
+    tan_number:
+      type: string
+    broker_id:
+      type: integer
+      format: int64
+    gstInDetailsPresent:
+      type: boolean
+    gst_in_details:
+      $ref: '#/GstInDetail'
+    aadhaar_number:
+      type: string
+    image_uploaded:
+      type: boolean
+    email:
+      type: string
+    msme_number:
+      type: string
+    distance:
+      type: number
+      format: double
+    pin_code:
+      type: string
+    city:
+      type: string
+
+MailTo:
+  type: object
+  properties:
+    mail_to_line_1:
+      type: string
+    mail_to_line_2:
+      type: string
+    mail_to_line_3:
+      type: string
+
+GstInDetail:
+  type: object
+  properties:
+    registration_type:
+      $ref: '#/RegistrationType'
+    is_e_commerce_operator:
+      type: boolean
+    gst_in_uin:
+      type: string
+    party_type:
+      $ref: '#/PartyType'
+
+LedgerResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    legal_name:
+      type: string
+    account_group_name:
+      type: string
+    opening_balance:
+      type: number
+    opening_balance_type:
+      $ref: '#/AccountEntryType'
+    credit_limit:
+      type: number
+    pan:
+      type: string
+    aadhaar:
+      type: string
+    tan:
+      type: string
+    email:
+      type: string
+    msme:
+      type: string
+    contact_person:
+      type: string
+    phone_number:
+      type: integer
+      format: int64
+    gst_in_number:
+      type: string
+    location:
+      type: string
+    is_active:
+      type: boolean
+    area:
+      $ref: '#/LedgerArea'
+    broker:
+      $ref: '#/LedgerBroker'
+    transport:
+      $ref: '#/LedgerTransport'
+    gstin_details:
+      $ref: '#/GstInDetailResponse'
+    address:
+      $ref: '#/LedgerAddress'
+    created_at:
+      type: string
+      format: date-time
+
+LedgerAddress:
+  type: object
+  properties:
+    address_line_1:
+      type: string
+    address_line_2:
+      type: string
+    address_line_3:
+      type: string
+    city:
+      type: string
+    state_id:
+      type: string
+    area_id:
+      type: integer
+      format: int64
+    pincode:
+      type: string
+    distance:
+      type: number
+
+LedgerArea:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    state_code:
+      type: string
+
+LedgerBroker:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    phone:
+      type: string
+
+LedgerTransport:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    phone:
+      type: string
+    gst:
+      type: string
+
+GstInDetailResponse:
+  type: object
+  properties:
+    registration_type:
+      $ref: '#/RegistrationType'
+    is_e_commerce_operator:
+      type: boolean
+    gst_in_uin:
+      type: string
+    party_type:
+      $ref: '#/PartyType'
+
+LedgerSummaryResponse:
+  type: object
+  properties:
+    columns:
+      type: array
+      items:
+        $ref: '#/LedgerSummaryColumn'
+    data:
+      type: array
+      items:
+        $ref: '#/LedgerSummaryItem'
+
+LedgerSummaryColumn:
+  type: object
+  properties:
+    name:
+      type: string
+    type:
+      type: string
+    width:
+      type: integer
+      format: int32
+
+LedgerSummaryItem:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    state:
+      type: string
+    area:
+      type: string
+    accountGroup:
+      type: string
+    gstin:
+      type: string

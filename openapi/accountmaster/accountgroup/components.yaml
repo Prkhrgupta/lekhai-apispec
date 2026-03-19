@@ -1,0 +1,21 @@
+AccountGroupRequest:
+  type: object
+  required: [name]
+  properties:
+    name:
+      type: string
+      example: Customers
+    parentId:
+      type: integer
+      format: int64
+      example: 1
+
+AccountGroupResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Customers

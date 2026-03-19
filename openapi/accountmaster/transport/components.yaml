@@ -1,0 +1,32 @@
+TransportRequest:
+  type: object
+  required: [name]
+  properties:
+    name:
+      type: string
+      example: Blue Dart
+    phone:
+      type: string
+      example: '9876543210'
+    gstNo:
+      type: string
+      example: 09AAFCP1234A1Z5
+
+TransportResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Blue Dart
+    phone:
+      type: string
+      example: '9876543210'
+    gstNo:
+      type: string
+      example: 09AAFCP1234A1Z5
+    createdAt:
+      type: string
+      format: date-time
