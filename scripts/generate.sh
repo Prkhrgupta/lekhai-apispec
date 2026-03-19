@@ -22,7 +22,7 @@ java -jar "$GENERATOR$GENERATOR_VERSION.jar" generate \
   -i docs/bundled.yaml \
   -g spring \
   -o generated/spring \
-  --additional-properties=artifactVersion="$VERSION",interfaceOnly=true,useSpringBoot3=true,useTags=true \
+  --additional-properties=apiPackage="in.lekhai.contract.api",modelPackage="in.lekhai.contract.model",interfaceOnly=true,useSpringBoot3=true,useTags=true,skipDefaultInterface=true \
   --global-property models,apis,apiTests=false,modelTests=false
 
 echo "Generation complete"

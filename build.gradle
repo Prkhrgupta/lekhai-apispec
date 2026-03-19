@@ -1,60 +1,52 @@
 plugins {
-    id 'java-library'
+    id 'java-library'        // IMPORTANT: use this instead of 'java'
     id 'maven-publish'
 }
 
-group = 'com.lekhai'
-version = project.findProperty('version') ?: '1.0.0'
+group = 'in.lekhai'
+version = '1.0.0'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
-    withJavadocJar()
-    withSourcesJar()
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['generated/spring/src/main/java']
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    api platform('org.springframework.boot:spring-boot-dependencies:3.2.5')
+    api 'org.springframework:spring-web'
+    api 'org.springframework:spring-context'
+    api 'jakarta.validation:jakarta.validation-api'
+    api 'jakarta.annotation:jakarta.annotation-api'
+
+    api 'io.swagger.core.v3:swagger-annotations:2.2.21'
+    api 'org.openapitools:jackson-databind-nullable:0.2.6'
 }
 
 publishing {
     publications {
-        gpr(MavenPublication) {
+        maven(MavenPublication) {
             from components.java
-            artifactId = 'lekhai-api'
-            
-            pom {
-                name = 'Lekhai API'
-                description = 'Lekhai API Spring SDK generated from OpenAPI spec'
-                url = 'https://github.com/prkhrgupta/lekhai-apispec'
-                
-                licenses {
-                    license {
-                        name = 'MIT License'
-                        url = 'https://opensource.org/licenses/MIT'
-                    }
-                }
-                
-                developers {
-                    developer {
-                        id = 'prkhrgupta'
-                        name = 'Prkhr Katyal'
-                    }
-                }
-                
-                scm {
-                    connection = 'scm:git@github.com:prkhrgupta/lekhai-apispec.git'
-                    developerConnection = 'scm:git@github.com:prkhrgupta/lekhai-apispec.git'
-                    url = 'https://github.com/prkhrgupta/lekhai-apispec'
-                }
-            }
+
+            groupId = project.group
+            artifactId = 'lekhaiapispec'
+            version = project.version
         }
     }
-    
-    repositories {
-        maven {
-            name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/prkhrgupta/lekhai-apispec'
-            credentials {
-                username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
-                password = project.findProperty('gpr.token') ?: System.getenv('GITHUB_TOKEN')
-            }
-        }
-    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }

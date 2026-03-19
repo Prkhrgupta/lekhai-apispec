@@ -116,49 +116,49 @@ jobs:
           git add .
           git commit -m "chore: Update Flutter SDK from ${{ github.sha }}" || echo "No changes to commit"
           git push origin ${{ env.FLUTTER_BRANCH }} --force
-
-  publish-spring:
-    name: Publish Spring SDK
-    needs: validate
-    runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_spring == true
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Download Spring SDK
-        uses: actions/download-artifact@v4
-        with:
-          name: generated-spring
-          path: generated/spring
-
-      - name: Read version
-        id: version
-        run: echo "VERSION=$(cat VERSION)" >> $GITHUB_OUTPUT
-        shell: bash
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: ${{ env.JAVA_VERSION }}
-          distribution: temurin
-
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v4
-
-      - name: Build and publish JAR
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          # Configure Gradle for GitHub Packages
-          cat >> gradle.properties << EOF
-          gpr.user=${{ github.actor }}
-          gpr.token=${{ secrets.GITHUB_TOKEN }}
-          gpr.repo=${{ github.repository }}
-          version=${{ steps.version.outputs.VERSION }}
-          EOF
-          
-          ./gradlew publish
+#
+#  publish-spring:
+#    name: Publish Spring SDK
+#    needs: validate
+#    runs-on: ubuntu-latest
+#    if: github.event_name == 'workflow_dispatch' && inputs.publish_spring == true
+#    permissions:
+#      contents: read
+#      packages: write
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v4
+#
+#      - name: Download Spring SDK
+#        uses: actions/download-artifact@v4
+#        with:
+#          name: generated-spring
+#          path: generated/spring
+#
+#      - name: Read version
+#        id: version
+#        run: echo "VERSION=$(cat VERSION)" >> $GITHUB_OUTPUT
+#        shell: bash
+#
+#      - name: Setup Java
+#        uses: actions/setup-java@v4
+#        with:
+#          java-version: ${{ env.JAVA_VERSION }}
+#          distribution: temurin
+#
+#      - name: Setup Gradle
+#        uses: gradle/actions/setup-gradle@v4
+#
+#      - name: Build and publish JAR
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#        run: |
+#          # Configure Gradle for GitHub Packages
+#          cat >> gradle.properties << EOF
+#          gpr.user=${{ github.actor }}
+#          gpr.token=${{ secrets.GITHUB_TOKEN }}
+#          gpr.repo=${{ github.repository }}
+#          version=${{ steps.version.outputs.VERSION }}
+#          EOF
+#
+#          ./gradlew publish
