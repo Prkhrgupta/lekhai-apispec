@@ -22,7 +22,7 @@ publishing {
             pom {
                 name = 'Lekhai API'
                 description = 'Lekhai API Spring SDK generated from OpenAPI spec'
-                url = 'https://github.com/prkhrkatyal/lekhai-apispec'
+                url = 'https://github.com/prkhrgupta/lekhai-apispec'
                 
                 licenses {
                     license {
@@ -33,15 +33,15 @@ publishing {
                 
                 developers {
                     developer {
-                        id = 'prkhrkatyal'
+                        id = 'prkhrgupta'
                         name = 'Prkhr Katyal'
                     }
                 }
                 
                 scm {
-                    connection = 'scm:git@github.com:prkhrkatyal/lekhai-apispec.git'
-                    developerConnection = 'scm:git@github.com:prkhrkatyal/lekhai-apispec.git'
-                    url = 'https://github.com/prkhrkatyal/lekhai-apispec'
+                    connection = 'scm:git@github.com:prkhrgupta/lekhai-apispec.git'
+                    developerConnection = 'scm:git@github.com:prkhrgupta/lekhai-apispec.git'
+                    url = 'https://github.com/prkhrgupta/lekhai-apispec'
                 }
             }
         }
@@ -50,7 +50,7 @@ publishing {
     repositories {
         maven {
             name = 'GitHubPackages'
-            url = 'https://maven.pkg.github.com/prkhrkatyal/lekhai-apispec'
+            url = 'https://maven.pkg.github.com/prkhrgupta/lekhai-apispec'
             credentials {
                 username = project.findProperty('gpr.user') ?: System.getenv('GITHUB_ACTOR')
                 password = project.findProperty('gpr.token') ?: System.getenv('GITHUB_TOKEN')
