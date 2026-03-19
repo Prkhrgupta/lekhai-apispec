@@ -1,0 +1,274 @@
+openapi: 3.0.3
+info:
+  title: Lekhai API
+  description: API specification for Lekhai backend services
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+security:
+  - bearerAuth: []
+tags:
+  - name: Lekhai
+    description: Lekhai APIs
+paths:
+  /lekhai/login:
+    get:
+      tags:
+        - Auth
+      summary: Login to the application
+      operationId: login
+      description: Authenticates the user using Basic Authentication and returns a JWT token or a list of shops if multiple are available.
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /lekhai/login/withShopCode:
+    get:
+      tags:
+        - Auth
+      summary: Login with Shop Code
+      operationId: generateTokenWithShopCode
+      description: Authenticates the user using Basic Authentication and a shop code provided in the header.
+      parameters:
+        - name: shop-code
+          in: header
+          required: true
+          description: The code of the shop to login to.
+          schema:
+            type: integer
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area/create:
+    post:
+      tags:
+        - area
+      summary: Create area
+      operationId: createArea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AreaRequest'
+      responses:
+        '200':
+          description: Area created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area/list-all:
+    get:
+      tags:
+        - area
+      summary: List areas
+      operationId: listAreas
+      responses:
+        '200':
+          description: List of areas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /api/menu:
+    get:
+      tags:
+        - Menu
+      summary: Get user menu
+      operationId: getMenu
+      description: Returns the main menu and favorites for the authenticated user based on their permissions.
+      responses:
+        '200':
+          description: Successful retrieval of menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    ShopMenu:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Firm Name
+        shopCode:
+          type: integer
+          example: 1234
+        role:
+          type: string
+          enum:
+            - SUPER_ADMIN
+            - SHOP_OWNER
+            - ADMIN
+            - USER
+          example: ADMIN
+    LoginResponse:
+      type: object
+      properties:
+        shopMenu:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShopMenu'
+        token:
+          type: string
+          nullable: true
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          nullable: true
+          example: null
+        data:
+          type: object
+          nullable: true
+        error:
+          type: string
+          example: Unexpected error
+        timestamp:
+          type: string
+          format: date-time
+    AreaRequest:
+      type: object
+      required:
+        - areaName
+        - stateCode
+      properties:
+        areaName:
+          type: string
+          example: Kanpur
+        stateCode:
+          type: string
+          example: UP
+    AreaResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        areaName:
+          type: string
+          example: Kanpur
+        stateCode:
+          type: string
+          example: UP
+        shopCode:
+          type: integer
+          example: 1234
+        createdAt:
+          type: string
+          format: date-time
+    MenuItem:
+      type: object
+      required:
+        - id
+        - title
+        - icon
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+        route:
+          type: string
+          nullable: true
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    MenuResponse:
+      type: object
+      properties:
+        Main Menu:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+        Favourites:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ForbiddenError:
+      description: User is not authorized to perform this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
