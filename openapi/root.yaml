@@ -7,7 +7,9 @@ info:
 
 servers:
   - url: http://localhost:8080
-    description: Local development server
+    description: Local dev server
+  - url: https://lekhaibackend.sitswiftcloud.in
+    description: UAT server
 
 tags:
   - name: Lekhai

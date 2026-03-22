@@ -1,7 +1,7 @@
 paths:
-  /api/account-group/create:
+  /account-group:
     post:
-      tags: [account-group]
+      tags: [Account Group]
       summary: Create account group
       operationId: createAccountGroup
       requestBody:
@@ -23,12 +23,10 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/account-group/list-all:
     get:
-      tags: [account-group]
+      tags: [Account Group]
       summary: List account groups
-      operationId: listAccountGroups
+      operationId: listAllAccountGroups
       responses:
         '200':
           description: List of account groups

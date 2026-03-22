@@ -1,7 +1,7 @@
 paths:
-  /area/create:
+  /area:
     post:
-      tags: [area]
+      tags: [Area]
       summary: Create area
       operationId: createArea
       requestBody:
@@ -11,7 +11,7 @@ paths:
             schema:
               $ref: '../area/components.yaml#/AreaRequest'
       responses:
-        '200':
+        '201':
           description: Area created
           content:
             application/json:
@@ -23,11 +23,9 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /area/list-all:
     get:
-      tags: [area]
-      summary: List areas
+      tags: [Area]
+      summary: List all areas
       operationId: listAreas
       responses:
         '200':

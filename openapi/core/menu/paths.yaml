@@ -1,5 +1,5 @@
 paths:
-  /api/menu:
+  /menu:
     get:
       tags: [Menu]
       summary: Get user menu

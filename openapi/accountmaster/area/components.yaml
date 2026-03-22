@@ -21,9 +21,3 @@ AreaResponse:
     stateCode:
       type: string
       example: UP
-    shopCode:
-      type: integer
-      example: 1234
-    createdAt:
-      type: string
-      format: date-time

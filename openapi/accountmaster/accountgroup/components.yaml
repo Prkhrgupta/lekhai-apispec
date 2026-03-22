@@ -1,14 +1,14 @@
 AccountGroupRequest:
   type: object
-  required: [name]
+  required: [name, parentId]
   properties:
     name:
       type: string
-      example: Customers
+      example: Fixed Assets
     parentId:
       type: integer
       format: int64
-      example: 1
+      example: 5
 
 AccountGroupResponse:
   type: object
@@ -18,4 +18,4 @@ AccountGroupResponse:
       format: int64
     name:
       type: string
-      example: Customers
+      example: Sundry Creditor

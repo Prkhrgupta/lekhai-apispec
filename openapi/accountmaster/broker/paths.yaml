@@ -1,7 +1,7 @@
 paths:
-  /api/broker/create:
+  /broker:
     post:
-      tags: [broker]
+      tags: [Broker]
       summary: Create broker
       operationId: createBroker
       requestBody:
@@ -23,10 +23,8 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/broker/list-all:
     get:
-      tags: [broker]
+      tags: [Broker]
       summary: List brokers
       operationId: listBrokers
       responses:

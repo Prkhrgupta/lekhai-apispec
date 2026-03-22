@@ -21,6 +21,3 @@ BrokerResponse:
     phone:
       type: string
       example: '9876543210'
-    createdAt:
-      type: string
-      format: date-time

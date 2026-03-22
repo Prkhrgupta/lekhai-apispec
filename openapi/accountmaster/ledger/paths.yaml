@@ -1,7 +1,7 @@
 paths:
-  /api/ledger/create:
+  /ledger:
     post:
-      tags: [ledger]
+      tags: [Ledger]
       summary: Create ledger
       operationId: createLedger
       requestBody:
@@ -23,10 +23,8 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/ledger/list-all:
     get:
-      tags: [ledger]
+      tags: [Ledger]
       summary: List all ledgers
       operationId: listLedgers
       responses:
@@ -44,10 +42,9 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/ledger/{id}:
+  /ledger/{id}:
     get:
-      tags: [ledger]
+      tags: [Ledger]
       summary: Get ledger by ID
       operationId: getLedger
       parameters:
@@ -71,7 +68,7 @@ paths:
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     put:
-      tags: [ledger]
+      tags: [Ledger]
       summary: Update ledger
       operationId: updateLedger
       parameters:
@@ -100,10 +97,9 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/ledger/ledgers/summary:
+  /ledger/summary:
     get:
-      tags: [ ledger ]
+      tags: [Ledger]
       summary: Get ledger summary
       operationId: getLedgerSummaries
       responses:

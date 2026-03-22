@@ -1,7 +1,7 @@
 paths:
-  /api/transport/create:
+  /transport:
     post:
-      tags: [transport]
+      tags: [Transport]
       summary: Create transport
       operationId: createTransport
       requestBody:
@@ -23,10 +23,8 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-
-  /api/transport/list-all:
     get:
-      tags: [transport]
+      tags: [Transport]
       summary: List transports
       operationId: listTransports
       responses:
