@@ -21,5 +21,4 @@ LoginResponse:
         $ref: '#/ShopMenu'
     token:
       type: string
-      nullable: true
       example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."

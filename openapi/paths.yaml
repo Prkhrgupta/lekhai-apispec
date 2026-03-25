@@ -16,7 +16,7 @@
   $ref: './accountmaster/transport/paths.yaml#/paths/~1transport'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
-/login/withShopCode:
-  $ref: './auth/paths.yaml#/paths/~1login~1withShopCode'
+/auth/shop-token:
+  $ref: './auth/paths.yaml#/paths/~1auth~1shop-token'
 /menu:
   $ref: './core/menu/paths.yaml#/paths/~1menu'

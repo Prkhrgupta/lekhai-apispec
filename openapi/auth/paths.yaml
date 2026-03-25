@@ -27,13 +27,13 @@ paths:
             application/json:
               schema:
                 $ref: '../common/components.yaml#/Error'
-  /login/withShopCode:
+  /auth/shop-token:
     get:
       tags:
         - Auth
-      summary: Login with Shop Code
-      operationId: generateTokenWithShopCode
-      description: Authenticates the user using Basic Authentication and a shop code provided in the header.
+      summary: Get token for Shop Code
+      operationId: generateTokenForShopCode
+      description: Authenticates the user using a JWT token and a shop code provided in the header.
       parameters:
         - name: shop-code
           in: header
@@ -42,7 +42,7 @@ paths:
           schema:
             type: integer
       security:
-        - basicAuth: []
+        - bearerAuth: []
       responses:
         '200':
           description: Successful login
