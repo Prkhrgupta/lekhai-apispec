@@ -1,0 +1,14 @@
+CsvUploadTypes:
+  type: string
+  enum: [TRANSPORT, AREA, BROKER, LEDGER]
+
+CsvUploadRequest:
+  type: object
+  required: [csv-file, upload-type]
+  properties:
+    csv-file:
+      type: string
+      format: binary
+      description: The CSV file to upload
+    upload-type:
+      $ref: '#/CsvUploadTypes'

@@ -1,0 +1,31 @@
+paths:
+  /csv/upload:
+    post:
+      tags: [CSV Upload]
+      summary: Upload data via CSV
+      operationId: uploadCsv
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              $ref: './components.yaml#/CsvUploadRequest'
+      responses:
+        '200':
+          description: CSV uploaded successfully
+          content:
+            application/json:
+              schema:
+                $ref: '../common/components.yaml#/Error'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '../common/components.yaml#/Error'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
