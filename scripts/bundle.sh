@@ -3,11 +3,14 @@ set -e
 
 echo "Bundling OpenAPI..."
 
-npx redocly bundle openapi/root.yaml \
-  -o docs/bundled.yaml
+VERSION=$(cat VERSION)
 
-# Inject version from VERSION file into source and bundled yaml
-sed -i '' "s/  version: .*/  version: $VERSION/" openapi/root.yaml
-sed -i '' "s/  version: .*/  version: $VERSION/" docs/bundled.yaml
+TMP_FILE="openapi/root.tmp.yaml"
+
+sed "s|{{VERSION}}|$VERSION|" openapi/root.yaml > "$TMP_FILE"
+
+npx redocly bundle "$TMP_FILE" -o docs/bundled.yaml
+
+rm "$TMP_FILE"
 
 echo "Bundled spec created"

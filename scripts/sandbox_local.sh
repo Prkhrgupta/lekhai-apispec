@@ -3,8 +3,7 @@ set -e
 
 echo "Bundling OpenAPI spec..."
 
-npx redocly bundle openapi/root.yaml \
-  -o docs/bundled.yaml
+bash scripts/bundle.sh
 
 PORT="${PORT:-5050}"
 
