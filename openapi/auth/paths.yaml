@@ -35,7 +35,7 @@ paths:
       operationId: generateTokenForShopCode
       description: Authenticates the user using a JWT token and a shop code provided in the header.
       parameters:
-        - name: shop-code
+        - name: shopcode
           in: header
           required: true
           description: The code of the shop to login to.
