@@ -10,7 +10,6 @@ MenuItem:
       type: string
     route:
       type: string
-      nullable: true
     children:
       type: array
       items:
