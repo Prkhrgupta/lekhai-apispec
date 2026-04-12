@@ -18,6 +18,25 @@ Error:
       type: string
       format: date-time
 
+DropdownItem:
+  type: object
+  required:
+    - label
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Unique identifier for the dropdown option
+      example: 1
+    label:
+      type: string
+      description: Display text for the dropdown option
+      example: "Option 1"
+    code:
+      type: string
+      description: generic Unique identifier, if id is not applicable
+      example: "JP"
+
 responses:
   UnauthorizedError:
     description: Access token is missing or invalid

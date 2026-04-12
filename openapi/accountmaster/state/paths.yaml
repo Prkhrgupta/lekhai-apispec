@@ -2,17 +2,17 @@ paths:
   /state:
     get:
       tags: [State]
-      summary: List all states
-      operationId: listAllStates
+      summary: get state options for dropdown
+      operationId: getStateDropdownOptions
       responses:
         '200':
-          description: List of states
+          description: Dropdown options for state
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '../state/components.yaml#/StateResponse'
+                  $ref: '../../common/components.yaml#/DropdownItem'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

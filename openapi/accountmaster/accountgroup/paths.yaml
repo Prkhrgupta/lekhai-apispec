@@ -25,17 +25,17 @@ paths:
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     get:
       tags: [Account Group]
-      summary: List account groups
-      operationId: listAllAccountGroups
+      summary: Get account group options for a dropdown
+      operationId: getAccountGroupDropdownOptions
       responses:
         '200':
-          description: List of account groups
+          description: Dropdown options for account groups
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '../accountgroup/components.yaml#/AccountGroupResponse'
+                  $ref: '../../common/components.yaml#/DropdownItem'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

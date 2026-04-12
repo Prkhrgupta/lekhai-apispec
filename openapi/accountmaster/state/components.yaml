@@ -1,9 +1,0 @@
-StateResponse:
-  type: object
-  properties:
-    code:
-      type: string
-      example: UP
-    name:
-      type: string
-      example: Uttar Pradesh

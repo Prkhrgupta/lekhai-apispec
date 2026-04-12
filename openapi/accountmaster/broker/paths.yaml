@@ -25,17 +25,17 @@ paths:
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     get:
       tags: [Broker]
-      summary: List brokers
-      operationId: listBrokers
+      summary: get broker options for dropdown
+      operationId: getBrokerDropdownOptions
       responses:
         '200':
-          description: List of brokers
+          description: Dropdown options for broker
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '../broker/components.yaml#/BrokerResponse'
+                  $ref: '../../common/components.yaml#/DropdownItem'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

@@ -1,6 +1,6 @@
 AreaRequest:
   type: object
-  required: [areaName, stateCode]
+  required: [areaName]
   properties:
     areaName:
       type: string
