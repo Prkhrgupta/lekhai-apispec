@@ -107,8 +107,9 @@ LedgerResponse:
       type: string
     legal_name:
       type: string
-    account_group_name:
-      type: string
+    account_group_id:
+      type: integer
+      format: int64
     opening_balance:
       type: number
     opening_balance_type:
