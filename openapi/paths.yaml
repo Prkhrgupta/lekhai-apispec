@@ -20,3 +20,15 @@
   $ref: './auth/paths.yaml#/paths/~1auth~1shop-token'
 /menu:
   $ref: './core/menu/paths.yaml#/paths/~1menu'
+/transporter/ewb:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb'
+/transporter/ewb/expiring:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1expiring'
+/transporter/ewb/{ewbNo}:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}'
+/transporter/ewb/{ewbNo}/delivered:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}~1delivered'
+/transporter/ewb/{ewbNo}/extend:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}~1extend'
+/gsp/ewb-credentials:
+  $ref: './common/gsp/ewb/paths.yaml#/paths/~1gsp~1ewb-credentials'

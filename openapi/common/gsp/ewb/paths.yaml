@@ -1,0 +1,28 @@
+paths:
+  /gsp/ewb-credentials:
+    put:
+      tags:
+        - GSP Credentials
+      summary: Create or update GSP credentials for a transporter (identified by GSTIN in request body)
+      operationId: upsertGspCredentials
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/components/schemas/GspCredentialsRequest'
+
+      responses:
+        '200':
+          description: Credentials created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/components/schemas/GspCredentialsResponse'
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'

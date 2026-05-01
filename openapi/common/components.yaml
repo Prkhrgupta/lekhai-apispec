@@ -50,6 +50,12 @@ responses:
       application/json:
         schema:
           $ref: '#/Error'
+  NotFoundError:
+    description: Resource not found
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
   InternalServerError:
     description: Internal server error
     content:
