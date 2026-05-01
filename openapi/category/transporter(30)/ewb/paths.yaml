@@ -1,0 +1,156 @@
+paths:
+  /transporter/ewb:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs for a transporter filtered by GSTIN, expiry date, and status
+      operationId: getTransporterEwbs
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/FromDateParam'
+        - $ref: './components.yaml#/components/parameters/ToDateParam'
+        - $ref: './components.yaml#/components/parameters/IncludeDeliveredParam'
+        - $ref: './components.yaml#/components/parameters/StatusParam'
+
+      responses:
+        '200':
+          description: List of EWBs matching the filters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components.yaml#/components/schemas/EwbSummary'
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
+  /transporter/ewb/{ewbNo}:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWB details by EWB number
+      operationId: getEwbDetails
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/EwbNoPathParam'
+
+      responses:
+        '200':
+          description: EWB details
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/components/schemas/EwbDetails'
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
+  /transporter/ewb/{ewbNo}/extend:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Extend validity of an EWB
+      operationId: extendEwbValidity
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/EwbNoPathParam'
+
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/components/schemas/EwbExtendRequest'
+
+      responses:
+        '200':
+          description: EWB validity extended
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/components/schemas/EwbExtendResponse'
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}/delivered:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as delivered
+      operationId: markEwbDelivered
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/EwbNoPathParam'
+
+      responses:
+        '204':
+          description: EWB marked as delivered
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
+    delete:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as non-delivered
+      operationId: markEwbNonDelivered
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/EwbNoPathParam'
+
+      responses:
+        '204':
+          description: EWB marked as non-delivered
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
+  /transporter/ewb/expiring:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs expiring on a specific date
+      operationId: getEwbExpiring
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/DateParam'
+
+      responses:
+        '200':
+          description: List of EWBs expiring on the specified date
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: './components.yaml#/components/schemas/EwbSummary'
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'

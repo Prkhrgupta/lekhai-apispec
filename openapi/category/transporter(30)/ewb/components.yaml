@@ -1,0 +1,232 @@
+components:
+  parameters:
+    FromDateParam:
+      name: fromDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date   # yyyy-MM-dd
+      example: "2026-04-01"
+
+    ToDateParam:
+      name: toDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date   # yyyy-MM-dd
+      example: "2026-04-27"
+
+    IncludeDeliveredParam:
+      name: includeDelivered
+      in: query
+      required: false
+      schema:
+        type: boolean
+      example: false
+
+    StatusParam:
+      name: status
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/EwbStatus'
+      example: "ACTIVE"
+
+    DateParam:
+      name: date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time   # ISO 8601
+      example: "2026-04-27T15:30:00Z"
+
+    EwbNoPathParam:
+      name: ewbNo
+      in: path
+      required: true
+      schema:
+        type: string
+      example: "451716215301"
+
+  schemas:
+    EwbStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - REJECTED
+      description: Status of the EWB
+
+    EwbSummary:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - status
+        - docNo
+        - delState
+        - delPlace
+        - validUpTo
+        - extendedTimes
+        - isDelivered
+      properties:
+        ewbNo:
+          type: string
+          example: "451716215301"
+        ewbDate:
+          type: string
+          format: date-time
+          example: "2026-04-24T10:30:00Z"
+        status:
+          $ref: '#/components/schemas/EwbStatus'
+        docNo:
+          type: string
+          example: "C09AB27100001171"
+        delState:
+          type: string
+          example: "Uttar Pradesh"
+        delPlace:
+          type: string
+          example: "MAINPURI"
+        validUpTo:
+          type: string
+          format: date-time
+          example: "2026-04-27T11:20:00Z"
+        extendedTimes:
+          type: integer
+          format: int32
+          example: 1
+        isDelivered:
+          type: boolean
+          example: false
+
+    TransportMode:
+      type: string
+      enum:
+        - ROAD
+        - RAIL
+        - AIR
+        - SHIP
+        - IN_TRANSIT
+      description: Mode of transportation
+
+    ConsignmentStatus:
+      type: string
+      enum:
+        - IN_MOVEMENT
+        - IN_TRANSIT
+      description: Current status of the consignment
+
+    VehicleType:
+      type: string
+      enum:
+        - REGULAR
+        - ODC
+      description: Type of vehicle
+
+    ExtensionReason:
+      type: string
+      enum:
+        - NATURAL_CALAMITY
+        - LAW_AND_ORDER
+        - TRANSSHIPMENT
+        - ACCIDENT
+        - OTHERS
+      description: Reason for extension of validity
+
+    EwbDetails:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - fromPlace
+        - fromState
+        - toPlace
+        - toState
+        - transDocNo
+        - transDocDate
+        - transMode
+        - fromPinCode
+        - toPinCode
+        - vehicleType
+        - status
+        - noValidDays
+      properties:
+        ewbNo:
+          type: string
+          example: "521008831493"
+        ewbDate:
+          type: string
+          format: date-time
+          example: "2022-01-19T18:08:00Z"
+        fromPlace:
+          type: string
+          example: "FRAZER TOWN"
+        fromState:
+          type: string
+          example: "Karnataka"
+        toPlace:
+          type: string
+          example: "Beml Nagar"
+        toState:
+          type: string
+          example: "Karnataka"
+        transDocNo:
+          type: string
+          example: ""
+        transDocDate:
+          type: string
+          format: date-time
+          example: null
+        transMode:
+          $ref: '#/components/schemas/TransportMode'
+        fromPinCode:
+          type: integer
+          example: 605001
+        toPinCode:
+          type: integer
+          example: 562160
+        vehicleType:
+          $ref: '#/components/schemas/VehicleType'
+        status:
+          $ref: '#/components/schemas/ConsignmentStatus'
+        noValidDays:
+          type: integer
+          example: 2
+
+    EwbExtendRequest:
+      type: object
+      required:
+        - remainingDistance
+        - extensionReason
+        - extensionRemark
+      properties:
+        remainingDistance:
+          type: integer
+          example: 150
+        extensionReason:
+          $ref: '#/components/schemas/ExtensionReason'
+        extensionRemark:
+          type: string
+          example: "Road blocked due to landslide"
+
+    EwbExtendResponse:
+      type: object
+      required:
+        - ewbNo
+        - updatedDate
+        - validUpto
+      properties:
+        ewbNo:
+          type: string
+          example: "161000843009"
+        updatedDate:
+          type: string
+          format: date-time
+          example: "2018-04-26T17:07:00Z"
+        validUpto:
+          type: string
+          format: date-time
+          example: "2018-05-21T23:59:00Z"

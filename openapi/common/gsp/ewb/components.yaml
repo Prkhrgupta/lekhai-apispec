@@ -1,0 +1,30 @@
+components:
+  schemas:
+    GspCredentialsRequest:
+      type: object
+      required:
+        - gstin
+        - username
+        - password
+      properties:
+        gstin:
+          type: string
+          description: GSTIN of the transporter
+          example: "09AAACI5950L1Z8"
+        username:
+          type: string
+          example: "gsp_user_123"
+        password:
+          type: string
+          format: password
+          example: "securePassword@123"
+
+    GspCredentialsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: "GSP credentials saved successfully"
+        gstin:
+          type: string
+          example: "09AAACI5950L1Z8"
