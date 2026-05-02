@@ -112,13 +112,6 @@ components:
         - IN_TRANSIT
       description: Mode of transportation
 
-    ConsignmentStatus:
-      type: string
-      enum:
-        - IN_MOVEMENT
-        - IN_TRANSIT
-      description: Current status of the consignment
-
     VehicleType:
       type: string
       enum:
@@ -151,7 +144,6 @@ components:
         - fromPinCode
         - toPinCode
         - vehicleType
-        - status
         - noValidDays
       properties:
         ewbNo:
@@ -190,8 +182,6 @@ components:
           example: 562160
         vehicleType:
           $ref: '#/components/schemas/VehicleType'
-        status:
-          $ref: '#/components/schemas/ConsignmentStatus'
         noValidDays:
           type: integer
           example: 2
