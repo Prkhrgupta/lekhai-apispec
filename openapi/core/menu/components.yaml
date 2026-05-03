@@ -26,3 +26,14 @@ MenuResponse:
       type: array
       items:
         $ref: '#/MenuItem'
+
+TopBarResponse:
+  type: object
+  required: [firmName, gstin, name]
+  properties:
+    firmName:
+      type: string
+    gstin:
+      type: string
+    name:
+      type: string

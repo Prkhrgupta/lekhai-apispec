@@ -18,3 +18,21 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /menu/topbar:
+    get:
+      tags: [Menu]
+      summary: Get top bar details
+      operationId: getTopBar
+      description: Returns firm name and GSTIN for the top bar display.
+      responses:
+        '200':
+          description: Successful retrieval of top bar details
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/TopBarResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

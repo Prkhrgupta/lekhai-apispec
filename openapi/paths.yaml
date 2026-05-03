@@ -20,6 +20,8 @@
   $ref: './auth/paths.yaml#/paths/~1auth~1shop-token'
 /menu:
   $ref: './core/menu/paths.yaml#/paths/~1menu'
+/menu/topbar:
+  $ref: './core/menu/paths.yaml#/paths/~1menu~1topbar'
 /transporter/ewb:
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb'
 /transporter/ewb/expiring:
