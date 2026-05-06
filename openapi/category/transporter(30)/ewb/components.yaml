@@ -102,23 +102,6 @@ components:
           type: boolean
           example: false
 
-    TransportMode:
-      type: string
-      enum:
-        - ROAD
-        - RAIL
-        - AIR
-        - SHIP
-        - IN_TRANSIT
-      description: Mode of transportation
-
-    VehicleType:
-      type: string
-      enum:
-        - REGULAR
-        - ODC
-      description: Type of vehicle
-
     ExtensionReason:
       type: string
       enum:
@@ -134,17 +117,18 @@ components:
       required:
         - ewbNo
         - ewbDate
-        - fromPlace
         - fromState
-        - toPlace
+        - fromPlace
+        - fromPinCode
         - toState
+        - toPlace
+        - toPinCode
         - transDocNo
         - transDocDate
-        - transMode
-        - fromPinCode
-        - toPinCode
-        - vehicleType
-        - noValidDays
+        - vehicleNo
+        - consigner
+        - consignee
+        - actualDistance
       properties:
         ewbNo:
           type: string
@@ -172,19 +156,24 @@ components:
           type: string
           format: date-time
           example: null
-        transMode:
-          $ref: '#/components/schemas/TransportMode'
         fromPinCode:
           type: integer
           example: 605001
         toPinCode:
           type: integer
           example: 562160
-        vehicleType:
-          $ref: '#/components/schemas/VehicleType'
-        noValidDays:
+        vehicleNo:
+          type: string
+          example: UP77T1727
+        consigner:
+          type: string
+          example: RAMDAYAL & SONS Pvt Limited
+        consignee:
+          type: string
+          example: ITC Limited
+        actualDistance:
           type: integer
-          example: 2
+          example: 198
 
     EwbExtendRequest:
       type: object
