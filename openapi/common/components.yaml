@@ -6,11 +6,9 @@ Error:
       example: false
     message:
       type: string
-      nullable: true
       example: null
     data:
       type: object
-      nullable: true
     error:
       type: string
       example: "Unexpected error"

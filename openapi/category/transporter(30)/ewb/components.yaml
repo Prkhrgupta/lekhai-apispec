@@ -64,13 +64,17 @@ components:
       required:
         - ewbNo
         - ewbDate
-        - status
+        - vehicleNo
+        - consigner
+        - consignee
         - docNo
-        - delState
-        - delPlace
+        - docDate
+        - destination
+        - source
         - validUpTo
-        - extendedTimes
         - isDelivered
+        - status
+        - actualDistance
       properties:
         ewbNo:
           type: string
@@ -84,23 +88,32 @@ components:
         docNo:
           type: string
           example: "C09AB27100001171"
-        delState:
+        docDate:
           type: string
-          example: "Uttar Pradesh"
-        delPlace:
+          format: date-time
+          example: "2026-04-24T00:00:00Z"
+        destination:
           type: string
-          example: "MAINPURI"
+          example: "MAINPURI, UP"
+        source:
+          type: string
+          example: "KANPUR, UP"
         validUpTo:
           type: string
           format: date-time
           example: "2026-04-27T11:20:00Z"
-        extendedTimes:
-          type: integer
-          format: int32
-          example: 1
         isDelivered:
           type: boolean
           example: false
+        consigner:
+          type: string
+          example: "RAMDAYAL & SONS Pvt Limited"
+        consignee:
+          type: string
+          example: "ITC Limited"
+        actualDistance:
+          type: integer
+          example: 198
 
     ExtensionReason:
       type: string
@@ -129,6 +142,7 @@ components:
         - consigner
         - consignee
         - actualDistance
+        - vehicleDetails
       properties:
         ewbNo:
           type: string
@@ -174,6 +188,23 @@ components:
         actualDistance:
           type: integer
           example: 198
+        vehicleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleDetail'
+
+    VehicleDetail:
+      type: object
+      properties:
+        vehicleNo:
+          type: string
+          example: "UP77T1727"
+        fromPlace:
+          type: string
+          example: "Kanpur"
+        fromState:
+          type: string
+          example: "UP"
 
     EwbExtendRequest:
       type: object
