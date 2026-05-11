@@ -114,6 +114,9 @@ components:
         actualDistance:
           type: integer
           example: 198
+        vehicleNo:
+          type: string
+          example: UP77T1727
 
     ExtensionReason:
       type: string
