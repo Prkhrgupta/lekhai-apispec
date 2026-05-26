@@ -28,6 +28,41 @@ paths:
         '500':
           $ref: '../../../common/components.yaml#/responses/InternalServerError'
 
+  /transporter/ewb/download:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Download EWBs in specified format
+      operationId: downloadTransporterEwbs
+
+      parameters:
+        - $ref: './components.yaml#/components/parameters/FromDateParam'
+        - $ref: './components.yaml#/components/parameters/ToDateParam'
+        - $ref: './components.yaml#/components/parameters/FormatParam'
+
+      responses:
+        '200':
+          description: Downloaded file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '../../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
   /transporter/ewb/{ewbNo}:
     get:
       tags:

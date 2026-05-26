@@ -43,6 +43,14 @@ components:
         format: date-time   # ISO 8601
       example: "2026-04-27T15:30:00Z"
 
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      schema:
+        $ref: '../../../common/components.yaml#/Format'
+      example: "EXCEL"
+
     EwbNoPathParam:
       name: ewbNo
       in: path

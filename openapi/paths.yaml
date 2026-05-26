@@ -30,6 +30,8 @@
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}'
 /transporter/ewb/{ewbNo}/delivered:
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}~1delivered'
+/transporter/ewb/download:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1download'
 /transporter/ewb/{ewbNo}/extend:
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}~1extend'
 /gsp/ewb-credentials:

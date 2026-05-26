@@ -35,6 +35,14 @@ DropdownItem:
       description: generic Unique identifier, if id is not applicable
       example: "JP"
 
+Format:
+  type: string
+  enum:
+    - EXCEL
+    - PDF
+    - CSV
+  description: Output format for downloadable content
+
 responses:
   UnauthorizedError:
     description: Access token is missing or invalid
