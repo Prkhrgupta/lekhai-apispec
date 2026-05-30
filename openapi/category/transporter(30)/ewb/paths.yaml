@@ -168,11 +168,11 @@ paths:
     get:
       tags:
         - Transporter EWB
-      summary: Get EWBs expiring on a specific date
+      summary: Get EWBs expiring today, tomorrow, or day after
       operationId: getEwbExpiring
 
       parameters:
-        - $ref: './components.yaml#/components/parameters/DateParam'
+        - $ref: './components.yaml#/components/parameters/DayParam'
 
       responses:
         '200':

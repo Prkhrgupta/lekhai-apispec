@@ -34,14 +34,13 @@ components:
         $ref: '#/components/schemas/EwbStatus'
       example: "ACTIVE"
 
-    DateParam:
-      name: date
+    DayParam:
+      name: day
       in: query
       required: true
       schema:
-        type: string
-        format: date-time   # ISO 8601
-      example: "2026-04-27T15:30:00Z"
+        $ref: '#/components/schemas/Day'
+      example: "TODAY"
 
     FormatParam:
       name: format
@@ -60,6 +59,14 @@ components:
       example: "451716215301"
 
   schemas:
+    Day:
+      type: string
+      enum:
+        - TODAY
+        - TOMORROW
+        - DAY_AFTER_TOMORROW
+      description: Relative day for expiring EWB lookup
+
     EwbStatus:
       type: string
       enum:
