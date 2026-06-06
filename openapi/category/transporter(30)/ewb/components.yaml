@@ -64,7 +64,7 @@ components:
       enum:
         - TODAY
         - TOMORROW
-        - DAY_AFTER_TOMORROW
+        - ALREADY_EXPIRED
       description: Relative day for expiring EWB lookup
 
     EwbStatus:
