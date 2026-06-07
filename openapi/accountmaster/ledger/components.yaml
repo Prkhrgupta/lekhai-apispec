@@ -219,6 +219,39 @@ GstInDetailResponse:
     party_type:
       $ref: '#/PartyType'
 
+PaginationMeta:
+  type: object
+  required:
+    - page
+    - pageSize
+    - totalItems
+    - totalPages
+    - hasNext
+    - hasPrevious
+  properties:
+    page:
+      type: integer
+      format: int32
+      description: Current page number (1-indexed)
+    pageSize:
+      type: integer
+      format: int32
+      description: Number of items per page
+    totalItems:
+      type: integer
+      format: int64
+      description: Total number of items matching the current filters/search
+    totalPages:
+      type: integer
+      format: int32
+      description: Total number of pages
+    hasNext:
+      type: boolean
+      description: Whether there is a next page
+    hasPrevious:
+      type: boolean
+      description: Whether there is a previous page
+
 LedgerSummaryResponse:
   type: object
   properties:
@@ -230,6 +263,8 @@ LedgerSummaryResponse:
       type: array
       items:
         $ref: '#/LedgerSummaryItem'
+    pagination:
+      $ref: '#/PaginationMeta'
 
 LedgerSummaryColumn:
   type: object
