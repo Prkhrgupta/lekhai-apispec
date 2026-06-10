@@ -121,6 +121,7 @@ paths:
           $ref: '../../../common/components.yaml#/responses/NotFoundError'
         '500':
           $ref: '../../../common/components.yaml#/responses/InternalServerError'
+
   /transporter/ewb/{ewbNo}/delivered:
     post:
       tags:
@@ -173,6 +174,7 @@ paths:
 
       parameters:
         - $ref: './components.yaml#/components/parameters/DayParam'
+        - $ref: './components.yaml#/components/parameters/IncludeDeliveredParam'
 
       responses:
         '200':

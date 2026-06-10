@@ -24,6 +24,7 @@ components:
       required: false
       schema:
         type: boolean
+        default: boolean
       example: false
 
     StatusParam:
