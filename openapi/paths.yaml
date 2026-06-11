@@ -26,6 +26,8 @@
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb'
 /transporter/ewb/expiring:
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1expiring'
+/transporter/ewb/expiring/download:
+  $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1expiring~1download'
 /transporter/ewb/{ewbNo}:
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}'
 /transporter/ewb/{ewbNo}/delivered:
