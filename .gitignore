@@ -5,6 +5,10 @@ package-lock.json
 # Generated files
 generated/
 
+# Build
+build/
+.gradle/
+
 # IDEs and Editors
 .idea/
 .vscode/
