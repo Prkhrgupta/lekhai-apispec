@@ -219,29 +219,6 @@ GstInDetailResponse:
     party_type:
       $ref: '#/PartyType'
 
-LedgerSummaryResponse:
-  type: object
-  properties:
-    columns:
-      type: array
-      items:
-        $ref: '#/LedgerSummaryColumn'
-    data:
-      type: array
-      items:
-        $ref: '#/LedgerSummaryItem'
-
-LedgerSummaryColumn:
-  type: object
-  properties:
-    name:
-      type: string
-    type:
-      type: string
-    width:
-      type: integer
-      format: int32
-
 LedgerSummaryItem:
   type: object
   properties:
@@ -258,3 +235,17 @@ LedgerSummaryItem:
       type: string
     gstin:
       type: string
+
+LedgerSearchableField:
+  type: string
+  enum: [NAME, AREA]
+
+LedgerSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/LedgerSummaryItem'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
