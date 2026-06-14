@@ -14,6 +14,12 @@
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
 /transport:
   $ref: './accountmaster/transport/paths.yaml#/paths/~1transport'
+/commodity:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity'
+/commodity/{id}:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1{id}'
+/commodity/summary:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1summary'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:
