@@ -102,13 +102,55 @@ paths:
       tags: [Ledger]
       summary: Get ledger summary
       operationId: getLedgerSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search/sort by
+          schema:
+            $ref: '../ledger/components.yaml#/LedgerSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
       responses:
         '200':
-          description: Ledger summary response
+          description: Successful response
           content:
             application/json:
               schema:
-                $ref: '../ledger/components.yaml#/LedgerSummaryResponse'
+                $ref: '../ledger/components.yaml#/LedgerSummaryPageResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

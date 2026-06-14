@@ -33,6 +33,8 @@ dependencies {
 
     api 'io.swagger.core.v3:swagger-annotations:2.2.21'
     api 'org.openapitools:jackson-databind-nullable:0.2.6'
+    api 'org.springframework.data:spring-data-commons'
+    api 'org.springdoc:springdoc-openapi-starter-common:2.5.0'
 }
 
 publishing {
