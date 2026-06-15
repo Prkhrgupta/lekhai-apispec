@@ -290,25 +290,12 @@ PurchaseOutStateResponse:
 CommoditySummaryResponse:
   type: object
   properties:
-    columns:
-      type: array
-      items:
-        $ref: '#/CommoditySummaryColumn'
     data:
       type: array
       items:
         $ref: '#/CommoditySummaryItem'
-
-CommoditySummaryColumn:
-  type: object
-  properties:
-    name:
-      type: string
-    type:
-      type: string
-    width:
-      type: integer
-      format: int32
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
 
 CommoditySummaryItem:
   type: object
@@ -328,3 +315,7 @@ CommoditySummaryItem:
     gst_rate_purchase:
       type: number
       format: double
+
+CommoditySearchableField:
+  type: string
+  enum: [NAME, HSN_SAC_CODE]
