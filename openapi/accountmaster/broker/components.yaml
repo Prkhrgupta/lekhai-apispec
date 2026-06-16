@@ -21,3 +21,28 @@ BrokerResponse:
     phone:
       type: string
       example: '9876543210'
+
+BrokerSummaryItem:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+    phone:
+      type: string
+
+BrokerSearchableField:
+  type: string
+  enum: [NAME]
+
+BrokerSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/BrokerSummaryItem'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'

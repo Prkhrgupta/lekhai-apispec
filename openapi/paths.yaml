@@ -1,9 +1,15 @@
 /account-group:
   $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1account-group'
+/account-group/summary:
+  $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1account-group~1summary'
 /area:
   $ref: './accountmaster/area/paths.yaml#/paths/~1area'
+/area/summary:
+  $ref: './accountmaster/area/paths.yaml#/paths/~1area~1summary'
 /broker:
   $ref: './accountmaster/broker/paths.yaml#/paths/~1broker'
+/broker/summary:
+  $ref: './accountmaster/broker/paths.yaml#/paths/~1broker~1summary'
 /ledger:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger'
 /ledger/{id}:
@@ -14,6 +20,8 @@
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
 /transport:
   $ref: './accountmaster/transport/paths.yaml#/paths/~1transport'
+/transport/summary:
+  $ref: './accountmaster/transport/paths.yaml#/paths/~1transport~1summary'
 /commodity:
   $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity'
 /commodity/{id}:
