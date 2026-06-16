@@ -298,6 +298,8 @@ CommoditySummaryResponse:
       type: array
       items:
         $ref: '#/CommoditySummaryItem'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
 
 CommoditySummaryColumn:
   type: object
@@ -328,3 +330,7 @@ CommoditySummaryItem:
     gst_rate_purchase:
       type: number
       format: double
+
+CommoditySearchableField:
+  type: string
+  enum: [NAME, HSN_SAC_CODE]

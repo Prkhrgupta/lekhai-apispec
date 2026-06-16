@@ -43,6 +43,22 @@ Format:
     - CSV
   description: Output format for downloadable content
 
+PaginationMeta:
+  type: object
+  properties:
+    totalPages:
+      type: integer
+      format: int32
+    totalElements:
+      type: integer
+      format: int64
+    page:
+      type: integer
+      format: int32
+    size:
+      type: integer
+      format: int32
+
 responses:
   UnauthorizedError:
     description: Access token is missing or invalid
