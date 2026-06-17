@@ -31,19 +31,6 @@ TransportResponse:
       type: string
       format: date-time
 
-TransportSummaryItem:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int64
-    name:
-      type: string
-    phone:
-      type: string
-    gstNo:
-      type: string
-
 TransportSearchableField:
   type: string
   enum: [NAME, GST_NO]
@@ -54,6 +41,6 @@ TransportSummaryPageResponse:
     data:
       type: array
       items:
-        $ref: '#/TransportSummaryItem'
+        $ref: '#/TransportResponse'
     pagination:
       $ref: '../../common/components.yaml#/PaginationMeta'

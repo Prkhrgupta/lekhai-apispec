@@ -16,15 +16,6 @@ AreaResponse:
       type: string
       example: Kanpur
 
-AreaSummaryItem:
-  type: object
-  properties:
-    id:
-      type: integer
-      format: int64
-    areaName:
-      type: string
-
 AreaSearchableField:
   type: string
   enum: [NAME]
@@ -35,6 +26,6 @@ AreaSummaryPageResponse:
     data:
       type: array
       items:
-        $ref: '#/AreaSummaryItem'
+        $ref: '#/AreaResponse'
     pagination:
       $ref: '../../common/components.yaml#/PaginationMeta'
