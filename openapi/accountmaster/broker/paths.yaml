@@ -42,6 +42,61 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /broker/{id}:
+    get:
+      tags: [Broker]
+      summary: Get broker by ID
+      operationId: getBroker
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Broker details
+          content:
+            application/json:
+              schema:
+                $ref: '../broker/components.yaml#/BrokerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [Broker]
+      summary: Update broker
+      operationId: updateBroker
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../broker/components.yaml#/BrokerRequest'
+      responses:
+        '200':
+          description: Broker updated
+          content:
+            application/json:
+              schema:
+                $ref: '../broker/components.yaml#/BrokerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
   /broker/summary:
     get:
       tags: [Broker]
