@@ -15,3 +15,17 @@ AreaResponse:
     areaName:
       type: string
       example: Kanpur
+
+AreaSearchableField:
+  type: string
+  enum: [NAME]
+
+AreaSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/AreaResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
