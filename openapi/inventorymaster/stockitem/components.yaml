@@ -1,0 +1,118 @@
+FinishedRawMaterial:
+  type: string
+  enum: [FINISHED, RAW]
+
+RatePerUnit:
+  type: string
+  enum: [PCS, METER]
+
+StockItemRequest:
+  type: object
+  required: [itemName]
+  properties:
+    finishedRawMaterial:
+      $ref: '#/FinishedRawMaterial'
+    itemCategoryId:
+      type: integer
+      format: int64
+    itemFactoryId:
+      type: integer
+      format: int64
+    itemName:
+      type: string
+      example: Cotton Shirt
+    purchasePrice:
+      type: number
+      format: double
+      default: 0.0
+    salePrice:
+      type: number
+      format: double
+      default: 0.0
+    commodityId:
+      type: integer
+      format: int64
+    ratePer:
+      $ref: '#/RatePerUnit'
+    openingPcs:
+      type: number
+      format: double
+      default: 0.0
+    openingMeter:
+      type: number
+      format: double
+      default: 0.0
+    openingRate:
+      type: number
+      format: double
+      default: 0.0
+    openingValue:
+      type: number
+      format: double
+      default: 0.0
+
+StockItemResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    finishedRawMaterial:
+      $ref: '#/FinishedRawMaterial'
+    itemCategoryId:
+      type: integer
+      format: int64
+    itemCategoryName:
+      type: string
+    itemFactoryId:
+      type: integer
+      format: int64
+    itemFactoryName:
+      type: string
+    itemName:
+      type: string
+      example: Cotton Shirt
+    purchasePrice:
+      type: number
+      format: double
+    salePrice:
+      type: number
+      format: double
+    commodityId:
+      type: integer
+      format: int64
+    commodityName:
+      type: string
+    hsnCode:
+      type: string
+    gstPercentage:
+      type: number
+      format: double
+    ratePer:
+      $ref: '#/RatePerUnit'
+    openingPcs:
+      type: number
+      format: double
+    openingMeter:
+      type: number
+      format: double
+    openingRate:
+      type: number
+      format: double
+    openingValue:
+      type: number
+      format: double
+
+StockItemSearchableField:
+  type: string
+  enum: [NAME]
+
+StockItemSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/StockItemResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
