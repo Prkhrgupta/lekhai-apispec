@@ -1,0 +1,185 @@
+paths:
+  /item-category:
+    post:
+      tags: [ItemCategory]
+      summary: Create item category
+      operationId: createItemCategory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../itemcategory/components.yaml#/ItemCategoryRequest'
+      responses:
+        '201':
+          description: Item category created
+          content:
+            application/json:
+              schema:
+                $ref: '../itemcategory/components.yaml#/ItemCategoryResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    get:
+      tags: [ItemCategory]
+      summary: get item category options for dropdown
+      operationId: getItemCategoryDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for item category
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../../common/components.yaml#/DropdownItem'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /item-category/{id}:
+    get:
+      tags: [ItemCategory]
+      summary: Get item category by ID
+      operationId: getItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Item category details
+          content:
+            application/json:
+              schema:
+                $ref: '../itemcategory/components.yaml#/ItemCategoryResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [ItemCategory]
+      summary: Update item category
+      operationId: updateItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../itemcategory/components.yaml#/ItemCategoryRequest'
+      responses:
+        '200':
+          description: Item category updated
+          content:
+            application/json:
+              schema:
+                $ref: '../itemcategory/components.yaml#/ItemCategoryResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    delete:
+      tags: [ItemCategory]
+      summary: Delete item category
+      operationId: deleteItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Item category deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /item-category/summary:
+    get:
+      tags: [ItemCategory]
+      summary: Get item category summary
+      operationId: getItemCategorySummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '../itemcategory/components.yaml#/ItemCategorySearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '../itemcategory/components.yaml#/ItemCategorySummaryPageResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

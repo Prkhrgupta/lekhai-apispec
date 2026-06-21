@@ -34,6 +34,24 @@
   $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1{id}'
 /commodity/summary:
   $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1summary'
+/item-category:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category'
+/item-category/{id}:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category~1{id}'
+/item-category/summary:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category~1summary'
+/item-factory:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory'
+/item-factory/{id}:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory~1{id}'
+/item-factory/summary:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory~1summary'
+/stock-item:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item'
+/stock-item/{id}:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
+/stock-item/summary:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:
