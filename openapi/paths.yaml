@@ -18,6 +18,8 @@
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger'
 /ledger/{id}:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}'
+/ledger/by-gstin:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1by-gstin'
 /ledger/summary:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1summary'
 /state:

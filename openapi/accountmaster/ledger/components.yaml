@@ -1,3 +1,17 @@
+parameter:
+  AccountGroupFilter:
+    name: underAccountGroups
+    in: query
+    required: false
+    schema:
+      type: array
+      items:
+        type: integer
+        format: int64
+    style: form
+    explode: true
+    example: [5]
+
 AccountEntryType:
   type: string
   enum: [DR, CR]
