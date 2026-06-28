@@ -54,6 +54,8 @@
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
 /stock-item/summary:
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
+/payment-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:

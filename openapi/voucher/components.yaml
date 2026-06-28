@@ -1,0 +1,38 @@
+PaymentVocherEntry:
+  type: object
+  properties:
+    account_id:
+      type: integer
+      format: int64
+    amount:
+      type: number
+    remarks:
+      type: string
+
+PaymentVoucherRequest:
+  type: object
+  properties:
+    voucher_date:
+      type: string
+      format: date
+    payment_account_id:
+      type: integer
+      format: int64
+    narration:
+      type: string
+    items:
+      type: array
+      items:
+        $ref: '#/PaymentVocherEntry'
+
+VoucherResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    voucher_number:
+      type: string
+    amount:
+      type: number
+      nullable: true

@@ -1,0 +1,25 @@
+paths:
+  /payment-voucher:
+    post:
+      tags: [Voucher]
+      summary: Create payment voucher
+      operationId: createPaymentVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../voucher/components.yaml#/PaymentVoucherRequest'
+      responses:
+        '200':
+          description: Payment voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/VoucherResponse'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
