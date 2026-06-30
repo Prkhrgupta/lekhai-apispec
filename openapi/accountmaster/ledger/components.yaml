@@ -233,6 +233,17 @@ GstInDetailResponse:
     party_type:
       $ref: '#/PartyType'
 
+LedgerBalanceResponse:
+  type: object
+  properties:
+    ledger_id:
+      type: integer
+      format: int64
+    current_balance:
+      type: number
+    current_balance_type:
+      $ref: '#/AccountEntryType'
+
 LedgerSummaryItem:
   type: object
   properties:

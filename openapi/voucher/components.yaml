@@ -35,4 +35,3 @@ VoucherResponse:
       type: string
     amount:
       type: number
-      nullable: true
