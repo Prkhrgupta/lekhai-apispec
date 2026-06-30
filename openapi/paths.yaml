@@ -58,6 +58,8 @@
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
 /payment-voucher:
   $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
+/account-ledger/{ledgerId}:
+  $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:

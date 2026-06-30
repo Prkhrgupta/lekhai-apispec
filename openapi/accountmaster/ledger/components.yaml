@@ -243,6 +243,10 @@ LedgerBalanceResponse:
       type: number
     current_balance_type:
       $ref: '#/AccountEntryType'
+    debit_amount:
+      type: number
+    credit_amount:
+      type: number
 
 LedgerSummaryItem:
   type: object
