@@ -52,6 +52,20 @@ paths:
           schema:
             type: string
           required: false
+        - name: fromDate
+          in: query
+          description: Filter entries from this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Filter entries up to this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
       responses:
         '200':
           description: Successful response
