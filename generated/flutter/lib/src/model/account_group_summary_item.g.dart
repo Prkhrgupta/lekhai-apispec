@@ -1,0 +1,104 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'account_group_summary_item.dart';
+
+// **************************************************************************
+// BuiltValueGenerator
+// **************************************************************************
+
+class _$AccountGroupSummaryItem extends AccountGroupSummaryItem {
+  @override
+  final int? id;
+  @override
+  final String? name;
+
+  factory _$AccountGroupSummaryItem(
+          [void Function(AccountGroupSummaryItemBuilder)? updates]) =>
+      (new AccountGroupSummaryItemBuilder()..update(updates))._build();
+
+  _$AccountGroupSummaryItem._({this.id, this.name}) : super._();
+
+  @override
+  AccountGroupSummaryItem rebuild(
+          void Function(AccountGroupSummaryItemBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  AccountGroupSummaryItemBuilder toBuilder() =>
+      new AccountGroupSummaryItemBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is AccountGroupSummaryItem &&
+        id == other.id &&
+        name == other.name;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'AccountGroupSummaryItem')
+          ..add('id', id)
+          ..add('name', name))
+        .toString();
+  }
+}
+
+class AccountGroupSummaryItemBuilder
+    implements
+        Builder<AccountGroupSummaryItem, AccountGroupSummaryItemBuilder> {
+  _$AccountGroupSummaryItem? _$v;
+
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  AccountGroupSummaryItemBuilder() {
+    AccountGroupSummaryItem._defaults(this);
+  }
+
+  AccountGroupSummaryItemBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _name = $v.name;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(AccountGroupSummaryItem other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$AccountGroupSummaryItem;
+  }
+
+  @override
+  void update(void Function(AccountGroupSummaryItemBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  AccountGroupSummaryItem build() => _build();
+
+  _$AccountGroupSummaryItem _build() {
+    final _$result = _$v ?? new _$AccountGroupSummaryItem._(id: id, name: name);
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint
