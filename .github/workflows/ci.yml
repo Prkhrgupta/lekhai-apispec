@@ -121,6 +121,7 @@ jobs:
     name: Publish Spring SDK
     needs: validate
     runs-on: ubuntu-latest
+    environment: staging
     if: github.event_name == 'workflow_dispatch' && inputs.publish_spring == true
     permissions:
       contents: read
