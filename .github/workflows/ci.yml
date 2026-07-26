@@ -79,7 +79,7 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     # This environment pauses the job until you click to run it
-    environment: manual-publish-flutter
+    environment: staging
     permissions:
       contents: write
     steps:
@@ -117,7 +117,7 @@ jobs:
     needs: validate
     runs-on: ubuntu-latest
     # This environment pauses the job until you click to run it
-    environment: manual-publish-spring
+    environment: staging
     permissions:
       contents: read
       packages: write
