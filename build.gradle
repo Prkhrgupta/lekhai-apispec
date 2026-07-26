@@ -51,12 +51,13 @@ publishing {
         maven {
             name = 'Reposilite'
             url = 'https://mavenrepo.sitswiftcloud.in/releases'
-
-            credentials {
-                // This automatically pulls from your ~/.gradle/gradle.properties first,
-                // and falls back to environment variables in your GitHub Actions CI/CD
-                username = project.findProperty('reposiliteUser') ?: System.getenv('REPOSILITE_USER')
-                password = project.findProperty('reposilitePassword') ?: System.getenv('REPOSILITE_PASSWORD')
+            def user = project.findProperty('reposiliteUser') ?: System.getenv('REPOSILITE_USER')
+            def pass = project.findProperty('reposilitePassword') ?: System.getenv('REPOSILITE_PASSWORD')
+            if (user && pass) {
+                credentials {
+                    username = user
+                    password = pass
+                }
             }
         }
     }
