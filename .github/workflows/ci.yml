@@ -4,18 +4,6 @@ on:
   push:
     branches:
       - staging
-  workflow_dispatch:
-    inputs:
-      publish_flutter:
-        description: 'Publish Flutter SDK to flutter-sdk branch'
-        required: false
-        default: 'false'
-        type: boolean
-      publish_spring:
-        description: 'Publish Spring SDK to GitHub Packages'
-        required: false
-        default: 'false'
-        type: boolean
 
 env:
   FLUTTER_BRANCH: "${{ vars.GENERATED_FLUTTER_BRANCH }}"
@@ -90,7 +78,8 @@ jobs:
     name: Publish Flutter SDK
     needs: validate
     runs-on: ubuntu-latest
-    if: github.event_name == 'workflow_dispatch' && (inputs.publish_flutter == true || inputs.publish_spring == true)
+    # This environment pauses the job until you click to run it
+    environment: manual-publish-flutter
     permissions:
       contents: write
     steps:
@@ -105,12 +94,18 @@ jobs:
 
       - name: Push to flutter-sdk branch
         run: |
+          # Safety check to prevent running on your main branch if the variable is missing
+          if [ -z "${{ env.FLUTTER_BRANCH }}" ]; then
+            echo "Error: FLUTTER_BRANCH environment variable is empty."
+            exit 1
+          fi
+          
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           
           git checkout ${{ env.FLUTTER_BRANCH }} || git checkout --orphan ${{ env.FLUTTER_BRANCH }}
-          git rm -rf . 2>/dev/null || true
           
+          # Notice: The 'git rm -rf .' command has been entirely removed
           cp -r generated/flutter/* .
           
           git add .
@@ -121,8 +116,8 @@ jobs:
     name: Publish Spring SDK
     needs: validate
     runs-on: ubuntu-latest
-    environment: staging
-    if: github.event_name == 'workflow_dispatch' && inputs.publish_spring == true
+    # This environment pauses the job until you click to run it
+    environment: manual-publish-spring
     permissions:
       contents: read
       packages: write
@@ -149,14 +144,6 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
-
-      - name: Debug credentials
-        env:
-          REPOSILITE_USER: ${{ secrets.REPOSILITE_USER }}
-          REPOSILITE_PASSWORD: ${{ secrets.REPOSILITE_PASSWORD }}
-        run: |
-          echo "REPOSILITE_USER=${REPOSILITE_USER:-(empty)}"
-          echo "REPOSILITE_PASSWORD=${REPOSILITE_PASSWORD:-(empty)}"
 
       - name: Build and publish JAR
         env:
