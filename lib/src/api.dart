@@ -10,6 +10,7 @@ import 'package:openapi/src/auth/basic_auth.dart';
 import 'package:openapi/src/auth/bearer_auth.dart';
 import 'package:openapi/src/auth/oauth.dart';
 import 'package:openapi/src/api/account_group_api.dart';
+import 'package:openapi/src/api/account_ledger_api.dart';
 import 'package:openapi/src/api/area_api.dart';
 import 'package:openapi/src/api/auth_api.dart';
 import 'package:openapi/src/api/broker_api.dart';
@@ -23,6 +24,7 @@ import 'package:openapi/src/api/state_api.dart';
 import 'package:openapi/src/api/stock_item_api.dart';
 import 'package:openapi/src/api/transport_api.dart';
 import 'package:openapi/src/api/transporter_ewb_api.dart';
+import 'package:openapi/src/api/voucher_api.dart';
 
 class Openapi {
   static const String basePath = r'http://localhost:8080';
@@ -82,6 +84,12 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   AccountGroupApi getAccountGroupApi() {
     return AccountGroupApi(dio, serializers);
+  }
+
+  /// Get AccountLedgerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  AccountLedgerApi getAccountLedgerApi() {
+    return AccountLedgerApi(dio, serializers);
   }
 
   /// Get AreaApi instance, base route and serializer can be overridden by a given but be careful,
@@ -160,5 +168,11 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   TransporterEWBApi getTransporterEWBApi() {
     return TransporterEWBApi(dio, serializers);
+  }
+
+  /// Get VoucherApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  VoucherApi getVoucherApi() {
+    return VoucherApi(dio, serializers);
   }
 }

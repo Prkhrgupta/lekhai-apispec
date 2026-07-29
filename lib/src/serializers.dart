@@ -20,6 +20,9 @@ import 'package:openapi/src/model/account_group_response.dart';
 import 'package:openapi/src/model/account_group_searchable_field.dart';
 import 'package:openapi/src/model/account_group_summary_item.dart';
 import 'package:openapi/src/model/account_group_summary_page_response.dart';
+import 'package:openapi/src/model/account_ledger_entry_item.dart';
+import 'package:openapi/src/model/account_ledger_page_response.dart';
+import 'package:openapi/src/model/account_ledger_searchable_field.dart';
 import 'package:openapi/src/model/area_request.dart';
 import 'package:openapi/src/model/area_response.dart';
 import 'package:openapi/src/model/area_searchable_field.dart';
@@ -59,6 +62,7 @@ import 'package:openapi/src/model/item_factory_searchable_field.dart';
 import 'package:openapi/src/model/item_factory_summary_page_response.dart';
 import 'package:openapi/src/model/ledger_address.dart';
 import 'package:openapi/src/model/ledger_area.dart';
+import 'package:openapi/src/model/ledger_balance_response.dart';
 import 'package:openapi/src/model/ledger_broker.dart';
 import 'package:openapi/src/model/ledger_request.dart';
 import 'package:openapi/src/model/ledger_response.dart';
@@ -72,6 +76,8 @@ import 'package:openapi/src/model/menu_item.dart';
 import 'package:openapi/src/model/menu_response.dart';
 import 'package:openapi/src/model/pagination_meta.dart';
 import 'package:openapi/src/model/party_type.dart';
+import 'package:openapi/src/model/payment_vocher_entry.dart';
+import 'package:openapi/src/model/payment_voucher_request.dart';
 import 'package:openapi/src/model/purchase_in_state_request.dart';
 import 'package:openapi/src/model/purchase_in_state_response.dart';
 import 'package:openapi/src/model/purchase_ledger_request.dart';
@@ -97,6 +103,7 @@ import 'package:openapi/src/model/transport_response.dart';
 import 'package:openapi/src/model/transport_searchable_field.dart';
 import 'package:openapi/src/model/transport_summary_page_response.dart';
 import 'package:openapi/src/model/vehicle_detail.dart';
+import 'package:openapi/src/model/voucher_response.dart';
 
 part 'serializers.g.dart';
 
@@ -107,6 +114,9 @@ part 'serializers.g.dart';
   AccountGroupSearchableField,
   AccountGroupSummaryItem,
   AccountGroupSummaryPageResponse,
+  AccountLedgerEntryItem,
+  AccountLedgerPageResponse,
+  AccountLedgerSearchableField,
   AreaRequest,
   AreaResponse,
   AreaSearchableField,
@@ -146,6 +156,7 @@ part 'serializers.g.dart';
   ItemFactorySummaryPageResponse,
   LedgerAddress,
   LedgerArea,
+  LedgerBalanceResponse,
   LedgerBroker,
   LedgerRequest,
   LedgerResponse,
@@ -159,6 +170,8 @@ part 'serializers.g.dart';
   MenuResponse,
   PaginationMeta,
   PartyType,
+  PaymentVocherEntry,
+  PaymentVoucherRequest,
   PurchaseInStateRequest,
   PurchaseInStateResponse,
   PurchaseLedgerRequest,
@@ -184,6 +197,7 @@ part 'serializers.g.dart';
   TransportSearchableField,
   TransportSummaryPageResponse,
   VehicleDetail,
+  VoucherResponse,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(

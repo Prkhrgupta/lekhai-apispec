@@ -68,6 +68,7 @@ Class | Method | HTTP request | Description
 [*AccountGroupApi*](doc/AccountGroupApi.md) | [**createAccountGroup**](doc/AccountGroupApi.md#createaccountgroup) | **POST** /account-group | Create account group
 [*AccountGroupApi*](doc/AccountGroupApi.md) | [**getAccountGroupDropdownOptions**](doc/AccountGroupApi.md#getaccountgroupdropdownoptions) | **GET** /account-group | Get account group options for a dropdown
 [*AccountGroupApi*](doc/AccountGroupApi.md) | [**getAccountGroupSummaries**](doc/AccountGroupApi.md#getaccountgroupsummaries) | **GET** /account-group/summary | Get account group summary
+[*AccountLedgerApi*](doc/AccountLedgerApi.md) | [**getAccountLedgerEntries**](doc/AccountLedgerApi.md#getaccountledgerentries) | **GET** /account-ledger/{ledgerId} | Get account ledger entries
 [*AreaApi*](doc/AreaApi.md) | [**createArea**](doc/AreaApi.md#createarea) | **POST** /area | Create area
 [*AreaApi*](doc/AreaApi.md) | [**getArea**](doc/AreaApi.md#getarea) | **GET** /area/{id} | Get area by ID
 [*AreaApi*](doc/AreaApi.md) | [**getAreaDropdownOptions**](doc/AreaApi.md#getareadropdownoptions) | **GET** /area | get Area options for dropdown
@@ -101,6 +102,7 @@ Class | Method | HTTP request | Description
 [*ItemFactoryApi*](doc/ItemFactoryApi.md) | [**updateItemFactory**](doc/ItemFactoryApi.md#updateitemfactory) | **PUT** /item-factory/{id} | Update item factory
 [*LedgerApi*](doc/LedgerApi.md) | [**createLedger**](doc/LedgerApi.md#createledger) | **POST** /ledger | Create ledger
 [*LedgerApi*](doc/LedgerApi.md) | [**getLedger**](doc/LedgerApi.md#getledger) | **GET** /ledger/{id} | Get ledger by ID
+[*LedgerApi*](doc/LedgerApi.md) | [**getLedgerBalance**](doc/LedgerApi.md#getledgerbalance) | **GET** /ledger/{id}/balance | Get current balance of a ledger
 [*LedgerApi*](doc/LedgerApi.md) | [**getLedgerByGstin**](doc/LedgerApi.md#getledgerbygstin) | **GET** /ledger/by-gstin | Get ledger by GSTIN
 [*LedgerApi*](doc/LedgerApi.md) | [**getLedgerDropdownOptions**](doc/LedgerApi.md#getledgerdropdownoptions) | **GET** /ledger | Get ledger options for dropdown
 [*LedgerApi*](doc/LedgerApi.md) | [**getLedgerSummaries**](doc/LedgerApi.md#getledgersummaries) | **GET** /ledger/summary | Get ledger summary
@@ -127,6 +129,7 @@ Class | Method | HTTP request | Description
 [*TransporterEWBApi*](doc/TransporterEWBApi.md) | [**getTransporterEwbs**](doc/TransporterEWBApi.md#gettransporterewbs) | **GET** /transporter/ewb | Get EWBs for a transporter filtered by GSTIN, expiry date, and status
 [*TransporterEWBApi*](doc/TransporterEWBApi.md) | [**markEwbDelivered**](doc/TransporterEWBApi.md#markewbdelivered) | **POST** /transporter/ewb/{ewbNo}/delivered | Mark an EWB as delivered
 [*TransporterEWBApi*](doc/TransporterEWBApi.md) | [**markEwbNonDelivered**](doc/TransporterEWBApi.md#markewbnondelivered) | **DELETE** /transporter/ewb/{ewbNo}/delivered | Mark an EWB as non-delivered
+[*VoucherApi*](doc/VoucherApi.md) | [**createPaymentVoucher**](doc/VoucherApi.md#createpaymentvoucher) | **POST** /payment-voucher | Create payment voucher
 
 
 ## Documentation For Models
@@ -137,6 +140,9 @@ Class | Method | HTTP request | Description
  - [AccountGroupSearchableField](doc/AccountGroupSearchableField.md)
  - [AccountGroupSummaryItem](doc/AccountGroupSummaryItem.md)
  - [AccountGroupSummaryPageResponse](doc/AccountGroupSummaryPageResponse.md)
+ - [AccountLedgerEntryItem](doc/AccountLedgerEntryItem.md)
+ - [AccountLedgerPageResponse](doc/AccountLedgerPageResponse.md)
+ - [AccountLedgerSearchableField](doc/AccountLedgerSearchableField.md)
  - [AreaRequest](doc/AreaRequest.md)
  - [AreaResponse](doc/AreaResponse.md)
  - [AreaSearchableField](doc/AreaSearchableField.md)
@@ -176,6 +182,7 @@ Class | Method | HTTP request | Description
  - [ItemFactorySummaryPageResponse](doc/ItemFactorySummaryPageResponse.md)
  - [LedgerAddress](doc/LedgerAddress.md)
  - [LedgerArea](doc/LedgerArea.md)
+ - [LedgerBalanceResponse](doc/LedgerBalanceResponse.md)
  - [LedgerBroker](doc/LedgerBroker.md)
  - [LedgerRequest](doc/LedgerRequest.md)
  - [LedgerResponse](doc/LedgerResponse.md)
@@ -189,6 +196,8 @@ Class | Method | HTTP request | Description
  - [MenuResponse](doc/MenuResponse.md)
  - [PaginationMeta](doc/PaginationMeta.md)
  - [PartyType](doc/PartyType.md)
+ - [PaymentVocherEntry](doc/PaymentVocherEntry.md)
+ - [PaymentVoucherRequest](doc/PaymentVoucherRequest.md)
  - [PurchaseInStateRequest](doc/PurchaseInStateRequest.md)
  - [PurchaseInStateResponse](doc/PurchaseInStateResponse.md)
  - [PurchaseLedgerRequest](doc/PurchaseLedgerRequest.md)
@@ -214,6 +223,7 @@ Class | Method | HTTP request | Description
  - [TransportSearchableField](doc/TransportSearchableField.md)
  - [TransportSummaryPageResponse](doc/TransportSummaryPageResponse.md)
  - [VehicleDetail](doc/VehicleDetail.md)
+ - [VoucherResponse](doc/VoucherResponse.md)
 
 
 ## Documentation For Authorization

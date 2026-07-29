@@ -13,6 +13,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AccountGroupSearchableField.serializer)
       ..add(AccountGroupSummaryItem.serializer)
       ..add(AccountGroupSummaryPageResponse.serializer)
+      ..add(AccountLedgerEntryItem.serializer)
+      ..add(AccountLedgerPageResponse.serializer)
+      ..add(AccountLedgerSearchableField.serializer)
       ..add(AreaRequest.serializer)
       ..add(AreaResponse.serializer)
       ..add(AreaSearchableField.serializer)
@@ -52,6 +55,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ItemFactorySummaryPageResponse.serializer)
       ..add(LedgerAddress.serializer)
       ..add(LedgerArea.serializer)
+      ..add(LedgerBalanceResponse.serializer)
       ..add(LedgerBroker.serializer)
       ..add(LedgerRequest.serializer)
       ..add(LedgerResponse.serializer)
@@ -65,6 +69,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(MenuResponse.serializer)
       ..add(PaginationMeta.serializer)
       ..add(PartyType.serializer)
+      ..add(PaymentVocherEntry.serializer)
+      ..add(PaymentVoucherRequest.serializer)
       ..add(PurchaseInStateRequest.serializer)
       ..add(PurchaseInStateResponse.serializer)
       ..add(PurchaseLedgerRequest.serializer)
@@ -91,10 +97,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(TransportSearchableField.serializer)
       ..add(TransportSummaryPageResponse.serializer)
       ..add(VehicleDetail.serializer)
+      ..add(VoucherResponse.serializer)
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AccountGroupSummaryItem)]),
           () => new ListBuilder<AccountGroupSummaryItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AccountLedgerEntryItem)]),
+          () => new ListBuilder<AccountLedgerEntryItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AreaResponse)]),
           () => new ListBuilder<AreaResponse>())
@@ -129,6 +140,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
           () => new ListBuilder<MenuItem>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(PaymentVocherEntry)]),
+          () => new ListBuilder<PaymentVocherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ShopMenu)]),
           () => new ListBuilder<ShopMenu>())
