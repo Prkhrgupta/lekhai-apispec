@@ -23,3 +23,27 @@ paths:
           $ref: '../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
+  /receipt-voucher:
+    post:
+      tags: [Voucher]
+      summary: Create receipt voucher
+      operationId: createReceiptVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../voucher/components.yaml#/ReceiptVoucherRequest'
+      responses:
+        '200':
+          description: Receipt voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/VoucherResponse'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
