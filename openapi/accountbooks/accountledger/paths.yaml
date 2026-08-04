@@ -40,18 +40,6 @@ paths:
               type: string
           required: false
           explode: true
-        - name: searchableField
-          in: query
-          description: Field to search by
-          schema:
-            $ref: '../accountledger/components.yaml#/AccountLedgerSearchableField'
-          required: false
-        - name: searchText
-          in: query
-          description: Search query text
-          schema:
-            type: string
-          required: false
         - name: fromDate
           in: query
           description: Filter entries from this date (inclusive)

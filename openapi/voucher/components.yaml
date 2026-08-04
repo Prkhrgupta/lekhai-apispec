@@ -1,4 +1,4 @@
-PaymentVoucherEntry:
+VoucherEntry:
   type: object
   properties:
     account_id:
@@ -23,18 +23,7 @@ PaymentVoucherRequest:
     items:
       type: array
       items:
-        $ref: '#/PaymentVoucherEntry'
-
-ReceiptVoucherEntry:
-  type: object
-  properties:
-    account_id:
-      type: integer
-      format: int64
-    amount:
-      type: number
-    remarks:
-      type: string
+        $ref: '#/VoucherEntry'
 
 ReceiptVoucherRequest:
   type: object
@@ -50,7 +39,41 @@ ReceiptVoucherRequest:
     items:
       type: array
       items:
-        $ref: '#/ReceiptVoucherEntry'
+        $ref: '#/VoucherEntry'
+
+ContraVoucherRequest:
+  type: object
+  properties:
+    voucher_date:
+      type: string
+      format: date
+    narration:
+      type: string
+    debit_entries:
+      type: array
+      items:
+        $ref: '#/VoucherEntry'
+    credit_entries:
+      type: array
+      items:
+        $ref: '#/VoucherEntry'
+
+JournalVoucherRequest:
+  type: object
+  properties:
+    voucher_date:
+      type: string
+      format: date
+    narration:
+      type: string
+    debit_entries:
+      type: array
+      items:
+        $ref: '#/VoucherEntry'
+    credit_entries:
+      type: array
+      items:
+        $ref: '#/VoucherEntry'
 
 VoucherResponse:
   type: object

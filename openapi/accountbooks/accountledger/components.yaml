@@ -16,10 +16,6 @@ AccountLedgerEntryItem:
     crdr:
       $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
 
-AccountLedgerSearchableField:
-  type: string
-  enum: [VTYPE]
-
 AccountLedgerPageResponse:
   type: object
   properties:
