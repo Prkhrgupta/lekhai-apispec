@@ -60,6 +60,10 @@
   $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
 /receipt-voucher:
   $ref: './voucher/paths.yaml#/paths/~1receipt-voucher'
+/contra-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1contra-voucher'
+/journal-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1journal-voucher'
 /account-ledger/{ledgerId}:
   $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
 /login:

@@ -111,6 +111,20 @@ paths:
           schema:
             type: integer
             format: int64
+        - name: fromDate
+          in: query
+          description: Filter balance from this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Filter balance up to this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
       responses:
         '200':
           description: Current balance of the ledger
