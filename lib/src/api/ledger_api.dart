@@ -10,6 +10,7 @@ import 'package:dio/dio.dart';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
+import 'package:openapi/src/model/date.dart';
 import 'package:openapi/src/model/dropdown_item.dart';
 import 'package:openapi/src/model/error.dart';
 import 'package:openapi/src/model/ledger_balance_response.dart';
@@ -213,6 +214,8 @@ class LedgerApi {
   ///
   /// Parameters:
   /// * [id] 
+  /// * [fromDate] - Filter balance from this date (inclusive)
+  /// * [toDate] - Filter balance up to this date (inclusive)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -224,6 +227,8 @@ class LedgerApi {
   /// Throws [DioException] if API call or serialization fails
   Future<Response<LedgerBalanceResponse>> getLedgerBalance({ 
     required int id,
+    Date? fromDate,
+    Date? toDate,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -250,9 +255,15 @@ class LedgerApi {
       validateStatus: validateStatus,
     );
 
+    final _queryParameters = <String, dynamic>{
+      if (fromDate != null) r'fromDate': encodeQueryParameter(_serializers, fromDate, const FullType(Date)),
+      if (toDate != null) r'toDate': encodeQueryParameter(_serializers, toDate, const FullType(Date)),
+    };
+
     final _response = await _dio.request<Object>(
       _path,
       options: _options,
+      queryParameters: _queryParameters,
       cancelToken: cancelToken,
       onSendProgress: onSendProgress,
       onReceiveProgress: onReceiveProgress,

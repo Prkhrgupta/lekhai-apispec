@@ -15,7 +15,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AccountGroupSummaryPageResponse.serializer)
       ..add(AccountLedgerEntryItem.serializer)
       ..add(AccountLedgerPageResponse.serializer)
-      ..add(AccountLedgerSearchableField.serializer)
       ..add(AreaRequest.serializer)
       ..add(AreaResponse.serializer)
       ..add(AreaSearchableField.serializer)
@@ -30,6 +29,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CommoditySummaryColumn.serializer)
       ..add(CommoditySummaryItem.serializer)
       ..add(CommoditySummaryResponse.serializer)
+      ..add(ContraVoucherRequest.serializer)
       ..add(Day.serializer)
       ..add(DropdownItem.serializer)
       ..add(Error.serializer)
@@ -53,6 +53,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ItemFactoryResponse.serializer)
       ..add(ItemFactorySearchableField.serializer)
       ..add(ItemFactorySummaryPageResponse.serializer)
+      ..add(JournalVoucherRequest.serializer)
       ..add(LedgerAddress.serializer)
       ..add(LedgerArea.serializer)
       ..add(LedgerBalanceResponse.serializer)
@@ -69,7 +70,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(MenuResponse.serializer)
       ..add(PaginationMeta.serializer)
       ..add(PartyType.serializer)
-      ..add(PaymentVocherEntry.serializer)
       ..add(PaymentVoucherRequest.serializer)
       ..add(PurchaseInStateRequest.serializer)
       ..add(PurchaseInStateResponse.serializer)
@@ -78,6 +78,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PurchaseOutStateRequest.serializer)
       ..add(PurchaseOutStateResponse.serializer)
       ..add(RatePerUnit.serializer)
+      ..add(ReceiptVoucherRequest.serializer)
       ..add(RegistrationType.serializer)
       ..add(SaleInStateRequest.serializer)
       ..add(SaleInStateResponse.serializer)
@@ -97,6 +98,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(TransportSearchableField.serializer)
       ..add(TransportSummaryPageResponse.serializer)
       ..add(VehicleDetail.serializer)
+      ..add(VoucherEntry.serializer)
       ..add(VoucherResponse.serializer)
       ..addBuilderFactory(
           const FullType(
@@ -141,9 +143,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList, const [const FullType(MenuItem)]),
           () => new ListBuilder<MenuItem>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(PaymentVocherEntry)]),
-          () => new ListBuilder<PaymentVocherEntry>())
-      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ShopMenu)]),
           () => new ListBuilder<ShopMenu>())
       ..addBuilderFactory(
@@ -154,7 +153,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<TransportResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VehicleDetail)]),
-          () => new ListBuilder<VehicleDetail>()))
+          () => new ListBuilder<VehicleDetail>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(VoucherEntry)]),
+          () => new ListBuilder<VoucherEntry>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

@@ -9,22 +9,22 @@ import 'package:openapi/src/model/date.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'payment_voucher_request.g.dart';
+part 'receipt_voucher_request.g.dart';
 
-/// PaymentVoucherRequest
+/// ReceiptVoucherRequest
 ///
 /// Properties:
 /// * [voucherDate] 
-/// * [paymentAccountId] 
+/// * [receiptAccountId] 
 /// * [narration] 
 /// * [items] 
 @BuiltValue()
-abstract class PaymentVoucherRequest implements Built<PaymentVoucherRequest, PaymentVoucherRequestBuilder> {
+abstract class ReceiptVoucherRequest implements Built<ReceiptVoucherRequest, ReceiptVoucherRequestBuilder> {
   @BuiltValueField(wireName: r'voucher_date')
   Date? get voucherDate;
 
-  @BuiltValueField(wireName: r'payment_account_id')
-  int? get paymentAccountId;
+  @BuiltValueField(wireName: r'receipt_account_id')
+  int? get receiptAccountId;
 
   @BuiltValueField(wireName: r'narration')
   String? get narration;
@@ -32,27 +32,27 @@ abstract class PaymentVoucherRequest implements Built<PaymentVoucherRequest, Pay
   @BuiltValueField(wireName: r'items')
   BuiltList<VoucherEntry>? get items;
 
-  PaymentVoucherRequest._();
+  ReceiptVoucherRequest._();
 
-  factory PaymentVoucherRequest([void updates(PaymentVoucherRequestBuilder b)]) = _$PaymentVoucherRequest;
+  factory ReceiptVoucherRequest([void updates(ReceiptVoucherRequestBuilder b)]) = _$ReceiptVoucherRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(PaymentVoucherRequestBuilder b) => b;
+  static void _defaults(ReceiptVoucherRequestBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<PaymentVoucherRequest> get serializer => _$PaymentVoucherRequestSerializer();
+  static Serializer<ReceiptVoucherRequest> get serializer => _$ReceiptVoucherRequestSerializer();
 }
 
-class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVoucherRequest> {
+class _$ReceiptVoucherRequestSerializer implements PrimitiveSerializer<ReceiptVoucherRequest> {
   @override
-  final Iterable<Type> types = const [PaymentVoucherRequest, _$PaymentVoucherRequest];
+  final Iterable<Type> types = const [ReceiptVoucherRequest, _$ReceiptVoucherRequest];
 
   @override
-  final String wireName = r'PaymentVoucherRequest';
+  final String wireName = r'ReceiptVoucherRequest';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    PaymentVoucherRequest object, {
+    ReceiptVoucherRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
     if (object.voucherDate != null) {
@@ -62,10 +62,10 @@ class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVo
         specifiedType: const FullType(Date),
       );
     }
-    if (object.paymentAccountId != null) {
-      yield r'payment_account_id';
+    if (object.receiptAccountId != null) {
+      yield r'receipt_account_id';
       yield serializers.serialize(
-        object.paymentAccountId,
+        object.receiptAccountId,
         specifiedType: const FullType(int),
       );
     }
@@ -88,7 +88,7 @@ class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVo
   @override
   Object serialize(
     Serializers serializers,
-    PaymentVoucherRequest object, {
+    ReceiptVoucherRequest object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -99,7 +99,7 @@ class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVo
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required PaymentVoucherRequestBuilder result,
+    required ReceiptVoucherRequestBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
@@ -113,12 +113,12 @@ class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVo
           ) as Date;
           result.voucherDate = valueDes;
           break;
-        case r'payment_account_id':
+        case r'receipt_account_id':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(int),
           ) as int;
-          result.paymentAccountId = valueDes;
+          result.receiptAccountId = valueDes;
           break;
         case r'narration':
           final valueDes = serializers.deserialize(
@@ -143,12 +143,12 @@ class _$PaymentVoucherRequestSerializer implements PrimitiveSerializer<PaymentVo
   }
 
   @override
-  PaymentVoucherRequest deserialize(
+  ReceiptVoucherRequest deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = PaymentVoucherRequestBuilder();
+    final result = ReceiptVoucherRequestBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

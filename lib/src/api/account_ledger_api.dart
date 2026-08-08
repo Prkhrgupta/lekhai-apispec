@@ -11,7 +11,6 @@ import 'package:dio/dio.dart';
 import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/api_util.dart';
 import 'package:openapi/src/model/account_ledger_page_response.dart';
-import 'package:openapi/src/model/account_ledger_searchable_field.dart';
 import 'package:openapi/src/model/date.dart';
 import 'package:openapi/src/model/error.dart';
 
@@ -31,8 +30,6 @@ class AccountLedgerApi {
   /// * [page] - Zero-based page index
   /// * [size] - Number of records per page
   /// * [sort] - Sorting criteria in the format property(,asc|desc)
-  /// * [searchableField] - Field to search by
-  /// * [searchText] - Search query text
   /// * [fromDate] - Filter entries from this date (inclusive)
   /// * [toDate] - Filter entries up to this date (inclusive)
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
@@ -49,8 +46,6 @@ class AccountLedgerApi {
     int? page = 0,
     int? size = 20,
     BuiltList<String>? sort,
-    AccountLedgerSearchableField? searchableField,
-    String? searchText,
     Date? fromDate,
     Date? toDate,
     CancelToken? cancelToken,
@@ -83,8 +78,6 @@ class AccountLedgerApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (size != null) r'size': encodeQueryParameter(_serializers, size, const FullType(int)),
       if (sort != null) r'sort': encodeCollectionQueryParameter<String>(_serializers, sort, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
-      if (searchableField != null) r'searchableField': encodeQueryParameter(_serializers, searchableField, const FullType(AccountLedgerSearchableField)),
-      if (searchText != null) r'searchText': encodeQueryParameter(_serializers, searchText, const FullType(String)),
       if (fromDate != null) r'fromDate': encodeQueryParameter(_serializers, fromDate, const FullType(Date)),
       if (toDate != null) r'toDate': encodeQueryParameter(_serializers, toDate, const FullType(Date)),
     };
