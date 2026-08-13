@@ -18,6 +18,8 @@
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger'
 /ledger/{id}:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}'
+/ledger/{id}/balance:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}~1balance'
 /ledger/by-gstin:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1by-gstin'
 /ledger/summary:
@@ -66,6 +68,16 @@
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
 /stock-item/summary:
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
+/payment-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
+/receipt-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1receipt-voucher'
+/contra-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1contra-voucher'
+/journal-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1journal-voucher'
+/account-ledger/{ledgerId}:
+  $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:

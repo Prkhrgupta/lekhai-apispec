@@ -99,6 +99,45 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /ledger/{id}/balance:
+    get:
+      tags: [Ledger]
+      summary: Get current balance of a ledger
+      operationId: getLedgerBalance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fromDate
+          in: query
+          description: Filter balance from this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Filter balance up to this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: Current balance of the ledger
+          content:
+            application/json:
+              schema:
+                $ref: '../ledger/components.yaml#/LedgerBalanceResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
   /ledger/by-gstin:
     get:
       tags: [Ledger]

@@ -47,6 +47,20 @@ publishing {
             version = project.version
         }
     }
+    repositories {
+        maven {
+            name = 'Reposilite'
+            url = 'https://mavenrepo.sitswiftcloud.in/releases'
+            def user = project.findProperty('reposiliteUser') ?: System.getenv('REPOSILITE_USER')
+            def pass = project.findProperty('reposilitePassword') ?: System.getenv('REPOSILITE_PASSWORD')
+            if (user && pass) {
+                credentials {
+                    username = user
+                    password = pass
+                }
+            }
+        }
+    }
 }
 
 tasks.withType(JavaCompile).configureEach {
