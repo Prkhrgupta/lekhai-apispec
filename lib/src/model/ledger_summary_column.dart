@@ -3,72 +3,69 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/sale_in_state_request.dart';
-import 'package:openapi/src/model/sale_out_state_request.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
-part 'sale_ledger_request.g.dart';
+part 'ledger_summary_column.g.dart';
 
-/// SaleLedgerRequest
+/// LedgerSummaryColumn
 ///
 /// Properties:
-/// * [inState] 
-/// * [outState] 
-/// * [roundOff] - Round off ledger account ID
+/// * [name] 
+/// * [type] 
+/// * [width] 
 @BuiltValue()
-abstract class SaleLedgerRequest implements Built<SaleLedgerRequest, SaleLedgerRequestBuilder> {
-  @BuiltValueField(wireName: r'in_state')
-  SaleInStateRequest? get inState;
+abstract class LedgerSummaryColumn implements Built<LedgerSummaryColumn, LedgerSummaryColumnBuilder> {
+  @BuiltValueField(wireName: r'name')
+  String? get name;
 
-  @BuiltValueField(wireName: r'out_state')
-  SaleOutStateRequest? get outState;
+  @BuiltValueField(wireName: r'type')
+  String? get type;
 
-  /// Round off ledger account ID
-  @BuiltValueField(wireName: r'round_off')
-  int? get roundOff;
+  @BuiltValueField(wireName: r'width')
+  int? get width;
 
-  SaleLedgerRequest._();
+  LedgerSummaryColumn._();
 
-  factory SaleLedgerRequest([void updates(SaleLedgerRequestBuilder b)]) = _$SaleLedgerRequest;
+  factory LedgerSummaryColumn([void updates(LedgerSummaryColumnBuilder b)]) = _$LedgerSummaryColumn;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(SaleLedgerRequestBuilder b) => b;
+  static void _defaults(LedgerSummaryColumnBuilder b) => b;
 
   @BuiltValueSerializer(custom: true)
-  static Serializer<SaleLedgerRequest> get serializer => _$SaleLedgerRequestSerializer();
+  static Serializer<LedgerSummaryColumn> get serializer => _$LedgerSummaryColumnSerializer();
 }
 
-class _$SaleLedgerRequestSerializer implements PrimitiveSerializer<SaleLedgerRequest> {
+class _$LedgerSummaryColumnSerializer implements PrimitiveSerializer<LedgerSummaryColumn> {
   @override
-  final Iterable<Type> types = const [SaleLedgerRequest, _$SaleLedgerRequest];
+  final Iterable<Type> types = const [LedgerSummaryColumn, _$LedgerSummaryColumn];
 
   @override
-  final String wireName = r'SaleLedgerRequest';
+  final String wireName = r'LedgerSummaryColumn';
 
   Iterable<Object?> _serializeProperties(
     Serializers serializers,
-    SaleLedgerRequest object, {
+    LedgerSummaryColumn object, {
     FullType specifiedType = FullType.unspecified,
   }) sync* {
-    if (object.inState != null) {
-      yield r'in_state';
+    if (object.name != null) {
+      yield r'name';
       yield serializers.serialize(
-        object.inState,
-        specifiedType: const FullType(SaleInStateRequest),
+        object.name,
+        specifiedType: const FullType(String),
       );
     }
-    if (object.outState != null) {
-      yield r'out_state';
+    if (object.type != null) {
+      yield r'type';
       yield serializers.serialize(
-        object.outState,
-        specifiedType: const FullType(SaleOutStateRequest),
+        object.type,
+        specifiedType: const FullType(String),
       );
     }
-    if (object.roundOff != null) {
-      yield r'round_off';
+    if (object.width != null) {
+      yield r'width';
       yield serializers.serialize(
-        object.roundOff,
+        object.width,
         specifiedType: const FullType(int),
       );
     }
@@ -77,7 +74,7 @@ class _$SaleLedgerRequestSerializer implements PrimitiveSerializer<SaleLedgerReq
   @override
   Object serialize(
     Serializers serializers,
-    SaleLedgerRequest object, {
+    LedgerSummaryColumn object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     return _serializeProperties(serializers, object, specifiedType: specifiedType).toList();
@@ -88,33 +85,33 @@ class _$SaleLedgerRequestSerializer implements PrimitiveSerializer<SaleLedgerReq
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
     required List<Object?> serializedList,
-    required SaleLedgerRequestBuilder result,
+    required LedgerSummaryColumnBuilder result,
     required List<Object?> unhandled,
   }) {
     for (var i = 0; i < serializedList.length; i += 2) {
       final key = serializedList[i] as String;
       final value = serializedList[i + 1];
       switch (key) {
-        case r'in_state':
+        case r'name':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SaleInStateRequest),
-          ) as SaleInStateRequest;
-          result.inState.replace(valueDes);
+            specifiedType: const FullType(String),
+          ) as String;
+          result.name = valueDes;
           break;
-        case r'out_state':
+        case r'type':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(SaleOutStateRequest),
-          ) as SaleOutStateRequest;
-          result.outState.replace(valueDes);
+            specifiedType: const FullType(String),
+          ) as String;
+          result.type = valueDes;
           break;
-        case r'round_off':
+        case r'width':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(int),
           ) as int;
-          result.roundOff = valueDes;
+          result.width = valueDes;
           break;
         default:
           unhandled.add(key);
@@ -125,12 +122,12 @@ class _$SaleLedgerRequestSerializer implements PrimitiveSerializer<SaleLedgerReq
   }
 
   @override
-  SaleLedgerRequest deserialize(
+  LedgerSummaryColumn deserialize(
     Serializers serializers,
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = SaleLedgerRequestBuilder();
+    final result = LedgerSummaryColumnBuilder();
     final serializedList = (serialized as Iterable<Object?>).toList();
     final unhandled = <Object?>[];
     _deserializeProperties(

@@ -13,16 +13,15 @@ class _$MenuResponse extends MenuResponse {
   final BuiltList<MenuItem>? favourites;
 
   factory _$MenuResponse([void Function(MenuResponseBuilder)? updates]) =>
-      (new MenuResponseBuilder()..update(updates))._build();
+      (MenuResponseBuilder()..update(updates))._build();
 
   _$MenuResponse._({this.mainMenu, this.favourites}) : super._();
-
   @override
   MenuResponse rebuild(void Function(MenuResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MenuResponseBuilder toBuilder() => new MenuResponseBuilder()..replace(this);
+  MenuResponseBuilder toBuilder() => MenuResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -56,12 +55,12 @@ class MenuResponseBuilder
 
   ListBuilder<MenuItem>? _mainMenu;
   ListBuilder<MenuItem> get mainMenu =>
-      _$this._mainMenu ??= new ListBuilder<MenuItem>();
+      _$this._mainMenu ??= ListBuilder<MenuItem>();
   set mainMenu(ListBuilder<MenuItem>? mainMenu) => _$this._mainMenu = mainMenu;
 
   ListBuilder<MenuItem>? _favourites;
   ListBuilder<MenuItem> get favourites =>
-      _$this._favourites ??= new ListBuilder<MenuItem>();
+      _$this._favourites ??= ListBuilder<MenuItem>();
   set favourites(ListBuilder<MenuItem>? favourites) =>
       _$this._favourites = favourites;
 
@@ -81,7 +80,6 @@ class MenuResponseBuilder
 
   @override
   void replace(MenuResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MenuResponse;
   }
 
@@ -97,8 +95,10 @@ class MenuResponseBuilder
     _$MenuResponse _$result;
     try {
       _$result = _$v ??
-          new _$MenuResponse._(
-              mainMenu: _mainMenu?.build(), favourites: _favourites?.build());
+          _$MenuResponse._(
+            mainMenu: _mainMenu?.build(),
+            favourites: _favourites?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -107,7 +107,7 @@ class MenuResponseBuilder
         _$failedField = 'favourites';
         _favourites?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'MenuResponse', _$failedField, e.toString());
       }
       rethrow;

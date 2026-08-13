@@ -20,19 +20,18 @@ class _$TransportResponse extends TransportResponse {
 
   factory _$TransportResponse(
           [void Function(TransportResponseBuilder)? updates]) =>
-      (new TransportResponseBuilder()..update(updates))._build();
+      (TransportResponseBuilder()..update(updates))._build();
 
   _$TransportResponse._(
       {this.id, this.name, this.phone, this.gstNo, this.createdAt})
       : super._();
-
   @override
   TransportResponse rebuild(void Function(TransportResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   TransportResponseBuilder toBuilder() =>
-      new TransportResponseBuilder()..replace(this);
+      TransportResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -112,7 +111,6 @@ class TransportResponseBuilder
 
   @override
   void replace(TransportResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TransportResponse;
   }
 
@@ -126,12 +124,13 @@ class TransportResponseBuilder
 
   _$TransportResponse _build() {
     final _$result = _$v ??
-        new _$TransportResponse._(
-            id: id,
-            name: name,
-            phone: phone,
-            gstNo: gstNo,
-            createdAt: createdAt);
+        _$TransportResponse._(
+          id: id,
+          name: name,
+          phone: phone,
+          gstNo: gstNo,
+          createdAt: createdAt,
+        );
     replace(_$result);
     return _$result;
   }

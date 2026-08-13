@@ -19,16 +19,10 @@ class _$CommodityRequest extends CommodityRequest {
   final double? gstRatePurchase;
   @override
   final String? unitOfMeasurement;
-  @override
-  final bool? salePurchaseSetting;
-  @override
-  final SaleLedgerRequest? saleLedger;
-  @override
-  final PurchaseLedgerRequest? purchaseLedger;
 
   factory _$CommodityRequest(
           [void Function(CommodityRequestBuilder)? updates]) =>
-      (new CommodityRequestBuilder()..update(updates))._build();
+      (CommodityRequestBuilder()..update(updates))._build();
 
   _$CommodityRequest._(
       {required this.name,
@@ -36,21 +30,15 @@ class _$CommodityRequest extends CommodityRequest {
       this.description,
       this.gstRateSale,
       this.gstRatePurchase,
-      this.unitOfMeasurement,
-      this.salePurchaseSetting,
-      this.saleLedger,
-      this.purchaseLedger})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'CommodityRequest', 'name');
-  }
-
+      this.unitOfMeasurement})
+      : super._();
   @override
   CommodityRequest rebuild(void Function(CommodityRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   CommodityRequestBuilder toBuilder() =>
-      new CommodityRequestBuilder()..replace(this);
+      CommodityRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -61,10 +49,7 @@ class _$CommodityRequest extends CommodityRequest {
         description == other.description &&
         gstRateSale == other.gstRateSale &&
         gstRatePurchase == other.gstRatePurchase &&
-        unitOfMeasurement == other.unitOfMeasurement &&
-        salePurchaseSetting == other.salePurchaseSetting &&
-        saleLedger == other.saleLedger &&
-        purchaseLedger == other.purchaseLedger;
+        unitOfMeasurement == other.unitOfMeasurement;
   }
 
   @override
@@ -76,9 +61,6 @@ class _$CommodityRequest extends CommodityRequest {
     _$hash = $jc(_$hash, gstRateSale.hashCode);
     _$hash = $jc(_$hash, gstRatePurchase.hashCode);
     _$hash = $jc(_$hash, unitOfMeasurement.hashCode);
-    _$hash = $jc(_$hash, salePurchaseSetting.hashCode);
-    _$hash = $jc(_$hash, saleLedger.hashCode);
-    _$hash = $jc(_$hash, purchaseLedger.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -91,10 +73,7 @@ class _$CommodityRequest extends CommodityRequest {
           ..add('description', description)
           ..add('gstRateSale', gstRateSale)
           ..add('gstRatePurchase', gstRatePurchase)
-          ..add('unitOfMeasurement', unitOfMeasurement)
-          ..add('salePurchaseSetting', salePurchaseSetting)
-          ..add('saleLedger', saleLedger)
-          ..add('purchaseLedger', purchaseLedger))
+          ..add('unitOfMeasurement', unitOfMeasurement))
         .toString();
   }
 }
@@ -129,23 +108,6 @@ class CommodityRequestBuilder
   set unitOfMeasurement(String? unitOfMeasurement) =>
       _$this._unitOfMeasurement = unitOfMeasurement;
 
-  bool? _salePurchaseSetting;
-  bool? get salePurchaseSetting => _$this._salePurchaseSetting;
-  set salePurchaseSetting(bool? salePurchaseSetting) =>
-      _$this._salePurchaseSetting = salePurchaseSetting;
-
-  SaleLedgerRequestBuilder? _saleLedger;
-  SaleLedgerRequestBuilder get saleLedger =>
-      _$this._saleLedger ??= new SaleLedgerRequestBuilder();
-  set saleLedger(SaleLedgerRequestBuilder? saleLedger) =>
-      _$this._saleLedger = saleLedger;
-
-  PurchaseLedgerRequestBuilder? _purchaseLedger;
-  PurchaseLedgerRequestBuilder get purchaseLedger =>
-      _$this._purchaseLedger ??= new PurchaseLedgerRequestBuilder();
-  set purchaseLedger(PurchaseLedgerRequestBuilder? purchaseLedger) =>
-      _$this._purchaseLedger = purchaseLedger;
-
   CommodityRequestBuilder() {
     CommodityRequest._defaults(this);
   }
@@ -159,9 +121,6 @@ class CommodityRequestBuilder
       _gstRateSale = $v.gstRateSale;
       _gstRatePurchase = $v.gstRatePurchase;
       _unitOfMeasurement = $v.unitOfMeasurement;
-      _salePurchaseSetting = $v.salePurchaseSetting;
-      _saleLedger = $v.saleLedger?.toBuilder();
-      _purchaseLedger = $v.purchaseLedger?.toBuilder();
       _$v = null;
     }
     return this;
@@ -169,7 +128,6 @@ class CommodityRequestBuilder
 
   @override
   void replace(CommodityRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommodityRequest;
   }
 
@@ -182,33 +140,16 @@ class CommodityRequestBuilder
   CommodityRequest build() => _build();
 
   _$CommodityRequest _build() {
-    _$CommodityRequest _$result;
-    try {
-      _$result = _$v ??
-          new _$CommodityRequest._(
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'CommodityRequest', 'name'),
-              hsnSacCode: hsnSacCode,
-              description: description,
-              gstRateSale: gstRateSale,
-              gstRatePurchase: gstRatePurchase,
-              unitOfMeasurement: unitOfMeasurement,
-              salePurchaseSetting: salePurchaseSetting,
-              saleLedger: _saleLedger?.build(),
-              purchaseLedger: _purchaseLedger?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'saleLedger';
-        _saleLedger?.build();
-        _$failedField = 'purchaseLedger';
-        _purchaseLedger?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-            r'CommodityRequest', _$failedField, e.toString());
-      }
-      rethrow;
-    }
+    final _$result = _$v ??
+        _$CommodityRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'CommodityRequest', 'name'),
+          hsnSacCode: hsnSacCode,
+          description: description,
+          gstRateSale: gstRateSale,
+          gstRatePurchase: gstRatePurchase,
+          unitOfMeasurement: unitOfMeasurement,
+        );
     replace(_$result);
     return _$result;
   }

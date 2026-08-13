@@ -3,8 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/purchase_ledger_request.dart';
-import 'package:openapi/src/model/sale_ledger_request.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -19,9 +17,6 @@ part 'commodity_request.g.dart';
 /// * [gstRateSale] 
 /// * [gstRatePurchase] 
 /// * [unitOfMeasurement] 
-/// * [salePurchaseSetting] - Whether sale/purchase ledger setting is enabled
-/// * [saleLedger] 
-/// * [purchaseLedger] 
 @BuiltValue()
 abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequestBuilder> {
   @BuiltValueField(wireName: r'name')
@@ -42,16 +37,6 @@ abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequ
 
   @BuiltValueField(wireName: r'unit_of_measurement')
   String? get unitOfMeasurement;
-
-  /// Whether sale/purchase ledger setting is enabled
-  @BuiltValueField(wireName: r'sale_purchase_setting')
-  bool? get salePurchaseSetting;
-
-  @BuiltValueField(wireName: r'sale_ledger')
-  SaleLedgerRequest? get saleLedger;
-
-  @BuiltValueField(wireName: r'purchase_ledger')
-  PurchaseLedgerRequest? get purchaseLedger;
 
   CommodityRequest._();
 
@@ -114,27 +99,6 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
       yield serializers.serialize(
         object.unitOfMeasurement,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.salePurchaseSetting != null) {
-      yield r'sale_purchase_setting';
-      yield serializers.serialize(
-        object.salePurchaseSetting,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.saleLedger != null) {
-      yield r'sale_ledger';
-      yield serializers.serialize(
-        object.saleLedger,
-        specifiedType: const FullType(SaleLedgerRequest),
-      );
-    }
-    if (object.purchaseLedger != null) {
-      yield r'purchase_ledger';
-      yield serializers.serialize(
-        object.purchaseLedger,
-        specifiedType: const FullType(PurchaseLedgerRequest),
       );
     }
   }
@@ -201,27 +165,6 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
             specifiedType: const FullType(String),
           ) as String;
           result.unitOfMeasurement = valueDes;
-          break;
-        case r'sale_purchase_setting':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.salePurchaseSetting = valueDes;
-          break;
-        case r'sale_ledger':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(SaleLedgerRequest),
-          ) as SaleLedgerRequest;
-          result.saleLedger.replace(valueDes);
-          break;
-        case r'purchase_ledger':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PurchaseLedgerRequest),
-          ) as PurchaseLedgerRequest;
-          result.purchaseLedger.replace(valueDes);
           break;
         default:
           unhandled.add(key);

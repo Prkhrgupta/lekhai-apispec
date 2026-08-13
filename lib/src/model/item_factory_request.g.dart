@@ -14,12 +14,9 @@ class _$ItemFactoryRequest extends ItemFactoryRequest {
 
   factory _$ItemFactoryRequest(
           [void Function(ItemFactoryRequestBuilder)? updates]) =>
-      (new ItemFactoryRequestBuilder()..update(updates))._build();
+      (ItemFactoryRequestBuilder()..update(updates))._build();
 
-  _$ItemFactoryRequest._({required this.name, this.percentage}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'ItemFactoryRequest', 'name');
-  }
-
+  _$ItemFactoryRequest._({required this.name, this.percentage}) : super._();
   @override
   ItemFactoryRequest rebuild(
           void Function(ItemFactoryRequestBuilder) updates) =>
@@ -27,7 +24,7 @@ class _$ItemFactoryRequest extends ItemFactoryRequest {
 
   @override
   ItemFactoryRequestBuilder toBuilder() =>
-      new ItemFactoryRequestBuilder()..replace(this);
+      ItemFactoryRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -83,7 +80,6 @@ class ItemFactoryRequestBuilder
 
   @override
   void replace(ItemFactoryRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ItemFactoryRequest;
   }
 
@@ -97,10 +93,11 @@ class ItemFactoryRequestBuilder
 
   _$ItemFactoryRequest _build() {
     final _$result = _$v ??
-        new _$ItemFactoryRequest._(
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'ItemFactoryRequest', 'name'),
-            percentage: percentage);
+        _$ItemFactoryRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'ItemFactoryRequest', 'name'),
+          percentage: percentage,
+        );
     replace(_$result);
     return _$result;
   }

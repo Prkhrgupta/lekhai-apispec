@@ -35,7 +35,7 @@ class _$EwbSummary extends EwbSummary {
   final String vehicleNo;
 
   factory _$EwbSummary([void Function(EwbSummaryBuilder)? updates]) =>
-      (new EwbSummaryBuilder()..update(updates))._build();
+      (EwbSummaryBuilder()..update(updates))._build();
 
   _$EwbSummary._(
       {required this.ewbNo,
@@ -51,35 +51,13 @@ class _$EwbSummary extends EwbSummary {
       required this.consignee,
       required this.actualDistance,
       required this.vehicleNo})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(ewbNo, r'EwbSummary', 'ewbNo');
-    BuiltValueNullFieldError.checkNotNull(ewbDate, r'EwbSummary', 'ewbDate');
-    BuiltValueNullFieldError.checkNotNull(status, r'EwbSummary', 'status');
-    BuiltValueNullFieldError.checkNotNull(docNo, r'EwbSummary', 'docNo');
-    BuiltValueNullFieldError.checkNotNull(docDate, r'EwbSummary', 'docDate');
-    BuiltValueNullFieldError.checkNotNull(
-        destination, r'EwbSummary', 'destination');
-    BuiltValueNullFieldError.checkNotNull(source_, r'EwbSummary', 'source_');
-    BuiltValueNullFieldError.checkNotNull(
-        validUpTo, r'EwbSummary', 'validUpTo');
-    BuiltValueNullFieldError.checkNotNull(
-        isDelivered, r'EwbSummary', 'isDelivered');
-    BuiltValueNullFieldError.checkNotNull(
-        consigner, r'EwbSummary', 'consigner');
-    BuiltValueNullFieldError.checkNotNull(
-        consignee, r'EwbSummary', 'consignee');
-    BuiltValueNullFieldError.checkNotNull(
-        actualDistance, r'EwbSummary', 'actualDistance');
-    BuiltValueNullFieldError.checkNotNull(
-        vehicleNo, r'EwbSummary', 'vehicleNo');
-  }
-
+      : super._();
   @override
   EwbSummary rebuild(void Function(EwbSummaryBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  EwbSummaryBuilder toBuilder() => new EwbSummaryBuilder()..replace(this);
+  EwbSummaryBuilder toBuilder() => EwbSummaryBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -223,7 +201,6 @@ class EwbSummaryBuilder implements Builder<EwbSummary, EwbSummaryBuilder> {
 
   @override
   void replace(EwbSummary other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$EwbSummary;
   }
 
@@ -237,31 +214,34 @@ class EwbSummaryBuilder implements Builder<EwbSummary, EwbSummaryBuilder> {
 
   _$EwbSummary _build() {
     final _$result = _$v ??
-        new _$EwbSummary._(
-            ewbNo: BuiltValueNullFieldError.checkNotNull(
-                ewbNo, r'EwbSummary', 'ewbNo'),
-            ewbDate: BuiltValueNullFieldError.checkNotNull(
-                ewbDate, r'EwbSummary', 'ewbDate'),
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, r'EwbSummary', 'status'),
-            docNo: BuiltValueNullFieldError.checkNotNull(
-                docNo, r'EwbSummary', 'docNo'),
-            docDate: BuiltValueNullFieldError.checkNotNull(
-                docDate, r'EwbSummary', 'docDate'),
-            destination: BuiltValueNullFieldError.checkNotNull(
-                destination, r'EwbSummary', 'destination'),
-            source_: BuiltValueNullFieldError.checkNotNull(
-                source_, r'EwbSummary', 'source_'),
-            validUpTo: BuiltValueNullFieldError.checkNotNull(
-                validUpTo, r'EwbSummary', 'validUpTo'),
-            isDelivered: BuiltValueNullFieldError.checkNotNull(
-                isDelivered, r'EwbSummary', 'isDelivered'),
-            consigner: BuiltValueNullFieldError.checkNotNull(
-                consigner, r'EwbSummary', 'consigner'),
-            consignee: BuiltValueNullFieldError.checkNotNull(
-                consignee, r'EwbSummary', 'consignee'),
-            actualDistance: BuiltValueNullFieldError.checkNotNull(actualDistance, r'EwbSummary', 'actualDistance'),
-            vehicleNo: BuiltValueNullFieldError.checkNotNull(vehicleNo, r'EwbSummary', 'vehicleNo'));
+        _$EwbSummary._(
+          ewbNo: BuiltValueNullFieldError.checkNotNull(
+              ewbNo, r'EwbSummary', 'ewbNo'),
+          ewbDate: BuiltValueNullFieldError.checkNotNull(
+              ewbDate, r'EwbSummary', 'ewbDate'),
+          status: BuiltValueNullFieldError.checkNotNull(
+              status, r'EwbSummary', 'status'),
+          docNo: BuiltValueNullFieldError.checkNotNull(
+              docNo, r'EwbSummary', 'docNo'),
+          docDate: BuiltValueNullFieldError.checkNotNull(
+              docDate, r'EwbSummary', 'docDate'),
+          destination: BuiltValueNullFieldError.checkNotNull(
+              destination, r'EwbSummary', 'destination'),
+          source_: BuiltValueNullFieldError.checkNotNull(
+              source_, r'EwbSummary', 'source_'),
+          validUpTo: BuiltValueNullFieldError.checkNotNull(
+              validUpTo, r'EwbSummary', 'validUpTo'),
+          isDelivered: BuiltValueNullFieldError.checkNotNull(
+              isDelivered, r'EwbSummary', 'isDelivered'),
+          consigner: BuiltValueNullFieldError.checkNotNull(
+              consigner, r'EwbSummary', 'consigner'),
+          consignee: BuiltValueNullFieldError.checkNotNull(
+              consignee, r'EwbSummary', 'consignee'),
+          actualDistance: BuiltValueNullFieldError.checkNotNull(
+              actualDistance, r'EwbSummary', 'actualDistance'),
+          vehicleNo: BuiltValueNullFieldError.checkNotNull(
+              vehicleNo, r'EwbSummary', 'vehicleNo'),
+        );
     replace(_$result);
     return _$result;
   }

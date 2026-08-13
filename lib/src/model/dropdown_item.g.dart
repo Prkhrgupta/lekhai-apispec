@@ -15,18 +15,15 @@ class _$DropdownItem extends DropdownItem {
   final String? code;
 
   factory _$DropdownItem([void Function(DropdownItemBuilder)? updates]) =>
-      (new DropdownItemBuilder()..update(updates))._build();
+      (DropdownItemBuilder()..update(updates))._build();
 
-  _$DropdownItem._({this.id, required this.label, this.code}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(label, r'DropdownItem', 'label');
-  }
-
+  _$DropdownItem._({this.id, required this.label, this.code}) : super._();
   @override
   DropdownItem rebuild(void Function(DropdownItemBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  DropdownItemBuilder toBuilder() => new DropdownItemBuilder()..replace(this);
+  DropdownItemBuilder toBuilder() => DropdownItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -90,7 +87,6 @@ class DropdownItemBuilder
 
   @override
   void replace(DropdownItem other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$DropdownItem;
   }
 
@@ -104,11 +100,12 @@ class DropdownItemBuilder
 
   _$DropdownItem _build() {
     final _$result = _$v ??
-        new _$DropdownItem._(
-            id: id,
-            label: BuiltValueNullFieldError.checkNotNull(
-                label, r'DropdownItem', 'label'),
-            code: code);
+        _$DropdownItem._(
+          id: id,
+          label: BuiltValueNullFieldError.checkNotNull(
+              label, r'DropdownItem', 'label'),
+          code: code,
+        );
     replace(_$result);
     return _$result;
   }

@@ -18,12 +18,11 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
 
   factory _$JournalVoucherRequest(
           [void Function(JournalVoucherRequestBuilder)? updates]) =>
-      (new JournalVoucherRequestBuilder()..update(updates))._build();
+      (JournalVoucherRequestBuilder()..update(updates))._build();
 
   _$JournalVoucherRequest._(
       {this.voucherDate, this.narration, this.debitEntries, this.creditEntries})
       : super._();
-
   @override
   JournalVoucherRequest rebuild(
           void Function(JournalVoucherRequestBuilder) updates) =>
@@ -31,7 +30,7 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
 
   @override
   JournalVoucherRequestBuilder toBuilder() =>
-      new JournalVoucherRequestBuilder()..replace(this);
+      JournalVoucherRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -79,13 +78,13 @@ class JournalVoucherRequestBuilder
 
   ListBuilder<VoucherEntry>? _debitEntries;
   ListBuilder<VoucherEntry> get debitEntries =>
-      _$this._debitEntries ??= new ListBuilder<VoucherEntry>();
+      _$this._debitEntries ??= ListBuilder<VoucherEntry>();
   set debitEntries(ListBuilder<VoucherEntry>? debitEntries) =>
       _$this._debitEntries = debitEntries;
 
   ListBuilder<VoucherEntry>? _creditEntries;
   ListBuilder<VoucherEntry> get creditEntries =>
-      _$this._creditEntries ??= new ListBuilder<VoucherEntry>();
+      _$this._creditEntries ??= ListBuilder<VoucherEntry>();
   set creditEntries(ListBuilder<VoucherEntry>? creditEntries) =>
       _$this._creditEntries = creditEntries;
 
@@ -107,7 +106,6 @@ class JournalVoucherRequestBuilder
 
   @override
   void replace(JournalVoucherRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$JournalVoucherRequest;
   }
 
@@ -123,11 +121,12 @@ class JournalVoucherRequestBuilder
     _$JournalVoucherRequest _$result;
     try {
       _$result = _$v ??
-          new _$JournalVoucherRequest._(
-              voucherDate: voucherDate,
-              narration: narration,
-              debitEntries: _debitEntries?.build(),
-              creditEntries: _creditEntries?.build());
+          _$JournalVoucherRequest._(
+            voucherDate: voucherDate,
+            narration: narration,
+            debitEntries: _debitEntries?.build(),
+            creditEntries: _creditEntries?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -136,7 +135,7 @@ class JournalVoucherRequestBuilder
         _$failedField = 'creditEntries';
         _creditEntries?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'JournalVoucherRequest', _$failedField, e.toString());
       }
       rethrow;

@@ -15,24 +15,17 @@ class _$TopBarResponse extends TopBarResponse {
   final String name;
 
   factory _$TopBarResponse([void Function(TopBarResponseBuilder)? updates]) =>
-      (new TopBarResponseBuilder()..update(updates))._build();
+      (TopBarResponseBuilder()..update(updates))._build();
 
   _$TopBarResponse._(
       {required this.firmName, required this.gstin, required this.name})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        firmName, r'TopBarResponse', 'firmName');
-    BuiltValueNullFieldError.checkNotNull(gstin, r'TopBarResponse', 'gstin');
-    BuiltValueNullFieldError.checkNotNull(name, r'TopBarResponse', 'name');
-  }
-
+      : super._();
   @override
   TopBarResponse rebuild(void Function(TopBarResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  TopBarResponseBuilder toBuilder() =>
-      new TopBarResponseBuilder()..replace(this);
+  TopBarResponseBuilder toBuilder() => TopBarResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -96,7 +89,6 @@ class TopBarResponseBuilder
 
   @override
   void replace(TopBarResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TopBarResponse;
   }
 
@@ -110,13 +102,14 @@ class TopBarResponseBuilder
 
   _$TopBarResponse _build() {
     final _$result = _$v ??
-        new _$TopBarResponse._(
-            firmName: BuiltValueNullFieldError.checkNotNull(
-                firmName, r'TopBarResponse', 'firmName'),
-            gstin: BuiltValueNullFieldError.checkNotNull(
-                gstin, r'TopBarResponse', 'gstin'),
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'TopBarResponse', 'name'));
+        _$TopBarResponse._(
+          firmName: BuiltValueNullFieldError.checkNotNull(
+              firmName, r'TopBarResponse', 'firmName'),
+          gstin: BuiltValueNullFieldError.checkNotNull(
+              gstin, r'TopBarResponse', 'gstin'),
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'TopBarResponse', 'name'),
+        );
     replace(_$result);
     return _$result;
   }

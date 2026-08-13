@@ -16,12 +16,12 @@ AccountEntryType _$valueOf(String name) {
     case 'CR':
       return _$CR;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<AccountEntryType> _$values =
-    new BuiltSet<AccountEntryType>(const <AccountEntryType>[
+    BuiltSet<AccountEntryType>(const <AccountEntryType>[
   _$DR,
   _$CR,
 ]);
@@ -40,7 +40,7 @@ abstract class _$AccountEntryTypeMixin {
 }
 
 Serializer<AccountEntryType> _$accountEntryTypeSerializer =
-    new _$AccountEntryTypeSerializer();
+    _$AccountEntryTypeSerializer();
 
 class _$AccountEntryTypeSerializer
     implements PrimitiveSerializer<AccountEntryType> {

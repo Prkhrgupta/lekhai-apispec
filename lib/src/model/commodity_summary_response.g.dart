@@ -16,11 +16,10 @@ class _$CommoditySummaryResponse extends CommoditySummaryResponse {
 
   factory _$CommoditySummaryResponse(
           [void Function(CommoditySummaryResponseBuilder)? updates]) =>
-      (new CommoditySummaryResponseBuilder()..update(updates))._build();
+      (CommoditySummaryResponseBuilder()..update(updates))._build();
 
   _$CommoditySummaryResponse._({this.columns, this.data, this.pagination})
       : super._();
-
   @override
   CommoditySummaryResponse rebuild(
           void Function(CommoditySummaryResponseBuilder) updates) =>
@@ -28,7 +27,7 @@ class _$CommoditySummaryResponse extends CommoditySummaryResponse {
 
   @override
   CommoditySummaryResponseBuilder toBuilder() =>
-      new CommoditySummaryResponseBuilder()..replace(this);
+      CommoditySummaryResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -66,18 +65,18 @@ class CommoditySummaryResponseBuilder
 
   ListBuilder<CommoditySummaryColumn>? _columns;
   ListBuilder<CommoditySummaryColumn> get columns =>
-      _$this._columns ??= new ListBuilder<CommoditySummaryColumn>();
+      _$this._columns ??= ListBuilder<CommoditySummaryColumn>();
   set columns(ListBuilder<CommoditySummaryColumn>? columns) =>
       _$this._columns = columns;
 
   ListBuilder<CommoditySummaryItem>? _data;
   ListBuilder<CommoditySummaryItem> get data =>
-      _$this._data ??= new ListBuilder<CommoditySummaryItem>();
+      _$this._data ??= ListBuilder<CommoditySummaryItem>();
   set data(ListBuilder<CommoditySummaryItem>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= new PaginationMetaBuilder();
+      _$this._pagination ??= PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -98,7 +97,6 @@ class CommoditySummaryResponseBuilder
 
   @override
   void replace(CommoditySummaryResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommoditySummaryResponse;
   }
 
@@ -114,10 +112,11 @@ class CommoditySummaryResponseBuilder
     _$CommoditySummaryResponse _$result;
     try {
       _$result = _$v ??
-          new _$CommoditySummaryResponse._(
-              columns: _columns?.build(),
-              data: _data?.build(),
-              pagination: _pagination?.build());
+          _$CommoditySummaryResponse._(
+            columns: _columns?.build(),
+            data: _data?.build(),
+            pagination: _pagination?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -128,7 +127,7 @@ class CommoditySummaryResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'CommoditySummaryResponse', _$failedField, e.toString());
       }
       rethrow;

@@ -12,12 +12,9 @@ class _$ItemCategoryRequest extends ItemCategoryRequest {
 
   factory _$ItemCategoryRequest(
           [void Function(ItemCategoryRequestBuilder)? updates]) =>
-      (new ItemCategoryRequestBuilder()..update(updates))._build();
+      (ItemCategoryRequestBuilder()..update(updates))._build();
 
-  _$ItemCategoryRequest._({required this.name}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'ItemCategoryRequest', 'name');
-  }
-
+  _$ItemCategoryRequest._({required this.name}) : super._();
   @override
   ItemCategoryRequest rebuild(
           void Function(ItemCategoryRequestBuilder) updates) =>
@@ -25,7 +22,7 @@ class _$ItemCategoryRequest extends ItemCategoryRequest {
 
   @override
   ItemCategoryRequestBuilder toBuilder() =>
-      new ItemCategoryRequestBuilder()..replace(this);
+      ItemCategoryRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -72,7 +69,6 @@ class ItemCategoryRequestBuilder
 
   @override
   void replace(ItemCategoryRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ItemCategoryRequest;
   }
 
@@ -86,9 +82,10 @@ class ItemCategoryRequestBuilder
 
   _$ItemCategoryRequest _build() {
     final _$result = _$v ??
-        new _$ItemCategoryRequest._(
-            name: BuiltValueNullFieldError.checkNotNull(
-                name, r'ItemCategoryRequest', 'name'));
+        _$ItemCategoryRequest._(
+          name: BuiltValueNullFieldError.checkNotNull(
+              name, r'ItemCategoryRequest', 'name'),
+        );
     replace(_$result);
     return _$result;
   }

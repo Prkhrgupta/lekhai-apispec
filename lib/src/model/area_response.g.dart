@@ -13,16 +13,15 @@ class _$AreaResponse extends AreaResponse {
   final String? areaName;
 
   factory _$AreaResponse([void Function(AreaResponseBuilder)? updates]) =>
-      (new AreaResponseBuilder()..update(updates))._build();
+      (AreaResponseBuilder()..update(updates))._build();
 
   _$AreaResponse._({this.id, this.areaName}) : super._();
-
   @override
   AreaResponse rebuild(void Function(AreaResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  AreaResponseBuilder toBuilder() => new AreaResponseBuilder()..replace(this);
+  AreaResponseBuilder toBuilder() => AreaResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -78,7 +77,6 @@ class AreaResponseBuilder
 
   @override
   void replace(AreaResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AreaResponse;
   }
 
@@ -91,7 +89,11 @@ class AreaResponseBuilder
   AreaResponse build() => _build();
 
   _$AreaResponse _build() {
-    final _$result = _$v ?? new _$AreaResponse._(id: id, areaName: areaName);
+    final _$result = _$v ??
+        _$AreaResponse._(
+          id: id,
+          areaName: areaName,
+        );
     replace(_$result);
     return _$result;
   }

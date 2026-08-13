@@ -22,7 +22,7 @@ class _$LedgerSummaryItem extends LedgerSummaryItem {
 
   factory _$LedgerSummaryItem(
           [void Function(LedgerSummaryItemBuilder)? updates]) =>
-      (new LedgerSummaryItemBuilder()..update(updates))._build();
+      (LedgerSummaryItemBuilder()..update(updates))._build();
 
   _$LedgerSummaryItem._(
       {this.id,
@@ -32,14 +32,13 @@ class _$LedgerSummaryItem extends LedgerSummaryItem {
       this.accountGroup,
       this.gstin})
       : super._();
-
   @override
   LedgerSummaryItem rebuild(void Function(LedgerSummaryItemBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   LedgerSummaryItemBuilder toBuilder() =>
-      new LedgerSummaryItemBuilder()..replace(this);
+      LedgerSummaryItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -127,7 +126,6 @@ class LedgerSummaryItemBuilder
 
   @override
   void replace(LedgerSummaryItem other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerSummaryItem;
   }
 
@@ -141,13 +139,14 @@ class LedgerSummaryItemBuilder
 
   _$LedgerSummaryItem _build() {
     final _$result = _$v ??
-        new _$LedgerSummaryItem._(
-            id: id,
-            name: name,
-            state: state,
-            area: area,
-            accountGroup: accountGroup,
-            gstin: gstin);
+        _$LedgerSummaryItem._(
+          id: id,
+          name: name,
+          state: state,
+          area: area,
+          accountGroup: accountGroup,
+          gstin: gstin,
+        );
     replace(_$result);
     return _$result;
   }

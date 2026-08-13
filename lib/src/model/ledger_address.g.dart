@@ -25,7 +25,7 @@ class _$LedgerAddress extends LedgerAddress {
   final num? distance;
 
   factory _$LedgerAddress([void Function(LedgerAddressBuilder)? updates]) =>
-      (new LedgerAddressBuilder()..update(updates))._build();
+      (LedgerAddressBuilder()..update(updates))._build();
 
   _$LedgerAddress._(
       {this.addressLine1,
@@ -37,13 +37,12 @@ class _$LedgerAddress extends LedgerAddress {
       this.pincode,
       this.distance})
       : super._();
-
   @override
   LedgerAddress rebuild(void Function(LedgerAddressBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerAddressBuilder toBuilder() => new LedgerAddressBuilder()..replace(this);
+  LedgerAddressBuilder toBuilder() => LedgerAddressBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -147,7 +146,6 @@ class LedgerAddressBuilder
 
   @override
   void replace(LedgerAddress other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerAddress;
   }
 
@@ -161,15 +159,16 @@ class LedgerAddressBuilder
 
   _$LedgerAddress _build() {
     final _$result = _$v ??
-        new _$LedgerAddress._(
-            addressLine1: addressLine1,
-            addressLine2: addressLine2,
-            addressLine3: addressLine3,
-            city: city,
-            stateId: stateId,
-            areaId: areaId,
-            pincode: pincode,
-            distance: distance);
+        _$LedgerAddress._(
+          addressLine1: addressLine1,
+          addressLine2: addressLine2,
+          addressLine3: addressLine3,
+          city: city,
+          stateId: stateId,
+          areaId: areaId,
+          pincode: pincode,
+          distance: distance,
+        );
     replace(_$result);
     return _$result;
   }

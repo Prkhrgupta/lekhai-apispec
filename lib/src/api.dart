@@ -20,6 +20,8 @@ import 'package:openapi/src/api/item_category_api.dart';
 import 'package:openapi/src/api/item_factory_api.dart';
 import 'package:openapi/src/api/ledger_api.dart';
 import 'package:openapi/src/api/menu_api.dart';
+import 'package:openapi/src/api/purchase_ledger_setting_api.dart';
+import 'package:openapi/src/api/sale_ledger_setting_api.dart';
 import 'package:openapi/src/api/state_api.dart';
 import 'package:openapi/src/api/stock_item_api.dart';
 import 'package:openapi/src/api/transport_api.dart';
@@ -144,6 +146,18 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   MenuApi getMenuApi() {
     return MenuApi(dio, serializers);
+  }
+
+  /// Get PurchaseLedgerSettingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  PurchaseLedgerSettingApi getPurchaseLedgerSettingApi() {
+    return PurchaseLedgerSettingApi(dio, serializers);
+  }
+
+  /// Get SaleLedgerSettingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  SaleLedgerSettingApi getSaleLedgerSettingApi() {
+    return SaleLedgerSettingApi(dio, serializers);
   }
 
   /// Get StateApi instance, base route and serializer can be overridden by a given but be careful,

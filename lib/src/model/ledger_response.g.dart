@@ -55,7 +55,7 @@ class _$LedgerResponse extends LedgerResponse {
   final DateTime? createdAt;
 
   factory _$LedgerResponse([void Function(LedgerResponseBuilder)? updates]) =>
-      (new LedgerResponseBuilder()..update(updates))._build();
+      (LedgerResponseBuilder()..update(updates))._build();
 
   _$LedgerResponse._(
       {this.id,
@@ -82,14 +82,12 @@ class _$LedgerResponse extends LedgerResponse {
       this.address,
       this.createdAt})
       : super._();
-
   @override
   LedgerResponse rebuild(void Function(LedgerResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerResponseBuilder toBuilder() =>
-      new LedgerResponseBuilder()..replace(this);
+  LedgerResponseBuilder toBuilder() => LedgerResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -257,29 +255,28 @@ class LedgerResponseBuilder
   set isActive(bool? isActive) => _$this._isActive = isActive;
 
   LedgerAreaBuilder? _area;
-  LedgerAreaBuilder get area => _$this._area ??= new LedgerAreaBuilder();
+  LedgerAreaBuilder get area => _$this._area ??= LedgerAreaBuilder();
   set area(LedgerAreaBuilder? area) => _$this._area = area;
 
   LedgerBrokerBuilder? _broker;
-  LedgerBrokerBuilder get broker =>
-      _$this._broker ??= new LedgerBrokerBuilder();
+  LedgerBrokerBuilder get broker => _$this._broker ??= LedgerBrokerBuilder();
   set broker(LedgerBrokerBuilder? broker) => _$this._broker = broker;
 
   LedgerTransportBuilder? _transport;
   LedgerTransportBuilder get transport =>
-      _$this._transport ??= new LedgerTransportBuilder();
+      _$this._transport ??= LedgerTransportBuilder();
   set transport(LedgerTransportBuilder? transport) =>
       _$this._transport = transport;
 
   GstInDetailResponseBuilder? _gstinDetails;
   GstInDetailResponseBuilder get gstinDetails =>
-      _$this._gstinDetails ??= new GstInDetailResponseBuilder();
+      _$this._gstinDetails ??= GstInDetailResponseBuilder();
   set gstinDetails(GstInDetailResponseBuilder? gstinDetails) =>
       _$this._gstinDetails = gstinDetails;
 
   LedgerAddressBuilder? _address;
   LedgerAddressBuilder get address =>
-      _$this._address ??= new LedgerAddressBuilder();
+      _$this._address ??= LedgerAddressBuilder();
   set address(LedgerAddressBuilder? address) => _$this._address = address;
 
   DateTime? _createdAt;
@@ -323,7 +320,6 @@ class LedgerResponseBuilder
 
   @override
   void replace(LedgerResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerResponse;
   }
 
@@ -339,30 +335,31 @@ class LedgerResponseBuilder
     _$LedgerResponse _$result;
     try {
       _$result = _$v ??
-          new _$LedgerResponse._(
-              id: id,
-              name: name,
-              legalName: legalName,
-              accountGroupId: accountGroupId,
-              openingBalance: openingBalance,
-              openingBalanceType: openingBalanceType,
-              creditLimit: creditLimit,
-              pan: pan,
-              aadhaar: aadhaar,
-              tan: tan,
-              email: email,
-              msme: msme,
-              contactPerson: contactPerson,
-              phoneNumber: phoneNumber,
-              gstInNumber: gstInNumber,
-              location: location,
-              isActive: isActive,
-              area: _area?.build(),
-              broker: _broker?.build(),
-              transport: _transport?.build(),
-              gstinDetails: _gstinDetails?.build(),
-              address: _address?.build(),
-              createdAt: createdAt);
+          _$LedgerResponse._(
+            id: id,
+            name: name,
+            legalName: legalName,
+            accountGroupId: accountGroupId,
+            openingBalance: openingBalance,
+            openingBalanceType: openingBalanceType,
+            creditLimit: creditLimit,
+            pan: pan,
+            aadhaar: aadhaar,
+            tan: tan,
+            email: email,
+            msme: msme,
+            contactPerson: contactPerson,
+            phoneNumber: phoneNumber,
+            gstInNumber: gstInNumber,
+            location: location,
+            isActive: isActive,
+            area: _area?.build(),
+            broker: _broker?.build(),
+            transport: _transport?.build(),
+            gstinDetails: _gstinDetails?.build(),
+            address: _address?.build(),
+            createdAt: createdAt,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -377,7 +374,7 @@ class LedgerResponseBuilder
         _$failedField = 'address';
         _address?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'LedgerResponse', _$failedField, e.toString());
       }
       rethrow;

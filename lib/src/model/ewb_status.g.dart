@@ -16,11 +16,11 @@ EwbStatus _$valueOf(String name) {
     case 'REJECTED':
       return _$REJECTED;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
-final BuiltSet<EwbStatus> _$values = new BuiltSet<EwbStatus>(const <EwbStatus>[
+final BuiltSet<EwbStatus> _$values = BuiltSet<EwbStatus>(const <EwbStatus>[
   _$ACTIVE,
   _$REJECTED,
 ]);
@@ -38,7 +38,7 @@ abstract class _$EwbStatusMixin {
   _$EwbStatusMeta get EwbStatus => const _$EwbStatusMeta();
 }
 
-Serializer<EwbStatus> _$ewbStatusSerializer = new _$EwbStatusSerializer();
+Serializer<EwbStatus> _$ewbStatusSerializer = _$EwbStatusSerializer();
 
 class _$EwbStatusSerializer implements PrimitiveSerializer<EwbStatus> {
   static const Map<String, Object> _toWire = const <String, Object>{

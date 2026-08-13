@@ -14,12 +14,12 @@ ItemFactorySearchableField _$valueOf(String name) {
     case 'NAME':
       return _$NAME;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<ItemFactorySearchableField> _$values =
-    new BuiltSet<ItemFactorySearchableField>(const <ItemFactorySearchableField>[
+    BuiltSet<ItemFactorySearchableField>(const <ItemFactorySearchableField>[
   _$NAME,
 ]);
 
@@ -37,7 +37,7 @@ abstract class _$ItemFactorySearchableFieldMixin {
 }
 
 Serializer<ItemFactorySearchableField> _$itemFactorySearchableFieldSerializer =
-    new _$ItemFactorySearchableFieldSerializer();
+    _$ItemFactorySearchableFieldSerializer();
 
 class _$ItemFactorySearchableFieldSerializer
     implements PrimitiveSerializer<ItemFactorySearchableField> {

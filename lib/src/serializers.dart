@@ -78,21 +78,19 @@ import 'package:openapi/src/model/menu_response.dart';
 import 'package:openapi/src/model/pagination_meta.dart';
 import 'package:openapi/src/model/party_type.dart';
 import 'package:openapi/src/model/payment_voucher_request.dart';
-import 'package:openapi/src/model/purchase_in_state_request.dart';
-import 'package:openapi/src/model/purchase_in_state_response.dart';
-import 'package:openapi/src/model/purchase_ledger_request.dart';
-import 'package:openapi/src/model/purchase_ledger_response.dart';
-import 'package:openapi/src/model/purchase_out_state_request.dart';
-import 'package:openapi/src/model/purchase_out_state_response.dart';
+import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
+import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
+import 'package:openapi/src/model/purchase_ledger_setting_searchable_field.dart';
+import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
+import 'package:openapi/src/model/purchase_type.dart';
 import 'package:openapi/src/model/rate_per_unit.dart';
 import 'package:openapi/src/model/receipt_voucher_request.dart';
 import 'package:openapi/src/model/registration_type.dart';
-import 'package:openapi/src/model/sale_in_state_request.dart';
-import 'package:openapi/src/model/sale_in_state_response.dart';
-import 'package:openapi/src/model/sale_ledger_request.dart';
-import 'package:openapi/src/model/sale_ledger_response.dart';
-import 'package:openapi/src/model/sale_out_state_request.dart';
-import 'package:openapi/src/model/sale_out_state_response.dart';
+import 'package:openapi/src/model/sale_ledger_setting_request.dart';
+import 'package:openapi/src/model/sale_ledger_setting_response.dart';
+import 'package:openapi/src/model/sale_ledger_setting_searchable_field.dart';
+import 'package:openapi/src/model/sale_ledger_setting_summary_page_response.dart';
+import 'package:openapi/src/model/sale_type.dart';
 import 'package:openapi/src/model/shop_menu.dart';
 import 'package:openapi/src/model/stock_item_request.dart';
 import 'package:openapi/src/model/stock_item_response.dart';
@@ -174,21 +172,19 @@ part 'serializers.g.dart';
   PaginationMeta,
   PartyType,
   PaymentVoucherRequest,
-  PurchaseInStateRequest,
-  PurchaseInStateResponse,
-  PurchaseLedgerRequest,
-  PurchaseLedgerResponse,
-  PurchaseOutStateRequest,
-  PurchaseOutStateResponse,
+  PurchaseLedgerSettingRequest,
+  PurchaseLedgerSettingResponse,
+  PurchaseLedgerSettingSearchableField,
+  PurchaseLedgerSettingSummaryPageResponse,
+  PurchaseType,
   RatePerUnit,
   ReceiptVoucherRequest,
   RegistrationType,
-  SaleInStateRequest,
-  SaleInStateResponse,
-  SaleLedgerRequest,
-  SaleLedgerResponse,
-  SaleOutStateRequest,
-  SaleOutStateResponse,
+  SaleLedgerSettingRequest,
+  SaleLedgerSettingResponse,
+  SaleLedgerSettingSearchableField,
+  SaleLedgerSettingSummaryPageResponse,
+  SaleType,
   ShopMenu,
   StockItemRequest,
   StockItemResponse,

@@ -14,10 +14,9 @@ class _$TransportSummaryPageResponse extends TransportSummaryPageResponse {
 
   factory _$TransportSummaryPageResponse(
           [void Function(TransportSummaryPageResponseBuilder)? updates]) =>
-      (new TransportSummaryPageResponseBuilder()..update(updates))._build();
+      (TransportSummaryPageResponseBuilder()..update(updates))._build();
 
   _$TransportSummaryPageResponse._({this.data, this.pagination}) : super._();
-
   @override
   TransportSummaryPageResponse rebuild(
           void Function(TransportSummaryPageResponseBuilder) updates) =>
@@ -25,7 +24,7 @@ class _$TransportSummaryPageResponse extends TransportSummaryPageResponse {
 
   @override
   TransportSummaryPageResponseBuilder toBuilder() =>
-      new TransportSummaryPageResponseBuilder()..replace(this);
+      TransportSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -61,12 +60,12 @@ class TransportSummaryPageResponseBuilder
 
   ListBuilder<TransportResponse>? _data;
   ListBuilder<TransportResponse> get data =>
-      _$this._data ??= new ListBuilder<TransportResponse>();
+      _$this._data ??= ListBuilder<TransportResponse>();
   set data(ListBuilder<TransportResponse>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= new PaginationMetaBuilder();
+      _$this._pagination ??= PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -86,7 +85,6 @@ class TransportSummaryPageResponseBuilder
 
   @override
   void replace(TransportSummaryPageResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TransportSummaryPageResponse;
   }
 
@@ -102,8 +100,10 @@ class TransportSummaryPageResponseBuilder
     _$TransportSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          new _$TransportSummaryPageResponse._(
-              data: _data?.build(), pagination: _pagination?.build());
+          _$TransportSummaryPageResponse._(
+            data: _data?.build(),
+            pagination: _pagination?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -112,7 +112,7 @@ class TransportSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'TransportSummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

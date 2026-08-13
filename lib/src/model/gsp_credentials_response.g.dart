@@ -14,10 +14,9 @@ class _$GspCredentialsResponse extends GspCredentialsResponse {
 
   factory _$GspCredentialsResponse(
           [void Function(GspCredentialsResponseBuilder)? updates]) =>
-      (new GspCredentialsResponseBuilder()..update(updates))._build();
+      (GspCredentialsResponseBuilder()..update(updates))._build();
 
   _$GspCredentialsResponse._({this.message, this.gstin}) : super._();
-
   @override
   GspCredentialsResponse rebuild(
           void Function(GspCredentialsResponseBuilder) updates) =>
@@ -25,7 +24,7 @@ class _$GspCredentialsResponse extends GspCredentialsResponse {
 
   @override
   GspCredentialsResponseBuilder toBuilder() =>
-      new GspCredentialsResponseBuilder()..replace(this);
+      GspCredentialsResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -81,7 +80,6 @@ class GspCredentialsResponseBuilder
 
   @override
   void replace(GspCredentialsResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GspCredentialsResponse;
   }
 
@@ -94,8 +92,11 @@ class GspCredentialsResponseBuilder
   GspCredentialsResponse build() => _build();
 
   _$GspCredentialsResponse _build() {
-    final _$result =
-        _$v ?? new _$GspCredentialsResponse._(message: message, gstin: gstin);
+    final _$result = _$v ??
+        _$GspCredentialsResponse._(
+          message: message,
+          gstin: gstin,
+        );
     replace(_$result);
     return _$result;
   }

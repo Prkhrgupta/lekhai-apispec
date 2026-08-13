@@ -16,12 +16,12 @@ RatePerUnit _$valueOf(String name) {
     case 'METER':
       return _$METER;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<RatePerUnit> _$values =
-    new BuiltSet<RatePerUnit>(const <RatePerUnit>[
+    BuiltSet<RatePerUnit>(const <RatePerUnit>[
   _$PCS,
   _$METER,
 ]);
@@ -39,7 +39,7 @@ abstract class _$RatePerUnitMixin {
   _$RatePerUnitMeta get RatePerUnit => const _$RatePerUnitMeta();
 }
 
-Serializer<RatePerUnit> _$ratePerUnitSerializer = new _$RatePerUnitSerializer();
+Serializer<RatePerUnit> _$ratePerUnitSerializer = _$RatePerUnitSerializer();
 
 class _$RatePerUnitSerializer implements PrimitiveSerializer<RatePerUnit> {
   static const Map<String, Object> _toWire = const <String, Object>{

@@ -24,7 +24,7 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
 
   factory _$AccountLedgerEntryItem(
           [void Function(AccountLedgerEntryItemBuilder)? updates]) =>
-      (new AccountLedgerEntryItemBuilder()..update(updates))._build();
+      (AccountLedgerEntryItemBuilder()..update(updates))._build();
 
   _$AccountLedgerEntryItem._(
       {this.date,
@@ -35,7 +35,6 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
       this.balance,
       this.crdr})
       : super._();
-
   @override
   AccountLedgerEntryItem rebuild(
           void Function(AccountLedgerEntryItemBuilder) updates) =>
@@ -43,7 +42,7 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
 
   @override
   AccountLedgerEntryItemBuilder toBuilder() =>
-      new AccountLedgerEntryItemBuilder()..replace(this);
+      AccountLedgerEntryItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -139,7 +138,6 @@ class AccountLedgerEntryItemBuilder
 
   @override
   void replace(AccountLedgerEntryItem other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountLedgerEntryItem;
   }
 
@@ -153,14 +151,15 @@ class AccountLedgerEntryItemBuilder
 
   _$AccountLedgerEntryItem _build() {
     final _$result = _$v ??
-        new _$AccountLedgerEntryItem._(
-            date: date,
-            ledgerName: ledgerName,
-            vtype: vtype,
-            debitAmt: debitAmt,
-            creditAmt: creditAmt,
-            balance: balance,
-            crdr: crdr);
+        _$AccountLedgerEntryItem._(
+          date: date,
+          ledgerName: ledgerName,
+          vtype: vtype,
+          debitAmt: debitAmt,
+          creditAmt: creditAmt,
+          balance: balance,
+          crdr: crdr,
+        );
     replace(_$result);
     return _$result;
   }

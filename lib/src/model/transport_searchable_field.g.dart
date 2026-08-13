@@ -18,12 +18,12 @@ TransportSearchableField _$valueOf(String name) {
     case 'GST_NO':
       return _$GST_NO;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<TransportSearchableField> _$values =
-    new BuiltSet<TransportSearchableField>(const <TransportSearchableField>[
+    BuiltSet<TransportSearchableField>(const <TransportSearchableField>[
   _$NAME,
   _$GST_NO,
 ]);
@@ -43,7 +43,7 @@ abstract class _$TransportSearchableFieldMixin {
 }
 
 Serializer<TransportSearchableField> _$transportSearchableFieldSerializer =
-    new _$TransportSearchableFieldSerializer();
+    _$TransportSearchableFieldSerializer();
 
 class _$TransportSearchableFieldSerializer
     implements PrimitiveSerializer<TransportSearchableField> {

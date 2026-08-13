@@ -22,7 +22,7 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
 
   factory _$CommoditySummaryItem(
           [void Function(CommoditySummaryItemBuilder)? updates]) =>
-      (new CommoditySummaryItemBuilder()..update(updates))._build();
+      (CommoditySummaryItemBuilder()..update(updates))._build();
 
   _$CommoditySummaryItem._(
       {this.id,
@@ -32,7 +32,6 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
       this.gstRateSale,
       this.gstRatePurchase})
       : super._();
-
   @override
   CommoditySummaryItem rebuild(
           void Function(CommoditySummaryItemBuilder) updates) =>
@@ -40,7 +39,7 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
 
   @override
   CommoditySummaryItemBuilder toBuilder() =>
-      new CommoditySummaryItemBuilder()..replace(this);
+      CommoditySummaryItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -130,7 +129,6 @@ class CommoditySummaryItemBuilder
 
   @override
   void replace(CommoditySummaryItem other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommoditySummaryItem;
   }
 
@@ -144,13 +142,14 @@ class CommoditySummaryItemBuilder
 
   _$CommoditySummaryItem _build() {
     final _$result = _$v ??
-        new _$CommoditySummaryItem._(
-            id: id,
-            name: name,
-            hsnSacCode: hsnSacCode,
-            unitOfMeasurement: unitOfMeasurement,
-            gstRateSale: gstRateSale,
-            gstRatePurchase: gstRatePurchase);
+        _$CommoditySummaryItem._(
+          id: id,
+          name: name,
+          hsnSacCode: hsnSacCode,
+          unitOfMeasurement: unitOfMeasurement,
+          gstRateSale: gstRateSale,
+          gstRatePurchase: gstRatePurchase,
+        );
     replace(_$result);
     return _$result;
   }

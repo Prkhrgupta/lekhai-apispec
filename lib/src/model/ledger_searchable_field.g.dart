@@ -16,12 +16,12 @@ LedgerSearchableField _$valueOf(String name) {
     case 'AREA':
       return _$AREA;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<LedgerSearchableField> _$values =
-    new BuiltSet<LedgerSearchableField>(const <LedgerSearchableField>[
+    BuiltSet<LedgerSearchableField>(const <LedgerSearchableField>[
   _$NAME,
   _$AREA,
 ]);
@@ -41,7 +41,7 @@ abstract class _$LedgerSearchableFieldMixin {
 }
 
 Serializer<LedgerSearchableField> _$ledgerSearchableFieldSerializer =
-    new _$LedgerSearchableFieldSerializer();
+    _$LedgerSearchableFieldSerializer();
 
 class _$LedgerSearchableFieldSerializer
     implements PrimitiveSerializer<LedgerSearchableField> {

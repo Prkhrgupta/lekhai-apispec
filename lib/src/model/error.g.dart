@@ -19,17 +19,16 @@ class _$Error extends Error {
   final DateTime? timestamp;
 
   factory _$Error([void Function(ErrorBuilder)? updates]) =>
-      (new ErrorBuilder()..update(updates))._build();
+      (ErrorBuilder()..update(updates))._build();
 
   _$Error._({this.success, this.message, this.data, this.error, this.timestamp})
       : super._();
-
   @override
   Error rebuild(void Function(ErrorBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ErrorBuilder toBuilder() => new ErrorBuilder()..replace(this);
+  ErrorBuilder toBuilder() => ErrorBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -108,7 +107,6 @@ class ErrorBuilder implements Builder<Error, ErrorBuilder> {
 
   @override
   void replace(Error other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$Error;
   }
 
@@ -122,12 +120,13 @@ class ErrorBuilder implements Builder<Error, ErrorBuilder> {
 
   _$Error _build() {
     final _$result = _$v ??
-        new _$Error._(
-            success: success,
-            message: message,
-            data: data,
-            error: error,
-            timestamp: timestamp);
+        _$Error._(
+          success: success,
+          message: message,
+          data: data,
+          error: error,
+          timestamp: timestamp,
+        );
     replace(_$result);
     return _$result;
   }

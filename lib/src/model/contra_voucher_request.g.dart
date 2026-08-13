@@ -18,12 +18,11 @@ class _$ContraVoucherRequest extends ContraVoucherRequest {
 
   factory _$ContraVoucherRequest(
           [void Function(ContraVoucherRequestBuilder)? updates]) =>
-      (new ContraVoucherRequestBuilder()..update(updates))._build();
+      (ContraVoucherRequestBuilder()..update(updates))._build();
 
   _$ContraVoucherRequest._(
       {this.voucherDate, this.narration, this.debitEntries, this.creditEntries})
       : super._();
-
   @override
   ContraVoucherRequest rebuild(
           void Function(ContraVoucherRequestBuilder) updates) =>
@@ -31,7 +30,7 @@ class _$ContraVoucherRequest extends ContraVoucherRequest {
 
   @override
   ContraVoucherRequestBuilder toBuilder() =>
-      new ContraVoucherRequestBuilder()..replace(this);
+      ContraVoucherRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -79,13 +78,13 @@ class ContraVoucherRequestBuilder
 
   ListBuilder<VoucherEntry>? _debitEntries;
   ListBuilder<VoucherEntry> get debitEntries =>
-      _$this._debitEntries ??= new ListBuilder<VoucherEntry>();
+      _$this._debitEntries ??= ListBuilder<VoucherEntry>();
   set debitEntries(ListBuilder<VoucherEntry>? debitEntries) =>
       _$this._debitEntries = debitEntries;
 
   ListBuilder<VoucherEntry>? _creditEntries;
   ListBuilder<VoucherEntry> get creditEntries =>
-      _$this._creditEntries ??= new ListBuilder<VoucherEntry>();
+      _$this._creditEntries ??= ListBuilder<VoucherEntry>();
   set creditEntries(ListBuilder<VoucherEntry>? creditEntries) =>
       _$this._creditEntries = creditEntries;
 
@@ -107,7 +106,6 @@ class ContraVoucherRequestBuilder
 
   @override
   void replace(ContraVoucherRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ContraVoucherRequest;
   }
 
@@ -123,11 +121,12 @@ class ContraVoucherRequestBuilder
     _$ContraVoucherRequest _$result;
     try {
       _$result = _$v ??
-          new _$ContraVoucherRequest._(
-              voucherDate: voucherDate,
-              narration: narration,
-              debitEntries: _debitEntries?.build(),
-              creditEntries: _creditEntries?.build());
+          _$ContraVoucherRequest._(
+            voucherDate: voucherDate,
+            narration: narration,
+            debitEntries: _debitEntries?.build(),
+            creditEntries: _creditEntries?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -136,7 +135,7 @@ class ContraVoucherRequestBuilder
         _$failedField = 'creditEntries';
         _creditEntries?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'ContraVoucherRequest', _$failedField, e.toString());
       }
       rethrow;

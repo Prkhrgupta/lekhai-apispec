@@ -19,11 +19,11 @@ Day _$valueOf(String name) {
     case 'ALREADY_EXPIRED':
       return _$ALREADY_EXPIRED;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
-final BuiltSet<Day> _$values = new BuiltSet<Day>(const <Day>[
+final BuiltSet<Day> _$values = BuiltSet<Day>(const <Day>[
   _$TODAY,
   _$TOMORROW,
   _$ALREADY_EXPIRED,
@@ -43,7 +43,7 @@ abstract class _$DayMixin {
   _$DayMeta get Day => const _$DayMeta();
 }
 
-Serializer<Day> _$daySerializer = new _$DaySerializer();
+Serializer<Day> _$daySerializer = _$DaySerializer();
 
 class _$DaySerializer implements PrimitiveSerializer<Day> {
   static const Map<String, Object> _toWire = const <String, Object>{

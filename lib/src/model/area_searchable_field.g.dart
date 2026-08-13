@@ -13,12 +13,12 @@ AreaSearchableField _$valueOf(String name) {
     case 'NAME':
       return _$NAME;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<AreaSearchableField> _$values =
-    new BuiltSet<AreaSearchableField>(const <AreaSearchableField>[
+    BuiltSet<AreaSearchableField>(const <AreaSearchableField>[
   _$NAME,
 ]);
 
@@ -36,7 +36,7 @@ abstract class _$AreaSearchableFieldMixin {
 }
 
 Serializer<AreaSearchableField> _$areaSearchableFieldSerializer =
-    new _$AreaSearchableFieldSerializer();
+    _$AreaSearchableFieldSerializer();
 
 class _$AreaSearchableFieldSerializer
     implements PrimitiveSerializer<AreaSearchableField> {

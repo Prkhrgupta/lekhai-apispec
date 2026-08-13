@@ -18,12 +18,11 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
 
   factory _$ReceiptVoucherRequest(
           [void Function(ReceiptVoucherRequestBuilder)? updates]) =>
-      (new ReceiptVoucherRequestBuilder()..update(updates))._build();
+      (ReceiptVoucherRequestBuilder()..update(updates))._build();
 
   _$ReceiptVoucherRequest._(
       {this.voucherDate, this.receiptAccountId, this.narration, this.items})
       : super._();
-
   @override
   ReceiptVoucherRequest rebuild(
           void Function(ReceiptVoucherRequestBuilder) updates) =>
@@ -31,7 +30,7 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
 
   @override
   ReceiptVoucherRequestBuilder toBuilder() =>
-      new ReceiptVoucherRequestBuilder()..replace(this);
+      ReceiptVoucherRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -84,7 +83,7 @@ class ReceiptVoucherRequestBuilder
 
   ListBuilder<VoucherEntry>? _items;
   ListBuilder<VoucherEntry> get items =>
-      _$this._items ??= new ListBuilder<VoucherEntry>();
+      _$this._items ??= ListBuilder<VoucherEntry>();
   set items(ListBuilder<VoucherEntry>? items) => _$this._items = items;
 
   ReceiptVoucherRequestBuilder() {
@@ -105,7 +104,6 @@ class ReceiptVoucherRequestBuilder
 
   @override
   void replace(ReceiptVoucherRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ReceiptVoucherRequest;
   }
 
@@ -121,18 +119,19 @@ class ReceiptVoucherRequestBuilder
     _$ReceiptVoucherRequest _$result;
     try {
       _$result = _$v ??
-          new _$ReceiptVoucherRequest._(
-              voucherDate: voucherDate,
-              receiptAccountId: receiptAccountId,
-              narration: narration,
-              items: _items?.build());
+          _$ReceiptVoucherRequest._(
+            voucherDate: voucherDate,
+            receiptAccountId: receiptAccountId,
+            narration: narration,
+            items: _items?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'items';
         _items?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'ReceiptVoucherRequest', _$failedField, e.toString());
       }
       rethrow;

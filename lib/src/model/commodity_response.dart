@@ -3,8 +3,6 @@
 //
 
 // ignore_for_file: unused_element
-import 'package:openapi/src/model/purchase_ledger_response.dart';
-import 'package:openapi/src/model/sale_ledger_response.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -20,9 +18,6 @@ part 'commodity_response.g.dart';
 /// * [gstRateSale] 
 /// * [gstRatePurchase] 
 /// * [unitOfMeasurement] 
-/// * [salePurchaseSetting] 
-/// * [saleLedger] 
-/// * [purchaseLedger] 
 /// * [isActive] 
 /// * [createdAt] 
 @BuiltValue()
@@ -48,15 +43,6 @@ abstract class CommodityResponse implements Built<CommodityResponse, CommodityRe
 
   @BuiltValueField(wireName: r'unit_of_measurement')
   String? get unitOfMeasurement;
-
-  @BuiltValueField(wireName: r'sale_purchase_setting')
-  bool? get salePurchaseSetting;
-
-  @BuiltValueField(wireName: r'sale_ledger')
-  SaleLedgerResponse? get saleLedger;
-
-  @BuiltValueField(wireName: r'purchase_ledger')
-  PurchaseLedgerResponse? get purchaseLedger;
 
   @BuiltValueField(wireName: r'is_active')
   bool? get isActive;
@@ -134,27 +120,6 @@ class _$CommodityResponseSerializer implements PrimitiveSerializer<CommodityResp
       yield serializers.serialize(
         object.unitOfMeasurement,
         specifiedType: const FullType(String),
-      );
-    }
-    if (object.salePurchaseSetting != null) {
-      yield r'sale_purchase_setting';
-      yield serializers.serialize(
-        object.salePurchaseSetting,
-        specifiedType: const FullType(bool),
-      );
-    }
-    if (object.saleLedger != null) {
-      yield r'sale_ledger';
-      yield serializers.serialize(
-        object.saleLedger,
-        specifiedType: const FullType(SaleLedgerResponse),
-      );
-    }
-    if (object.purchaseLedger != null) {
-      yield r'purchase_ledger';
-      yield serializers.serialize(
-        object.purchaseLedger,
-        specifiedType: const FullType(PurchaseLedgerResponse),
       );
     }
     if (object.isActive != null) {
@@ -242,27 +207,6 @@ class _$CommodityResponseSerializer implements PrimitiveSerializer<CommodityResp
             specifiedType: const FullType(String),
           ) as String;
           result.unitOfMeasurement = valueDes;
-          break;
-        case r'sale_purchase_setting':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(bool),
-          ) as bool;
-          result.salePurchaseSetting = valueDes;
-          break;
-        case r'sale_ledger':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(SaleLedgerResponse),
-          ) as SaleLedgerResponse;
-          result.saleLedger.replace(valueDes);
-          break;
-        case r'purchase_ledger':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(PurchaseLedgerResponse),
-          ) as PurchaseLedgerResponse;
-          result.purchaseLedger.replace(valueDes);
           break;
         case r'is_active':
           final valueDes = serializers.deserialize(

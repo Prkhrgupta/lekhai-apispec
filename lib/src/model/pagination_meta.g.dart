@@ -17,19 +17,17 @@ class _$PaginationMeta extends PaginationMeta {
   final int? size;
 
   factory _$PaginationMeta([void Function(PaginationMetaBuilder)? updates]) =>
-      (new PaginationMetaBuilder()..update(updates))._build();
+      (PaginationMetaBuilder()..update(updates))._build();
 
   _$PaginationMeta._(
       {this.totalPages, this.totalElements, this.page, this.size})
       : super._();
-
   @override
   PaginationMeta rebuild(void Function(PaginationMetaBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  PaginationMetaBuilder toBuilder() =>
-      new PaginationMetaBuilder()..replace(this);
+  PaginationMetaBuilder toBuilder() => PaginationMetaBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -102,7 +100,6 @@ class PaginationMetaBuilder
 
   @override
   void replace(PaginationMeta other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$PaginationMeta;
   }
 
@@ -116,11 +113,12 @@ class PaginationMetaBuilder
 
   _$PaginationMeta _build() {
     final _$result = _$v ??
-        new _$PaginationMeta._(
-            totalPages: totalPages,
-            totalElements: totalElements,
-            page: page,
-            size: size);
+        _$PaginationMeta._(
+          totalPages: totalPages,
+          totalElements: totalElements,
+          page: page,
+          size: size,
+        );
     replace(_$result);
     return _$result;
   }

@@ -14,10 +14,9 @@ class _$AreaSummaryPageResponse extends AreaSummaryPageResponse {
 
   factory _$AreaSummaryPageResponse(
           [void Function(AreaSummaryPageResponseBuilder)? updates]) =>
-      (new AreaSummaryPageResponseBuilder()..update(updates))._build();
+      (AreaSummaryPageResponseBuilder()..update(updates))._build();
 
   _$AreaSummaryPageResponse._({this.data, this.pagination}) : super._();
-
   @override
   AreaSummaryPageResponse rebuild(
           void Function(AreaSummaryPageResponseBuilder) updates) =>
@@ -25,7 +24,7 @@ class _$AreaSummaryPageResponse extends AreaSummaryPageResponse {
 
   @override
   AreaSummaryPageResponseBuilder toBuilder() =>
-      new AreaSummaryPageResponseBuilder()..replace(this);
+      AreaSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -60,12 +59,12 @@ class AreaSummaryPageResponseBuilder
 
   ListBuilder<AreaResponse>? _data;
   ListBuilder<AreaResponse> get data =>
-      _$this._data ??= new ListBuilder<AreaResponse>();
+      _$this._data ??= ListBuilder<AreaResponse>();
   set data(ListBuilder<AreaResponse>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= new PaginationMetaBuilder();
+      _$this._pagination ??= PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -85,7 +84,6 @@ class AreaSummaryPageResponseBuilder
 
   @override
   void replace(AreaSummaryPageResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AreaSummaryPageResponse;
   }
 
@@ -101,8 +99,10 @@ class AreaSummaryPageResponseBuilder
     _$AreaSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          new _$AreaSummaryPageResponse._(
-              data: _data?.build(), pagination: _pagination?.build());
+          _$AreaSummaryPageResponse._(
+            data: _data?.build(),
+            pagination: _pagination?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -111,7 +111,7 @@ class AreaSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'AreaSummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

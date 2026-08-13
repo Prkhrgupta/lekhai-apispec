@@ -17,17 +17,15 @@ class _$LedgerTransport extends LedgerTransport {
   final String? gst;
 
   factory _$LedgerTransport([void Function(LedgerTransportBuilder)? updates]) =>
-      (new LedgerTransportBuilder()..update(updates))._build();
+      (LedgerTransportBuilder()..update(updates))._build();
 
   _$LedgerTransport._({this.id, this.name, this.phone, this.gst}) : super._();
-
   @override
   LedgerTransport rebuild(void Function(LedgerTransportBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerTransportBuilder toBuilder() =>
-      new LedgerTransportBuilder()..replace(this);
+  LedgerTransportBuilder toBuilder() => LedgerTransportBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -99,7 +97,6 @@ class LedgerTransportBuilder
 
   @override
   void replace(LedgerTransport other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerTransport;
   }
 
@@ -113,7 +110,12 @@ class LedgerTransportBuilder
 
   _$LedgerTransport _build() {
     final _$result = _$v ??
-        new _$LedgerTransport._(id: id, name: name, phone: phone, gst: gst);
+        _$LedgerTransport._(
+          id: id,
+          name: name,
+          phone: phone,
+          gst: gst,
+        );
     replace(_$result);
     return _$result;
   }

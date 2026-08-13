@@ -63,7 +63,7 @@ class _$LedgerRequest extends LedgerRequest {
   final String? city;
 
   factory _$LedgerRequest([void Function(LedgerRequestBuilder)? updates]) =>
-      (new LedgerRequestBuilder()..update(updates))._build();
+      (LedgerRequestBuilder()..update(updates))._build();
 
   _$LedgerRequest._(
       {this.gstInNumber,
@@ -93,16 +93,13 @@ class _$LedgerRequest extends LedgerRequest {
       this.distance,
       this.pinCode,
       this.city})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(name, r'LedgerRequest', 'name');
-  }
-
+      : super._();
   @override
   LedgerRequest rebuild(void Function(LedgerRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerRequestBuilder toBuilder() => new LedgerRequestBuilder()..replace(this);
+  LedgerRequestBuilder toBuilder() => LedgerRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -248,7 +245,7 @@ class LedgerRequestBuilder
   set stateAndCode(String? stateAndCode) => _$this._stateAndCode = stateAndCode;
 
   MailToBuilder? _mailTo;
-  MailToBuilder get mailTo => _$this._mailTo ??= new MailToBuilder();
+  MailToBuilder get mailTo => _$this._mailTo ??= MailToBuilder();
   set mailTo(MailToBuilder? mailTo) => _$this._mailTo = mailTo;
 
   int? _areaId;
@@ -291,7 +288,7 @@ class LedgerRequestBuilder
 
   GstInDetailBuilder? _gstInDetails;
   GstInDetailBuilder get gstInDetails =>
-      _$this._gstInDetails ??= new GstInDetailBuilder();
+      _$this._gstInDetails ??= GstInDetailBuilder();
   set gstInDetails(GstInDetailBuilder? gstInDetails) =>
       _$this._gstInDetails = gstInDetails;
 
@@ -366,7 +363,6 @@ class LedgerRequestBuilder
 
   @override
   void replace(LedgerRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerRequest;
   }
 
@@ -382,35 +378,36 @@ class LedgerRequestBuilder
     _$LedgerRequest _$result;
     try {
       _$result = _$v ??
-          new _$LedgerRequest._(
-              gstInNumber: gstInNumber,
-              name: BuiltValueNullFieldError.checkNotNull(
-                  name, r'LedgerRequest', 'name'),
-              accountGroup: accountGroup,
-              openingBalance: openingBalance,
-              accountEntryType: accountEntryType,
-              legalName: legalName,
-              location: location,
-              countryName: countryName,
-              stateAndCode: stateAndCode,
-              mailTo: _mailTo?.build(),
-              areaId: areaId,
-              contactPerson: contactPerson,
-              phoneNumber: phoneNumber,
-              pan: pan,
-              creditLimit: creditLimit,
-              transportId: transportId,
-              tanNumber: tanNumber,
-              brokerId: brokerId,
-              gstInDetailsPresent: gstInDetailsPresent,
-              gstInDetails: _gstInDetails?.build(),
-              aadhaarNumber: aadhaarNumber,
-              imageUploaded: imageUploaded,
-              email: email,
-              msmeNumber: msmeNumber,
-              distance: distance,
-              pinCode: pinCode,
-              city: city);
+          _$LedgerRequest._(
+            gstInNumber: gstInNumber,
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'LedgerRequest', 'name'),
+            accountGroup: accountGroup,
+            openingBalance: openingBalance,
+            accountEntryType: accountEntryType,
+            legalName: legalName,
+            location: location,
+            countryName: countryName,
+            stateAndCode: stateAndCode,
+            mailTo: _mailTo?.build(),
+            areaId: areaId,
+            contactPerson: contactPerson,
+            phoneNumber: phoneNumber,
+            pan: pan,
+            creditLimit: creditLimit,
+            transportId: transportId,
+            tanNumber: tanNumber,
+            brokerId: brokerId,
+            gstInDetailsPresent: gstInDetailsPresent,
+            gstInDetails: _gstInDetails?.build(),
+            aadhaarNumber: aadhaarNumber,
+            imageUploaded: imageUploaded,
+            email: email,
+            msmeNumber: msmeNumber,
+            distance: distance,
+            pinCode: pinCode,
+            city: city,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -420,7 +417,7 @@ class LedgerRequestBuilder
         _$failedField = 'gstInDetails';
         _gstInDetails?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
             r'LedgerRequest', _$failedField, e.toString());
       }
       rethrow;

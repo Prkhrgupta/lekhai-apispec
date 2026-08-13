@@ -15,17 +15,15 @@ class _$BrokerResponse extends BrokerResponse {
   final String? phone;
 
   factory _$BrokerResponse([void Function(BrokerResponseBuilder)? updates]) =>
-      (new BrokerResponseBuilder()..update(updates))._build();
+      (BrokerResponseBuilder()..update(updates))._build();
 
   _$BrokerResponse._({this.id, this.name, this.phone}) : super._();
-
   @override
   BrokerResponse rebuild(void Function(BrokerResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BrokerResponseBuilder toBuilder() =>
-      new BrokerResponseBuilder()..replace(this);
+  BrokerResponseBuilder toBuilder() => BrokerResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -89,7 +87,6 @@ class BrokerResponseBuilder
 
   @override
   void replace(BrokerResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$BrokerResponse;
   }
 
@@ -102,8 +99,12 @@ class BrokerResponseBuilder
   BrokerResponse build() => _build();
 
   _$BrokerResponse _build() {
-    final _$result =
-        _$v ?? new _$BrokerResponse._(id: id, name: name, phone: phone);
+    final _$result = _$v ??
+        _$BrokerResponse._(
+          id: id,
+          name: name,
+          phone: phone,
+        );
     replace(_$result);
     return _$result;
   }

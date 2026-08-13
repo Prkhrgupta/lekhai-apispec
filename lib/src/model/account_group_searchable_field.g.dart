@@ -14,12 +14,12 @@ AccountGroupSearchableField _$valueOf(String name) {
     case 'NAME':
       return _$NAME;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
-final BuiltSet<AccountGroupSearchableField> _$values = new BuiltSet<
-    AccountGroupSearchableField>(const <AccountGroupSearchableField>[
+final BuiltSet<AccountGroupSearchableField> _$values =
+    BuiltSet<AccountGroupSearchableField>(const <AccountGroupSearchableField>[
   _$NAME,
 ]);
 
@@ -38,7 +38,7 @@ abstract class _$AccountGroupSearchableFieldMixin {
 
 Serializer<AccountGroupSearchableField>
     _$accountGroupSearchableFieldSerializer =
-    new _$AccountGroupSearchableFieldSerializer();
+    _$AccountGroupSearchableFieldSerializer();
 
 class _$AccountGroupSearchableFieldSerializer
     implements PrimitiveSerializer<AccountGroupSearchableField> {

@@ -14,10 +14,9 @@ class _$ItemCategoryResponse extends ItemCategoryResponse {
 
   factory _$ItemCategoryResponse(
           [void Function(ItemCategoryResponseBuilder)? updates]) =>
-      (new ItemCategoryResponseBuilder()..update(updates))._build();
+      (ItemCategoryResponseBuilder()..update(updates))._build();
 
   _$ItemCategoryResponse._({this.id, this.name}) : super._();
-
   @override
   ItemCategoryResponse rebuild(
           void Function(ItemCategoryResponseBuilder) updates) =>
@@ -25,7 +24,7 @@ class _$ItemCategoryResponse extends ItemCategoryResponse {
 
   @override
   ItemCategoryResponseBuilder toBuilder() =>
-      new ItemCategoryResponseBuilder()..replace(this);
+      ItemCategoryResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -81,7 +80,6 @@ class ItemCategoryResponseBuilder
 
   @override
   void replace(ItemCategoryResponse other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ItemCategoryResponse;
   }
 
@@ -94,7 +92,11 @@ class ItemCategoryResponseBuilder
   ItemCategoryResponse build() => _build();
 
   _$ItemCategoryResponse _build() {
-    final _$result = _$v ?? new _$ItemCategoryResponse._(id: id, name: name);
+    final _$result = _$v ??
+        _$ItemCategoryResponse._(
+          id: id,
+          name: name,
+        );
     replace(_$result);
     return _$result;
   }

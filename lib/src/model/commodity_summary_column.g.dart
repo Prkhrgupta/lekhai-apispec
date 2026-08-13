@@ -16,10 +16,9 @@ class _$CommoditySummaryColumn extends CommoditySummaryColumn {
 
   factory _$CommoditySummaryColumn(
           [void Function(CommoditySummaryColumnBuilder)? updates]) =>
-      (new CommoditySummaryColumnBuilder()..update(updates))._build();
+      (CommoditySummaryColumnBuilder()..update(updates))._build();
 
   _$CommoditySummaryColumn._({this.name, this.type, this.width}) : super._();
-
   @override
   CommoditySummaryColumn rebuild(
           void Function(CommoditySummaryColumnBuilder) updates) =>
@@ -27,7 +26,7 @@ class _$CommoditySummaryColumn extends CommoditySummaryColumn {
 
   @override
   CommoditySummaryColumnBuilder toBuilder() =>
-      new CommoditySummaryColumnBuilder()..replace(this);
+      CommoditySummaryColumnBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,7 +90,6 @@ class CommoditySummaryColumnBuilder
 
   @override
   void replace(CommoditySummaryColumn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommoditySummaryColumn;
   }
 
@@ -105,7 +103,11 @@ class CommoditySummaryColumnBuilder
 
   _$CommoditySummaryColumn _build() {
     final _$result = _$v ??
-        new _$CommoditySummaryColumn._(name: name, type: type, width: width);
+        _$CommoditySummaryColumn._(
+          name: name,
+          type: type,
+          width: width,
+        );
     replace(_$result);
     return _$result;
   }
