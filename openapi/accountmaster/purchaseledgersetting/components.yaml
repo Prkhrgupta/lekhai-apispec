@@ -1,0 +1,140 @@
+PurchaseType:
+  type: string
+  enum: [IN_STATE, OUT_STATE, EXPORT]
+
+PurchaseLedgerSettingRequest:
+  type: object
+  required: [purchaseLedgerId]
+  properties:
+    purchaseLedgerId:
+      type: integer
+      format: int64
+      description: Purchase ledger account this configuration belongs to
+    purchaseType:
+      $ref: '#/PurchaseType'
+    gstRate:
+      type: number
+      format: double
+      default: 0.0
+    cgstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    cgstLedgerId:
+      type: integer
+      format: int64
+    sgstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    sgstLedgerId:
+      type: integer
+      format: int64
+    igstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    igstLedgerId:
+      type: integer
+      format: int64
+    cessPercentage:
+      type: number
+      format: double
+      default: 0.0
+    cessLedgerId:
+      type: integer
+      format: int64
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    tdsPercentage:
+      type: number
+      format: double
+      default: 0.0
+    tdsLedgerId:
+      type: integer
+      format: int64
+
+PurchaseLedgerSettingResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    purchaseLedgerId:
+      type: integer
+      format: int64
+    purchaseLedgerName:
+      type: string
+    purchaseType:
+      $ref: '#/PurchaseType'
+    gstRate:
+      type: number
+      format: double
+    cgstPercentage:
+      type: number
+      format: double
+    cgstLedgerId:
+      type: integer
+      format: int64
+    cgstLedgerName:
+      type: string
+    sgstPercentage:
+      type: number
+      format: double
+    sgstLedgerId:
+      type: integer
+      format: int64
+    sgstLedgerName:
+      type: string
+    igstPercentage:
+      type: number
+      format: double
+    igstLedgerId:
+      type: integer
+      format: int64
+    igstLedgerName:
+      type: string
+    cessPercentage:
+      type: number
+      format: double
+    cessLedgerId:
+      type: integer
+      format: int64
+    cessLedgerName:
+      type: string
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    freightPackingLedgerName:
+      type: string
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerName:
+      type: string
+    tdsPercentage:
+      type: number
+      format: double
+    tdsLedgerId:
+      type: integer
+      format: int64
+    tdsLedgerName:
+      type: string
+
+PurchaseLedgerSettingSearchableField:
+  type: string
+  enum: [PURCHASE_LEDGER_NAME]
+
+PurchaseLedgerSettingSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/PurchaseLedgerSettingResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'

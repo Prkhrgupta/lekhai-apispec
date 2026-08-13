@@ -1,0 +1,185 @@
+paths:
+  /sale-ledger-setting:
+    post:
+      tags: [SaleLedgerSetting]
+      summary: Create sale ledger setting
+      operationId: createSaleLedgerSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingRequest'
+      responses:
+        '201':
+          description: Sale ledger setting created
+          content:
+            application/json:
+              schema:
+                $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    get:
+      tags: [SaleLedgerSetting]
+      summary: get sale ledger setting options for dropdown
+      operationId: getSaleLedgerSettingDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for sale ledger setting
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../../common/components.yaml#/DropdownItem'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /sale-ledger-setting/{id}:
+    get:
+      tags: [SaleLedgerSetting]
+      summary: Get sale ledger setting by ID
+      operationId: getSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sale ledger setting details
+          content:
+            application/json:
+              schema:
+                $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [SaleLedgerSetting]
+      summary: Update sale ledger setting
+      operationId: updateSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingRequest'
+      responses:
+        '200':
+          description: Sale ledger setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    delete:
+      tags: [SaleLedgerSetting]
+      summary: Delete sale ledger setting
+      operationId: deleteSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Sale ledger setting deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /sale-ledger-setting/summary:
+    get:
+      tags: [SaleLedgerSetting]
+      summary: Get sale ledger setting summary
+      operationId: getSaleLedgerSettingSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '../saleledgersetting/components.yaml#/SaleLedgerSettingSummaryPageResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
