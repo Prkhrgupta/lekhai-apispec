@@ -1,3 +1,18 @@
+AccountLedgerContraItem:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    debitAmt:
+      type: number
+    creditAmt:
+      type: number
+    remarks:
+      type: string
+
 AccountLedgerEntryItem:
   type: object
   properties:
@@ -15,6 +30,10 @@ AccountLedgerEntryItem:
       type: number
     crdr:
       $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    contraEntries:
+      type: array
+      items:
+        $ref: '#/AccountLedgerContraItem'
 
 AccountLedgerPageResponse:
   type: object
