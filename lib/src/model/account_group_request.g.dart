@@ -14,10 +14,15 @@ class _$AccountGroupRequest extends AccountGroupRequest {
 
   factory _$AccountGroupRequest(
           [void Function(AccountGroupRequestBuilder)? updates]) =>
-      (AccountGroupRequestBuilder()..update(updates))._build();
+      (new AccountGroupRequestBuilder()..update(updates))._build();
 
   _$AccountGroupRequest._({required this.name, required this.parentId})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'AccountGroupRequest', 'name');
+    BuiltValueNullFieldError.checkNotNull(
+        parentId, r'AccountGroupRequest', 'parentId');
+  }
+
   @override
   AccountGroupRequest rebuild(
           void Function(AccountGroupRequestBuilder) updates) =>
@@ -25,7 +30,7 @@ class _$AccountGroupRequest extends AccountGroupRequest {
 
   @override
   AccountGroupRequestBuilder toBuilder() =>
-      AccountGroupRequestBuilder()..replace(this);
+      new AccountGroupRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -81,6 +86,7 @@ class AccountGroupRequestBuilder
 
   @override
   void replace(AccountGroupRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountGroupRequest;
   }
 
@@ -94,12 +100,11 @@ class AccountGroupRequestBuilder
 
   _$AccountGroupRequest _build() {
     final _$result = _$v ??
-        _$AccountGroupRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'AccountGroupRequest', 'name'),
-          parentId: BuiltValueNullFieldError.checkNotNull(
-              parentId, r'AccountGroupRequest', 'parentId'),
-        );
+        new _$AccountGroupRequest._(
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'AccountGroupRequest', 'name'),
+            parentId: BuiltValueNullFieldError.checkNotNull(
+                parentId, r'AccountGroupRequest', 'parentId'));
     replace(_$result);
     return _$result;
   }

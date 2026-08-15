@@ -15,15 +15,16 @@ class _$VoucherEntry extends VoucherEntry {
   final String? remarks;
 
   factory _$VoucherEntry([void Function(VoucherEntryBuilder)? updates]) =>
-      (VoucherEntryBuilder()..update(updates))._build();
+      (new VoucherEntryBuilder()..update(updates))._build();
 
   _$VoucherEntry._({this.accountId, this.amount, this.remarks}) : super._();
+
   @override
   VoucherEntry rebuild(void Function(VoucherEntryBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  VoucherEntryBuilder toBuilder() => VoucherEntryBuilder()..replace(this);
+  VoucherEntryBuilder toBuilder() => new VoucherEntryBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -87,6 +88,7 @@ class VoucherEntryBuilder
 
   @override
   void replace(VoucherEntry other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VoucherEntry;
   }
 
@@ -100,11 +102,8 @@ class VoucherEntryBuilder
 
   _$VoucherEntry _build() {
     final _$result = _$v ??
-        _$VoucherEntry._(
-          accountId: accountId,
-          amount: amount,
-          remarks: remarks,
-        );
+        new _$VoucherEntry._(
+            accountId: accountId, amount: amount, remarks: remarks);
     replace(_$result);
     return _$result;
   }

@@ -14,9 +14,10 @@ class _$AccountGroupSummaryItem extends AccountGroupSummaryItem {
 
   factory _$AccountGroupSummaryItem(
           [void Function(AccountGroupSummaryItemBuilder)? updates]) =>
-      (AccountGroupSummaryItemBuilder()..update(updates))._build();
+      (new AccountGroupSummaryItemBuilder()..update(updates))._build();
 
   _$AccountGroupSummaryItem._({this.id, this.name}) : super._();
+
   @override
   AccountGroupSummaryItem rebuild(
           void Function(AccountGroupSummaryItemBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$AccountGroupSummaryItem extends AccountGroupSummaryItem {
 
   @override
   AccountGroupSummaryItemBuilder toBuilder() =>
-      AccountGroupSummaryItemBuilder()..replace(this);
+      new AccountGroupSummaryItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -81,6 +82,7 @@ class AccountGroupSummaryItemBuilder
 
   @override
   void replace(AccountGroupSummaryItem other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountGroupSummaryItem;
   }
 
@@ -93,11 +95,7 @@ class AccountGroupSummaryItemBuilder
   AccountGroupSummaryItem build() => _build();
 
   _$AccountGroupSummaryItem _build() {
-    final _$result = _$v ??
-        _$AccountGroupSummaryItem._(
-          id: id,
-          name: name,
-        );
+    final _$result = _$v ?? new _$AccountGroupSummaryItem._(id: id, name: name);
     replace(_$result);
     return _$result;
   }

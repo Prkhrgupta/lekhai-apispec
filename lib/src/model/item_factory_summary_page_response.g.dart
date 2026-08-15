@@ -14,9 +14,10 @@ class _$ItemFactorySummaryPageResponse extends ItemFactorySummaryPageResponse {
 
   factory _$ItemFactorySummaryPageResponse(
           [void Function(ItemFactorySummaryPageResponseBuilder)? updates]) =>
-      (ItemFactorySummaryPageResponseBuilder()..update(updates))._build();
+      (new ItemFactorySummaryPageResponseBuilder()..update(updates))._build();
 
   _$ItemFactorySummaryPageResponse._({this.data, this.pagination}) : super._();
+
   @override
   ItemFactorySummaryPageResponse rebuild(
           void Function(ItemFactorySummaryPageResponseBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$ItemFactorySummaryPageResponse extends ItemFactorySummaryPageResponse {
 
   @override
   ItemFactorySummaryPageResponseBuilder toBuilder() =>
-      ItemFactorySummaryPageResponseBuilder()..replace(this);
+      new ItemFactorySummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -60,12 +61,12 @@ class ItemFactorySummaryPageResponseBuilder
 
   ListBuilder<ItemFactoryResponse>? _data;
   ListBuilder<ItemFactoryResponse> get data =>
-      _$this._data ??= ListBuilder<ItemFactoryResponse>();
+      _$this._data ??= new ListBuilder<ItemFactoryResponse>();
   set data(ListBuilder<ItemFactoryResponse>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -85,6 +86,7 @@ class ItemFactorySummaryPageResponseBuilder
 
   @override
   void replace(ItemFactorySummaryPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ItemFactorySummaryPageResponse;
   }
 
@@ -100,10 +102,8 @@ class ItemFactorySummaryPageResponseBuilder
     _$ItemFactorySummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          _$ItemFactorySummaryPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$ItemFactorySummaryPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -112,7 +112,7 @@ class ItemFactorySummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'ItemFactorySummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

@@ -15,15 +15,16 @@ class _$LedgerArea extends LedgerArea {
   final String? stateCode;
 
   factory _$LedgerArea([void Function(LedgerAreaBuilder)? updates]) =>
-      (LedgerAreaBuilder()..update(updates))._build();
+      (new LedgerAreaBuilder()..update(updates))._build();
 
   _$LedgerArea._({this.id, this.name, this.stateCode}) : super._();
+
   @override
   LedgerArea rebuild(void Function(LedgerAreaBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerAreaBuilder toBuilder() => LedgerAreaBuilder()..replace(this);
+  LedgerAreaBuilder toBuilder() => new LedgerAreaBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -86,6 +87,7 @@ class LedgerAreaBuilder implements Builder<LedgerArea, LedgerAreaBuilder> {
 
   @override
   void replace(LedgerArea other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerArea;
   }
 
@@ -98,12 +100,8 @@ class LedgerAreaBuilder implements Builder<LedgerArea, LedgerAreaBuilder> {
   LedgerArea build() => _build();
 
   _$LedgerArea _build() {
-    final _$result = _$v ??
-        _$LedgerArea._(
-          id: id,
-          name: name,
-          stateCode: stateCode,
-        );
+    final _$result =
+        _$v ?? new _$LedgerArea._(id: id, name: name, stateCode: stateCode);
     replace(_$result);
     return _$result;
   }

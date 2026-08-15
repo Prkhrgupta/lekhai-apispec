@@ -13,12 +13,12 @@ BrokerSearchableField _$valueOf(String name) {
     case 'NAME':
       return _$NAME;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<BrokerSearchableField> _$values =
-    BuiltSet<BrokerSearchableField>(const <BrokerSearchableField>[
+    new BuiltSet<BrokerSearchableField>(const <BrokerSearchableField>[
   _$NAME,
 ]);
 
@@ -36,7 +36,7 @@ abstract class _$BrokerSearchableFieldMixin {
 }
 
 Serializer<BrokerSearchableField> _$brokerSearchableFieldSerializer =
-    _$BrokerSearchableFieldSerializer();
+    new _$BrokerSearchableFieldSerializer();
 
 class _$BrokerSearchableFieldSerializer
     implements PrimitiveSerializer<BrokerSearchableField> {

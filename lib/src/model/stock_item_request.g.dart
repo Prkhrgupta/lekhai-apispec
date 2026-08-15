@@ -34,7 +34,7 @@ class _$StockItemRequest extends StockItemRequest {
 
   factory _$StockItemRequest(
           [void Function(StockItemRequestBuilder)? updates]) =>
-      (StockItemRequestBuilder()..update(updates))._build();
+      (new StockItemRequestBuilder()..update(updates))._build();
 
   _$StockItemRequest._(
       {this.finishedRawMaterial,
@@ -49,14 +49,18 @@ class _$StockItemRequest extends StockItemRequest {
       this.openingMeter,
       this.openingRate,
       this.openingValue})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        itemName, r'StockItemRequest', 'itemName');
+  }
+
   @override
   StockItemRequest rebuild(void Function(StockItemRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   StockItemRequestBuilder toBuilder() =>
-      StockItemRequestBuilder()..replace(this);
+      new StockItemRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -196,6 +200,7 @@ class StockItemRequestBuilder
 
   @override
   void replace(StockItemRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$StockItemRequest;
   }
 
@@ -209,21 +214,20 @@ class StockItemRequestBuilder
 
   _$StockItemRequest _build() {
     final _$result = _$v ??
-        _$StockItemRequest._(
-          finishedRawMaterial: finishedRawMaterial,
-          itemCategoryId: itemCategoryId,
-          itemFactoryId: itemFactoryId,
-          itemName: BuiltValueNullFieldError.checkNotNull(
-              itemName, r'StockItemRequest', 'itemName'),
-          purchasePrice: purchasePrice,
-          salePrice: salePrice,
-          commodityId: commodityId,
-          ratePer: ratePer,
-          openingPcs: openingPcs,
-          openingMeter: openingMeter,
-          openingRate: openingRate,
-          openingValue: openingValue,
-        );
+        new _$StockItemRequest._(
+            finishedRawMaterial: finishedRawMaterial,
+            itemCategoryId: itemCategoryId,
+            itemFactoryId: itemFactoryId,
+            itemName: BuiltValueNullFieldError.checkNotNull(
+                itemName, r'StockItemRequest', 'itemName'),
+            purchasePrice: purchasePrice,
+            salePrice: salePrice,
+            commodityId: commodityId,
+            ratePer: ratePer,
+            openingPcs: openingPcs,
+            openingMeter: openingMeter,
+            openingRate: openingRate,
+            openingValue: openingValue);
     replace(_$result);
     return _$result;
   }

@@ -16,12 +16,12 @@ FinishedRawMaterial _$valueOf(String name) {
     case 'RAW':
       return _$RAW;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<FinishedRawMaterial> _$values =
-    BuiltSet<FinishedRawMaterial>(const <FinishedRawMaterial>[
+    new BuiltSet<FinishedRawMaterial>(const <FinishedRawMaterial>[
   _$FINISHED,
   _$RAW,
 ]);
@@ -41,7 +41,7 @@ abstract class _$FinishedRawMaterialMixin {
 }
 
 Serializer<FinishedRawMaterial> _$finishedRawMaterialSerializer =
-    _$FinishedRawMaterialSerializer();
+    new _$FinishedRawMaterialSerializer();
 
 class _$FinishedRawMaterialSerializer
     implements PrimitiveSerializer<FinishedRawMaterial> {

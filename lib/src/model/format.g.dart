@@ -19,11 +19,11 @@ Format _$valueOf(String name) {
     case 'CSV':
       return _$CSV;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
-final BuiltSet<Format> _$values = BuiltSet<Format>(const <Format>[
+final BuiltSet<Format> _$values = new BuiltSet<Format>(const <Format>[
   _$EXCEL,
   _$PDF,
   _$CSV,
@@ -43,7 +43,7 @@ abstract class _$FormatMixin {
   _$FormatMeta get Format => const _$FormatMeta();
 }
 
-Serializer<Format> _$formatSerializer = _$FormatSerializer();
+Serializer<Format> _$formatSerializer = new _$FormatSerializer();
 
 class _$FormatSerializer implements PrimitiveSerializer<Format> {
   static const Map<String, Object> _toWire = const <String, Object>{

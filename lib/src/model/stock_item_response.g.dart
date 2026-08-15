@@ -46,7 +46,7 @@ class _$StockItemResponse extends StockItemResponse {
 
   factory _$StockItemResponse(
           [void Function(StockItemResponseBuilder)? updates]) =>
-      (StockItemResponseBuilder()..update(updates))._build();
+      (new StockItemResponseBuilder()..update(updates))._build();
 
   _$StockItemResponse._(
       {this.id,
@@ -68,13 +68,14 @@ class _$StockItemResponse extends StockItemResponse {
       this.openingRate,
       this.openingValue})
       : super._();
+
   @override
   StockItemResponse rebuild(void Function(StockItemResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   StockItemResponseBuilder toBuilder() =>
-      StockItemResponseBuilder()..replace(this);
+      new StockItemResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -266,6 +267,7 @@ class StockItemResponseBuilder
 
   @override
   void replace(StockItemResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$StockItemResponse;
   }
 
@@ -279,26 +281,25 @@ class StockItemResponseBuilder
 
   _$StockItemResponse _build() {
     final _$result = _$v ??
-        _$StockItemResponse._(
-          id: id,
-          finishedRawMaterial: finishedRawMaterial,
-          itemCategoryId: itemCategoryId,
-          itemCategoryName: itemCategoryName,
-          itemFactoryId: itemFactoryId,
-          itemFactoryName: itemFactoryName,
-          itemName: itemName,
-          purchasePrice: purchasePrice,
-          salePrice: salePrice,
-          commodityId: commodityId,
-          commodityName: commodityName,
-          hsnCode: hsnCode,
-          gstPercentage: gstPercentage,
-          ratePer: ratePer,
-          openingPcs: openingPcs,
-          openingMeter: openingMeter,
-          openingRate: openingRate,
-          openingValue: openingValue,
-        );
+        new _$StockItemResponse._(
+            id: id,
+            finishedRawMaterial: finishedRawMaterial,
+            itemCategoryId: itemCategoryId,
+            itemCategoryName: itemCategoryName,
+            itemFactoryId: itemFactoryId,
+            itemFactoryName: itemFactoryName,
+            itemName: itemName,
+            purchasePrice: purchasePrice,
+            salePrice: salePrice,
+            commodityId: commodityId,
+            commodityName: commodityName,
+            hsnCode: hsnCode,
+            gstPercentage: gstPercentage,
+            ratePer: ratePer,
+            openingPcs: openingPcs,
+            openingMeter: openingMeter,
+            openingRate: openingRate,
+            openingValue: openingValue);
     replace(_$result);
     return _$result;
   }

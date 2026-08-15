@@ -20,6 +20,7 @@ import 'package:openapi/src/model/account_group_response.dart';
 import 'package:openapi/src/model/account_group_searchable_field.dart';
 import 'package:openapi/src/model/account_group_summary_item.dart';
 import 'package:openapi/src/model/account_group_summary_page_response.dart';
+import 'package:openapi/src/model/account_ledger_contra_item.dart';
 import 'package:openapi/src/model/account_ledger_entry_item.dart';
 import 'package:openapi/src/model/account_ledger_page_response.dart';
 import 'package:openapi/src/model/area_request.dart';
@@ -114,6 +115,7 @@ part 'serializers.g.dart';
   AccountGroupSearchableField,
   AccountGroupSummaryItem,
   AccountGroupSummaryPageResponse,
+  AccountLedgerContraItem,
   AccountLedgerEntryItem,
   AccountLedgerPageResponse,
   AreaRequest,

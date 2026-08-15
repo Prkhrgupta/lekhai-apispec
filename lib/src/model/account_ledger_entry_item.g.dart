@@ -21,10 +21,12 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
   final num? balance;
   @override
   final AccountEntryType? crdr;
+  @override
+  final BuiltList<AccountLedgerContraItem>? contraEntries;
 
   factory _$AccountLedgerEntryItem(
           [void Function(AccountLedgerEntryItemBuilder)? updates]) =>
-      (AccountLedgerEntryItemBuilder()..update(updates))._build();
+      (new AccountLedgerEntryItemBuilder()..update(updates))._build();
 
   _$AccountLedgerEntryItem._(
       {this.date,
@@ -33,8 +35,10 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
       this.debitAmt,
       this.creditAmt,
       this.balance,
-      this.crdr})
+      this.crdr,
+      this.contraEntries})
       : super._();
+
   @override
   AccountLedgerEntryItem rebuild(
           void Function(AccountLedgerEntryItemBuilder) updates) =>
@@ -42,7 +46,7 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
 
   @override
   AccountLedgerEntryItemBuilder toBuilder() =>
-      AccountLedgerEntryItemBuilder()..replace(this);
+      new AccountLedgerEntryItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -54,7 +58,8 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
         debitAmt == other.debitAmt &&
         creditAmt == other.creditAmt &&
         balance == other.balance &&
-        crdr == other.crdr;
+        crdr == other.crdr &&
+        contraEntries == other.contraEntries;
   }
 
   @override
@@ -67,6 +72,7 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
     _$hash = $jc(_$hash, creditAmt.hashCode);
     _$hash = $jc(_$hash, balance.hashCode);
     _$hash = $jc(_$hash, crdr.hashCode);
+    _$hash = $jc(_$hash, contraEntries.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -80,7 +86,8 @@ class _$AccountLedgerEntryItem extends AccountLedgerEntryItem {
           ..add('debitAmt', debitAmt)
           ..add('creditAmt', creditAmt)
           ..add('balance', balance)
-          ..add('crdr', crdr))
+          ..add('crdr', crdr)
+          ..add('contraEntries', contraEntries))
         .toString();
   }
 }
@@ -117,6 +124,12 @@ class AccountLedgerEntryItemBuilder
   AccountEntryType? get crdr => _$this._crdr;
   set crdr(AccountEntryType? crdr) => _$this._crdr = crdr;
 
+  ListBuilder<AccountLedgerContraItem>? _contraEntries;
+  ListBuilder<AccountLedgerContraItem> get contraEntries =>
+      _$this._contraEntries ??= new ListBuilder<AccountLedgerContraItem>();
+  set contraEntries(ListBuilder<AccountLedgerContraItem>? contraEntries) =>
+      _$this._contraEntries = contraEntries;
+
   AccountLedgerEntryItemBuilder() {
     AccountLedgerEntryItem._defaults(this);
   }
@@ -131,6 +144,7 @@ class AccountLedgerEntryItemBuilder
       _creditAmt = $v.creditAmt;
       _balance = $v.balance;
       _crdr = $v.crdr;
+      _contraEntries = $v.contraEntries?.toBuilder();
       _$v = null;
     }
     return this;
@@ -138,6 +152,7 @@ class AccountLedgerEntryItemBuilder
 
   @override
   void replace(AccountLedgerEntryItem other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountLedgerEntryItem;
   }
 
@@ -150,16 +165,29 @@ class AccountLedgerEntryItemBuilder
   AccountLedgerEntryItem build() => _build();
 
   _$AccountLedgerEntryItem _build() {
-    final _$result = _$v ??
-        _$AccountLedgerEntryItem._(
-          date: date,
-          ledgerName: ledgerName,
-          vtype: vtype,
-          debitAmt: debitAmt,
-          creditAmt: creditAmt,
-          balance: balance,
-          crdr: crdr,
-        );
+    _$AccountLedgerEntryItem _$result;
+    try {
+      _$result = _$v ??
+          new _$AccountLedgerEntryItem._(
+              date: date,
+              ledgerName: ledgerName,
+              vtype: vtype,
+              debitAmt: debitAmt,
+              creditAmt: creditAmt,
+              balance: balance,
+              crdr: crdr,
+              contraEntries: _contraEntries?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'contraEntries';
+        _contraEntries?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'AccountLedgerEntryItem', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

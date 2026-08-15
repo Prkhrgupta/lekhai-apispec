@@ -14,9 +14,10 @@ class _$BrokerSummaryPageResponse extends BrokerSummaryPageResponse {
 
   factory _$BrokerSummaryPageResponse(
           [void Function(BrokerSummaryPageResponseBuilder)? updates]) =>
-      (BrokerSummaryPageResponseBuilder()..update(updates))._build();
+      (new BrokerSummaryPageResponseBuilder()..update(updates))._build();
 
   _$BrokerSummaryPageResponse._({this.data, this.pagination}) : super._();
+
   @override
   BrokerSummaryPageResponse rebuild(
           void Function(BrokerSummaryPageResponseBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$BrokerSummaryPageResponse extends BrokerSummaryPageResponse {
 
   @override
   BrokerSummaryPageResponseBuilder toBuilder() =>
-      BrokerSummaryPageResponseBuilder()..replace(this);
+      new BrokerSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -59,12 +60,12 @@ class BrokerSummaryPageResponseBuilder
 
   ListBuilder<BrokerResponse>? _data;
   ListBuilder<BrokerResponse> get data =>
-      _$this._data ??= ListBuilder<BrokerResponse>();
+      _$this._data ??= new ListBuilder<BrokerResponse>();
   set data(ListBuilder<BrokerResponse>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -84,6 +85,7 @@ class BrokerSummaryPageResponseBuilder
 
   @override
   void replace(BrokerSummaryPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$BrokerSummaryPageResponse;
   }
 
@@ -99,10 +101,8 @@ class BrokerSummaryPageResponseBuilder
     _$BrokerSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          _$BrokerSummaryPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$BrokerSummaryPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -111,7 +111,7 @@ class BrokerSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'BrokerSummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

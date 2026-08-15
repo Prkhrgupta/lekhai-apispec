@@ -22,11 +22,11 @@ PartyType _$valueOf(String name) {
     case 'SEZ':
       return _$SEZ;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
-final BuiltSet<PartyType> _$values = BuiltSet<PartyType>(const <PartyType>[
+final BuiltSet<PartyType> _$values = new BuiltSet<PartyType>(const <PartyType>[
   _$NOT_APPLICABLE,
   _$DEEMED_EXPORT,
   _$GOVERNMENT_ENTITY,
@@ -48,7 +48,7 @@ abstract class _$PartyTypeMixin {
   _$PartyTypeMeta get PartyType => const _$PartyTypeMeta();
 }
 
-Serializer<PartyType> _$partyTypeSerializer = _$PartyTypeSerializer();
+Serializer<PartyType> _$partyTypeSerializer = new _$PartyTypeSerializer();
 
 class _$PartyTypeSerializer implements PrimitiveSerializer<PartyType> {
   static const Map<String, Object> _toWire = const <String, Object>{

@@ -26,12 +26,12 @@ ShopMenuRoleEnum _$shopMenuRoleEnumValueOf(String name) {
     case 'USER':
       return _$shopMenuRoleEnum_USER;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<ShopMenuRoleEnum> _$shopMenuRoleEnumValues =
-    BuiltSet<ShopMenuRoleEnum>(const <ShopMenuRoleEnum>[
+    new BuiltSet<ShopMenuRoleEnum>(const <ShopMenuRoleEnum>[
   _$shopMenuRoleEnum_SUPER_ADMIN,
   _$shopMenuRoleEnum_SHOP_OWNER,
   _$shopMenuRoleEnum_ADMIN,
@@ -39,7 +39,7 @@ final BuiltSet<ShopMenuRoleEnum> _$shopMenuRoleEnumValues =
 ]);
 
 Serializer<ShopMenuRoleEnum> _$shopMenuRoleEnumSerializer =
-    _$ShopMenuRoleEnumSerializer();
+    new _$ShopMenuRoleEnumSerializer();
 
 class _$ShopMenuRoleEnumSerializer
     implements PrimitiveSerializer<ShopMenuRoleEnum> {
@@ -82,15 +82,16 @@ class _$ShopMenu extends ShopMenu {
   final ShopMenuRoleEnum? role;
 
   factory _$ShopMenu([void Function(ShopMenuBuilder)? updates]) =>
-      (ShopMenuBuilder()..update(updates))._build();
+      (new ShopMenuBuilder()..update(updates))._build();
 
   _$ShopMenu._({this.name, this.shopCode, this.role}) : super._();
+
   @override
   ShopMenu rebuild(void Function(ShopMenuBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  ShopMenuBuilder toBuilder() => ShopMenuBuilder()..replace(this);
+  ShopMenuBuilder toBuilder() => new ShopMenuBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -153,6 +154,7 @@ class ShopMenuBuilder implements Builder<ShopMenu, ShopMenuBuilder> {
 
   @override
   void replace(ShopMenu other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ShopMenu;
   }
 
@@ -165,12 +167,8 @@ class ShopMenuBuilder implements Builder<ShopMenu, ShopMenuBuilder> {
   ShopMenu build() => _build();
 
   _$ShopMenu _build() {
-    final _$result = _$v ??
-        _$ShopMenu._(
-          name: name,
-          shopCode: shopCode,
-          role: role,
-        );
+    final _$result =
+        _$v ?? new _$ShopMenu._(name: name, shopCode: shopCode, role: role);
     replace(_$result);
     return _$result;
   }

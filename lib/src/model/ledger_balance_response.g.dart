@@ -20,7 +20,7 @@ class _$LedgerBalanceResponse extends LedgerBalanceResponse {
 
   factory _$LedgerBalanceResponse(
           [void Function(LedgerBalanceResponseBuilder)? updates]) =>
-      (LedgerBalanceResponseBuilder()..update(updates))._build();
+      (new LedgerBalanceResponseBuilder()..update(updates))._build();
 
   _$LedgerBalanceResponse._(
       {this.ledgerId,
@@ -29,6 +29,7 @@ class _$LedgerBalanceResponse extends LedgerBalanceResponse {
       this.debitAmount,
       this.creditAmount})
       : super._();
+
   @override
   LedgerBalanceResponse rebuild(
           void Function(LedgerBalanceResponseBuilder) updates) =>
@@ -36,7 +37,7 @@ class _$LedgerBalanceResponse extends LedgerBalanceResponse {
 
   @override
   LedgerBalanceResponseBuilder toBuilder() =>
-      LedgerBalanceResponseBuilder()..replace(this);
+      new LedgerBalanceResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -118,6 +119,7 @@ class LedgerBalanceResponseBuilder
 
   @override
   void replace(LedgerBalanceResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerBalanceResponse;
   }
 
@@ -131,13 +133,12 @@ class LedgerBalanceResponseBuilder
 
   _$LedgerBalanceResponse _build() {
     final _$result = _$v ??
-        _$LedgerBalanceResponse._(
-          ledgerId: ledgerId,
-          currentBalance: currentBalance,
-          currentBalanceType: currentBalanceType,
-          debitAmount: debitAmount,
-          creditAmount: creditAmount,
-        );
+        new _$LedgerBalanceResponse._(
+            ledgerId: ledgerId,
+            currentBalance: currentBalance,
+            currentBalanceType: currentBalanceType,
+            debitAmount: debitAmount,
+            creditAmount: creditAmount);
     replace(_$result);
     return _$result;
   }

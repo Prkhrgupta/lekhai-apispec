@@ -3,6 +3,8 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/account_ledger_contra_item.dart';
+import 'package:built_collection/built_collection.dart';
 import 'package:openapi/src/model/account_entry_type.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
@@ -19,6 +21,7 @@ part 'account_ledger_entry_item.g.dart';
 /// * [creditAmt] 
 /// * [balance] 
 /// * [crdr] 
+/// * [contraEntries] 
 @BuiltValue()
 abstract class AccountLedgerEntryItem implements Built<AccountLedgerEntryItem, AccountLedgerEntryItemBuilder> {
   @BuiltValueField(wireName: r'date')
@@ -42,6 +45,9 @@ abstract class AccountLedgerEntryItem implements Built<AccountLedgerEntryItem, A
   @BuiltValueField(wireName: r'crdr')
   AccountEntryType? get crdr;
   // enum crdrEnum {  DR,  CR,  };
+
+  @BuiltValueField(wireName: r'contraEntries')
+  BuiltList<AccountLedgerContraItem>? get contraEntries;
 
   AccountLedgerEntryItem._();
 
@@ -115,6 +121,13 @@ class _$AccountLedgerEntryItemSerializer implements PrimitiveSerializer<AccountL
         specifiedType: const FullType(AccountEntryType),
       );
     }
+    if (object.contraEntries != null) {
+      yield r'contraEntries';
+      yield serializers.serialize(
+        object.contraEntries,
+        specifiedType: const FullType(BuiltList, [FullType(AccountLedgerContraItem)]),
+      );
+    }
   }
 
   @override
@@ -186,6 +199,13 @@ class _$AccountLedgerEntryItemSerializer implements PrimitiveSerializer<AccountL
             specifiedType: const FullType(AccountEntryType),
           ) as AccountEntryType;
           result.crdr = valueDes;
+          break;
+        case r'contraEntries':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(BuiltList, [FullType(AccountLedgerContraItem)]),
+          ) as BuiltList<AccountLedgerContraItem>;
+          result.contraEntries.replace(valueDes);
           break;
         default:
           unhandled.add(key);

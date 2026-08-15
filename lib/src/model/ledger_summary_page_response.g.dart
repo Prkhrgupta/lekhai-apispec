@@ -14,9 +14,10 @@ class _$LedgerSummaryPageResponse extends LedgerSummaryPageResponse {
 
   factory _$LedgerSummaryPageResponse(
           [void Function(LedgerSummaryPageResponseBuilder)? updates]) =>
-      (LedgerSummaryPageResponseBuilder()..update(updates))._build();
+      (new LedgerSummaryPageResponseBuilder()..update(updates))._build();
 
   _$LedgerSummaryPageResponse._({this.data, this.pagination}) : super._();
+
   @override
   LedgerSummaryPageResponse rebuild(
           void Function(LedgerSummaryPageResponseBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$LedgerSummaryPageResponse extends LedgerSummaryPageResponse {
 
   @override
   LedgerSummaryPageResponseBuilder toBuilder() =>
-      LedgerSummaryPageResponseBuilder()..replace(this);
+      new LedgerSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -59,12 +60,12 @@ class LedgerSummaryPageResponseBuilder
 
   ListBuilder<LedgerSummaryItem>? _data;
   ListBuilder<LedgerSummaryItem> get data =>
-      _$this._data ??= ListBuilder<LedgerSummaryItem>();
+      _$this._data ??= new ListBuilder<LedgerSummaryItem>();
   set data(ListBuilder<LedgerSummaryItem>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -84,6 +85,7 @@ class LedgerSummaryPageResponseBuilder
 
   @override
   void replace(LedgerSummaryPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerSummaryPageResponse;
   }
 
@@ -99,10 +101,8 @@ class LedgerSummaryPageResponseBuilder
     _$LedgerSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          _$LedgerSummaryPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$LedgerSummaryPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -111,7 +111,7 @@ class LedgerSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'LedgerSummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

@@ -14,9 +14,10 @@ class _$AccountLedgerPageResponse extends AccountLedgerPageResponse {
 
   factory _$AccountLedgerPageResponse(
           [void Function(AccountLedgerPageResponseBuilder)? updates]) =>
-      (AccountLedgerPageResponseBuilder()..update(updates))._build();
+      (new AccountLedgerPageResponseBuilder()..update(updates))._build();
 
   _$AccountLedgerPageResponse._({this.data, this.pagination}) : super._();
+
   @override
   AccountLedgerPageResponse rebuild(
           void Function(AccountLedgerPageResponseBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$AccountLedgerPageResponse extends AccountLedgerPageResponse {
 
   @override
   AccountLedgerPageResponseBuilder toBuilder() =>
-      AccountLedgerPageResponseBuilder()..replace(this);
+      new AccountLedgerPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -59,12 +60,12 @@ class AccountLedgerPageResponseBuilder
 
   ListBuilder<AccountLedgerEntryItem>? _data;
   ListBuilder<AccountLedgerEntryItem> get data =>
-      _$this._data ??= ListBuilder<AccountLedgerEntryItem>();
+      _$this._data ??= new ListBuilder<AccountLedgerEntryItem>();
   set data(ListBuilder<AccountLedgerEntryItem>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -84,6 +85,7 @@ class AccountLedgerPageResponseBuilder
 
   @override
   void replace(AccountLedgerPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountLedgerPageResponse;
   }
 
@@ -99,10 +101,8 @@ class AccountLedgerPageResponseBuilder
     _$AccountLedgerPageResponse _$result;
     try {
       _$result = _$v ??
-          _$AccountLedgerPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$AccountLedgerPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -111,7 +111,7 @@ class AccountLedgerPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'AccountLedgerPageResponse', _$failedField, e.toString());
       }
       rethrow;

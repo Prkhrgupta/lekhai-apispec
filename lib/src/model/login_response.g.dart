@@ -13,15 +13,16 @@ class _$LoginResponse extends LoginResponse {
   final String? token;
 
   factory _$LoginResponse([void Function(LoginResponseBuilder)? updates]) =>
-      (LoginResponseBuilder()..update(updates))._build();
+      (new LoginResponseBuilder()..update(updates))._build();
 
   _$LoginResponse._({this.shopMenu, this.token}) : super._();
+
   @override
   LoginResponse rebuild(void Function(LoginResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LoginResponseBuilder toBuilder() => LoginResponseBuilder()..replace(this);
+  LoginResponseBuilder toBuilder() => new LoginResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -55,7 +56,7 @@ class LoginResponseBuilder
 
   ListBuilder<ShopMenu>? _shopMenu;
   ListBuilder<ShopMenu> get shopMenu =>
-      _$this._shopMenu ??= ListBuilder<ShopMenu>();
+      _$this._shopMenu ??= new ListBuilder<ShopMenu>();
   set shopMenu(ListBuilder<ShopMenu>? shopMenu) => _$this._shopMenu = shopMenu;
 
   String? _token;
@@ -78,6 +79,7 @@ class LoginResponseBuilder
 
   @override
   void replace(LoginResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LoginResponse;
   }
 
@@ -93,17 +95,14 @@ class LoginResponseBuilder
     _$LoginResponse _$result;
     try {
       _$result = _$v ??
-          _$LoginResponse._(
-            shopMenu: _shopMenu?.build(),
-            token: token,
-          );
+          new _$LoginResponse._(shopMenu: _shopMenu?.build(), token: token);
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'shopMenu';
         _shopMenu?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'LoginResponse', _$failedField, e.toString());
       }
       rethrow;

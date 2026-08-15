@@ -19,12 +19,12 @@ PurchaseType _$valueOf(String name) {
     case 'EXPORT':
       return _$EXPORT;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<PurchaseType> _$values =
-    BuiltSet<PurchaseType>(const <PurchaseType>[
+    new BuiltSet<PurchaseType>(const <PurchaseType>[
   _$IN_STATE,
   _$OUT_STATE,
   _$EXPORT,
@@ -44,7 +44,8 @@ abstract class _$PurchaseTypeMixin {
   _$PurchaseTypeMeta get PurchaseType => const _$PurchaseTypeMeta();
 }
 
-Serializer<PurchaseType> _$purchaseTypeSerializer = _$PurchaseTypeSerializer();
+Serializer<PurchaseType> _$purchaseTypeSerializer =
+    new _$PurchaseTypeSerializer();
 
 class _$PurchaseTypeSerializer implements PrimitiveSerializer<PurchaseType> {
   static const Map<String, Object> _toWire = const <String, Object>{

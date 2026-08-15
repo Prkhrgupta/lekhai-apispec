@@ -16,20 +16,28 @@ class _$EwbExtendRequest extends EwbExtendRequest {
 
   factory _$EwbExtendRequest(
           [void Function(EwbExtendRequestBuilder)? updates]) =>
-      (EwbExtendRequestBuilder()..update(updates))._build();
+      (new EwbExtendRequestBuilder()..update(updates))._build();
 
   _$EwbExtendRequest._(
       {required this.remainingDistance,
       required this.extensionReason,
       required this.extensionRemark})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        remainingDistance, r'EwbExtendRequest', 'remainingDistance');
+    BuiltValueNullFieldError.checkNotNull(
+        extensionReason, r'EwbExtendRequest', 'extensionReason');
+    BuiltValueNullFieldError.checkNotNull(
+        extensionRemark, r'EwbExtendRequest', 'extensionRemark');
+  }
+
   @override
   EwbExtendRequest rebuild(void Function(EwbExtendRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   EwbExtendRequestBuilder toBuilder() =>
-      EwbExtendRequestBuilder()..replace(this);
+      new EwbExtendRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -96,6 +104,7 @@ class EwbExtendRequestBuilder
 
   @override
   void replace(EwbExtendRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$EwbExtendRequest;
   }
 
@@ -109,14 +118,13 @@ class EwbExtendRequestBuilder
 
   _$EwbExtendRequest _build() {
     final _$result = _$v ??
-        _$EwbExtendRequest._(
-          remainingDistance: BuiltValueNullFieldError.checkNotNull(
-              remainingDistance, r'EwbExtendRequest', 'remainingDistance'),
-          extensionReason: BuiltValueNullFieldError.checkNotNull(
-              extensionReason, r'EwbExtendRequest', 'extensionReason'),
-          extensionRemark: BuiltValueNullFieldError.checkNotNull(
-              extensionRemark, r'EwbExtendRequest', 'extensionRemark'),
-        );
+        new _$EwbExtendRequest._(
+            remainingDistance: BuiltValueNullFieldError.checkNotNull(
+                remainingDistance, r'EwbExtendRequest', 'remainingDistance'),
+            extensionReason: BuiltValueNullFieldError.checkNotNull(
+                extensionReason, r'EwbExtendRequest', 'extensionReason'),
+            extensionRemark: BuiltValueNullFieldError.checkNotNull(
+                extensionRemark, r'EwbExtendRequest', 'extensionRemark'));
     replace(_$result);
     return _$result;
   }

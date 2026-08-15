@@ -6,13 +6,14 @@ part of 'serializers.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializers _$serializers = (Serializers().toBuilder()
+Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AccountEntryType.serializer)
       ..add(AccountGroupRequest.serializer)
       ..add(AccountGroupResponse.serializer)
       ..add(AccountGroupSearchableField.serializer)
       ..add(AccountGroupSummaryItem.serializer)
       ..add(AccountGroupSummaryPageResponse.serializer)
+      ..add(AccountLedgerContraItem.serializer)
       ..add(AccountLedgerEntryItem.serializer)
       ..add(AccountLedgerPageResponse.serializer)
       ..add(AreaRequest.serializer)
@@ -101,83 +102,87 @@ Serializers _$serializers = (Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AccountGroupSummaryItem)]),
-          () => ListBuilder<AccountGroupSummaryItem>())
+          () => new ListBuilder<AccountGroupSummaryItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(AccountLedgerContraItem)]),
+          () => new ListBuilder<AccountLedgerContraItem>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AccountLedgerEntryItem)]),
-          () => ListBuilder<AccountLedgerEntryItem>())
+          () => new ListBuilder<AccountLedgerEntryItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AreaResponse)]),
-          () => ListBuilder<AreaResponse>())
+          () => new ListBuilder<AreaResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(BrokerResponse)]),
-          () => ListBuilder<BrokerResponse>())
+          () => new ListBuilder<BrokerResponse>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(CommoditySummaryColumn)]),
-          () => ListBuilder<CommoditySummaryColumn>())
+          () => new ListBuilder<CommoditySummaryColumn>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(CommoditySummaryItem)]),
-          () => ListBuilder<CommoditySummaryItem>())
+          () => new ListBuilder<CommoditySummaryItem>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(ItemCategoryResponse)]),
-          () => ListBuilder<ItemCategoryResponse>())
+          () => new ListBuilder<ItemCategoryResponse>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(ItemFactoryResponse)]),
-          () => ListBuilder<ItemFactoryResponse>())
+          () => new ListBuilder<ItemFactoryResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(LedgerSummaryItem)]),
-          () => ListBuilder<LedgerSummaryItem>())
+          () => new ListBuilder<LedgerSummaryItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
-          () => ListBuilder<MenuItem>())
+          () => new ListBuilder<MenuItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
-          () => ListBuilder<MenuItem>())
+          () => new ListBuilder<MenuItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
-          () => ListBuilder<MenuItem>())
+          () => new ListBuilder<MenuItem>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(PurchaseLedgerSettingResponse)]),
-          () => ListBuilder<PurchaseLedgerSettingResponse>())
+          () => new ListBuilder<PurchaseLedgerSettingResponse>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(SaleLedgerSettingResponse)]),
-          () => ListBuilder<SaleLedgerSettingResponse>())
+          () => new ListBuilder<SaleLedgerSettingResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ShopMenu)]),
-          () => ListBuilder<ShopMenu>())
+          () => new ListBuilder<ShopMenu>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(StockItemResponse)]),
-          () => ListBuilder<StockItemResponse>())
+          () => new ListBuilder<StockItemResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TransportResponse)]),
-          () => ListBuilder<TransportResponse>())
+          () => new ListBuilder<TransportResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VehicleDetail)]),
-          () => ListBuilder<VehicleDetail>())
+          () => new ListBuilder<VehicleDetail>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>())
+          () => new ListBuilder<VoucherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>())
+          () => new ListBuilder<VoucherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>())
+          () => new ListBuilder<VoucherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>())
+          () => new ListBuilder<VoucherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>())
+          () => new ListBuilder<VoucherEntry>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VoucherEntry)]),
-          () => ListBuilder<VoucherEntry>()))
+          () => new ListBuilder<VoucherEntry>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint

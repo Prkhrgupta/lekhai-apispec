@@ -40,7 +40,7 @@ class _$SaleLedgerSettingRequest extends SaleLedgerSettingRequest {
 
   factory _$SaleLedgerSettingRequest(
           [void Function(SaleLedgerSettingRequestBuilder)? updates]) =>
-      (SaleLedgerSettingRequestBuilder()..update(updates))._build();
+      (new SaleLedgerSettingRequestBuilder()..update(updates))._build();
 
   _$SaleLedgerSettingRequest._(
       {required this.saleLedgerId,
@@ -58,7 +58,11 @@ class _$SaleLedgerSettingRequest extends SaleLedgerSettingRequest {
       this.roundOffLedgerId,
       this.tcsPercentage,
       this.tcsLedgerId})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        saleLedgerId, r'SaleLedgerSettingRequest', 'saleLedgerId');
+  }
+
   @override
   SaleLedgerSettingRequest rebuild(
           void Function(SaleLedgerSettingRequestBuilder) updates) =>
@@ -66,7 +70,7 @@ class _$SaleLedgerSettingRequest extends SaleLedgerSettingRequest {
 
   @override
   SaleLedgerSettingRequestBuilder toBuilder() =>
-      SaleLedgerSettingRequestBuilder()..replace(this);
+      new SaleLedgerSettingRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -234,6 +238,7 @@ class SaleLedgerSettingRequestBuilder
 
   @override
   void replace(SaleLedgerSettingRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SaleLedgerSettingRequest;
   }
 
@@ -247,24 +252,23 @@ class SaleLedgerSettingRequestBuilder
 
   _$SaleLedgerSettingRequest _build() {
     final _$result = _$v ??
-        _$SaleLedgerSettingRequest._(
-          saleLedgerId: BuiltValueNullFieldError.checkNotNull(
-              saleLedgerId, r'SaleLedgerSettingRequest', 'saleLedgerId'),
-          saleType: saleType,
-          gstRate: gstRate,
-          cgstPercentage: cgstPercentage,
-          cgstLedgerId: cgstLedgerId,
-          sgstPercentage: sgstPercentage,
-          sgstLedgerId: sgstLedgerId,
-          igstPercentage: igstPercentage,
-          igstLedgerId: igstLedgerId,
-          cessPercentage: cessPercentage,
-          cessLedgerId: cessLedgerId,
-          freightPackingLedgerId: freightPackingLedgerId,
-          roundOffLedgerId: roundOffLedgerId,
-          tcsPercentage: tcsPercentage,
-          tcsLedgerId: tcsLedgerId,
-        );
+        new _$SaleLedgerSettingRequest._(
+            saleLedgerId: BuiltValueNullFieldError.checkNotNull(
+                saleLedgerId, r'SaleLedgerSettingRequest', 'saleLedgerId'),
+            saleType: saleType,
+            gstRate: gstRate,
+            cgstPercentage: cgstPercentage,
+            cgstLedgerId: cgstLedgerId,
+            sgstPercentage: sgstPercentage,
+            sgstLedgerId: sgstLedgerId,
+            igstPercentage: igstPercentage,
+            igstLedgerId: igstLedgerId,
+            cessPercentage: cessPercentage,
+            cessLedgerId: cessLedgerId,
+            freightPackingLedgerId: freightPackingLedgerId,
+            roundOffLedgerId: roundOffLedgerId,
+            tcsPercentage: tcsPercentage,
+            tcsLedgerId: tcsLedgerId);
     replace(_$result);
     return _$result;
   }

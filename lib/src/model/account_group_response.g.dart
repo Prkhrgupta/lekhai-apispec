@@ -14,9 +14,10 @@ class _$AccountGroupResponse extends AccountGroupResponse {
 
   factory _$AccountGroupResponse(
           [void Function(AccountGroupResponseBuilder)? updates]) =>
-      (AccountGroupResponseBuilder()..update(updates))._build();
+      (new AccountGroupResponseBuilder()..update(updates))._build();
 
   _$AccountGroupResponse._({this.id, this.name}) : super._();
+
   @override
   AccountGroupResponse rebuild(
           void Function(AccountGroupResponseBuilder) updates) =>
@@ -24,7 +25,7 @@ class _$AccountGroupResponse extends AccountGroupResponse {
 
   @override
   AccountGroupResponseBuilder toBuilder() =>
-      AccountGroupResponseBuilder()..replace(this);
+      new AccountGroupResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -80,6 +81,7 @@ class AccountGroupResponseBuilder
 
   @override
   void replace(AccountGroupResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountGroupResponse;
   }
 
@@ -92,11 +94,7 @@ class AccountGroupResponseBuilder
   AccountGroupResponse build() => _build();
 
   _$AccountGroupResponse _build() {
-    final _$result = _$v ??
-        _$AccountGroupResponse._(
-          id: id,
-          name: name,
-        );
+    final _$result = _$v ?? new _$AccountGroupResponse._(id: id, name: name);
     replace(_$result);
     return _$result;
   }

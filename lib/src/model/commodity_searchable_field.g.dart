@@ -18,12 +18,12 @@ CommoditySearchableField _$valueOf(String name) {
     case 'HSN_SAC_CODE':
       return _$HSN_SAC_CODE;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<CommoditySearchableField> _$values =
-    BuiltSet<CommoditySearchableField>(const <CommoditySearchableField>[
+    new BuiltSet<CommoditySearchableField>(const <CommoditySearchableField>[
   _$NAME,
   _$HSN_SAC_CODE,
 ]);
@@ -43,7 +43,7 @@ abstract class _$CommoditySearchableFieldMixin {
 }
 
 Serializer<CommoditySearchableField> _$commoditySearchableFieldSerializer =
-    _$CommoditySearchableFieldSerializer();
+    new _$CommoditySearchableFieldSerializer();
 
 class _$CommoditySearchableFieldSerializer
     implements PrimitiveSerializer<CommoditySearchableField> {

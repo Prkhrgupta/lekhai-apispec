@@ -23,12 +23,12 @@ RegistrationType _$valueOf(String name) {
     case 'UNREGISTERED':
       return _$UNREGISTERED;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<RegistrationType> _$values =
-    BuiltSet<RegistrationType>(const <RegistrationType>[
+    new BuiltSet<RegistrationType>(const <RegistrationType>[
   _$COMPOSITION,
   _$CUSTOMER,
   _$REGULAR,
@@ -51,7 +51,7 @@ abstract class _$RegistrationTypeMixin {
 }
 
 Serializer<RegistrationType> _$registrationTypeSerializer =
-    _$RegistrationTypeSerializer();
+    new _$RegistrationTypeSerializer();
 
 class _$RegistrationTypeSerializer
     implements PrimitiveSerializer<RegistrationType> {

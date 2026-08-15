@@ -15,15 +15,16 @@ class _$LedgerBroker extends LedgerBroker {
   final String? phone;
 
   factory _$LedgerBroker([void Function(LedgerBrokerBuilder)? updates]) =>
-      (LedgerBrokerBuilder()..update(updates))._build();
+      (new LedgerBrokerBuilder()..update(updates))._build();
 
   _$LedgerBroker._({this.id, this.name, this.phone}) : super._();
+
   @override
   LedgerBroker rebuild(void Function(LedgerBrokerBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  LedgerBrokerBuilder toBuilder() => LedgerBrokerBuilder()..replace(this);
+  LedgerBrokerBuilder toBuilder() => new LedgerBrokerBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -87,6 +88,7 @@ class LedgerBrokerBuilder
 
   @override
   void replace(LedgerBroker other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$LedgerBroker;
   }
 
@@ -99,12 +101,8 @@ class LedgerBrokerBuilder
   LedgerBroker build() => _build();
 
   _$LedgerBroker _build() {
-    final _$result = _$v ??
-        _$LedgerBroker._(
-          id: id,
-          name: name,
-          phone: phone,
-        );
+    final _$result =
+        _$v ?? new _$LedgerBroker._(id: id, name: name, phone: phone);
     replace(_$result);
     return _$result;
   }

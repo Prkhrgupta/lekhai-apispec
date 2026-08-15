@@ -28,7 +28,7 @@ class _$CommodityResponse extends CommodityResponse {
 
   factory _$CommodityResponse(
           [void Function(CommodityResponseBuilder)? updates]) =>
-      (CommodityResponseBuilder()..update(updates))._build();
+      (new CommodityResponseBuilder()..update(updates))._build();
 
   _$CommodityResponse._(
       {this.id,
@@ -41,13 +41,14 @@ class _$CommodityResponse extends CommodityResponse {
       this.isActive,
       this.createdAt})
       : super._();
+
   @override
   CommodityResponse rebuild(void Function(CommodityResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   CommodityResponseBuilder toBuilder() =>
-      CommodityResponseBuilder()..replace(this);
+      new CommodityResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -161,6 +162,7 @@ class CommodityResponseBuilder
 
   @override
   void replace(CommodityResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommodityResponse;
   }
 
@@ -174,17 +176,16 @@ class CommodityResponseBuilder
 
   _$CommodityResponse _build() {
     final _$result = _$v ??
-        _$CommodityResponse._(
-          id: id,
-          name: name,
-          hsnSacCode: hsnSacCode,
-          description: description,
-          gstRateSale: gstRateSale,
-          gstRatePurchase: gstRatePurchase,
-          unitOfMeasurement: unitOfMeasurement,
-          isActive: isActive,
-          createdAt: createdAt,
-        );
+        new _$CommodityResponse._(
+            id: id,
+            name: name,
+            hsnSacCode: hsnSacCode,
+            description: description,
+            gstRateSale: gstRateSale,
+            gstRatePurchase: gstRatePurchase,
+            unitOfMeasurement: unitOfMeasurement,
+            isActive: isActive,
+            createdAt: createdAt);
     replace(_$result);
     return _$result;
   }

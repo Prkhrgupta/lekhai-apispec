@@ -28,12 +28,12 @@ ExtensionReason _$valueOf(String name) {
     case 'OTHERS':
       return _$OTHERS;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
 final BuiltSet<ExtensionReason> _$values =
-    BuiltSet<ExtensionReason>(const <ExtensionReason>[
+    new BuiltSet<ExtensionReason>(const <ExtensionReason>[
   _$NATURAL_CALAMITY,
   _$LAW_AND_ORDER,
   _$TRANSSHIPMENT,
@@ -58,7 +58,7 @@ abstract class _$ExtensionReasonMixin {
 }
 
 Serializer<ExtensionReason> _$extensionReasonSerializer =
-    _$ExtensionReasonSerializer();
+    new _$ExtensionReasonSerializer();
 
 class _$ExtensionReasonSerializer
     implements PrimitiveSerializer<ExtensionReason> {

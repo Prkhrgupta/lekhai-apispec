@@ -15,16 +15,17 @@ class _$MailTo extends MailTo {
   final String? mailToLine3;
 
   factory _$MailTo([void Function(MailToBuilder)? updates]) =>
-      (MailToBuilder()..update(updates))._build();
+      (new MailToBuilder()..update(updates))._build();
 
   _$MailTo._({this.mailToLine1, this.mailToLine2, this.mailToLine3})
       : super._();
+
   @override
   MailTo rebuild(void Function(MailToBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MailToBuilder toBuilder() => MailToBuilder()..replace(this);
+  MailToBuilder toBuilder() => new MailToBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -87,6 +88,7 @@ class MailToBuilder implements Builder<MailTo, MailToBuilder> {
 
   @override
   void replace(MailTo other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MailTo;
   }
 
@@ -100,11 +102,10 @@ class MailToBuilder implements Builder<MailTo, MailToBuilder> {
 
   _$MailTo _build() {
     final _$result = _$v ??
-        _$MailTo._(
-          mailToLine1: mailToLine1,
-          mailToLine2: mailToLine2,
-          mailToLine3: mailToLine3,
-        );
+        new _$MailTo._(
+            mailToLine1: mailToLine1,
+            mailToLine2: mailToLine2,
+            mailToLine3: mailToLine3);
     replace(_$result);
     return _$result;
   }

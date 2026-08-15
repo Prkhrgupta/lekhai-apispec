@@ -16,9 +16,10 @@ class _$ItemFactoryResponse extends ItemFactoryResponse {
 
   factory _$ItemFactoryResponse(
           [void Function(ItemFactoryResponseBuilder)? updates]) =>
-      (ItemFactoryResponseBuilder()..update(updates))._build();
+      (new ItemFactoryResponseBuilder()..update(updates))._build();
 
   _$ItemFactoryResponse._({this.id, this.name, this.percentage}) : super._();
+
   @override
   ItemFactoryResponse rebuild(
           void Function(ItemFactoryResponseBuilder) updates) =>
@@ -26,7 +27,7 @@ class _$ItemFactoryResponse extends ItemFactoryResponse {
 
   @override
   ItemFactoryResponseBuilder toBuilder() =>
-      ItemFactoryResponseBuilder()..replace(this);
+      new ItemFactoryResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -90,6 +91,7 @@ class ItemFactoryResponseBuilder
 
   @override
   void replace(ItemFactoryResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$ItemFactoryResponse;
   }
 
@@ -103,11 +105,7 @@ class ItemFactoryResponseBuilder
 
   _$ItemFactoryResponse _build() {
     final _$result = _$v ??
-        _$ItemFactoryResponse._(
-          id: id,
-          name: name,
-          percentage: percentage,
-        );
+        new _$ItemFactoryResponse._(id: id, name: name, percentage: percentage);
     replace(_$result);
     return _$result;
   }

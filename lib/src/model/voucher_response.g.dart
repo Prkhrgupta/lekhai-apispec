@@ -15,15 +15,17 @@ class _$VoucherResponse extends VoucherResponse {
   final num? amount;
 
   factory _$VoucherResponse([void Function(VoucherResponseBuilder)? updates]) =>
-      (VoucherResponseBuilder()..update(updates))._build();
+      (new VoucherResponseBuilder()..update(updates))._build();
 
   _$VoucherResponse._({this.id, this.voucherNumber, this.amount}) : super._();
+
   @override
   VoucherResponse rebuild(void Function(VoucherResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  VoucherResponseBuilder toBuilder() => VoucherResponseBuilder()..replace(this);
+  VoucherResponseBuilder toBuilder() =>
+      new VoucherResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -88,6 +90,7 @@ class VoucherResponseBuilder
 
   @override
   void replace(VoucherResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VoucherResponse;
   }
 
@@ -101,11 +104,8 @@ class VoucherResponseBuilder
 
   _$VoucherResponse _build() {
     final _$result = _$v ??
-        _$VoucherResponse._(
-          id: id,
-          voucherNumber: voucherNumber,
-          amount: amount,
-        );
+        new _$VoucherResponse._(
+            id: id, voucherNumber: voucherNumber, amount: amount);
     replace(_$result);
     return _$result;
   }

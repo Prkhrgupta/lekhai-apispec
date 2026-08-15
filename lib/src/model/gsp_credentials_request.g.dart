@@ -16,11 +16,19 @@ class _$GspCredentialsRequest extends GspCredentialsRequest {
 
   factory _$GspCredentialsRequest(
           [void Function(GspCredentialsRequestBuilder)? updates]) =>
-      (GspCredentialsRequestBuilder()..update(updates))._build();
+      (new GspCredentialsRequestBuilder()..update(updates))._build();
 
   _$GspCredentialsRequest._(
       {required this.gstin, required this.username, required this.password})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        gstin, r'GspCredentialsRequest', 'gstin');
+    BuiltValueNullFieldError.checkNotNull(
+        username, r'GspCredentialsRequest', 'username');
+    BuiltValueNullFieldError.checkNotNull(
+        password, r'GspCredentialsRequest', 'password');
+  }
+
   @override
   GspCredentialsRequest rebuild(
           void Function(GspCredentialsRequestBuilder) updates) =>
@@ -28,7 +36,7 @@ class _$GspCredentialsRequest extends GspCredentialsRequest {
 
   @override
   GspCredentialsRequestBuilder toBuilder() =>
-      GspCredentialsRequestBuilder()..replace(this);
+      new GspCredentialsRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -92,6 +100,7 @@ class GspCredentialsRequestBuilder
 
   @override
   void replace(GspCredentialsRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GspCredentialsRequest;
   }
 
@@ -105,14 +114,13 @@ class GspCredentialsRequestBuilder
 
   _$GspCredentialsRequest _build() {
     final _$result = _$v ??
-        _$GspCredentialsRequest._(
-          gstin: BuiltValueNullFieldError.checkNotNull(
-              gstin, r'GspCredentialsRequest', 'gstin'),
-          username: BuiltValueNullFieldError.checkNotNull(
-              username, r'GspCredentialsRequest', 'username'),
-          password: BuiltValueNullFieldError.checkNotNull(
-              password, r'GspCredentialsRequest', 'password'),
-        );
+        new _$GspCredentialsRequest._(
+            gstin: BuiltValueNullFieldError.checkNotNull(
+                gstin, r'GspCredentialsRequest', 'gstin'),
+            username: BuiltValueNullFieldError.checkNotNull(
+                username, r'GspCredentialsRequest', 'username'),
+            password: BuiltValueNullFieldError.checkNotNull(
+                password, r'GspCredentialsRequest', 'password'));
     replace(_$result);
     return _$result;
   }

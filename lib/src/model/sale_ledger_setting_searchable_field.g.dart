@@ -14,11 +14,11 @@ SaleLedgerSettingSearchableField _$valueOf(String name) {
     case 'SALE_LEDGER_NAME':
       return _$SALE_LEDGER_NAME;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
-final BuiltSet<SaleLedgerSettingSearchableField> _$values = BuiltSet<
+final BuiltSet<SaleLedgerSettingSearchableField> _$values = new BuiltSet<
     SaleLedgerSettingSearchableField>(const <SaleLedgerSettingSearchableField>[
   _$SALE_LEDGER_NAME,
 ]);
@@ -38,7 +38,7 @@ abstract class _$SaleLedgerSettingSearchableFieldMixin {
 
 Serializer<SaleLedgerSettingSearchableField>
     _$saleLedgerSettingSearchableFieldSerializer =
-    _$SaleLedgerSettingSearchableFieldSerializer();
+    new _$SaleLedgerSettingSearchableFieldSerializer();
 
 class _$SaleLedgerSettingSearchableFieldSerializer
     implements PrimitiveSerializer<SaleLedgerSettingSearchableField> {

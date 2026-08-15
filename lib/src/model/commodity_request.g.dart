@@ -22,7 +22,7 @@ class _$CommodityRequest extends CommodityRequest {
 
   factory _$CommodityRequest(
           [void Function(CommodityRequestBuilder)? updates]) =>
-      (CommodityRequestBuilder()..update(updates))._build();
+      (new CommodityRequestBuilder()..update(updates))._build();
 
   _$CommodityRequest._(
       {required this.name,
@@ -31,14 +31,17 @@ class _$CommodityRequest extends CommodityRequest {
       this.gstRateSale,
       this.gstRatePurchase,
       this.unitOfMeasurement})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'CommodityRequest', 'name');
+  }
+
   @override
   CommodityRequest rebuild(void Function(CommodityRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   CommodityRequestBuilder toBuilder() =>
-      CommodityRequestBuilder()..replace(this);
+      new CommodityRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -128,6 +131,7 @@ class CommodityRequestBuilder
 
   @override
   void replace(CommodityRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CommodityRequest;
   }
 
@@ -141,15 +145,14 @@ class CommodityRequestBuilder
 
   _$CommodityRequest _build() {
     final _$result = _$v ??
-        _$CommodityRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'CommodityRequest', 'name'),
-          hsnSacCode: hsnSacCode,
-          description: description,
-          gstRateSale: gstRateSale,
-          gstRatePurchase: gstRatePurchase,
-          unitOfMeasurement: unitOfMeasurement,
-        );
+        new _$CommodityRequest._(
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'CommodityRequest', 'name'),
+            hsnSacCode: hsnSacCode,
+            description: description,
+            gstRateSale: gstRateSale,
+            gstRatePurchase: gstRatePurchase,
+            unitOfMeasurement: unitOfMeasurement);
     replace(_$result);
     return _$result;
   }

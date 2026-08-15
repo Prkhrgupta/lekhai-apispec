@@ -15,9 +15,10 @@ class _$AccountGroupSummaryPageResponse
 
   factory _$AccountGroupSummaryPageResponse(
           [void Function(AccountGroupSummaryPageResponseBuilder)? updates]) =>
-      (AccountGroupSummaryPageResponseBuilder()..update(updates))._build();
+      (new AccountGroupSummaryPageResponseBuilder()..update(updates))._build();
 
   _$AccountGroupSummaryPageResponse._({this.data, this.pagination}) : super._();
+
   @override
   AccountGroupSummaryPageResponse rebuild(
           void Function(AccountGroupSummaryPageResponseBuilder) updates) =>
@@ -25,7 +26,7 @@ class _$AccountGroupSummaryPageResponse
 
   @override
   AccountGroupSummaryPageResponseBuilder toBuilder() =>
-      AccountGroupSummaryPageResponseBuilder()..replace(this);
+      new AccountGroupSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -61,12 +62,12 @@ class AccountGroupSummaryPageResponseBuilder
 
   ListBuilder<AccountGroupSummaryItem>? _data;
   ListBuilder<AccountGroupSummaryItem> get data =>
-      _$this._data ??= ListBuilder<AccountGroupSummaryItem>();
+      _$this._data ??= new ListBuilder<AccountGroupSummaryItem>();
   set data(ListBuilder<AccountGroupSummaryItem>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -86,6 +87,7 @@ class AccountGroupSummaryPageResponseBuilder
 
   @override
   void replace(AccountGroupSummaryPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$AccountGroupSummaryPageResponse;
   }
 
@@ -101,10 +103,8 @@ class AccountGroupSummaryPageResponseBuilder
     _$AccountGroupSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          _$AccountGroupSummaryPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$AccountGroupSummaryPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -113,7 +113,7 @@ class AccountGroupSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'AccountGroupSummaryPageResponse', _$failedField, e.toString());
       }
       rethrow;

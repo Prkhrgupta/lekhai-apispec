@@ -58,7 +58,7 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
 
   factory _$SaleLedgerSettingResponse(
           [void Function(SaleLedgerSettingResponseBuilder)? updates]) =>
-      (SaleLedgerSettingResponseBuilder()..update(updates))._build();
+      (new SaleLedgerSettingResponseBuilder()..update(updates))._build();
 
   _$SaleLedgerSettingResponse._(
       {this.id,
@@ -86,6 +86,7 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
       this.tcsLedgerId,
       this.tcsLedgerName})
       : super._();
+
   @override
   SaleLedgerSettingResponse rebuild(
           void Function(SaleLedgerSettingResponseBuilder) updates) =>
@@ -93,7 +94,7 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
 
   @override
   SaleLedgerSettingResponseBuilder toBuilder() =>
-      SaleLedgerSettingResponseBuilder()..replace(this);
+      new SaleLedgerSettingResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -341,6 +342,7 @@ class SaleLedgerSettingResponseBuilder
 
   @override
   void replace(SaleLedgerSettingResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SaleLedgerSettingResponse;
   }
 
@@ -354,32 +356,31 @@ class SaleLedgerSettingResponseBuilder
 
   _$SaleLedgerSettingResponse _build() {
     final _$result = _$v ??
-        _$SaleLedgerSettingResponse._(
-          id: id,
-          saleLedgerId: saleLedgerId,
-          saleLedgerName: saleLedgerName,
-          saleType: saleType,
-          gstRate: gstRate,
-          cgstPercentage: cgstPercentage,
-          cgstLedgerId: cgstLedgerId,
-          cgstLedgerName: cgstLedgerName,
-          sgstPercentage: sgstPercentage,
-          sgstLedgerId: sgstLedgerId,
-          sgstLedgerName: sgstLedgerName,
-          igstPercentage: igstPercentage,
-          igstLedgerId: igstLedgerId,
-          igstLedgerName: igstLedgerName,
-          cessPercentage: cessPercentage,
-          cessLedgerId: cessLedgerId,
-          cessLedgerName: cessLedgerName,
-          freightPackingLedgerId: freightPackingLedgerId,
-          freightPackingLedgerName: freightPackingLedgerName,
-          roundOffLedgerId: roundOffLedgerId,
-          roundOffLedgerName: roundOffLedgerName,
-          tcsPercentage: tcsPercentage,
-          tcsLedgerId: tcsLedgerId,
-          tcsLedgerName: tcsLedgerName,
-        );
+        new _$SaleLedgerSettingResponse._(
+            id: id,
+            saleLedgerId: saleLedgerId,
+            saleLedgerName: saleLedgerName,
+            saleType: saleType,
+            gstRate: gstRate,
+            cgstPercentage: cgstPercentage,
+            cgstLedgerId: cgstLedgerId,
+            cgstLedgerName: cgstLedgerName,
+            sgstPercentage: sgstPercentage,
+            sgstLedgerId: sgstLedgerId,
+            sgstLedgerName: sgstLedgerName,
+            igstPercentage: igstPercentage,
+            igstLedgerId: igstLedgerId,
+            igstLedgerName: igstLedgerName,
+            cessPercentage: cessPercentage,
+            cessLedgerId: cessLedgerId,
+            cessLedgerName: cessLedgerName,
+            freightPackingLedgerId: freightPackingLedgerId,
+            freightPackingLedgerName: freightPackingLedgerName,
+            roundOffLedgerId: roundOffLedgerId,
+            roundOffLedgerName: roundOffLedgerName,
+            tcsPercentage: tcsPercentage,
+            tcsLedgerId: tcsLedgerId,
+            tcsLedgerName: tcsLedgerName);
     replace(_$result);
     return _$result;
   }

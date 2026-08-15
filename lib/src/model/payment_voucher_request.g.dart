@@ -18,11 +18,12 @@ class _$PaymentVoucherRequest extends PaymentVoucherRequest {
 
   factory _$PaymentVoucherRequest(
           [void Function(PaymentVoucherRequestBuilder)? updates]) =>
-      (PaymentVoucherRequestBuilder()..update(updates))._build();
+      (new PaymentVoucherRequestBuilder()..update(updates))._build();
 
   _$PaymentVoucherRequest._(
       {this.voucherDate, this.paymentAccountId, this.narration, this.items})
       : super._();
+
   @override
   PaymentVoucherRequest rebuild(
           void Function(PaymentVoucherRequestBuilder) updates) =>
@@ -30,7 +31,7 @@ class _$PaymentVoucherRequest extends PaymentVoucherRequest {
 
   @override
   PaymentVoucherRequestBuilder toBuilder() =>
-      PaymentVoucherRequestBuilder()..replace(this);
+      new PaymentVoucherRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -83,7 +84,7 @@ class PaymentVoucherRequestBuilder
 
   ListBuilder<VoucherEntry>? _items;
   ListBuilder<VoucherEntry> get items =>
-      _$this._items ??= ListBuilder<VoucherEntry>();
+      _$this._items ??= new ListBuilder<VoucherEntry>();
   set items(ListBuilder<VoucherEntry>? items) => _$this._items = items;
 
   PaymentVoucherRequestBuilder() {
@@ -104,6 +105,7 @@ class PaymentVoucherRequestBuilder
 
   @override
   void replace(PaymentVoucherRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$PaymentVoucherRequest;
   }
 
@@ -119,19 +121,18 @@ class PaymentVoucherRequestBuilder
     _$PaymentVoucherRequest _$result;
     try {
       _$result = _$v ??
-          _$PaymentVoucherRequest._(
-            voucherDate: voucherDate,
-            paymentAccountId: paymentAccountId,
-            narration: narration,
-            items: _items?.build(),
-          );
+          new _$PaymentVoucherRequest._(
+              voucherDate: voucherDate,
+              paymentAccountId: paymentAccountId,
+              narration: narration,
+              items: _items?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'items';
         _items?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'PaymentVoucherRequest', _$failedField, e.toString());
       }
       rethrow;

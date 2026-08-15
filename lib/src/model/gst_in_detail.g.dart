@@ -17,7 +17,7 @@ class _$GstInDetail extends GstInDetail {
   final PartyType? partyType;
 
   factory _$GstInDetail([void Function(GstInDetailBuilder)? updates]) =>
-      (GstInDetailBuilder()..update(updates))._build();
+      (new GstInDetailBuilder()..update(updates))._build();
 
   _$GstInDetail._(
       {this.registrationType,
@@ -25,12 +25,13 @@ class _$GstInDetail extends GstInDetail {
       this.gstInUin,
       this.partyType})
       : super._();
+
   @override
   GstInDetail rebuild(void Function(GstInDetailBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GstInDetailBuilder toBuilder() => GstInDetailBuilder()..replace(this);
+  GstInDetailBuilder toBuilder() => new GstInDetailBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -103,6 +104,7 @@ class GstInDetailBuilder implements Builder<GstInDetail, GstInDetailBuilder> {
 
   @override
   void replace(GstInDetail other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GstInDetail;
   }
 
@@ -116,12 +118,11 @@ class GstInDetailBuilder implements Builder<GstInDetail, GstInDetailBuilder> {
 
   _$GstInDetail _build() {
     final _$result = _$v ??
-        _$GstInDetail._(
-          registrationType: registrationType,
-          isECommerceOperator: isECommerceOperator,
-          gstInUin: gstInUin,
-          partyType: partyType,
-        );
+        new _$GstInDetail._(
+            registrationType: registrationType,
+            isECommerceOperator: isECommerceOperator,
+            gstInUin: gstInUin,
+            partyType: partyType);
     replace(_$result);
     return _$result;
   }

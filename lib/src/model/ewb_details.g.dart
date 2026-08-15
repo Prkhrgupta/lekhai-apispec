@@ -39,7 +39,7 @@ class _$EwbDetails extends EwbDetails {
   final BuiltList<VehicleDetail> vehicleDetails;
 
   factory _$EwbDetails([void Function(EwbDetailsBuilder)? updates]) =>
-      (EwbDetailsBuilder()..update(updates))._build();
+      (new EwbDetailsBuilder()..update(updates))._build();
 
   _$EwbDetails._(
       {required this.ewbNo,
@@ -57,13 +57,41 @@ class _$EwbDetails extends EwbDetails {
       required this.consignee,
       required this.actualDistance,
       required this.vehicleDetails})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(ewbNo, r'EwbDetails', 'ewbNo');
+    BuiltValueNullFieldError.checkNotNull(ewbDate, r'EwbDetails', 'ewbDate');
+    BuiltValueNullFieldError.checkNotNull(
+        fromPlace, r'EwbDetails', 'fromPlace');
+    BuiltValueNullFieldError.checkNotNull(
+        fromState, r'EwbDetails', 'fromState');
+    BuiltValueNullFieldError.checkNotNull(toPlace, r'EwbDetails', 'toPlace');
+    BuiltValueNullFieldError.checkNotNull(toState, r'EwbDetails', 'toState');
+    BuiltValueNullFieldError.checkNotNull(
+        transDocNo, r'EwbDetails', 'transDocNo');
+    BuiltValueNullFieldError.checkNotNull(
+        transDocDate, r'EwbDetails', 'transDocDate');
+    BuiltValueNullFieldError.checkNotNull(
+        fromPinCode, r'EwbDetails', 'fromPinCode');
+    BuiltValueNullFieldError.checkNotNull(
+        toPinCode, r'EwbDetails', 'toPinCode');
+    BuiltValueNullFieldError.checkNotNull(
+        vehicleNo, r'EwbDetails', 'vehicleNo');
+    BuiltValueNullFieldError.checkNotNull(
+        consigner, r'EwbDetails', 'consigner');
+    BuiltValueNullFieldError.checkNotNull(
+        consignee, r'EwbDetails', 'consignee');
+    BuiltValueNullFieldError.checkNotNull(
+        actualDistance, r'EwbDetails', 'actualDistance');
+    BuiltValueNullFieldError.checkNotNull(
+        vehicleDetails, r'EwbDetails', 'vehicleDetails');
+  }
+
   @override
   EwbDetails rebuild(void Function(EwbDetailsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  EwbDetailsBuilder toBuilder() => EwbDetailsBuilder()..replace(this);
+  EwbDetailsBuilder toBuilder() => new EwbDetailsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -193,7 +221,7 @@ class EwbDetailsBuilder implements Builder<EwbDetails, EwbDetailsBuilder> {
 
   ListBuilder<VehicleDetail>? _vehicleDetails;
   ListBuilder<VehicleDetail> get vehicleDetails =>
-      _$this._vehicleDetails ??= ListBuilder<VehicleDetail>();
+      _$this._vehicleDetails ??= new ListBuilder<VehicleDetail>();
   set vehicleDetails(ListBuilder<VehicleDetail>? vehicleDetails) =>
       _$this._vehicleDetails = vehicleDetails;
 
@@ -226,6 +254,7 @@ class EwbDetailsBuilder implements Builder<EwbDetails, EwbDetailsBuilder> {
 
   @override
   void replace(EwbDetails other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$EwbDetails;
   }
 
@@ -241,44 +270,39 @@ class EwbDetailsBuilder implements Builder<EwbDetails, EwbDetailsBuilder> {
     _$EwbDetails _$result;
     try {
       _$result = _$v ??
-          _$EwbDetails._(
-            ewbNo: BuiltValueNullFieldError.checkNotNull(
-                ewbNo, r'EwbDetails', 'ewbNo'),
-            ewbDate: BuiltValueNullFieldError.checkNotNull(
-                ewbDate, r'EwbDetails', 'ewbDate'),
-            fromPlace: BuiltValueNullFieldError.checkNotNull(
-                fromPlace, r'EwbDetails', 'fromPlace'),
-            fromState: BuiltValueNullFieldError.checkNotNull(
-                fromState, r'EwbDetails', 'fromState'),
-            toPlace: BuiltValueNullFieldError.checkNotNull(
-                toPlace, r'EwbDetails', 'toPlace'),
-            toState: BuiltValueNullFieldError.checkNotNull(
-                toState, r'EwbDetails', 'toState'),
-            transDocNo: BuiltValueNullFieldError.checkNotNull(
-                transDocNo, r'EwbDetails', 'transDocNo'),
-            transDocDate: BuiltValueNullFieldError.checkNotNull(
-                transDocDate, r'EwbDetails', 'transDocDate'),
-            fromPinCode: BuiltValueNullFieldError.checkNotNull(
-                fromPinCode, r'EwbDetails', 'fromPinCode'),
-            toPinCode: BuiltValueNullFieldError.checkNotNull(
-                toPinCode, r'EwbDetails', 'toPinCode'),
-            vehicleNo: BuiltValueNullFieldError.checkNotNull(
-                vehicleNo, r'EwbDetails', 'vehicleNo'),
-            consigner: BuiltValueNullFieldError.checkNotNull(
-                consigner, r'EwbDetails', 'consigner'),
-            consignee: BuiltValueNullFieldError.checkNotNull(
-                consignee, r'EwbDetails', 'consignee'),
-            actualDistance: BuiltValueNullFieldError.checkNotNull(
-                actualDistance, r'EwbDetails', 'actualDistance'),
-            vehicleDetails: vehicleDetails.build(),
-          );
+          new _$EwbDetails._(
+              ewbNo: BuiltValueNullFieldError.checkNotNull(
+                  ewbNo, r'EwbDetails', 'ewbNo'),
+              ewbDate: BuiltValueNullFieldError.checkNotNull(
+                  ewbDate, r'EwbDetails', 'ewbDate'),
+              fromPlace: BuiltValueNullFieldError.checkNotNull(
+                  fromPlace, r'EwbDetails', 'fromPlace'),
+              fromState: BuiltValueNullFieldError.checkNotNull(
+                  fromState, r'EwbDetails', 'fromState'),
+              toPlace: BuiltValueNullFieldError.checkNotNull(
+                  toPlace, r'EwbDetails', 'toPlace'),
+              toState: BuiltValueNullFieldError.checkNotNull(
+                  toState, r'EwbDetails', 'toState'),
+              transDocNo: BuiltValueNullFieldError.checkNotNull(
+                  transDocNo, r'EwbDetails', 'transDocNo'),
+              transDocDate: BuiltValueNullFieldError.checkNotNull(
+                  transDocDate, r'EwbDetails', 'transDocDate'),
+              fromPinCode: BuiltValueNullFieldError.checkNotNull(
+                  fromPinCode, r'EwbDetails', 'fromPinCode'),
+              toPinCode:
+                  BuiltValueNullFieldError.checkNotNull(toPinCode, r'EwbDetails', 'toPinCode'),
+              vehicleNo: BuiltValueNullFieldError.checkNotNull(vehicleNo, r'EwbDetails', 'vehicleNo'),
+              consigner: BuiltValueNullFieldError.checkNotNull(consigner, r'EwbDetails', 'consigner'),
+              consignee: BuiltValueNullFieldError.checkNotNull(consignee, r'EwbDetails', 'consignee'),
+              actualDistance: BuiltValueNullFieldError.checkNotNull(actualDistance, r'EwbDetails', 'actualDistance'),
+              vehicleDetails: vehicleDetails.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'vehicleDetails';
         vehicleDetails.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'EwbDetails', _$failedField, e.toString());
       }
       rethrow;

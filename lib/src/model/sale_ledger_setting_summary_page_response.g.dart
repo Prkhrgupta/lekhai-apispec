@@ -16,10 +16,12 @@ class _$SaleLedgerSettingSummaryPageResponse
   factory _$SaleLedgerSettingSummaryPageResponse(
           [void Function(SaleLedgerSettingSummaryPageResponseBuilder)?
               updates]) =>
-      (SaleLedgerSettingSummaryPageResponseBuilder()..update(updates))._build();
+      (new SaleLedgerSettingSummaryPageResponseBuilder()..update(updates))
+          ._build();
 
   _$SaleLedgerSettingSummaryPageResponse._({this.data, this.pagination})
       : super._();
+
   @override
   SaleLedgerSettingSummaryPageResponse rebuild(
           void Function(SaleLedgerSettingSummaryPageResponseBuilder) updates) =>
@@ -27,7 +29,7 @@ class _$SaleLedgerSettingSummaryPageResponse
 
   @override
   SaleLedgerSettingSummaryPageResponseBuilder toBuilder() =>
-      SaleLedgerSettingSummaryPageResponseBuilder()..replace(this);
+      new SaleLedgerSettingSummaryPageResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -63,12 +65,12 @@ class SaleLedgerSettingSummaryPageResponseBuilder
 
   ListBuilder<SaleLedgerSettingResponse>? _data;
   ListBuilder<SaleLedgerSettingResponse> get data =>
-      _$this._data ??= ListBuilder<SaleLedgerSettingResponse>();
+      _$this._data ??= new ListBuilder<SaleLedgerSettingResponse>();
   set data(ListBuilder<SaleLedgerSettingResponse>? data) => _$this._data = data;
 
   PaginationMetaBuilder? _pagination;
   PaginationMetaBuilder get pagination =>
-      _$this._pagination ??= PaginationMetaBuilder();
+      _$this._pagination ??= new PaginationMetaBuilder();
   set pagination(PaginationMetaBuilder? pagination) =>
       _$this._pagination = pagination;
 
@@ -88,6 +90,7 @@ class SaleLedgerSettingSummaryPageResponseBuilder
 
   @override
   void replace(SaleLedgerSettingSummaryPageResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$SaleLedgerSettingSummaryPageResponse;
   }
 
@@ -104,10 +107,8 @@ class SaleLedgerSettingSummaryPageResponseBuilder
     _$SaleLedgerSettingSummaryPageResponse _$result;
     try {
       _$result = _$v ??
-          _$SaleLedgerSettingSummaryPageResponse._(
-            data: _data?.build(),
-            pagination: _pagination?.build(),
-          );
+          new _$SaleLedgerSettingSummaryPageResponse._(
+              data: _data?.build(), pagination: _pagination?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -116,7 +117,7 @@ class SaleLedgerSettingSummaryPageResponseBuilder
         _$failedField = 'pagination';
         _pagination?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'SaleLedgerSettingSummaryPageResponse',
             _$failedField,
             e.toString());

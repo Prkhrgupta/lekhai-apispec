@@ -13,15 +13,18 @@ class _$BrokerRequest extends BrokerRequest {
   final String? phone;
 
   factory _$BrokerRequest([void Function(BrokerRequestBuilder)? updates]) =>
-      (BrokerRequestBuilder()..update(updates))._build();
+      (new BrokerRequestBuilder()..update(updates))._build();
 
-  _$BrokerRequest._({required this.name, this.phone}) : super._();
+  _$BrokerRequest._({required this.name, this.phone}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'BrokerRequest', 'name');
+  }
+
   @override
   BrokerRequest rebuild(void Function(BrokerRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  BrokerRequestBuilder toBuilder() => BrokerRequestBuilder()..replace(this);
+  BrokerRequestBuilder toBuilder() => new BrokerRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -75,6 +78,7 @@ class BrokerRequestBuilder
 
   @override
   void replace(BrokerRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$BrokerRequest;
   }
 
@@ -88,11 +92,10 @@ class BrokerRequestBuilder
 
   _$BrokerRequest _build() {
     final _$result = _$v ??
-        _$BrokerRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'BrokerRequest', 'name'),
-          phone: phone,
-        );
+        new _$BrokerRequest._(
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'BrokerRequest', 'name'),
+            phone: phone);
     replace(_$result);
     return _$result;
   }

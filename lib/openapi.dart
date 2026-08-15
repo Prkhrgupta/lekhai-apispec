@@ -35,6 +35,7 @@ export 'package:openapi/src/model/account_group_response.dart';
 export 'package:openapi/src/model/account_group_searchable_field.dart';
 export 'package:openapi/src/model/account_group_summary_item.dart';
 export 'package:openapi/src/model/account_group_summary_page_response.dart';
+export 'package:openapi/src/model/account_ledger_contra_item.dart';
 export 'package:openapi/src/model/account_ledger_entry_item.dart';
 export 'package:openapi/src/model/account_ledger_page_response.dart';
 export 'package:openapi/src/model/area_request.dart';

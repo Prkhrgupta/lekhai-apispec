@@ -16,18 +16,25 @@ class _$EwbExtendResponse extends EwbExtendResponse {
 
   factory _$EwbExtendResponse(
           [void Function(EwbExtendResponseBuilder)? updates]) =>
-      (EwbExtendResponseBuilder()..update(updates))._build();
+      (new EwbExtendResponseBuilder()..update(updates))._build();
 
   _$EwbExtendResponse._(
       {required this.ewbNo, required this.updatedDate, required this.validUpto})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(ewbNo, r'EwbExtendResponse', 'ewbNo');
+    BuiltValueNullFieldError.checkNotNull(
+        updatedDate, r'EwbExtendResponse', 'updatedDate');
+    BuiltValueNullFieldError.checkNotNull(
+        validUpto, r'EwbExtendResponse', 'validUpto');
+  }
+
   @override
   EwbExtendResponse rebuild(void Function(EwbExtendResponseBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   EwbExtendResponseBuilder toBuilder() =>
-      EwbExtendResponseBuilder()..replace(this);
+      new EwbExtendResponseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,6 +98,7 @@ class EwbExtendResponseBuilder
 
   @override
   void replace(EwbExtendResponse other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$EwbExtendResponse;
   }
 
@@ -104,14 +112,13 @@ class EwbExtendResponseBuilder
 
   _$EwbExtendResponse _build() {
     final _$result = _$v ??
-        _$EwbExtendResponse._(
-          ewbNo: BuiltValueNullFieldError.checkNotNull(
-              ewbNo, r'EwbExtendResponse', 'ewbNo'),
-          updatedDate: BuiltValueNullFieldError.checkNotNull(
-              updatedDate, r'EwbExtendResponse', 'updatedDate'),
-          validUpto: BuiltValueNullFieldError.checkNotNull(
-              validUpto, r'EwbExtendResponse', 'validUpto'),
-        );
+        new _$EwbExtendResponse._(
+            ewbNo: BuiltValueNullFieldError.checkNotNull(
+                ewbNo, r'EwbExtendResponse', 'ewbNo'),
+            updatedDate: BuiltValueNullFieldError.checkNotNull(
+                updatedDate, r'EwbExtendResponse', 'updatedDate'),
+            validUpto: BuiltValueNullFieldError.checkNotNull(
+                validUpto, r'EwbExtendResponse', 'validUpto'));
     replace(_$result);
     return _$result;
   }

@@ -19,11 +19,11 @@ SaleType _$valueOf(String name) {
     case 'EXPORT':
       return _$EXPORT;
     default:
-      throw ArgumentError(name);
+      throw new ArgumentError(name);
   }
 }
 
-final BuiltSet<SaleType> _$values = BuiltSet<SaleType>(const <SaleType>[
+final BuiltSet<SaleType> _$values = new BuiltSet<SaleType>(const <SaleType>[
   _$IN_STATE,
   _$OUT_STATE,
   _$EXPORT,
@@ -43,7 +43,7 @@ abstract class _$SaleTypeMixin {
   _$SaleTypeMeta get SaleType => const _$SaleTypeMeta();
 }
 
-Serializer<SaleType> _$saleTypeSerializer = _$SaleTypeSerializer();
+Serializer<SaleType> _$saleTypeSerializer = new _$SaleTypeSerializer();
 
 class _$SaleTypeSerializer implements PrimitiveSerializer<SaleType> {
   static const Map<String, Object> _toWire = const <String, Object>{

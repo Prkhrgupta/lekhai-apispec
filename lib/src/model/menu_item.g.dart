@@ -19,7 +19,7 @@ class _$MenuItem extends MenuItem {
   final BuiltList<MenuItem>? children;
 
   factory _$MenuItem([void Function(MenuItemBuilder)? updates]) =>
-      (MenuItemBuilder()..update(updates))._build();
+      (new MenuItemBuilder()..update(updates))._build();
 
   _$MenuItem._(
       {required this.id,
@@ -27,13 +27,18 @@ class _$MenuItem extends MenuItem {
       required this.icon,
       this.route,
       this.children})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(id, r'MenuItem', 'id');
+    BuiltValueNullFieldError.checkNotNull(title, r'MenuItem', 'title');
+    BuiltValueNullFieldError.checkNotNull(icon, r'MenuItem', 'icon');
+  }
+
   @override
   MenuItem rebuild(void Function(MenuItemBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MenuItemBuilder toBuilder() => MenuItemBuilder()..replace(this);
+  MenuItemBuilder toBuilder() => new MenuItemBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -91,7 +96,7 @@ class MenuItemBuilder implements Builder<MenuItem, MenuItemBuilder> {
 
   ListBuilder<MenuItem>? _children;
   ListBuilder<MenuItem> get children =>
-      _$this._children ??= ListBuilder<MenuItem>();
+      _$this._children ??= new ListBuilder<MenuItem>();
   set children(ListBuilder<MenuItem>? children) => _$this._children = children;
 
   MenuItemBuilder() {
@@ -113,6 +118,7 @@ class MenuItemBuilder implements Builder<MenuItem, MenuItemBuilder> {
 
   @override
   void replace(MenuItem other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MenuItem;
   }
 
@@ -128,22 +134,21 @@ class MenuItemBuilder implements Builder<MenuItem, MenuItemBuilder> {
     _$MenuItem _$result;
     try {
       _$result = _$v ??
-          _$MenuItem._(
-            id: BuiltValueNullFieldError.checkNotNull(id, r'MenuItem', 'id'),
-            title: BuiltValueNullFieldError.checkNotNull(
-                title, r'MenuItem', 'title'),
-            icon: BuiltValueNullFieldError.checkNotNull(
-                icon, r'MenuItem', 'icon'),
-            route: route,
-            children: _children?.build(),
-          );
+          new _$MenuItem._(
+              id: BuiltValueNullFieldError.checkNotNull(id, r'MenuItem', 'id'),
+              title: BuiltValueNullFieldError.checkNotNull(
+                  title, r'MenuItem', 'title'),
+              icon: BuiltValueNullFieldError.checkNotNull(
+                  icon, r'MenuItem', 'icon'),
+              route: route,
+              children: _children?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'children';
         _children?.build();
       } catch (e) {
-        throw BuiltValueNestedFieldError(
+        throw new BuiltValueNestedFieldError(
             r'MenuItem', _$failedField, e.toString());
       }
       rethrow;

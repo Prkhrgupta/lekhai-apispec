@@ -15,16 +15,17 @@ class _$VehicleDetail extends VehicleDetail {
   final String? fromState;
 
   factory _$VehicleDetail([void Function(VehicleDetailBuilder)? updates]) =>
-      (VehicleDetailBuilder()..update(updates))._build();
+      (new VehicleDetailBuilder()..update(updates))._build();
 
   _$VehicleDetail._({this.vehicleNo, this.fromPlace, this.fromState})
       : super._();
+
   @override
   VehicleDetail rebuild(void Function(VehicleDetailBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  VehicleDetailBuilder toBuilder() => VehicleDetailBuilder()..replace(this);
+  VehicleDetailBuilder toBuilder() => new VehicleDetailBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -88,6 +89,7 @@ class VehicleDetailBuilder
 
   @override
   void replace(VehicleDetail other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VehicleDetail;
   }
 
@@ -101,11 +103,8 @@ class VehicleDetailBuilder
 
   _$VehicleDetail _build() {
     final _$result = _$v ??
-        _$VehicleDetail._(
-          vehicleNo: vehicleNo,
-          fromPlace: fromPlace,
-          fromState: fromState,
-        );
+        new _$VehicleDetail._(
+            vehicleNo: vehicleNo, fromPlace: fromPlace, fromState: fromState);
     replace(_$result);
     return _$result;
   }

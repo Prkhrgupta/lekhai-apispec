@@ -16,17 +16,20 @@ class _$TransportRequest extends TransportRequest {
 
   factory _$TransportRequest(
           [void Function(TransportRequestBuilder)? updates]) =>
-      (TransportRequestBuilder()..update(updates))._build();
+      (new TransportRequestBuilder()..update(updates))._build();
 
   _$TransportRequest._({required this.name, this.phone, this.gstNo})
-      : super._();
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(name, r'TransportRequest', 'name');
+  }
+
   @override
   TransportRequest rebuild(void Function(TransportRequestBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   TransportRequestBuilder toBuilder() =>
-      TransportRequestBuilder()..replace(this);
+      new TransportRequestBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -90,6 +93,7 @@ class TransportRequestBuilder
 
   @override
   void replace(TransportRequest other) {
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$TransportRequest;
   }
 
@@ -103,12 +107,11 @@ class TransportRequestBuilder
 
   _$TransportRequest _build() {
     final _$result = _$v ??
-        _$TransportRequest._(
-          name: BuiltValueNullFieldError.checkNotNull(
-              name, r'TransportRequest', 'name'),
-          phone: phone,
-          gstNo: gstNo,
-        );
+        new _$TransportRequest._(
+            name: BuiltValueNullFieldError.checkNotNull(
+                name, r'TransportRequest', 'name'),
+            phone: phone,
+            gstNo: gstNo);
     replace(_$result);
     return _$result;
   }
