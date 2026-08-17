@@ -1,0 +1,185 @@
+paths:
+  /purchase-ledger-setting:
+    post:
+      tags: [PurchaseLedgerSetting]
+      summary: Create purchase ledger setting
+      operationId: createPurchaseLedgerSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingRequest'
+      responses:
+        '201':
+          description: Purchase ledger setting created
+          content:
+            application/json:
+              schema:
+                $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    get:
+      tags: [PurchaseLedgerSetting]
+      summary: get purchase ledger setting options for dropdown
+      operationId: getPurchaseLedgerSettingDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for purchase ledger setting
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '../../common/components.yaml#/DropdownItem'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /purchase-ledger-setting/{id}:
+    get:
+      tags: [PurchaseLedgerSetting]
+      summary: Get purchase ledger setting by ID
+      operationId: getPurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Purchase ledger setting details
+          content:
+            application/json:
+              schema:
+                $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [PurchaseLedgerSetting]
+      summary: Update purchase ledger setting
+      operationId: updatePurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingRequest'
+      responses:
+        '200':
+          description: Purchase ledger setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    delete:
+      tags: [PurchaseLedgerSetting]
+      summary: Delete purchase ledger setting
+      operationId: deletePurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Purchase ledger setting deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /purchase-ledger-setting/summary:
+    get:
+      tags: [PurchaseLedgerSetting]
+      summary: Get purchase ledger setting summary
+      operationId: getPurchaseLedgerSettingSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingSummaryPageResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

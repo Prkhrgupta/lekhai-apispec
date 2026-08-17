@@ -1,0 +1,140 @@
+SaleType:
+  type: string
+  enum: [IN_STATE, OUT_STATE, EXPORT]
+
+SaleLedgerSettingRequest:
+  type: object
+  required: [saleLedgerId]
+  properties:
+    saleLedgerId:
+      type: integer
+      format: int64
+      description: Sale ledger account this configuration belongs to
+    saleType:
+      $ref: '#/SaleType'
+    gstRate:
+      type: number
+      format: double
+      default: 0.0
+    cgstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    cgstLedgerId:
+      type: integer
+      format: int64
+    sgstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    sgstLedgerId:
+      type: integer
+      format: int64
+    igstPercentage:
+      type: number
+      format: double
+      default: 0.0
+    igstLedgerId:
+      type: integer
+      format: int64
+    cessPercentage:
+      type: number
+      format: double
+      default: 0.0
+    cessLedgerId:
+      type: integer
+      format: int64
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    tcsPercentage:
+      type: number
+      format: double
+      default: 0.0
+    tcsLedgerId:
+      type: integer
+      format: int64
+
+SaleLedgerSettingResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    saleLedgerId:
+      type: integer
+      format: int64
+    saleLedgerName:
+      type: string
+    saleType:
+      $ref: '#/SaleType'
+    gstRate:
+      type: number
+      format: double
+    cgstPercentage:
+      type: number
+      format: double
+    cgstLedgerId:
+      type: integer
+      format: int64
+    cgstLedgerName:
+      type: string
+    sgstPercentage:
+      type: number
+      format: double
+    sgstLedgerId:
+      type: integer
+      format: int64
+    sgstLedgerName:
+      type: string
+    igstPercentage:
+      type: number
+      format: double
+    igstLedgerId:
+      type: integer
+      format: int64
+    igstLedgerName:
+      type: string
+    cessPercentage:
+      type: number
+      format: double
+    cessLedgerId:
+      type: integer
+      format: int64
+    cessLedgerName:
+      type: string
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    freightPackingLedgerName:
+      type: string
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerName:
+      type: string
+    tcsPercentage:
+      type: number
+      format: double
+    tcsLedgerId:
+      type: integer
+      format: int64
+    tcsLedgerName:
+      type: string
+
+SaleLedgerSettingSearchableField:
+  type: string
+  enum: [SALE_LEDGER_NAME]
+
+SaleLedgerSettingSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/SaleLedgerSettingResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'

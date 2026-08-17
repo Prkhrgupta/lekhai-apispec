@@ -1,0 +1,1439 @@
+openapi: 3.0.3
+info:
+  title: Lekhai API
+  description: API specification for Lekhai backend services
+  version: '1.0.5'
+servers:
+  - url: http://localhost:8080
+    description: Local dev server
+  - url: https://lekhaibackend.sitswiftcloud.in
+    description: UAT server
+security:
+  - bearerAuth: []
+tags:
+  - name: Lekhai
+    description: Lekhai APIs
+paths:
+  /account-group:
+    post:
+      tags:
+        - Account Group
+      summary: Create account group
+      operationId: createAccountGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountGroupRequest'
+      responses:
+        '200':
+          description: Account group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGroupResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Account Group
+      summary: Get account group options for a dropdown
+      operationId: getAccountGroupDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for account groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area:
+    post:
+      tags:
+        - Area
+      summary: Create area
+      operationId: createArea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AreaRequest'
+      responses:
+        '201':
+          description: Area created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Area
+      summary: get Area options for dropdown
+      operationId: getAreaDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for area
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /broker:
+    post:
+      tags:
+        - Broker
+      summary: Create broker
+      operationId: createBroker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokerRequest'
+      responses:
+        '200':
+          description: Broker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Broker
+      summary: get broker options for dropdown
+      operationId: getBrokerDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for broker
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger:
+    post:
+      tags:
+        - Ledger
+      summary: Create ledger
+      operationId: createLedger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Ledger
+      summary: List all ledgers
+      operationId: listLedgers
+      responses:
+        '200':
+          description: List of ledgers
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/{id}:
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger by ID
+      operationId: getLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ledger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Ledger
+      summary: Update ledger
+      operationId: updateLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/summary:
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger summary with pagination and filtering
+      operationId: getLedgerSummaries
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+          description: Page number (1-indexed)
+        - name: page_size
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+            minimum: 1
+            maximum: 100
+          description: Number of items per page
+        - name: search
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Search query — partial, case-insensitive match across searchable columns
+        - name: search_field
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - name
+              - state
+              - area
+              - accountGroup
+              - gstin
+          description: Restrict search to a specific column. If omitted, searches all columns.
+        - name: sort_by
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - id
+              - name
+              - state
+              - area
+              - accountGroup
+              - gstin
+            default: name
+          description: Column to sort by
+        - name: sort_order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+          description: Sort direction
+      responses:
+        '200':
+          description: Paginated ledger summary response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerSummaryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /state:
+    get:
+      tags:
+        - State
+      summary: get state options for dropdown
+      operationId: getStateDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for state
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transport:
+    post:
+      tags:
+        - Transport
+      summary: Create transport
+      operationId: createTransport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransportRequest'
+      responses:
+        '200':
+          description: Transport created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Transport
+      summary: get dropdown options for transport
+      operationId: getTransportDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for transport
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /login:
+    get:
+      tags:
+        - Auth
+      summary: Login to the application
+      operationId: login
+      description: Authenticates the user using Basic Authentication and returns a JWT token or a list of shops if multiple are available.
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/shop-token:
+    get:
+      tags:
+        - Auth
+      summary: Get token for Shop Code
+      operationId: generateTokenForShopCode
+      description: Authenticates the user using a JWT token and a shop code provided in the header.
+      parameters:
+        - name: shopcode
+          in: header
+          required: true
+          description: The code of the shop to login to.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /menu:
+    get:
+      tags:
+        - Menu
+      summary: Get user menu
+      operationId: getMenu
+      description: Returns the main menu and favorites for the authenticated user based on their permissions.
+      responses:
+        '200':
+          description: Successful retrieval of menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /menu/topbar:
+    get:
+      tags:
+        - Menu
+      summary: Get top bar details
+      operationId: getTopBar
+      description: Returns firm name and GSTIN for the top bar display.
+      responses:
+        '200':
+          description: Successful retrieval of top bar details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopBarResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs for a transporter filtered by GSTIN, expiry date, and status
+      operationId: getTransporterEwbs
+      parameters:
+        - $ref: '#/components/parameters/FromDateParam'
+        - $ref: '#/components/parameters/ToDateParam'
+        - $ref: '#/components/parameters/IncludeDeliveredParam'
+        - $ref: '#/components/parameters/StatusParam'
+      responses:
+        '200':
+          description: List of EWBs matching the filters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EwbSummary'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/expiring:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs expiring on a specific date
+      operationId: getEwbExpiring
+      parameters:
+        - $ref: '#/components/parameters/DateParam'
+      responses:
+        '200':
+          description: List of EWBs expiring on the specified date
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EwbSummary'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWB details by EWB number
+      operationId: getEwbDetails
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '200':
+          description: EWB details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EwbDetails'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}/delivered:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as delivered
+      operationId: markEwbDelivered
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '204':
+          description: EWB marked as delivered
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as non-delivered
+      operationId: markEwbNonDelivered
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '204':
+          description: EWB marked as non-delivered
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}/extend:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Extend validity of an EWB
+      operationId: extendEwbValidity
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EwbExtendRequest'
+      responses:
+        '200':
+          description: EWB validity extended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EwbExtendResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /gsp/ewb-credentials:
+    put:
+      tags:
+        - GSP Credentials
+      summary: Create or update GSP credentials for a transporter (identified by GSTIN in request body)
+      operationId: upsertGspCredentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GspCredentialsRequest'
+      responses:
+        '200':
+          description: Credentials created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GspCredentialsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    DropdownItem:
+      type: object
+      required:
+        - label
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier for the dropdown option
+          example: 1
+        label:
+          type: string
+          description: Display text for the dropdown option
+          example: Option 1
+        code:
+          type: string
+          description: generic Unique identifier, if id is not applicable
+          example: JP
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: null
+        data:
+          type: object
+        error:
+          type: string
+          example: Unexpected error
+        timestamp:
+          type: string
+          format: date-time
+    AccountGroupRequest:
+      type: object
+      required:
+        - name
+        - parentId
+      properties:
+        name:
+          type: string
+          example: Fixed Assets
+        parentId:
+          type: integer
+          format: int64
+          example: 5
+    AccountGroupResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Sundry Creditor
+    AreaRequest:
+      type: object
+      required:
+        - areaName
+      properties:
+        areaName:
+          type: string
+          example: Kanpur
+    AreaResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        areaName:
+          type: string
+          example: Kanpur
+    BrokerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+    BrokerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+    AccountEntryType:
+      type: string
+      enum:
+        - DR
+        - CR
+    LedgerArea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state_code:
+          type: string
+    LedgerBroker:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+    LedgerTransport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+        gst:
+          type: string
+    RegistrationType:
+      type: string
+      enum:
+        - COMPOSITION
+        - CUSTOMER
+        - REGULAR
+        - UNREGISTERED
+    PartyType:
+      type: string
+      enum:
+        - NOT_APPLICABLE
+        - DEEMED_EXPORT
+        - GOVERNMENT_ENTITY
+        - SEZ
+    GstInDetailResponse:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    LedgerAddress:
+      type: object
+      properties:
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        address_line_3:
+          type: string
+        city:
+          type: string
+        state_id:
+          type: string
+        area_id:
+          type: integer
+          format: int64
+        pincode:
+          type: string
+        distance:
+          type: number
+    LedgerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        legal_name:
+          type: string
+        account_group_id:
+          type: integer
+          format: int64
+        opening_balance:
+          type: number
+        opening_balance_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        credit_limit:
+          type: number
+        pan:
+          type: string
+        aadhaar:
+          type: string
+        tan:
+          type: string
+        email:
+          type: string
+        msme:
+          type: string
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        gst_in_number:
+          type: string
+        location:
+          type: string
+        is_active:
+          type: boolean
+        area:
+          $ref: '#/components/schemas/LedgerArea'
+        broker:
+          $ref: '#/components/schemas/LedgerBroker'
+        transport:
+          $ref: '#/components/schemas/LedgerTransport'
+        gstin_details:
+          $ref: '#/components/schemas/GstInDetailResponse'
+        address:
+          $ref: '#/components/schemas/LedgerAddress'
+        created_at:
+          type: string
+          format: date-time
+    MailTo:
+      type: object
+      properties:
+        mail_to_line_1:
+          type: string
+        mail_to_line_2:
+          type: string
+        mail_to_line_3:
+          type: string
+    GstInDetail:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    LedgerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        gst_in_number:
+          type: string
+        name:
+          type: string
+        account_group:
+          type: integer
+          format: int64
+        opening_balance:
+          type: number
+        account_entry_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        legal_name:
+          type: string
+        Location:
+          type: string
+        country_name:
+          type: string
+        state_and_code:
+          type: string
+        mail_to:
+          $ref: '#/components/schemas/MailTo'
+        area_id:
+          type: integer
+          format: int64
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        pan:
+          type: string
+        credit_limit:
+          type: number
+        transport_id:
+          type: integer
+          format: int64
+        tan_number:
+          type: string
+        broker_id:
+          type: integer
+          format: int64
+        gstInDetailsPresent:
+          type: boolean
+        gst_in_details:
+          $ref: '#/components/schemas/GstInDetail'
+        aadhaar_number:
+          type: string
+        image_uploaded:
+          type: boolean
+        email:
+          type: string
+        msme_number:
+          type: string
+        distance:
+          type: number
+          format: double
+        pin_code:
+          type: string
+        city:
+          type: string
+    LedgerSummaryColumn:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        width:
+          type: integer
+          format: int32
+    LedgerSummaryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state:
+          type: string
+        area:
+          type: string
+        accountGroup:
+          type: string
+        gstin:
+          type: string
+    PaginationMeta:
+      type: object
+      required:
+        - page
+        - pageSize
+        - totalItems
+        - totalPages
+        - hasNext
+        - hasPrevious
+      properties:
+        page:
+          type: integer
+          format: int32
+          description: Current page number (1-indexed)
+        pageSize:
+          type: integer
+          format: int32
+          description: Number of items per page
+        totalItems:
+          type: integer
+          format: int64
+          description: Total number of items matching the current filters/search
+        totalPages:
+          type: integer
+          format: int32
+          description: Total number of pages
+        hasNext:
+          type: boolean
+          description: Whether there is a next page
+        hasPrevious:
+          type: boolean
+          description: Whether there is a previous page
+    LedgerSummaryResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerSummaryColumn'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerSummaryItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    TransportRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
+    TransportResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
+        createdAt:
+          type: string
+          format: date-time
+    ShopMenu:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Firm Name
+        shopCode:
+          type: integer
+          example: 1234
+        role:
+          type: string
+          enum:
+            - SUPER_ADMIN
+            - SHOP_OWNER
+            - ADMIN
+            - USER
+          example: ADMIN
+    LoginResponse:
+      type: object
+      properties:
+        shopMenu:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShopMenu'
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    MenuItem:
+      type: object
+      required:
+        - id
+        - title
+        - icon
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+        route:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    MenuResponse:
+      type: object
+      properties:
+        Main Menu:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+        Favourites:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    TopBarResponse:
+      type: object
+      required:
+        - firmName
+        - gstin
+        - name
+      properties:
+        firmName:
+          type: string
+        gstin:
+          type: string
+        name:
+          type: string
+    EwbStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - REJECTED
+      description: Status of the EWB
+    EwbSummary:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - vehicleNo
+        - consigner
+        - consignee
+        - docNo
+        - docDate
+        - destination
+        - source
+        - validUpTo
+        - isDelivered
+        - status
+        - actualDistance
+      properties:
+        ewbNo:
+          type: string
+          example: '451716215301'
+        ewbDate:
+          type: string
+          format: date-time
+          example: '2026-04-24T10:30:00Z'
+        status:
+          $ref: '#/components/schemas/EwbStatus'
+        docNo:
+          type: string
+          example: C09AB27100001171
+        docDate:
+          type: string
+          format: date-time
+          example: '2026-04-24T00:00:00Z'
+        destination:
+          type: string
+          example: MAINPURI, UP
+        source:
+          type: string
+          example: KANPUR, UP
+        validUpTo:
+          type: string
+          format: date-time
+          example: '2026-04-27T11:20:00Z'
+        isDelivered:
+          type: boolean
+          example: false
+        consigner:
+          type: string
+          example: RAMDAYAL & SONS Pvt Limited
+        consignee:
+          type: string
+          example: ITC Limited
+        actualDistance:
+          type: integer
+          example: 198
+        vehicleNo:
+          type: string
+          example: UP77T1727
+    VehicleDetail:
+      type: object
+      properties:
+        vehicleNo:
+          type: string
+          example: UP77T1727
+        fromPlace:
+          type: string
+          example: Kanpur
+        fromState:
+          type: string
+          example: UP
+    EwbDetails:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - fromState
+        - fromPlace
+        - fromPinCode
+        - toState
+        - toPlace
+        - toPinCode
+        - transDocNo
+        - transDocDate
+        - vehicleNo
+        - consigner
+        - consignee
+        - actualDistance
+        - vehicleDetails
+      properties:
+        ewbNo:
+          type: string
+          example: '521008831493'
+        ewbDate:
+          type: string
+          format: date-time
+          example: '2022-01-19T18:08:00Z'
+        fromPlace:
+          type: string
+          example: FRAZER TOWN
+        fromState:
+          type: string
+          example: Karnataka
+        toPlace:
+          type: string
+          example: Beml Nagar
+        toState:
+          type: string
+          example: Karnataka
+        transDocNo:
+          type: string
+          example: ''
+        transDocDate:
+          type: string
+          format: date-time
+          example: null
+        fromPinCode:
+          type: integer
+          example: 605001
+        toPinCode:
+          type: integer
+          example: 562160
+        vehicleNo:
+          type: string
+          example: UP77T1727
+        consigner:
+          type: string
+          example: RAMDAYAL & SONS Pvt Limited
+        consignee:
+          type: string
+          example: ITC Limited
+        actualDistance:
+          type: integer
+          example: 198
+        vehicleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleDetail'
+    ExtensionReason:
+      type: string
+      enum:
+        - NATURAL_CALAMITY
+        - LAW_AND_ORDER
+        - TRANSSHIPMENT
+        - ACCIDENT
+        - OTHERS
+      description: Reason for extension of validity
+    EwbExtendRequest:
+      type: object
+      required:
+        - remainingDistance
+        - extensionReason
+        - extensionRemark
+      properties:
+        remainingDistance:
+          type: integer
+          example: 150
+        extensionReason:
+          $ref: '#/components/schemas/ExtensionReason'
+        extensionRemark:
+          type: string
+          example: Road blocked due to landslide
+    EwbExtendResponse:
+      type: object
+      required:
+        - ewbNo
+        - updatedDate
+        - validUpto
+      properties:
+        ewbNo:
+          type: string
+          example: '161000843009'
+        updatedDate:
+          type: string
+          format: date-time
+          example: '2018-04-26T17:07:00Z'
+        validUpto:
+          type: string
+          format: date-time
+          example: '2018-05-21T23:59:00Z'
+    GspCredentialsRequest:
+      type: object
+      required:
+        - gstin
+        - username
+        - password
+      properties:
+        gstin:
+          type: string
+          description: GSTIN of the transporter
+          example: 09AAACI5950L1Z8
+        username:
+          type: string
+          example: gsp_user_123
+        password:
+          type: string
+          format: password
+          example: securePassword@123
+    GspCredentialsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: GSP credentials saved successfully
+        gstin:
+          type: string
+          example: 09AAACI5950L1Z8
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ForbiddenError:
+      description: User is not authorized to perform this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    FromDateParam:
+      name: fromDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      example: '2026-04-01'
+    ToDateParam:
+      name: toDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      example: '2026-04-27'
+    IncludeDeliveredParam:
+      name: includeDelivered
+      in: query
+      required: false
+      schema:
+        type: boolean
+      example: false
+    StatusParam:
+      name: status
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/EwbStatus'
+      example: ACTIVE
+    DateParam:
+      name: date
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date-time
+      example: '2026-04-27T15:30:00Z'
+    EwbNoPathParam:
+      name: ewbNo
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '451716215301'

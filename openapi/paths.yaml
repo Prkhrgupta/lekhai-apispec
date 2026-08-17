@@ -18,10 +18,24 @@
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger'
 /ledger/{id}:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}'
+/ledger/{id}/balance:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}~1balance'
 /ledger/by-gstin:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1by-gstin'
 /ledger/summary:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1summary'
+/sale-ledger-setting:
+  $ref: './accountmaster/saleledgersetting/paths.yaml#/paths/~1sale-ledger-setting'
+/sale-ledger-setting/{id}:
+  $ref: './accountmaster/saleledgersetting/paths.yaml#/paths/~1sale-ledger-setting~1{id}'
+/sale-ledger-setting/summary:
+  $ref: './accountmaster/saleledgersetting/paths.yaml#/paths/~1sale-ledger-setting~1summary'
+/purchase-ledger-setting:
+  $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting'
+/purchase-ledger-setting/{id}:
+  $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting~1{id}'
+/purchase-ledger-setting/summary:
+  $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting~1summary'
 /state:
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
 /transport:
@@ -54,6 +68,16 @@
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
 /stock-item/summary:
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
+/payment-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
+/receipt-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1receipt-voucher'
+/contra-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1contra-voucher'
+/journal-voucher:
+  $ref: './voucher/paths.yaml#/paths/~1journal-voucher'
+/account-ledger/{ledgerId}:
+  $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:

@@ -1,0 +1,46 @@
+AccountLedgerContraItem:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    debitAmt:
+      type: number
+    creditAmt:
+      type: number
+    remarks:
+      type: string
+
+AccountLedgerEntryItem:
+  type: object
+  properties:
+    date:
+      type: string
+    ledgerName:
+      type: string
+    vtype:
+      type: string
+    debitAmt:
+      type: number
+    creditAmt:
+      type: number
+    balance:
+      type: number
+    crdr:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    contraEntries:
+      type: array
+      items:
+        $ref: '#/AccountLedgerContraItem'
+
+AccountLedgerPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/AccountLedgerEntryItem'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
