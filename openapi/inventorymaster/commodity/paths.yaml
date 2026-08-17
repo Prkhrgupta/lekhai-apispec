@@ -1,22 +1,22 @@
 paths:
-  /broker:
+  /commodity:
     post:
-      tags: [Broker]
-      summary: Create broker
-      operationId: createBroker
+      tags: [Commodity]
+      summary: Create commodity
+      operationId: createCommodity
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../commodity/components.yaml#/CommodityRequest'
       responses:
         '200':
-          description: Broker created
+          description: Commodity created
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../commodity/components.yaml#/CommodityResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
@@ -24,29 +24,29 @@ paths:
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     get:
-      tags: [Broker]
-      summary: get broker options for dropdown
-      operationId: getBrokerDropdownOptions
+      tags: [Commodity]
+      summary: List all commodities
+      operationId: listCommodities
       responses:
         '200':
-          description: Dropdown options for broker
+          description: List of commodities
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '../../common/components.yaml#/DropdownItem'
+                  $ref: '../commodity/components.yaml#/CommodityResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/{id}:
+  /commodity/{id}:
     get:
-      tags: [Broker]
-      summary: Get broker by ID
-      operationId: getBroker
+      tags: [Commodity]
+      summary: Get commodity by ID
+      operationId: getCommodity
       parameters:
         - name: id
           in: path
@@ -56,11 +56,11 @@ paths:
             format: int64
       responses:
         '200':
-          description: Broker details
+          description: Commodity details
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../commodity/components.yaml#/CommodityResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
@@ -68,9 +68,9 @@ paths:
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     put:
-      tags: [Broker]
-      summary: Update broker
-      operationId: updateBroker
+      tags: [Commodity]
+      summary: Update commodity
+      operationId: updateCommodity
       parameters:
         - name: id
           in: path
@@ -83,25 +83,47 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../commodity/components.yaml#/CommodityRequest'
       responses:
         '200':
-          description: Broker updated
+          description: Commodity updated
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../commodity/components.yaml#/CommodityResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/summary:
+    delete:
+      tags: [Commodity]
+      summary: Delete commodity
+      operationId: deleteCommodity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Commodity deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /commodity/summary:
     get:
-      tags: [Broker]
-      summary: Get broker summary
-      operationId: getBrokerSummaries
+      tags: [Commodity]
+      summary: Get commodity summary
+      operationId: getCommoditySummaries
       x-spring-paginated: true
       parameters:
         - name: page
@@ -134,9 +156,9 @@ paths:
           explode: true
         - name: searchableField
           in: query
-          description: Field to search by
+          description: Field to search/sort by
           schema:
-            $ref: '../broker/components.yaml#/BrokerSearchableField'
+            $ref: '../commodity/components.yaml#/CommoditySearchableField'
           required: false
         - name: searchText
           in: query
@@ -150,7 +172,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerSummaryPageResponse'
+                $ref: '../commodity/components.yaml#/CommoditySummaryResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

@@ -1,22 +1,22 @@
 paths:
-  /broker:
+  /stock-item:
     post:
-      tags: [Broker]
-      summary: Create broker
-      operationId: createBroker
+      tags: [StockItem]
+      summary: Create stock item
+      operationId: createStockItem
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../stockitem/components.yaml#/StockItemRequest'
       responses:
-        '200':
-          description: Broker created
+        '201':
+          description: Stock item created
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../stockitem/components.yaml#/StockItemResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
@@ -24,12 +24,12 @@ paths:
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     get:
-      tags: [Broker]
-      summary: get broker options for dropdown
-      operationId: getBrokerDropdownOptions
+      tags: [StockItem]
+      summary: get stock item options for dropdown
+      operationId: getStockItemDropdownOptions
       responses:
         '200':
-          description: Dropdown options for broker
+          description: Dropdown options for stock item
           content:
             application/json:
               schema:
@@ -42,11 +42,11 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/{id}:
+  /stock-item/{id}:
     get:
-      tags: [Broker]
-      summary: Get broker by ID
-      operationId: getBroker
+      tags: [StockItem]
+      summary: Get stock item by ID
+      operationId: getStockItem
       parameters:
         - name: id
           in: path
@@ -56,21 +56,23 @@ paths:
             format: int64
       responses:
         '200':
-          description: Broker details
+          description: Stock item details
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../stockitem/components.yaml#/StockItemResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     put:
-      tags: [Broker]
-      summary: Update broker
-      operationId: updateBroker
+      tags: [StockItem]
+      summary: Update stock item
+      operationId: updateStockItem
       parameters:
         - name: id
           in: path
@@ -83,25 +85,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../stockitem/components.yaml#/StockItemRequest'
       responses:
         '200':
-          description: Broker updated
+          description: Stock item updated
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../stockitem/components.yaml#/StockItemResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/summary:
+    delete:
+      tags: [StockItem]
+      summary: Delete stock item
+      operationId: deleteStockItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Stock item deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /stock-item/summary:
     get:
-      tags: [Broker]
-      summary: Get broker summary
-      operationId: getBrokerSummaries
+      tags: [StockItem]
+      summary: Get stock item summary
+      operationId: getStockItemSummaries
       x-spring-paginated: true
       parameters:
         - name: page
@@ -136,7 +162,7 @@ paths:
           in: query
           description: Field to search by
           schema:
-            $ref: '../broker/components.yaml#/BrokerSearchableField'
+            $ref: '../stockitem/components.yaml#/StockItemSearchableField'
           required: false
         - name: searchText
           in: query
@@ -150,7 +176,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerSummaryPageResponse'
+                $ref: '../stockitem/components.yaml#/StockItemSummaryPageResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

@@ -1,19 +1,59 @@
 /account-group:
   $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1account-group'
+/account-group/summary:
+  $ref: './accountmaster/accountgroup/paths.yaml#/paths/~1account-group~1summary'
 /area:
   $ref: './accountmaster/area/paths.yaml#/paths/~1area'
+/area/{id}:
+  $ref: './accountmaster/area/paths.yaml#/paths/~1area~1{id}'
+/area/summary:
+  $ref: './accountmaster/area/paths.yaml#/paths/~1area~1summary'
 /broker:
   $ref: './accountmaster/broker/paths.yaml#/paths/~1broker'
+/broker/{id}:
+  $ref: './accountmaster/broker/paths.yaml#/paths/~1broker~1{id}'
+/broker/summary:
+  $ref: './accountmaster/broker/paths.yaml#/paths/~1broker~1summary'
 /ledger:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger'
 /ledger/{id}:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1{id}'
+/ledger/by-gstin:
+  $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1by-gstin'
 /ledger/summary:
   $ref: './accountmaster/ledger/paths.yaml#/paths/~1ledger~1summary'
 /state:
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
 /transport:
   $ref: './accountmaster/transport/paths.yaml#/paths/~1transport'
+/transport/{id}:
+  $ref: './accountmaster/transport/paths.yaml#/paths/~1transport~1{id}'
+/transport/summary:
+  $ref: './accountmaster/transport/paths.yaml#/paths/~1transport~1summary'
+/commodity:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity'
+/commodity/{id}:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1{id}'
+/commodity/summary:
+  $ref: './inventorymaster/commodity/paths.yaml#/paths/~1commodity~1summary'
+/item-category:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category'
+/item-category/{id}:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category~1{id}'
+/item-category/summary:
+  $ref: './inventorymaster/itemcategory/paths.yaml#/paths/~1item-category~1summary'
+/item-factory:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory'
+/item-factory/{id}:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory~1{id}'
+/item-factory/summary:
+  $ref: './inventorymaster/itemfactory/paths.yaml#/paths/~1item-factory~1summary'
+/stock-item:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item'
+/stock-item/{id}:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
+/stock-item/summary:
+  $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:

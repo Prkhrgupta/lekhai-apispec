@@ -1,22 +1,22 @@
 paths:
-  /broker:
+  /item-factory:
     post:
-      tags: [Broker]
-      summary: Create broker
-      operationId: createBroker
+      tags: [ItemFactory]
+      summary: Create item factory
+      operationId: createItemFactory
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../itemfactory/components.yaml#/ItemFactoryRequest'
       responses:
-        '200':
-          description: Broker created
+        '201':
+          description: Item factory created
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../itemfactory/components.yaml#/ItemFactoryResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
@@ -24,12 +24,12 @@ paths:
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     get:
-      tags: [Broker]
-      summary: get broker options for dropdown
-      operationId: getBrokerDropdownOptions
+      tags: [ItemFactory]
+      summary: get item factory options for dropdown
+      operationId: getItemFactoryDropdownOptions
       responses:
         '200':
-          description: Dropdown options for broker
+          description: Dropdown options for item factory
           content:
             application/json:
               schema:
@@ -42,11 +42,11 @@ paths:
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/{id}:
+  /item-factory/{id}:
     get:
-      tags: [Broker]
-      summary: Get broker by ID
-      operationId: getBroker
+      tags: [ItemFactory]
+      summary: Get item factory by ID
+      operationId: getItemFactory
       parameters:
         - name: id
           in: path
@@ -56,21 +56,23 @@ paths:
             format: int64
       responses:
         '200':
-          description: Broker details
+          description: Item factory details
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../itemfactory/components.yaml#/ItemFactoryResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
     put:
-      tags: [Broker]
-      summary: Update broker
-      operationId: updateBroker
+      tags: [ItemFactory]
+      summary: Update item factory
+      operationId: updateItemFactory
       parameters:
         - name: id
           in: path
@@ -83,25 +85,49 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '../broker/components.yaml#/BrokerRequest'
+              $ref: '../itemfactory/components.yaml#/ItemFactoryRequest'
       responses:
         '200':
-          description: Broker updated
+          description: Item factory updated
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerResponse'
+                $ref: '../itemfactory/components.yaml#/ItemFactoryResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
         '500':
           $ref: '../../common/components.yaml#/responses/InternalServerError'
-  /broker/summary:
+    delete:
+      tags: [ItemFactory]
+      summary: Delete item factory
+      operationId: deleteItemFactory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Item factory deleted
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+  /item-factory/summary:
     get:
-      tags: [Broker]
-      summary: Get broker summary
-      operationId: getBrokerSummaries
+      tags: [ItemFactory]
+      summary: Get item factory summary
+      operationId: getItemFactorySummaries
       x-spring-paginated: true
       parameters:
         - name: page
@@ -136,7 +162,7 @@ paths:
           in: query
           description: Field to search by
           schema:
-            $ref: '../broker/components.yaml#/BrokerSearchableField'
+            $ref: '../itemfactory/components.yaml#/ItemFactorySearchableField'
           required: false
         - name: searchText
           in: query
@@ -150,7 +176,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '../broker/components.yaml#/BrokerSummaryPageResponse'
+                $ref: '../itemfactory/components.yaml#/ItemFactorySummaryPageResponse'
         '401':
           $ref: '../../common/components.yaml#/responses/UnauthorizedError'
         '403':

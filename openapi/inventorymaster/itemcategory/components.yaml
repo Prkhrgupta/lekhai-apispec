@@ -1,0 +1,31 @@
+ItemCategoryRequest:
+  type: object
+  required: [name]
+  properties:
+    name:
+      type: string
+      example: Raw Cotton
+
+ItemCategoryResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    name:
+      type: string
+      example: Raw Cotton
+
+ItemCategorySearchableField:
+  type: string
+  enum: [NAME]
+
+ItemCategorySummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/ItemCategoryResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'

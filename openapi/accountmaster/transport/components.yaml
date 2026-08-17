@@ -30,3 +30,17 @@ TransportResponse:
     createdAt:
       type: string
       format: date-time
+
+TransportSearchableField:
+  type: string
+  enum: [NAME, GST_NO]
+
+TransportSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/TransportResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
