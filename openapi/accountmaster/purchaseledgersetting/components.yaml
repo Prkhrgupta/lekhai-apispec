@@ -1,10 +1,21 @@
 PurchaseType:
   type: string
-  enum: [IN_STATE, OUT_STATE, EXPORT]
+  enum: [IN_STATE, OUT_STATE, IMPORT, SEZ]
+  description: >
+    Place-of-supply classification. IN_STATE posts CGST + SGST; OUT_STATE, IMPORT
+    (IGST paid on the bill of entry) and SEZ post IGST.
+
+ItcEligibility:
+  type: string
+  enum: [ELIGIBLE, BLOCKED_17_5, INELIGIBLE]
+  description: >
+    Whether input tax on these purchases can be claimed. BLOCKED_17_5 is credit
+    blocked under section 17(5) of the CGST Act; for blocked or ineligible credit
+    the tax becomes part of the purchase cost.
 
 PurchaseLedgerSettingRequest:
   type: object
-  required: [purchaseLedgerId]
+  required: [purchaseLedgerId, purchaseType]
   properties:
     purchaseLedgerId:
       type: integer
@@ -12,28 +23,29 @@ PurchaseLedgerSettingRequest:
       description: Purchase ledger account this configuration belongs to
     purchaseType:
       $ref: '#/PurchaseType'
+    taxability:
+      $ref: '../../common/components.yaml#/GstTaxability'
+    itcEligibility:
+      $ref: '#/ItcEligibility'
+    reverseCharge:
+      type: boolean
+      default: false
+      description: >
+        Purchases under reverse charge (e.g. goods transport agency, notified goods
+        from unregistered suppliers). Requires the RCM payable ledgers.
     gstRate:
       type: number
       format: double
       default: 0.0
-    cgstPercentage:
-      type: number
-      format: double
-      default: 0.0
+      description: >
+        Total GST rate. The CGST/SGST/IGST split is derived by the server from
+        purchaseType and taxability.
     cgstLedgerId:
       type: integer
       format: int64
-    sgstPercentage:
-      type: number
-      format: double
-      default: 0.0
     sgstLedgerId:
       type: integer
       format: int64
-    igstPercentage:
-      type: number
-      format: double
-      default: 0.0
     igstLedgerId:
       type: integer
       format: int64
@@ -44,17 +56,19 @@ PurchaseLedgerSettingRequest:
     cessLedgerId:
       type: integer
       format: int64
+    rcmCgstPayableLedgerId:
+      type: integer
+      format: int64
+    rcmSgstPayableLedgerId:
+      type: integer
+      format: int64
+    rcmIgstPayableLedgerId:
+      type: integer
+      format: int64
     freightPackingLedgerId:
       type: integer
       format: int64
     roundOffLedgerId:
-      type: integer
-      format: int64
-    tdsPercentage:
-      type: number
-      format: double
-      default: 0.0
-    tdsLedgerId:
       type: integer
       format: int64
 
@@ -71,12 +85,19 @@ PurchaseLedgerSettingResponse:
       type: string
     purchaseType:
       $ref: '#/PurchaseType'
+    taxability:
+      $ref: '../../common/components.yaml#/GstTaxability'
+    itcEligibility:
+      $ref: '#/ItcEligibility'
+    reverseCharge:
+      type: boolean
     gstRate:
       type: number
       format: double
     cgstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     cgstLedgerId:
       type: integer
       format: int64
@@ -85,6 +106,7 @@ PurchaseLedgerSettingResponse:
     sgstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     sgstLedgerId:
       type: integer
       format: int64
@@ -93,6 +115,7 @@ PurchaseLedgerSettingResponse:
     igstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     igstLedgerId:
       type: integer
       format: int64
@@ -106,6 +129,21 @@ PurchaseLedgerSettingResponse:
       format: int64
     cessLedgerName:
       type: string
+    rcmCgstPayableLedgerId:
+      type: integer
+      format: int64
+    rcmCgstPayableLedgerName:
+      type: string
+    rcmSgstPayableLedgerId:
+      type: integer
+      format: int64
+    rcmSgstPayableLedgerName:
+      type: string
+    rcmIgstPayableLedgerId:
+      type: integer
+      format: int64
+    rcmIgstPayableLedgerName:
+      type: string
     freightPackingLedgerId:
       type: integer
       format: int64
@@ -115,14 +153,6 @@ PurchaseLedgerSettingResponse:
       type: integer
       format: int64
     roundOffLedgerName:
-      type: string
-    tdsPercentage:
-      type: number
-      format: double
-    tdsLedgerId:
-      type: integer
-      format: int64
-    tdsLedgerName:
       type: string
 
 PurchaseLedgerSettingSearchableField:

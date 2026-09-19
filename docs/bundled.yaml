@@ -1,0 +1,4140 @@
+openapi: 3.0.3
+info:
+  title: Lekhai API
+  description: API specification for Lekhai backend services
+  version: 1.1.4
+servers:
+  - url: http://localhost:8080
+    description: Local dev server
+  - url: https://lekhai.sitswiftcloud.in
+    description: UAT server
+security:
+  - bearerAuth: []
+tags:
+  - name: Lekhai
+    description: Lekhai APIs
+paths:
+  /account-group:
+    post:
+      tags:
+        - Account Group
+      summary: Create account group
+      operationId: createAccountGroup
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountGroupRequest'
+      responses:
+        '200':
+          description: Account group created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGroupResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Account Group
+      summary: Get account group options for a dropdown
+      operationId: getAccountGroupDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for account groups
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /account-group/summary:
+    get:
+      tags:
+        - Account Group
+      summary: Get account group summary
+      operationId: getAccountGroupSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/AccountGroupSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountGroupSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area:
+    post:
+      tags:
+        - Area
+      summary: Create area
+      operationId: createArea
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AreaRequest'
+      responses:
+        '201':
+          description: Area created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Area
+      summary: get Area options for dropdown
+      operationId: getAreaDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for area
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area/{id}:
+    get:
+      tags:
+        - Area
+      summary: Get area by ID
+      operationId: getArea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Area details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Area
+      summary: Update area
+      operationId: updateArea
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AreaRequest'
+      responses:
+        '200':
+          description: Area updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /area/summary:
+    get:
+      tags:
+        - Area
+      summary: Get area summary
+      operationId: getAreaSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/AreaSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AreaSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /broker:
+    post:
+      tags:
+        - Broker
+      summary: Create broker
+      operationId: createBroker
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokerRequest'
+      responses:
+        '200':
+          description: Broker created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Broker
+      summary: get broker options for dropdown
+      operationId: getBrokerDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for broker
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /broker/{id}:
+    get:
+      tags:
+        - Broker
+      summary: Get broker by ID
+      operationId: getBroker
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Broker details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Broker
+      summary: Update broker
+      operationId: updateBroker
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrokerRequest'
+      responses:
+        '200':
+          description: Broker updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /broker/summary:
+    get:
+      tags:
+        - Broker
+      summary: Get broker summary
+      operationId: getBrokerSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/BrokerSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrokerSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger:
+    post:
+      tags:
+        - Ledger
+      summary: Create ledger
+      operationId: createLedger
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger options for dropdown
+      operationId: getLedgerDropdownOptions
+      parameters:
+        - $ref: '#/components/parameters/AccountGroupFilter'
+      responses:
+        '200':
+          description: Dropdown options for ledger
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/{id}:
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger by ID
+      operationId: getLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Ledger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Ledger
+      summary: Update ledger
+      operationId: updateLedger
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LedgerRequest'
+      responses:
+        '200':
+          description: Ledger updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/{id}/balance:
+    get:
+      tags:
+        - Ledger
+      summary: Get current balance of a ledger
+      operationId: getLedgerBalance
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fromDate
+          in: query
+          description: Filter balance from this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Filter balance up to this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: Current balance of the ledger
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerBalanceResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/by-gstin:
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger by GSTIN
+      operationId: getLedgerByGstin
+      parameters:
+        - name: gstin
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Ledger details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /ledger/summary:
+    get:
+      tags:
+        - Ledger
+      summary: Get ledger summary
+      operationId: getLedgerSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search/sort by
+          schema:
+            $ref: '#/components/schemas/LedgerSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /sale-ledger-setting:
+    post:
+      tags:
+        - SaleLedgerSetting
+      summary: Create sale ledger setting
+      operationId: createSaleLedgerSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleLedgerSettingRequest'
+      responses:
+        '201':
+          description: Sale ledger setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - SaleLedgerSetting
+      summary: get sale ledger setting options for dropdown
+      operationId: getSaleLedgerSettingDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for sale ledger setting
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /sale-ledger-setting/{id}:
+    get:
+      tags:
+        - SaleLedgerSetting
+      summary: Get sale ledger setting by ID
+      operationId: getSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sale ledger setting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - SaleLedgerSetting
+      summary: Update sale ledger setting
+      operationId: updateSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SaleLedgerSettingRequest'
+      responses:
+        '200':
+          description: Sale ledger setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - SaleLedgerSetting
+      summary: Delete sale ledger setting
+      operationId: deleteSaleLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Sale ledger setting deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /sale-ledger-setting/summary:
+    get:
+      tags:
+        - SaleLedgerSetting
+      summary: Get sale ledger setting summary
+      operationId: getSaleLedgerSettingSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/SaleLedgerSettingSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaleLedgerSettingSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /purchase-ledger-setting:
+    post:
+      tags:
+        - PurchaseLedgerSetting
+      summary: Create purchase ledger setting
+      operationId: createPurchaseLedgerSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLedgerSettingRequest'
+      responses:
+        '201':
+          description: Purchase ledger setting created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - PurchaseLedgerSetting
+      summary: get purchase ledger setting options for dropdown
+      operationId: getPurchaseLedgerSettingDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for purchase ledger setting
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /purchase-ledger-setting/{id}:
+    get:
+      tags:
+        - PurchaseLedgerSetting
+      summary: Get purchase ledger setting by ID
+      operationId: getPurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Purchase ledger setting details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - PurchaseLedgerSetting
+      summary: Update purchase ledger setting
+      operationId: updatePurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PurchaseLedgerSettingRequest'
+      responses:
+        '200':
+          description: Purchase ledger setting updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLedgerSettingResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - PurchaseLedgerSetting
+      summary: Delete purchase ledger setting
+      operationId: deletePurchaseLedgerSetting
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Purchase ledger setting deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /purchase-ledger-setting/summary:
+    get:
+      tags:
+        - PurchaseLedgerSetting
+      summary: Get purchase ledger setting summary
+      operationId: getPurchaseLedgerSettingSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/PurchaseLedgerSettingSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PurchaseLedgerSettingSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /state:
+    get:
+      tags:
+        - State
+      summary: get state options for dropdown
+      operationId: getStateDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for state
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /tds-section:
+    get:
+      tags:
+        - TdsSection
+      summary: get TDS section (nature of payment) options for dropdown
+      operationId: getTdsSectionDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for TDS sections; code holds the section code (e.g. 194Q)
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transport:
+    post:
+      tags:
+        - Transport
+      summary: Create transport
+      operationId: createTransport
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransportRequest'
+      responses:
+        '200':
+          description: Transport created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Transport
+      summary: get dropdown options for transport
+      operationId: getTransportDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for transport
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transport/{id}:
+    get:
+      tags:
+        - Transport
+      summary: Get transport by ID
+      operationId: getTransport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Transport details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Transport
+      summary: Update transport
+      operationId: updateTransport
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransportRequest'
+      responses:
+        '200':
+          description: Transport updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transport/summary:
+    get:
+      tags:
+        - Transport
+      summary: Get transport summary
+      operationId: getTransportSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/TransportSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransportSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /commodity:
+    post:
+      tags:
+        - Commodity
+      summary: Create commodity
+      operationId: createCommodity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityRequest'
+      responses:
+        '200':
+          description: Commodity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommodityResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - Commodity
+      summary: List all commodities
+      operationId: listCommodities
+      responses:
+        '200':
+          description: List of commodities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommodityResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /commodity/{id}:
+    get:
+      tags:
+        - Commodity
+      summary: Get commodity by ID
+      operationId: getCommodity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Commodity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommodityResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - Commodity
+      summary: Update commodity
+      operationId: updateCommodity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommodityRequest'
+      responses:
+        '200':
+          description: Commodity updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommodityResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Commodity
+      summary: Delete commodity
+      operationId: deleteCommodity
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Commodity deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /commodity/summary:
+    get:
+      tags:
+        - Commodity
+      summary: Get commodity summary
+      operationId: getCommoditySummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search/sort by
+          schema:
+            $ref: '#/components/schemas/CommoditySearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommoditySummaryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-category:
+    post:
+      tags:
+        - ItemCategory
+      summary: Create item category
+      operationId: createItemCategory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemCategoryRequest'
+      responses:
+        '201':
+          description: Item category created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCategoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - ItemCategory
+      summary: get item category options for dropdown
+      operationId: getItemCategoryDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for item category
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-category/{id}:
+    get:
+      tags:
+        - ItemCategory
+      summary: Get item category by ID
+      operationId: getItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Item category details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCategoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - ItemCategory
+      summary: Update item category
+      operationId: updateItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemCategoryRequest'
+      responses:
+        '200':
+          description: Item category updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCategoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - ItemCategory
+      summary: Delete item category
+      operationId: deleteItemCategory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Item category deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-category/summary:
+    get:
+      tags:
+        - ItemCategory
+      summary: Get item category summary
+      operationId: getItemCategorySummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/ItemCategorySearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemCategorySummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-factory:
+    post:
+      tags:
+        - ItemFactory
+      summary: Create item factory
+      operationId: createItemFactory
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemFactoryRequest'
+      responses:
+        '201':
+          description: Item factory created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemFactoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - ItemFactory
+      summary: get item factory options for dropdown
+      operationId: getItemFactoryDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for item factory
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-factory/{id}:
+    get:
+      tags:
+        - ItemFactory
+      summary: Get item factory by ID
+      operationId: getItemFactory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Item factory details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemFactoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - ItemFactory
+      summary: Update item factory
+      operationId: updateItemFactory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ItemFactoryRequest'
+      responses:
+        '200':
+          description: Item factory updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemFactoryResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - ItemFactory
+      summary: Delete item factory
+      operationId: deleteItemFactory
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Item factory deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /item-factory/summary:
+    get:
+      tags:
+        - ItemFactory
+      summary: Get item factory summary
+      operationId: getItemFactorySummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/ItemFactorySearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ItemFactorySummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /stock-item:
+    post:
+      tags:
+        - StockItem
+      summary: Create stock item
+      operationId: createStockItem
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockItemRequest'
+      responses:
+        '201':
+          description: Stock item created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockItemResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    get:
+      tags:
+        - StockItem
+      summary: get stock item options for dropdown
+      operationId: getStockItemDropdownOptions
+      responses:
+        '200':
+          description: Dropdown options for stock item
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/DropdownItem'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /stock-item/{id}:
+    get:
+      tags:
+        - StockItem
+      summary: Get stock item by ID
+      operationId: getStockItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Stock item details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockItemResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    put:
+      tags:
+        - StockItem
+      summary: Update stock item
+      operationId: updateStockItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/StockItemRequest'
+      responses:
+        '200':
+          description: Stock item updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockItemResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - StockItem
+      summary: Delete stock item
+      operationId: deleteStockItem
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Stock item deleted
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /stock-item/summary:
+    get:
+      tags:
+        - StockItem
+      summary: Get stock item summary
+      operationId: getStockItemSummaries
+      x-spring-paginated: true
+      parameters:
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: searchableField
+          in: query
+          description: Field to search by
+          schema:
+            $ref: '#/components/schemas/StockItemSearchableField'
+          required: false
+        - name: searchText
+          in: query
+          description: Search query text
+          schema:
+            type: string
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StockItemSummaryPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /payment-voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Create payment voucher
+      operationId: createPaymentVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentVoucherRequest'
+      responses:
+        '200':
+          description: Payment voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /receipt-voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Create receipt voucher
+      operationId: createReceiptVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ReceiptVoucherRequest'
+      responses:
+        '200':
+          description: Receipt voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /contra-voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Create contra voucher
+      operationId: createContraVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ContraVoucherRequest'
+      responses:
+        '200':
+          description: Contra voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /journal-voucher:
+    post:
+      tags:
+        - Voucher
+      summary: Create journal voucher
+      operationId: createJournalVoucher
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JournalVoucherRequest'
+      responses:
+        '200':
+          description: Journal voucher created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VoucherResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /account-ledger/{ledgerId}:
+    get:
+      tags:
+        - AccountLedger
+      summary: Get account ledger entries
+      operationId: getAccountLedgerEntries
+      x-spring-paginated: true
+      parameters:
+        - name: ledgerId
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+        - name: fromDate
+          in: query
+          description: Filter entries from this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Filter entries up to this date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountLedgerPageResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /login:
+    get:
+      tags:
+        - Auth
+      summary: Login to the application
+      operationId: login
+      description: Authenticates the user using Basic Authentication and returns a JWT token or a list of shops if multiple are available.
+      security:
+        - basicAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /auth/shop-token:
+    get:
+      tags:
+        - Auth
+      summary: Get token for Shop Code
+      operationId: generateTokenForShopCode
+      description: Authenticates the user using a JWT token and a shop code provided in the header.
+      parameters:
+        - name: shopcode
+          in: header
+          required: true
+          description: The code of the shop to login to.
+          schema:
+            type: integer
+      security:
+        - bearerAuth: []
+      responses:
+        '200':
+          description: Successful login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /menu:
+    get:
+      tags:
+        - Menu
+      summary: Get user menu
+      operationId: getMenu
+      description: Returns the main menu and favorites for the authenticated user based on their permissions.
+      responses:
+        '200':
+          description: Successful retrieval of menu
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MenuResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /menu/topbar:
+    get:
+      tags:
+        - Menu
+      summary: Get top bar details
+      operationId: getTopBar
+      description: Returns firm name and GSTIN for the top bar display.
+      responses:
+        '200':
+          description: Successful retrieval of top bar details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TopBarResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs for a transporter filtered by GSTIN, expiry date, and status
+      operationId: getTransporterEwbs
+      parameters:
+        - $ref: '#/components/parameters/FromDateParam'
+        - $ref: '#/components/parameters/ToDateParam'
+        - $ref: '#/components/parameters/IncludeDeliveredParam'
+        - $ref: '#/components/parameters/StatusParam'
+      responses:
+        '200':
+          description: List of EWBs matching the filters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EwbSummary'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/expiring:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWBs expiring today, tomorrow, or day after
+      operationId: getEwbExpiring
+      parameters:
+        - $ref: '#/components/parameters/DayParam'
+        - $ref: '#/components/parameters/IncludeDeliveredParam'
+      responses:
+        '200':
+          description: List of EWBs expiring on the specified date
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EwbSummary'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/expiring/download:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Download expiring EWBs in specified format
+      operationId: downloadEwbExpiring
+      parameters:
+        - $ref: '#/components/parameters/DayParam'
+        - $ref: '#/components/parameters/IncludeDeliveredParam'
+        - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Downloaded file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Get EWB details by EWB number
+      operationId: getEwbDetails
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '200':
+          description: EWB details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EwbDetails'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}/delivered:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as delivered
+      operationId: markEwbDelivered
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '204':
+          description: EWB marked as delivered
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+    delete:
+      tags:
+        - Transporter EWB
+      summary: Mark an EWB as non-delivered
+      operationId: markEwbNonDelivered
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      responses:
+        '204':
+          description: EWB marked as non-delivered
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/download:
+    get:
+      tags:
+        - Transporter EWB
+      summary: Download EWBs in specified format
+      operationId: downloadTransporterEwbs
+      parameters:
+        - $ref: '#/components/parameters/FromDateParam'
+        - $ref: '#/components/parameters/ToDateParam'
+        - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Downloaded file
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+            text/csv:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /transporter/ewb/{ewbNo}/extend:
+    post:
+      tags:
+        - Transporter EWB
+      summary: Extend validity of an EWB
+      operationId: extendEwbValidity
+      parameters:
+        - $ref: '#/components/parameters/EwbNoPathParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EwbExtendRequest'
+      responses:
+        '200':
+          description: EWB validity extended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EwbExtendResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+  /gsp/ewb-credentials:
+    put:
+      tags:
+        - GSP Credentials
+      summary: Create or update GSP credentials for a transporter (identified by GSTIN in request body)
+      operationId: upsertGspCredentials
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GspCredentialsRequest'
+      responses:
+        '200':
+          description: Credentials created or updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GspCredentialsResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    DropdownItem:
+      type: object
+      required:
+        - label
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier for the dropdown option
+          example: 1
+        label:
+          type: string
+          description: Display text for the dropdown option
+          example: Option 1
+        code:
+          type: string
+          description: generic Unique identifier, if id is not applicable
+          example: JP
+    Error:
+      type: object
+      properties:
+        success:
+          type: boolean
+          example: false
+        message:
+          type: string
+          example: null
+        data:
+          type: object
+        error:
+          type: string
+          example: Unexpected error
+        timestamp:
+          type: string
+          format: date-time
+    AccountGroupRequest:
+      type: object
+      required:
+        - name
+        - parentId
+      properties:
+        name:
+          type: string
+          example: Fixed Assets
+        parentId:
+          type: integer
+          format: int64
+          example: 5
+    AccountGroupResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Sundry Creditor
+    AccountGroupSearchableField:
+      type: string
+      enum:
+        - NAME
+    AccountGroupSummaryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+    PaginationMeta:
+      type: object
+      properties:
+        totalPages:
+          type: integer
+          format: int32
+        totalElements:
+          type: integer
+          format: int64
+        page:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+    AccountGroupSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountGroupSummaryItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    AreaRequest:
+      type: object
+      required:
+        - areaName
+      properties:
+        areaName:
+          type: string
+          example: Kanpur
+    AreaResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        areaName:
+          type: string
+          example: Kanpur
+    AreaSearchableField:
+      type: string
+      enum:
+        - NAME
+    AreaSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AreaResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    BrokerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+    BrokerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Rajesh Kumar
+        phone:
+          type: string
+          example: '9876543210'
+    BrokerSearchableField:
+      type: string
+      enum:
+        - NAME
+    BrokerSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrokerResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    AccountEntryType:
+      type: string
+      enum:
+        - DR
+        - CR
+    MailTo:
+      type: object
+      properties:
+        mail_to_line_1:
+          type: string
+        mail_to_line_2:
+          type: string
+        mail_to_line_3:
+          type: string
+    RegistrationType:
+      type: string
+      enum:
+        - COMPOSITION
+        - CUSTOMER
+        - REGULAR
+        - UNREGISTERED
+    PartyType:
+      type: string
+      enum:
+        - NOT_APPLICABLE
+        - DEEMED_EXPORT
+        - GOVERNMENT_ENTITY
+        - SEZ
+    GstInDetail:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    DeducteeType:
+      type: string
+      enum:
+        - INDIVIDUAL_HUF
+        - OTHERS
+      description: Deductee status; some TDS sections (e.g. 194C) apply a different rate to individuals/HUFs
+    LedgerRequest:
+      type: object
+      required:
+        - name
+      properties:
+        gst_in_number:
+          type: string
+        name:
+          type: string
+        account_group:
+          type: integer
+          format: int64
+        opening_balance:
+          type: number
+        account_entry_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        legal_name:
+          type: string
+        Location:
+          type: string
+        country_name:
+          type: string
+        state_and_code:
+          type: string
+        mail_to:
+          $ref: '#/components/schemas/MailTo'
+        area_id:
+          type: integer
+          format: int64
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        pan:
+          type: string
+        credit_limit:
+          type: number
+        transport_id:
+          type: integer
+          format: int64
+        tan_number:
+          type: string
+        broker_id:
+          type: integer
+          format: int64
+        gstInDetailsPresent:
+          type: boolean
+        gst_in_details:
+          $ref: '#/components/schemas/GstInDetail'
+        aadhaar_number:
+          type: string
+        image_uploaded:
+          type: boolean
+        email:
+          type: string
+        msme_number:
+          type: string
+        distance:
+          type: number
+          format: double
+        pin_code:
+          type: string
+        city:
+          type: string
+        tds_applicable:
+          type: boolean
+          default: false
+          description: Whether TDS is deducted on payments/credits to this party
+        tds_section_id:
+          type: integer
+          format: int64
+          description: Default TDS section (nature of payment) for this party
+        deductee_type:
+          $ref: '#/components/schemas/DeducteeType'
+        ldc_certificate_number:
+          type: string
+          description: Lower/nil deduction certificate number
+        ldc_rate:
+          type: number
+          format: double
+          description: TDS rate allowed by the lower deduction certificate
+        ldc_valid_from:
+          type: string
+          format: date
+        ldc_valid_to:
+          type: string
+          format: date
+    LedgerArea:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state_code:
+          type: string
+    LedgerBroker:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+    LedgerTransport:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        phone:
+          type: string
+        gst:
+          type: string
+    GstInDetailResponse:
+      type: object
+      properties:
+        registration_type:
+          $ref: '#/components/schemas/RegistrationType'
+        is_e_commerce_operator:
+          type: boolean
+        gst_in_uin:
+          type: string
+        party_type:
+          $ref: '#/components/schemas/PartyType'
+    LedgerAddress:
+      type: object
+      properties:
+        address_line_1:
+          type: string
+        address_line_2:
+          type: string
+        address_line_3:
+          type: string
+        city:
+          type: string
+        state_id:
+          type: string
+        area_id:
+          type: integer
+          format: int64
+        pincode:
+          type: string
+        distance:
+          type: number
+    LedgerResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        legal_name:
+          type: string
+        account_group_id:
+          type: integer
+          format: int64
+        opening_balance:
+          type: number
+        opening_balance_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        credit_limit:
+          type: number
+        pan:
+          type: string
+        aadhaar:
+          type: string
+        tan:
+          type: string
+        email:
+          type: string
+        msme:
+          type: string
+        contact_person:
+          type: string
+        phone_number:
+          type: integer
+          format: int64
+        gst_in_number:
+          type: string
+        location:
+          type: string
+        is_active:
+          type: boolean
+        area:
+          $ref: '#/components/schemas/LedgerArea'
+        broker:
+          $ref: '#/components/schemas/LedgerBroker'
+        transport:
+          $ref: '#/components/schemas/LedgerTransport'
+        gstin_details:
+          $ref: '#/components/schemas/GstInDetailResponse'
+        address:
+          $ref: '#/components/schemas/LedgerAddress'
+        tds_applicable:
+          type: boolean
+        tds_section_id:
+          type: integer
+          format: int64
+        tds_section_label:
+          type: string
+        deductee_type:
+          $ref: '#/components/schemas/DeducteeType'
+        ldc_certificate_number:
+          type: string
+        ldc_rate:
+          type: number
+          format: double
+        ldc_valid_from:
+          type: string
+          format: date
+        ldc_valid_to:
+          type: string
+          format: date
+        created_at:
+          type: string
+          format: date-time
+    LedgerBalanceResponse:
+      type: object
+      properties:
+        ledger_id:
+          type: integer
+          format: int64
+        current_balance:
+          type: number
+        current_balance_type:
+          $ref: '#/components/schemas/AccountEntryType'
+        debit_amount:
+          type: number
+        credit_amount:
+          type: number
+    LedgerSearchableField:
+      type: string
+      enum:
+        - NAME
+        - AREA
+    LedgerSummaryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        state:
+          type: string
+        area:
+          type: string
+        accountGroup:
+          type: string
+        gstin:
+          type: string
+    LedgerSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/LedgerSummaryItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    SaleType:
+      type: string
+      enum:
+        - IN_STATE
+        - OUT_STATE
+        - EXPORT_WITH_IGST
+        - EXPORT_UNDER_LUT
+        - SEZ_WITH_IGST
+        - SEZ_UNDER_LUT
+      description: |
+        Place-of-supply classification. IN_STATE posts CGST + SGST; OUT_STATE and the *_WITH_IGST types post IGST; *_UNDER_LUT types are zero-rated and post no tax.
+    GstTaxability:
+      type: string
+      enum:
+        - TAXABLE
+        - EXEMPT
+        - NIL_RATED
+        - NON_GST
+      description: |
+        GST taxability of the supplies booked to a sale/purchase ledger. Only TAXABLE supplies carry CGST/SGST/IGST; the rest are reported separately in GSTR-1 / GSTR-3B.
+    SaleLedgerSettingRequest:
+      type: object
+      required:
+        - saleLedgerId
+        - saleType
+      properties:
+        saleLedgerId:
+          type: integer
+          format: int64
+          description: Sale ledger account this configuration belongs to
+        saleType:
+          $ref: '#/components/schemas/SaleType'
+        taxability:
+          $ref: '#/components/schemas/GstTaxability'
+        gstRate:
+          type: number
+          format: double
+          default: 0
+          description: |
+            Total GST rate. The CGST/SGST/IGST split is derived by the server from saleType and taxability.
+        cgstLedgerId:
+          type: integer
+          format: int64
+        sgstLedgerId:
+          type: integer
+          format: int64
+        igstLedgerId:
+          type: integer
+          format: int64
+        cessPercentage:
+          type: number
+          format: double
+          default: 0
+        cessLedgerId:
+          type: integer
+          format: int64
+        freightPackingLedgerId:
+          type: integer
+          format: int64
+        roundOffLedgerId:
+          type: integer
+          format: int64
+    SaleLedgerSettingResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        saleLedgerId:
+          type: integer
+          format: int64
+        saleLedgerName:
+          type: string
+        saleType:
+          $ref: '#/components/schemas/SaleType'
+        taxability:
+          $ref: '#/components/schemas/GstTaxability'
+        gstRate:
+          type: number
+          format: double
+        cgstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        cgstLedgerId:
+          type: integer
+          format: int64
+        cgstLedgerName:
+          type: string
+        sgstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        sgstLedgerId:
+          type: integer
+          format: int64
+        sgstLedgerName:
+          type: string
+        igstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        igstLedgerId:
+          type: integer
+          format: int64
+        igstLedgerName:
+          type: string
+        cessPercentage:
+          type: number
+          format: double
+        cessLedgerId:
+          type: integer
+          format: int64
+        cessLedgerName:
+          type: string
+        freightPackingLedgerId:
+          type: integer
+          format: int64
+        freightPackingLedgerName:
+          type: string
+        roundOffLedgerId:
+          type: integer
+          format: int64
+        roundOffLedgerName:
+          type: string
+    SaleLedgerSettingSearchableField:
+      type: string
+      enum:
+        - SALE_LEDGER_NAME
+    SaleLedgerSettingSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/SaleLedgerSettingResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    PurchaseType:
+      type: string
+      enum:
+        - IN_STATE
+        - OUT_STATE
+        - IMPORT
+        - SEZ
+      description: |
+        Place-of-supply classification. IN_STATE posts CGST + SGST; OUT_STATE, IMPORT (IGST paid on the bill of entry) and SEZ post IGST.
+    ItcEligibility:
+      type: string
+      enum:
+        - ELIGIBLE
+        - BLOCKED_17_5
+        - INELIGIBLE
+      description: |
+        Whether input tax on these purchases can be claimed. BLOCKED_17_5 is credit blocked under section 17(5) of the CGST Act; for blocked or ineligible credit the tax becomes part of the purchase cost.
+    PurchaseLedgerSettingRequest:
+      type: object
+      required:
+        - purchaseLedgerId
+        - purchaseType
+      properties:
+        purchaseLedgerId:
+          type: integer
+          format: int64
+          description: Purchase ledger account this configuration belongs to
+        purchaseType:
+          $ref: '#/components/schemas/PurchaseType'
+        taxability:
+          $ref: '#/components/schemas/GstTaxability'
+        itcEligibility:
+          $ref: '#/components/schemas/ItcEligibility'
+        reverseCharge:
+          type: boolean
+          default: false
+          description: |
+            Purchases under reverse charge (e.g. goods transport agency, notified goods from unregistered suppliers). Requires the RCM payable ledgers.
+        gstRate:
+          type: number
+          format: double
+          default: 0
+          description: |
+            Total GST rate. The CGST/SGST/IGST split is derived by the server from purchaseType and taxability.
+        cgstLedgerId:
+          type: integer
+          format: int64
+        sgstLedgerId:
+          type: integer
+          format: int64
+        igstLedgerId:
+          type: integer
+          format: int64
+        cessPercentage:
+          type: number
+          format: double
+          default: 0
+        cessLedgerId:
+          type: integer
+          format: int64
+        rcmCgstPayableLedgerId:
+          type: integer
+          format: int64
+        rcmSgstPayableLedgerId:
+          type: integer
+          format: int64
+        rcmIgstPayableLedgerId:
+          type: integer
+          format: int64
+        freightPackingLedgerId:
+          type: integer
+          format: int64
+        roundOffLedgerId:
+          type: integer
+          format: int64
+    PurchaseLedgerSettingResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        purchaseLedgerId:
+          type: integer
+          format: int64
+        purchaseLedgerName:
+          type: string
+        purchaseType:
+          $ref: '#/components/schemas/PurchaseType'
+        taxability:
+          $ref: '#/components/schemas/GstTaxability'
+        itcEligibility:
+          $ref: '#/components/schemas/ItcEligibility'
+        reverseCharge:
+          type: boolean
+        gstRate:
+          type: number
+          format: double
+        cgstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        cgstLedgerId:
+          type: integer
+          format: int64
+        cgstLedgerName:
+          type: string
+        sgstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        sgstLedgerId:
+          type: integer
+          format: int64
+        sgstLedgerName:
+          type: string
+        igstPercentage:
+          type: number
+          format: double
+          description: Derived from gstRate (read-only)
+        igstLedgerId:
+          type: integer
+          format: int64
+        igstLedgerName:
+          type: string
+        cessPercentage:
+          type: number
+          format: double
+        cessLedgerId:
+          type: integer
+          format: int64
+        cessLedgerName:
+          type: string
+        rcmCgstPayableLedgerId:
+          type: integer
+          format: int64
+        rcmCgstPayableLedgerName:
+          type: string
+        rcmSgstPayableLedgerId:
+          type: integer
+          format: int64
+        rcmSgstPayableLedgerName:
+          type: string
+        rcmIgstPayableLedgerId:
+          type: integer
+          format: int64
+        rcmIgstPayableLedgerName:
+          type: string
+        freightPackingLedgerId:
+          type: integer
+          format: int64
+        freightPackingLedgerName:
+          type: string
+        roundOffLedgerId:
+          type: integer
+          format: int64
+        roundOffLedgerName:
+          type: string
+    PurchaseLedgerSettingSearchableField:
+      type: string
+      enum:
+        - PURCHASE_LEDGER_NAME
+    PurchaseLedgerSettingSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/PurchaseLedgerSettingResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    TransportRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
+    TransportResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Blue Dart
+        phone:
+          type: string
+          example: '9876543210'
+        gstNo:
+          type: string
+          example: 09AAFCP1234A1Z5
+        createdAt:
+          type: string
+          format: date-time
+    TransportSearchableField:
+      type: string
+      enum:
+        - NAME
+        - GST_NO
+    TransportSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransportResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    CommodityResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        hsn_sac_code:
+          type: string
+        description:
+          type: string
+          description: Description for GSTR-1 / Eway Bill
+        gst_rate_sale:
+          type: number
+          format: double
+        gst_rate_purchase:
+          type: number
+          format: double
+        unit_of_measurement:
+          type: string
+        is_active:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+    CommodityRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+        hsn_sac_code:
+          type: string
+        description:
+          type: string
+          description: Description for GSTR-1 / Eway Bill
+        gst_rate_sale:
+          type: number
+          format: double
+        gst_rate_purchase:
+          type: number
+          format: double
+        unit_of_measurement:
+          type: string
+    CommoditySearchableField:
+      type: string
+      enum:
+        - NAME
+        - HSN_SAC_CODE
+    CommoditySummaryColumn:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        width:
+          type: integer
+          format: int32
+    CommoditySummaryItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        hsn_sac_code:
+          type: string
+        unit_of_measurement:
+          type: string
+        gst_rate_sale:
+          type: number
+          format: double
+        gst_rate_purchase:
+          type: number
+          format: double
+    CommoditySummaryResponse:
+      type: object
+      properties:
+        columns:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommoditySummaryColumn'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CommoditySummaryItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    ItemCategoryRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Raw Cotton
+    ItemCategoryResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Raw Cotton
+    ItemCategorySearchableField:
+      type: string
+      enum:
+        - NAME
+    ItemCategorySummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemCategoryResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    ItemFactoryRequest:
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          example: Spinning Unit
+        percentage:
+          type: number
+          format: double
+          default: 0
+          example: 2.5
+    ItemFactoryResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+          example: Spinning Unit
+        percentage:
+          type: number
+          format: double
+          example: 2.5
+    ItemFactorySearchableField:
+      type: string
+      enum:
+        - NAME
+    ItemFactorySummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemFactoryResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    FinishedRawMaterial:
+      type: string
+      enum:
+        - FINISHED
+        - RAW
+    RatePerUnit:
+      type: string
+      enum:
+        - PCS
+        - METER
+    StockItemRequest:
+      type: object
+      required:
+        - itemName
+      properties:
+        finishedRawMaterial:
+          $ref: '#/components/schemas/FinishedRawMaterial'
+        itemCategoryId:
+          type: integer
+          format: int64
+        itemFactoryId:
+          type: integer
+          format: int64
+        itemName:
+          type: string
+          example: Cotton Shirt
+        purchasePrice:
+          type: number
+          format: double
+          default: 0
+        salePrice:
+          type: number
+          format: double
+          default: 0
+        commodityId:
+          type: integer
+          format: int64
+        ratePer:
+          $ref: '#/components/schemas/RatePerUnit'
+        openingPcs:
+          type: number
+          format: double
+          default: 0
+        openingMeter:
+          type: number
+          format: double
+          default: 0
+        openingRate:
+          type: number
+          format: double
+          default: 0
+        openingValue:
+          type: number
+          format: double
+          default: 0
+    StockItemResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        finishedRawMaterial:
+          $ref: '#/components/schemas/FinishedRawMaterial'
+        itemCategoryId:
+          type: integer
+          format: int64
+        itemCategoryName:
+          type: string
+        itemFactoryId:
+          type: integer
+          format: int64
+        itemFactoryName:
+          type: string
+        itemName:
+          type: string
+          example: Cotton Shirt
+        purchasePrice:
+          type: number
+          format: double
+        salePrice:
+          type: number
+          format: double
+        commodityId:
+          type: integer
+          format: int64
+        commodityName:
+          type: string
+        hsnCode:
+          type: string
+        gstPercentage:
+          type: number
+          format: double
+        ratePer:
+          $ref: '#/components/schemas/RatePerUnit'
+        openingPcs:
+          type: number
+          format: double
+        openingMeter:
+          type: number
+          format: double
+        openingRate:
+          type: number
+          format: double
+        openingValue:
+          type: number
+          format: double
+    StockItemSearchableField:
+      type: string
+      enum:
+        - NAME
+    StockItemSummaryPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/StockItemResponse'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    VoucherEntry:
+      type: object
+      properties:
+        account_id:
+          type: integer
+          format: int64
+        amount:
+          type: number
+        remarks:
+          type: string
+    PaymentVoucherRequest:
+      type: object
+      properties:
+        voucher_date:
+          type: string
+          format: date
+        payment_account_id:
+          type: integer
+          format: int64
+        narration:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+    VoucherResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        voucher_number:
+          type: string
+        amount:
+          type: number
+    ReceiptVoucherRequest:
+      type: object
+      properties:
+        voucher_date:
+          type: string
+          format: date
+        receipt_account_id:
+          type: integer
+          format: int64
+        narration:
+          type: string
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+    ContraVoucherRequest:
+      type: object
+      properties:
+        voucher_date:
+          type: string
+          format: date
+        narration:
+          type: string
+        debit_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+        credit_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+    JournalVoucherRequest:
+      type: object
+      properties:
+        voucher_date:
+          type: string
+          format: date
+        narration:
+          type: string
+        debit_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+        credit_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/VoucherEntry'
+    AccountLedgerContraItem:
+      type: object
+      properties:
+        ledgerId:
+          type: integer
+          format: int64
+        ledgerName:
+          type: string
+        debitAmt:
+          type: number
+        creditAmt:
+          type: number
+        remarks:
+          type: string
+    AccountLedgerEntryItem:
+      type: object
+      properties:
+        date:
+          type: string
+        ledgerName:
+          type: string
+        vtype:
+          type: string
+        debitAmt:
+          type: number
+        creditAmt:
+          type: number
+        balance:
+          type: number
+        crdr:
+          $ref: '#/components/schemas/AccountEntryType'
+        contraEntries:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountLedgerContraItem'
+    AccountLedgerPageResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountLedgerEntryItem'
+        pagination:
+          $ref: '#/components/schemas/PaginationMeta'
+    ShopMenu:
+      type: object
+      properties:
+        name:
+          type: string
+          example: Firm Name
+        shopCode:
+          type: integer
+          example: 1234
+        role:
+          type: string
+          enum:
+            - SUPER_ADMIN
+            - SHOP_OWNER
+            - ADMIN
+            - USER
+          example: ADMIN
+    LoginResponse:
+      type: object
+      properties:
+        shopMenu:
+          type: array
+          items:
+            $ref: '#/components/schemas/ShopMenu'
+        token:
+          type: string
+          example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+    MenuItem:
+      type: object
+      required:
+        - id
+        - title
+        - icon
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        icon:
+          type: string
+        route:
+          type: string
+        children:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    MenuResponse:
+      type: object
+      properties:
+        Main Menu:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+        Favourites:
+          type: array
+          items:
+            $ref: '#/components/schemas/MenuItem'
+    TopBarResponse:
+      type: object
+      required:
+        - firmName
+        - gstin
+        - name
+      properties:
+        firmName:
+          type: string
+        gstin:
+          type: string
+        name:
+          type: string
+    EwbStatus:
+      type: string
+      enum:
+        - ACTIVE
+        - REJECTED
+      description: Status of the EWB
+    EwbSummary:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - vehicleNo
+        - consigner
+        - consignee
+        - docNo
+        - docDate
+        - destination
+        - source
+        - validUpTo
+        - isDelivered
+        - status
+        - actualDistance
+      properties:
+        ewbNo:
+          type: string
+          example: '451716215301'
+        ewbDate:
+          type: string
+          format: date-time
+          example: '2026-04-24T10:30:00Z'
+        status:
+          $ref: '#/components/schemas/EwbStatus'
+        docNo:
+          type: string
+          example: C09AB27100001171
+        docDate:
+          type: string
+          format: date-time
+          example: '2026-04-24T00:00:00Z'
+        destination:
+          type: string
+          example: MAINPURI, UP
+        source:
+          type: string
+          example: KANPUR, UP
+        validUpTo:
+          type: string
+          format: date-time
+          example: '2026-04-27T11:20:00Z'
+        isDelivered:
+          type: boolean
+          example: false
+        consigner:
+          type: string
+          example: RAMDAYAL & SONS Pvt Limited
+        consignee:
+          type: string
+          example: ITC Limited
+        actualDistance:
+          type: integer
+          example: 198
+        vehicleNo:
+          type: string
+          example: UP77T1727
+    Day:
+      type: string
+      enum:
+        - TODAY
+        - TOMORROW
+        - ALREADY_EXPIRED
+      description: Relative day for expiring EWB lookup
+    Format:
+      type: string
+      enum:
+        - EXCEL
+        - PDF
+        - CSV
+      description: Output format for downloadable content
+    VehicleDetail:
+      type: object
+      properties:
+        vehicleNo:
+          type: string
+          example: UP77T1727
+        fromPlace:
+          type: string
+          example: Kanpur
+        fromState:
+          type: string
+          example: UP
+    EwbDetails:
+      type: object
+      required:
+        - ewbNo
+        - ewbDate
+        - fromState
+        - fromPlace
+        - fromPinCode
+        - toState
+        - toPlace
+        - toPinCode
+        - transDocNo
+        - transDocDate
+        - vehicleNo
+        - consigner
+        - consignee
+        - actualDistance
+        - vehicleDetails
+      properties:
+        ewbNo:
+          type: string
+          example: '521008831493'
+        ewbDate:
+          type: string
+          format: date-time
+          example: '2022-01-19T18:08:00Z'
+        fromPlace:
+          type: string
+          example: FRAZER TOWN
+        fromState:
+          type: string
+          example: Karnataka
+        toPlace:
+          type: string
+          example: Beml Nagar
+        toState:
+          type: string
+          example: Karnataka
+        transDocNo:
+          type: string
+          example: ''
+        transDocDate:
+          type: string
+          format: date-time
+          example: null
+        fromPinCode:
+          type: integer
+          example: 605001
+        toPinCode:
+          type: integer
+          example: 562160
+        vehicleNo:
+          type: string
+          example: UP77T1727
+        consigner:
+          type: string
+          example: RAMDAYAL & SONS Pvt Limited
+        consignee:
+          type: string
+          example: ITC Limited
+        actualDistance:
+          type: integer
+          example: 198
+        vehicleDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/VehicleDetail'
+    ExtensionReason:
+      type: string
+      enum:
+        - NATURAL_CALAMITY
+        - LAW_AND_ORDER
+        - TRANSSHIPMENT
+        - ACCIDENT
+        - OTHERS
+      description: Reason for extension of validity
+    EwbExtendRequest:
+      type: object
+      required:
+        - remainingDistance
+        - extensionReason
+        - extensionRemark
+      properties:
+        remainingDistance:
+          type: integer
+          example: 150
+        extensionReason:
+          $ref: '#/components/schemas/ExtensionReason'
+        extensionRemark:
+          type: string
+          example: Road blocked due to landslide
+    EwbExtendResponse:
+      type: object
+      required:
+        - ewbNo
+        - updatedDate
+        - validUpto
+      properties:
+        ewbNo:
+          type: string
+          example: '161000843009'
+        updatedDate:
+          type: string
+          format: date-time
+          example: '2018-04-26T17:07:00Z'
+        validUpto:
+          type: string
+          format: date-time
+          example: '2018-05-21T23:59:00Z'
+    GspCredentialsRequest:
+      type: object
+      required:
+        - gstin
+        - username
+        - password
+      properties:
+        gstin:
+          type: string
+          description: GSTIN of the transporter
+          example: 09AAACI5950L1Z8
+        username:
+          type: string
+          example: gsp_user_123
+        password:
+          type: string
+          format: password
+          example: securePassword@123
+    GspCredentialsResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: GSP credentials saved successfully
+        gstin:
+          type: string
+          example: 09AAACI5950L1Z8
+  responses:
+    UnauthorizedError:
+      description: Access token is missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    ForbiddenError:
+      description: User is not authorized to perform this action
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    InternalServerError:
+      description: Internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFoundError:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    AccountGroupFilter:
+      name: underAccountGroups
+      in: query
+      required: false
+      schema:
+        type: array
+        items:
+          type: integer
+          format: int64
+      style: form
+      explode: true
+      example:
+        - 5
+    FromDateParam:
+      name: fromDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      example: '2026-04-01'
+    ToDateParam:
+      name: toDate
+      in: query
+      required: true
+      schema:
+        type: string
+        format: date
+      example: '2026-04-27'
+    IncludeDeliveredParam:
+      name: includeDelivered
+      in: query
+      required: false
+      schema:
+        type: boolean
+        default: boolean
+      example: false
+    StatusParam:
+      name: status
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/EwbStatus'
+      example: ACTIVE
+    DayParam:
+      name: day
+      in: query
+      required: true
+      schema:
+        $ref: '#/components/schemas/Day'
+      example: TODAY
+    FormatParam:
+      name: format
+      in: query
+      required: false
+      schema:
+        $ref: '#/components/schemas/Format'
+      example: EXCEL
+    EwbNoPathParam:
+      name: ewbNo
+      in: path
+      required: true
+      schema:
+        type: string
+      example: '451716215301'

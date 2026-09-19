@@ -38,6 +38,8 @@
   $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting~1summary'
 /state:
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
+/tds-section:
+  $ref: './accountmaster/tdssection/paths.yaml#/paths/~1tds-section'
 /transport:
   $ref: './accountmaster/transport/paths.yaml#/paths/~1transport'
 /transport/{id}:

@@ -35,6 +35,14 @@ DropdownItem:
       description: generic Unique identifier, if id is not applicable
       example: "JP"
 
+GstTaxability:
+  type: string
+  enum: [TAXABLE, EXEMPT, NIL_RATED, NON_GST]
+  description: >
+    GST taxability of the supplies booked to a sale/purchase ledger. Only TAXABLE
+    supplies carry CGST/SGST/IGST; the rest are reported separately in GSTR-1 /
+    GSTR-3B.
+
 Format:
   type: string
   enum:

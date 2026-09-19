@@ -1,10 +1,13 @@
 SaleType:
   type: string
-  enum: [IN_STATE, OUT_STATE, EXPORT]
+  enum: [IN_STATE, OUT_STATE, EXPORT_WITH_IGST, EXPORT_UNDER_LUT, SEZ_WITH_IGST, SEZ_UNDER_LUT]
+  description: >
+    Place-of-supply classification. IN_STATE posts CGST + SGST; OUT_STATE and the
+    *_WITH_IGST types post IGST; *_UNDER_LUT types are zero-rated and post no tax.
 
 SaleLedgerSettingRequest:
   type: object
-  required: [saleLedgerId]
+  required: [saleLedgerId, saleType]
   properties:
     saleLedgerId:
       type: integer
@@ -12,28 +15,21 @@ SaleLedgerSettingRequest:
       description: Sale ledger account this configuration belongs to
     saleType:
       $ref: '#/SaleType'
+    taxability:
+      $ref: '../../common/components.yaml#/GstTaxability'
     gstRate:
       type: number
       format: double
       default: 0.0
-    cgstPercentage:
-      type: number
-      format: double
-      default: 0.0
+      description: >
+        Total GST rate. The CGST/SGST/IGST split is derived by the server from
+        saleType and taxability.
     cgstLedgerId:
       type: integer
       format: int64
-    sgstPercentage:
-      type: number
-      format: double
-      default: 0.0
     sgstLedgerId:
       type: integer
       format: int64
-    igstPercentage:
-      type: number
-      format: double
-      default: 0.0
     igstLedgerId:
       type: integer
       format: int64
@@ -50,13 +46,6 @@ SaleLedgerSettingRequest:
     roundOffLedgerId:
       type: integer
       format: int64
-    tcsPercentage:
-      type: number
-      format: double
-      default: 0.0
-    tcsLedgerId:
-      type: integer
-      format: int64
 
 SaleLedgerSettingResponse:
   type: object
@@ -71,12 +60,15 @@ SaleLedgerSettingResponse:
       type: string
     saleType:
       $ref: '#/SaleType'
+    taxability:
+      $ref: '../../common/components.yaml#/GstTaxability'
     gstRate:
       type: number
       format: double
     cgstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     cgstLedgerId:
       type: integer
       format: int64
@@ -85,6 +77,7 @@ SaleLedgerSettingResponse:
     sgstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     sgstLedgerId:
       type: integer
       format: int64
@@ -93,6 +86,7 @@ SaleLedgerSettingResponse:
     igstPercentage:
       type: number
       format: double
+      description: Derived from gstRate (read-only)
     igstLedgerId:
       type: integer
       format: int64
@@ -115,14 +109,6 @@ SaleLedgerSettingResponse:
       type: integer
       format: int64
     roundOffLedgerName:
-      type: string
-    tcsPercentage:
-      type: number
-      format: double
-    tcsLedgerId:
-      type: integer
-      format: int64
-    tcsLedgerName:
       type: string
 
 SaleLedgerSettingSearchableField:
