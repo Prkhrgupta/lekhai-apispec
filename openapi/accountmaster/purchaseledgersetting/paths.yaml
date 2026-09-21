@@ -158,18 +158,6 @@ paths:
               type: string
           required: false
           explode: true
-        - name: searchableField
-          in: query
-          description: Field to search by
-          schema:
-            $ref: '../purchaseledgersetting/components.yaml#/PurchaseLedgerSettingSearchableField'
-          required: false
-        - name: searchText
-          in: query
-          description: Search query text
-          schema:
-            type: string
-          required: false
       responses:
         '200':
           description: Successful response

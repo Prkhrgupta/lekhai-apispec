@@ -1,0 +1,56 @@
+GeneralLedgerSettingRequest:
+  type: object
+  properties:
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    tdsPercentage:
+      type: number
+      format: double
+      default: 0.0
+    tdsLedgerId:
+      type: integer
+      format: int64
+    tcsPercentage:
+      type: number
+      format: double
+      default: 0.0
+    tcsLedgerId:
+      type: integer
+      format: int64
+
+GeneralLedgerSettingResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    freightPackingLedgerId:
+      type: integer
+      format: int64
+    freightPackingLedgerName:
+      type: string
+    roundOffLedgerId:
+      type: integer
+      format: int64
+    roundOffLedgerName:
+      type: string
+    tdsPercentage:
+      type: number
+      format: double
+    tdsLedgerId:
+      type: integer
+      format: int64
+    tdsLedgerName:
+      type: string
+    tcsPercentage:
+      type: number
+      format: double
+    tcsLedgerId:
+      type: integer
+      format: int64
+    tcsLedgerName:
+      type: string

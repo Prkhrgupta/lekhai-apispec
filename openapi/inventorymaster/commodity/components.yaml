@@ -9,10 +9,7 @@ CommodityRequest:
     description:
       type: string
       description: Description for GSTR-1 / Eway Bill
-    gst_rate_sale:
-      type: number
-      format: double
-    gst_rate_purchase:
+    gst_rate:
       type: number
       format: double
     unit_of_measurement:
@@ -31,10 +28,7 @@ CommodityResponse:
     description:
       type: string
       description: Description for GSTR-1 / Eway Bill
-    gst_rate_sale:
-      type: number
-      format: double
-    gst_rate_purchase:
+    gst_rate:
       type: number
       format: double
     unit_of_measurement:
@@ -82,10 +76,7 @@ CommoditySummaryItem:
       type: string
     unit_of_measurement:
       type: string
-    gst_rate_sale:
-      type: number
-      format: double
-    gst_rate_purchase:
+    gst_rate:
       type: number
       format: double
 
