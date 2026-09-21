@@ -49,6 +49,8 @@ import 'package:openapi/src/model/ewb_summary.dart';
 import 'package:openapi/src/model/extension_reason.dart';
 import 'package:openapi/src/model/finished_raw_material.dart';
 import 'package:openapi/src/model/format.dart';
+import 'package:openapi/src/model/general_ledger_setting_request.dart';
+import 'package:openapi/src/model/general_ledger_setting_response.dart';
 import 'package:openapi/src/model/gsp_credentials_request.dart';
 import 'package:openapi/src/model/gsp_credentials_response.dart';
 import 'package:openapi/src/model/gst_in_detail.dart';
@@ -81,7 +83,6 @@ import 'package:openapi/src/model/party_type.dart';
 import 'package:openapi/src/model/payment_voucher_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
-import 'package:openapi/src/model/purchase_ledger_setting_searchable_field.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
 import 'package:openapi/src/model/purchase_type.dart';
 import 'package:openapi/src/model/rate_per_unit.dart';
@@ -89,7 +90,6 @@ import 'package:openapi/src/model/receipt_voucher_request.dart';
 import 'package:openapi/src/model/registration_type.dart';
 import 'package:openapi/src/model/sale_ledger_setting_request.dart';
 import 'package:openapi/src/model/sale_ledger_setting_response.dart';
-import 'package:openapi/src/model/sale_ledger_setting_searchable_field.dart';
 import 'package:openapi/src/model/sale_ledger_setting_summary_page_response.dart';
 import 'package:openapi/src/model/sale_type.dart';
 import 'package:openapi/src/model/shop_menu.dart';
@@ -144,6 +144,8 @@ part 'serializers.g.dart';
   ExtensionReason,
   FinishedRawMaterial,
   Format,
+  GeneralLedgerSettingRequest,
+  GeneralLedgerSettingResponse,
   GspCredentialsRequest,
   GspCredentialsResponse,
   GstInDetail,
@@ -176,7 +178,6 @@ part 'serializers.g.dart';
   PaymentVoucherRequest,
   PurchaseLedgerSettingRequest,
   PurchaseLedgerSettingResponse,
-  PurchaseLedgerSettingSearchableField,
   PurchaseLedgerSettingSummaryPageResponse,
   PurchaseType,
   RatePerUnit,
@@ -184,7 +185,6 @@ part 'serializers.g.dart';
   RegistrationType,
   SaleLedgerSettingRequest,
   SaleLedgerSettingResponse,
-  SaleLedgerSettingSearchableField,
   SaleLedgerSettingSummaryPageResponse,
   SaleType,
   ShopMenu,

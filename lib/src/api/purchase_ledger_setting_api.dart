@@ -14,7 +14,6 @@ import 'package:openapi/src/model/dropdown_item.dart';
 import 'package:openapi/src/model/error.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
-import 'package:openapi/src/model/purchase_ledger_setting_searchable_field.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
 
 class PurchaseLedgerSettingApi {
@@ -346,8 +345,6 @@ class PurchaseLedgerSettingApi {
   /// * [page] - Zero-based page index
   /// * [size] - Number of records per page
   /// * [sort] - Sorting criteria in the format property(,asc|desc)
-  /// * [searchableField] - Field to search by
-  /// * [searchText] - Search query text
   /// * [cancelToken] - A [CancelToken] that can be used to cancel the operation
   /// * [headers] - Can be used to add additional headers to the request
   /// * [extras] - Can be used to add flags to the request
@@ -361,8 +358,6 @@ class PurchaseLedgerSettingApi {
     int? page = 0,
     int? size = 20,
     BuiltList<String>? sort,
-    PurchaseLedgerSettingSearchableField? searchableField,
-    String? searchText,
     CancelToken? cancelToken,
     Map<String, dynamic>? headers,
     Map<String, dynamic>? extra,
@@ -393,8 +388,6 @@ class PurchaseLedgerSettingApi {
       if (page != null) r'page': encodeQueryParameter(_serializers, page, const FullType(int)),
       if (size != null) r'size': encodeQueryParameter(_serializers, size, const FullType(int)),
       if (sort != null) r'sort': encodeCollectionQueryParameter<String>(_serializers, sort, const FullType(BuiltList, [FullType(String)]), format: ListFormat.multi,),
-      if (searchableField != null) r'searchableField': encodeQueryParameter(_serializers, searchableField, const FullType(PurchaseLedgerSettingSearchableField)),
-      if (searchText != null) r'searchText': encodeQueryParameter(_serializers, searchText, const FullType(String)),
     };
 
     final _response = await _dio.request<Object>(

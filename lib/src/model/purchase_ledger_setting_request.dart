@@ -15,18 +15,9 @@ part 'purchase_ledger_setting_request.g.dart';
 /// * [purchaseLedgerId] - Purchase ledger account this configuration belongs to
 /// * [purchaseType] 
 /// * [gstRate] 
-/// * [cgstPercentage] 
 /// * [cgstLedgerId] 
-/// * [sgstPercentage] 
 /// * [sgstLedgerId] 
-/// * [igstPercentage] 
 /// * [igstLedgerId] 
-/// * [cessPercentage] 
-/// * [cessLedgerId] 
-/// * [freightPackingLedgerId] 
-/// * [roundOffLedgerId] 
-/// * [tdsPercentage] 
-/// * [tdsLedgerId] 
 @BuiltValue()
 abstract class PurchaseLedgerSettingRequest implements Built<PurchaseLedgerSettingRequest, PurchaseLedgerSettingRequestBuilder> {
   /// Purchase ledger account this configuration belongs to
@@ -40,41 +31,14 @@ abstract class PurchaseLedgerSettingRequest implements Built<PurchaseLedgerSetti
   @BuiltValueField(wireName: r'gstRate')
   double? get gstRate;
 
-  @BuiltValueField(wireName: r'cgstPercentage')
-  double? get cgstPercentage;
-
   @BuiltValueField(wireName: r'cgstLedgerId')
   int? get cgstLedgerId;
-
-  @BuiltValueField(wireName: r'sgstPercentage')
-  double? get sgstPercentage;
 
   @BuiltValueField(wireName: r'sgstLedgerId')
   int? get sgstLedgerId;
 
-  @BuiltValueField(wireName: r'igstPercentage')
-  double? get igstPercentage;
-
   @BuiltValueField(wireName: r'igstLedgerId')
   int? get igstLedgerId;
-
-  @BuiltValueField(wireName: r'cessPercentage')
-  double? get cessPercentage;
-
-  @BuiltValueField(wireName: r'cessLedgerId')
-  int? get cessLedgerId;
-
-  @BuiltValueField(wireName: r'freightPackingLedgerId')
-  int? get freightPackingLedgerId;
-
-  @BuiltValueField(wireName: r'roundOffLedgerId')
-  int? get roundOffLedgerId;
-
-  @BuiltValueField(wireName: r'tdsPercentage')
-  double? get tdsPercentage;
-
-  @BuiltValueField(wireName: r'tdsLedgerId')
-  int? get tdsLedgerId;
 
   PurchaseLedgerSettingRequest._();
 
@@ -82,12 +46,7 @@ abstract class PurchaseLedgerSettingRequest implements Built<PurchaseLedgerSetti
 
   @BuiltValueHook(initializeBuilder: true)
   static void _defaults(PurchaseLedgerSettingRequestBuilder b) => b
-      ..gstRate = 0
-      ..cgstPercentage = 0
-      ..sgstPercentage = 0
-      ..igstPercentage = 0
-      ..cessPercentage = 0
-      ..tdsPercentage = 0;
+      ..gstRate = 0;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<PurchaseLedgerSettingRequest> get serializer => _$PurchaseLedgerSettingRequestSerializer();
@@ -124,25 +83,11 @@ class _$PurchaseLedgerSettingRequestSerializer implements PrimitiveSerializer<Pu
         specifiedType: const FullType(double),
       );
     }
-    if (object.cgstPercentage != null) {
-      yield r'cgstPercentage';
-      yield serializers.serialize(
-        object.cgstPercentage,
-        specifiedType: const FullType(double),
-      );
-    }
     if (object.cgstLedgerId != null) {
       yield r'cgstLedgerId';
       yield serializers.serialize(
         object.cgstLedgerId,
         specifiedType: const FullType(int),
-      );
-    }
-    if (object.sgstPercentage != null) {
-      yield r'sgstPercentage';
-      yield serializers.serialize(
-        object.sgstPercentage,
-        specifiedType: const FullType(double),
       );
     }
     if (object.sgstLedgerId != null) {
@@ -152,59 +97,10 @@ class _$PurchaseLedgerSettingRequestSerializer implements PrimitiveSerializer<Pu
         specifiedType: const FullType(int),
       );
     }
-    if (object.igstPercentage != null) {
-      yield r'igstPercentage';
-      yield serializers.serialize(
-        object.igstPercentage,
-        specifiedType: const FullType(double),
-      );
-    }
     if (object.igstLedgerId != null) {
       yield r'igstLedgerId';
       yield serializers.serialize(
         object.igstLedgerId,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.cessPercentage != null) {
-      yield r'cessPercentage';
-      yield serializers.serialize(
-        object.cessPercentage,
-        specifiedType: const FullType(double),
-      );
-    }
-    if (object.cessLedgerId != null) {
-      yield r'cessLedgerId';
-      yield serializers.serialize(
-        object.cessLedgerId,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.freightPackingLedgerId != null) {
-      yield r'freightPackingLedgerId';
-      yield serializers.serialize(
-        object.freightPackingLedgerId,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.roundOffLedgerId != null) {
-      yield r'roundOffLedgerId';
-      yield serializers.serialize(
-        object.roundOffLedgerId,
-        specifiedType: const FullType(int),
-      );
-    }
-    if (object.tdsPercentage != null) {
-      yield r'tdsPercentage';
-      yield serializers.serialize(
-        object.tdsPercentage,
-        specifiedType: const FullType(double),
-      );
-    }
-    if (object.tdsLedgerId != null) {
-      yield r'tdsLedgerId';
-      yield serializers.serialize(
-        object.tdsLedgerId,
         specifiedType: const FullType(int),
       );
     }
@@ -252,26 +148,12 @@ class _$PurchaseLedgerSettingRequestSerializer implements PrimitiveSerializer<Pu
           ) as double;
           result.gstRate = valueDes;
           break;
-        case r'cgstPercentage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.cgstPercentage = valueDes;
-          break;
         case r'cgstLedgerId':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(int),
           ) as int;
           result.cgstLedgerId = valueDes;
-          break;
-        case r'sgstPercentage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.sgstPercentage = valueDes;
           break;
         case r'sgstLedgerId':
           final valueDes = serializers.deserialize(
@@ -280,61 +162,12 @@ class _$PurchaseLedgerSettingRequestSerializer implements PrimitiveSerializer<Pu
           ) as int;
           result.sgstLedgerId = valueDes;
           break;
-        case r'igstPercentage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.igstPercentage = valueDes;
-          break;
         case r'igstLedgerId':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(int),
           ) as int;
           result.igstLedgerId = valueDes;
-          break;
-        case r'cessPercentage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.cessPercentage = valueDes;
-          break;
-        case r'cessLedgerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.cessLedgerId = valueDes;
-          break;
-        case r'freightPackingLedgerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.freightPackingLedgerId = valueDes;
-          break;
-        case r'roundOffLedgerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.roundOffLedgerId = valueDes;
-          break;
-        case r'tdsPercentage':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(double),
-          ) as double;
-          result.tdsPercentage = valueDes;
-          break;
-        case r'tdsLedgerId':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(int),
-          ) as int;
-          result.tdsLedgerId = valueDes;
           break;
         default:
           unhandled.add(key);

@@ -14,8 +14,8 @@ part 'commodity_request.g.dart';
 /// * [name] 
 /// * [hsnSacCode] 
 /// * [description] - Description for GSTR-1 / Eway Bill
-/// * [gstRateSale] 
-/// * [gstRatePurchase] 
+/// * [gstRate] 
+/// * [cessPercentage] 
 /// * [unitOfMeasurement] 
 @BuiltValue()
 abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequestBuilder> {
@@ -29,11 +29,11 @@ abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequ
   @BuiltValueField(wireName: r'description')
   String? get description;
 
-  @BuiltValueField(wireName: r'gst_rate_sale')
-  double? get gstRateSale;
+  @BuiltValueField(wireName: r'gst_rate')
+  double? get gstRate;
 
-  @BuiltValueField(wireName: r'gst_rate_purchase')
-  double? get gstRatePurchase;
+  @BuiltValueField(wireName: r'cess_percentage')
+  double? get cessPercentage;
 
   @BuiltValueField(wireName: r'unit_of_measurement')
   String? get unitOfMeasurement;
@@ -43,7 +43,8 @@ abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequ
   factory CommodityRequest([void updates(CommodityRequestBuilder b)]) = _$CommodityRequest;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CommodityRequestBuilder b) => b;
+  static void _defaults(CommodityRequestBuilder b) => b
+      ..cessPercentage = 0;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<CommodityRequest> get serializer => _$CommodityRequestSerializer();
@@ -80,17 +81,17 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
         specifiedType: const FullType(String),
       );
     }
-    if (object.gstRateSale != null) {
-      yield r'gst_rate_sale';
+    if (object.gstRate != null) {
+      yield r'gst_rate';
       yield serializers.serialize(
-        object.gstRateSale,
+        object.gstRate,
         specifiedType: const FullType(double),
       );
     }
-    if (object.gstRatePurchase != null) {
-      yield r'gst_rate_purchase';
+    if (object.cessPercentage != null) {
+      yield r'cess_percentage';
       yield serializers.serialize(
-        object.gstRatePurchase,
+        object.cessPercentage,
         specifiedType: const FullType(double),
       );
     }
@@ -145,19 +146,19 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
           ) as String;
           result.description = valueDes;
           break;
-        case r'gst_rate_sale':
+        case r'gst_rate':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.gstRateSale = valueDes;
+          result.gstRate = valueDes;
           break;
-        case r'gst_rate_purchase':
+        case r'cess_percentage':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.gstRatePurchase = valueDes;
+          result.cessPercentage = valueDes;
           break;
         case r'unit_of_measurement':
           final valueDes = serializers.deserialize(

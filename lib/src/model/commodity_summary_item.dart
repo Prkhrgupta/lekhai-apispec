@@ -15,8 +15,8 @@ part 'commodity_summary_item.g.dart';
 /// * [name] 
 /// * [hsnSacCode] 
 /// * [unitOfMeasurement] 
-/// * [gstRateSale] 
-/// * [gstRatePurchase] 
+/// * [gstRate] 
+/// * [cessPercentage] 
 @BuiltValue()
 abstract class CommoditySummaryItem implements Built<CommoditySummaryItem, CommoditySummaryItemBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -31,18 +31,19 @@ abstract class CommoditySummaryItem implements Built<CommoditySummaryItem, Commo
   @BuiltValueField(wireName: r'unit_of_measurement')
   String? get unitOfMeasurement;
 
-  @BuiltValueField(wireName: r'gst_rate_sale')
-  double? get gstRateSale;
+  @BuiltValueField(wireName: r'gst_rate')
+  double? get gstRate;
 
-  @BuiltValueField(wireName: r'gst_rate_purchase')
-  double? get gstRatePurchase;
+  @BuiltValueField(wireName: r'cess_percentage')
+  double? get cessPercentage;
 
   CommoditySummaryItem._();
 
   factory CommoditySummaryItem([void updates(CommoditySummaryItemBuilder b)]) = _$CommoditySummaryItem;
 
   @BuiltValueHook(initializeBuilder: true)
-  static void _defaults(CommoditySummaryItemBuilder b) => b;
+  static void _defaults(CommoditySummaryItemBuilder b) => b
+      ..cessPercentage = 0;
 
   @BuiltValueSerializer(custom: true)
   static Serializer<CommoditySummaryItem> get serializer => _$CommoditySummaryItemSerializer();
@@ -88,17 +89,17 @@ class _$CommoditySummaryItemSerializer implements PrimitiveSerializer<CommodityS
         specifiedType: const FullType(String),
       );
     }
-    if (object.gstRateSale != null) {
-      yield r'gst_rate_sale';
+    if (object.gstRate != null) {
+      yield r'gst_rate';
       yield serializers.serialize(
-        object.gstRateSale,
+        object.gstRate,
         specifiedType: const FullType(double),
       );
     }
-    if (object.gstRatePurchase != null) {
-      yield r'gst_rate_purchase';
+    if (object.cessPercentage != null) {
+      yield r'cess_percentage';
       yield serializers.serialize(
-        object.gstRatePurchase,
+        object.cessPercentage,
         specifiedType: const FullType(double),
       );
     }
@@ -153,19 +154,19 @@ class _$CommoditySummaryItemSerializer implements PrimitiveSerializer<CommodityS
           ) as String;
           result.unitOfMeasurement = valueDes;
           break;
-        case r'gst_rate_sale':
+        case r'gst_rate':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.gstRateSale = valueDes;
+          result.gstRate = valueDes;
           break;
-        case r'gst_rate_purchase':
+        case r'cess_percentage':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.gstRatePurchase = valueDes;
+          result.cessPercentage = valueDes;
           break;
         default:
           unhandled.add(key);

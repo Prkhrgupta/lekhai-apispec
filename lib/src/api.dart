@@ -16,6 +16,7 @@ import 'package:openapi/src/api/auth_api.dart';
 import 'package:openapi/src/api/broker_api.dart';
 import 'package:openapi/src/api/commodity_api.dart';
 import 'package:openapi/src/api/gsp_credentials_api.dart';
+import 'package:openapi/src/api/general_ledger_setting_api.dart';
 import 'package:openapi/src/api/item_category_api.dart';
 import 'package:openapi/src/api/item_factory_api.dart';
 import 'package:openapi/src/api/ledger_api.dart';
@@ -122,6 +123,12 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   GSPCredentialsApi getGSPCredentialsApi() {
     return GSPCredentialsApi(dio, serializers);
+  }
+
+  /// Get GeneralLedgerSettingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  GeneralLedgerSettingApi getGeneralLedgerSettingApi() {
+    return GeneralLedgerSettingApi(dio, serializers);
   }
 
   /// Get ItemCategoryApi instance, base route and serializer can be overridden by a given but be careful,

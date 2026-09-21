@@ -14,9 +14,9 @@ class _$CommodityRequest extends CommodityRequest {
   @override
   final String? description;
   @override
-  final double? gstRateSale;
+  final double? gstRate;
   @override
-  final double? gstRatePurchase;
+  final double? cessPercentage;
   @override
   final String? unitOfMeasurement;
 
@@ -28,8 +28,8 @@ class _$CommodityRequest extends CommodityRequest {
       {required this.name,
       this.hsnSacCode,
       this.description,
-      this.gstRateSale,
-      this.gstRatePurchase,
+      this.gstRate,
+      this.cessPercentage,
       this.unitOfMeasurement})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'CommodityRequest', 'name');
@@ -50,8 +50,8 @@ class _$CommodityRequest extends CommodityRequest {
         name == other.name &&
         hsnSacCode == other.hsnSacCode &&
         description == other.description &&
-        gstRateSale == other.gstRateSale &&
-        gstRatePurchase == other.gstRatePurchase &&
+        gstRate == other.gstRate &&
+        cessPercentage == other.cessPercentage &&
         unitOfMeasurement == other.unitOfMeasurement;
   }
 
@@ -61,8 +61,8 @@ class _$CommodityRequest extends CommodityRequest {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, hsnSacCode.hashCode);
     _$hash = $jc(_$hash, description.hashCode);
-    _$hash = $jc(_$hash, gstRateSale.hashCode);
-    _$hash = $jc(_$hash, gstRatePurchase.hashCode);
+    _$hash = $jc(_$hash, gstRate.hashCode);
+    _$hash = $jc(_$hash, cessPercentage.hashCode);
     _$hash = $jc(_$hash, unitOfMeasurement.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -74,8 +74,8 @@ class _$CommodityRequest extends CommodityRequest {
           ..add('name', name)
           ..add('hsnSacCode', hsnSacCode)
           ..add('description', description)
-          ..add('gstRateSale', gstRateSale)
-          ..add('gstRatePurchase', gstRatePurchase)
+          ..add('gstRate', gstRate)
+          ..add('cessPercentage', cessPercentage)
           ..add('unitOfMeasurement', unitOfMeasurement))
         .toString();
   }
@@ -97,14 +97,14 @@ class CommodityRequestBuilder
   String? get description => _$this._description;
   set description(String? description) => _$this._description = description;
 
-  double? _gstRateSale;
-  double? get gstRateSale => _$this._gstRateSale;
-  set gstRateSale(double? gstRateSale) => _$this._gstRateSale = gstRateSale;
+  double? _gstRate;
+  double? get gstRate => _$this._gstRate;
+  set gstRate(double? gstRate) => _$this._gstRate = gstRate;
 
-  double? _gstRatePurchase;
-  double? get gstRatePurchase => _$this._gstRatePurchase;
-  set gstRatePurchase(double? gstRatePurchase) =>
-      _$this._gstRatePurchase = gstRatePurchase;
+  double? _cessPercentage;
+  double? get cessPercentage => _$this._cessPercentage;
+  set cessPercentage(double? cessPercentage) =>
+      _$this._cessPercentage = cessPercentage;
 
   String? _unitOfMeasurement;
   String? get unitOfMeasurement => _$this._unitOfMeasurement;
@@ -121,8 +121,8 @@ class CommodityRequestBuilder
       _name = $v.name;
       _hsnSacCode = $v.hsnSacCode;
       _description = $v.description;
-      _gstRateSale = $v.gstRateSale;
-      _gstRatePurchase = $v.gstRatePurchase;
+      _gstRate = $v.gstRate;
+      _cessPercentage = $v.cessPercentage;
       _unitOfMeasurement = $v.unitOfMeasurement;
       _$v = null;
     }
@@ -150,8 +150,8 @@ class CommodityRequestBuilder
                 name, r'CommodityRequest', 'name'),
             hsnSacCode: hsnSacCode,
             description: description,
-            gstRateSale: gstRateSale,
-            gstRatePurchase: gstRatePurchase,
+            gstRate: gstRate,
+            cessPercentage: cessPercentage,
             unitOfMeasurement: unitOfMeasurement);
     replace(_$result);
     return _$result;

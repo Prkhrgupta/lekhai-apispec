@@ -18,43 +18,17 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
   @override
   final double? gstRate;
   @override
-  final double? cgstPercentage;
-  @override
   final int? cgstLedgerId;
   @override
   final String? cgstLedgerName;
-  @override
-  final double? sgstPercentage;
   @override
   final int? sgstLedgerId;
   @override
   final String? sgstLedgerName;
   @override
-  final double? igstPercentage;
-  @override
   final int? igstLedgerId;
   @override
   final String? igstLedgerName;
-  @override
-  final double? cessPercentage;
-  @override
-  final int? cessLedgerId;
-  @override
-  final String? cessLedgerName;
-  @override
-  final int? freightPackingLedgerId;
-  @override
-  final String? freightPackingLedgerName;
-  @override
-  final int? roundOffLedgerId;
-  @override
-  final String? roundOffLedgerName;
-  @override
-  final double? tcsPercentage;
-  @override
-  final int? tcsLedgerId;
-  @override
-  final String? tcsLedgerName;
 
   factory _$SaleLedgerSettingResponse(
           [void Function(SaleLedgerSettingResponseBuilder)? updates]) =>
@@ -66,25 +40,12 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
       this.saleLedgerName,
       this.saleType,
       this.gstRate,
-      this.cgstPercentage,
       this.cgstLedgerId,
       this.cgstLedgerName,
-      this.sgstPercentage,
       this.sgstLedgerId,
       this.sgstLedgerName,
-      this.igstPercentage,
       this.igstLedgerId,
-      this.igstLedgerName,
-      this.cessPercentage,
-      this.cessLedgerId,
-      this.cessLedgerName,
-      this.freightPackingLedgerId,
-      this.freightPackingLedgerName,
-      this.roundOffLedgerId,
-      this.roundOffLedgerName,
-      this.tcsPercentage,
-      this.tcsLedgerId,
-      this.tcsLedgerName})
+      this.igstLedgerName})
       : super._();
 
   @override
@@ -105,25 +66,12 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
         saleLedgerName == other.saleLedgerName &&
         saleType == other.saleType &&
         gstRate == other.gstRate &&
-        cgstPercentage == other.cgstPercentage &&
         cgstLedgerId == other.cgstLedgerId &&
         cgstLedgerName == other.cgstLedgerName &&
-        sgstPercentage == other.sgstPercentage &&
         sgstLedgerId == other.sgstLedgerId &&
         sgstLedgerName == other.sgstLedgerName &&
-        igstPercentage == other.igstPercentage &&
         igstLedgerId == other.igstLedgerId &&
-        igstLedgerName == other.igstLedgerName &&
-        cessPercentage == other.cessPercentage &&
-        cessLedgerId == other.cessLedgerId &&
-        cessLedgerName == other.cessLedgerName &&
-        freightPackingLedgerId == other.freightPackingLedgerId &&
-        freightPackingLedgerName == other.freightPackingLedgerName &&
-        roundOffLedgerId == other.roundOffLedgerId &&
-        roundOffLedgerName == other.roundOffLedgerName &&
-        tcsPercentage == other.tcsPercentage &&
-        tcsLedgerId == other.tcsLedgerId &&
-        tcsLedgerName == other.tcsLedgerName;
+        igstLedgerName == other.igstLedgerName;
   }
 
   @override
@@ -134,25 +82,12 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
     _$hash = $jc(_$hash, saleLedgerName.hashCode);
     _$hash = $jc(_$hash, saleType.hashCode);
     _$hash = $jc(_$hash, gstRate.hashCode);
-    _$hash = $jc(_$hash, cgstPercentage.hashCode);
     _$hash = $jc(_$hash, cgstLedgerId.hashCode);
     _$hash = $jc(_$hash, cgstLedgerName.hashCode);
-    _$hash = $jc(_$hash, sgstPercentage.hashCode);
     _$hash = $jc(_$hash, sgstLedgerId.hashCode);
     _$hash = $jc(_$hash, sgstLedgerName.hashCode);
-    _$hash = $jc(_$hash, igstPercentage.hashCode);
     _$hash = $jc(_$hash, igstLedgerId.hashCode);
     _$hash = $jc(_$hash, igstLedgerName.hashCode);
-    _$hash = $jc(_$hash, cessPercentage.hashCode);
-    _$hash = $jc(_$hash, cessLedgerId.hashCode);
-    _$hash = $jc(_$hash, cessLedgerName.hashCode);
-    _$hash = $jc(_$hash, freightPackingLedgerId.hashCode);
-    _$hash = $jc(_$hash, freightPackingLedgerName.hashCode);
-    _$hash = $jc(_$hash, roundOffLedgerId.hashCode);
-    _$hash = $jc(_$hash, roundOffLedgerName.hashCode);
-    _$hash = $jc(_$hash, tcsPercentage.hashCode);
-    _$hash = $jc(_$hash, tcsLedgerId.hashCode);
-    _$hash = $jc(_$hash, tcsLedgerName.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -165,25 +100,12 @@ class _$SaleLedgerSettingResponse extends SaleLedgerSettingResponse {
           ..add('saleLedgerName', saleLedgerName)
           ..add('saleType', saleType)
           ..add('gstRate', gstRate)
-          ..add('cgstPercentage', cgstPercentage)
           ..add('cgstLedgerId', cgstLedgerId)
           ..add('cgstLedgerName', cgstLedgerName)
-          ..add('sgstPercentage', sgstPercentage)
           ..add('sgstLedgerId', sgstLedgerId)
           ..add('sgstLedgerName', sgstLedgerName)
-          ..add('igstPercentage', igstPercentage)
           ..add('igstLedgerId', igstLedgerId)
-          ..add('igstLedgerName', igstLedgerName)
-          ..add('cessPercentage', cessPercentage)
-          ..add('cessLedgerId', cessLedgerId)
-          ..add('cessLedgerName', cessLedgerName)
-          ..add('freightPackingLedgerId', freightPackingLedgerId)
-          ..add('freightPackingLedgerName', freightPackingLedgerName)
-          ..add('roundOffLedgerId', roundOffLedgerId)
-          ..add('roundOffLedgerName', roundOffLedgerName)
-          ..add('tcsPercentage', tcsPercentage)
-          ..add('tcsLedgerId', tcsLedgerId)
-          ..add('tcsLedgerName', tcsLedgerName))
+          ..add('igstLedgerName', igstLedgerName))
         .toString();
   }
 }
@@ -214,11 +136,6 @@ class SaleLedgerSettingResponseBuilder
   double? get gstRate => _$this._gstRate;
   set gstRate(double? gstRate) => _$this._gstRate = gstRate;
 
-  double? _cgstPercentage;
-  double? get cgstPercentage => _$this._cgstPercentage;
-  set cgstPercentage(double? cgstPercentage) =>
-      _$this._cgstPercentage = cgstPercentage;
-
   int? _cgstLedgerId;
   int? get cgstLedgerId => _$this._cgstLedgerId;
   set cgstLedgerId(int? cgstLedgerId) => _$this._cgstLedgerId = cgstLedgerId;
@@ -227,11 +144,6 @@ class SaleLedgerSettingResponseBuilder
   String? get cgstLedgerName => _$this._cgstLedgerName;
   set cgstLedgerName(String? cgstLedgerName) =>
       _$this._cgstLedgerName = cgstLedgerName;
-
-  double? _sgstPercentage;
-  double? get sgstPercentage => _$this._sgstPercentage;
-  set sgstPercentage(double? sgstPercentage) =>
-      _$this._sgstPercentage = sgstPercentage;
 
   int? _sgstLedgerId;
   int? get sgstLedgerId => _$this._sgstLedgerId;
@@ -242,11 +154,6 @@ class SaleLedgerSettingResponseBuilder
   set sgstLedgerName(String? sgstLedgerName) =>
       _$this._sgstLedgerName = sgstLedgerName;
 
-  double? _igstPercentage;
-  double? get igstPercentage => _$this._igstPercentage;
-  set igstPercentage(double? igstPercentage) =>
-      _$this._igstPercentage = igstPercentage;
-
   int? _igstLedgerId;
   int? get igstLedgerId => _$this._igstLedgerId;
   set igstLedgerId(int? igstLedgerId) => _$this._igstLedgerId = igstLedgerId;
@@ -255,54 +162,6 @@ class SaleLedgerSettingResponseBuilder
   String? get igstLedgerName => _$this._igstLedgerName;
   set igstLedgerName(String? igstLedgerName) =>
       _$this._igstLedgerName = igstLedgerName;
-
-  double? _cessPercentage;
-  double? get cessPercentage => _$this._cessPercentage;
-  set cessPercentage(double? cessPercentage) =>
-      _$this._cessPercentage = cessPercentage;
-
-  int? _cessLedgerId;
-  int? get cessLedgerId => _$this._cessLedgerId;
-  set cessLedgerId(int? cessLedgerId) => _$this._cessLedgerId = cessLedgerId;
-
-  String? _cessLedgerName;
-  String? get cessLedgerName => _$this._cessLedgerName;
-  set cessLedgerName(String? cessLedgerName) =>
-      _$this._cessLedgerName = cessLedgerName;
-
-  int? _freightPackingLedgerId;
-  int? get freightPackingLedgerId => _$this._freightPackingLedgerId;
-  set freightPackingLedgerId(int? freightPackingLedgerId) =>
-      _$this._freightPackingLedgerId = freightPackingLedgerId;
-
-  String? _freightPackingLedgerName;
-  String? get freightPackingLedgerName => _$this._freightPackingLedgerName;
-  set freightPackingLedgerName(String? freightPackingLedgerName) =>
-      _$this._freightPackingLedgerName = freightPackingLedgerName;
-
-  int? _roundOffLedgerId;
-  int? get roundOffLedgerId => _$this._roundOffLedgerId;
-  set roundOffLedgerId(int? roundOffLedgerId) =>
-      _$this._roundOffLedgerId = roundOffLedgerId;
-
-  String? _roundOffLedgerName;
-  String? get roundOffLedgerName => _$this._roundOffLedgerName;
-  set roundOffLedgerName(String? roundOffLedgerName) =>
-      _$this._roundOffLedgerName = roundOffLedgerName;
-
-  double? _tcsPercentage;
-  double? get tcsPercentage => _$this._tcsPercentage;
-  set tcsPercentage(double? tcsPercentage) =>
-      _$this._tcsPercentage = tcsPercentage;
-
-  int? _tcsLedgerId;
-  int? get tcsLedgerId => _$this._tcsLedgerId;
-  set tcsLedgerId(int? tcsLedgerId) => _$this._tcsLedgerId = tcsLedgerId;
-
-  String? _tcsLedgerName;
-  String? get tcsLedgerName => _$this._tcsLedgerName;
-  set tcsLedgerName(String? tcsLedgerName) =>
-      _$this._tcsLedgerName = tcsLedgerName;
 
   SaleLedgerSettingResponseBuilder() {
     SaleLedgerSettingResponse._defaults(this);
@@ -316,25 +175,12 @@ class SaleLedgerSettingResponseBuilder
       _saleLedgerName = $v.saleLedgerName;
       _saleType = $v.saleType;
       _gstRate = $v.gstRate;
-      _cgstPercentage = $v.cgstPercentage;
       _cgstLedgerId = $v.cgstLedgerId;
       _cgstLedgerName = $v.cgstLedgerName;
-      _sgstPercentage = $v.sgstPercentage;
       _sgstLedgerId = $v.sgstLedgerId;
       _sgstLedgerName = $v.sgstLedgerName;
-      _igstPercentage = $v.igstPercentage;
       _igstLedgerId = $v.igstLedgerId;
       _igstLedgerName = $v.igstLedgerName;
-      _cessPercentage = $v.cessPercentage;
-      _cessLedgerId = $v.cessLedgerId;
-      _cessLedgerName = $v.cessLedgerName;
-      _freightPackingLedgerId = $v.freightPackingLedgerId;
-      _freightPackingLedgerName = $v.freightPackingLedgerName;
-      _roundOffLedgerId = $v.roundOffLedgerId;
-      _roundOffLedgerName = $v.roundOffLedgerName;
-      _tcsPercentage = $v.tcsPercentage;
-      _tcsLedgerId = $v.tcsLedgerId;
-      _tcsLedgerName = $v.tcsLedgerName;
       _$v = null;
     }
     return this;
@@ -362,25 +208,12 @@ class SaleLedgerSettingResponseBuilder
             saleLedgerName: saleLedgerName,
             saleType: saleType,
             gstRate: gstRate,
-            cgstPercentage: cgstPercentage,
             cgstLedgerId: cgstLedgerId,
             cgstLedgerName: cgstLedgerName,
-            sgstPercentage: sgstPercentage,
             sgstLedgerId: sgstLedgerId,
             sgstLedgerName: sgstLedgerName,
-            igstPercentage: igstPercentage,
             igstLedgerId: igstLedgerId,
-            igstLedgerName: igstLedgerName,
-            cessPercentage: cessPercentage,
-            cessLedgerId: cessLedgerId,
-            cessLedgerName: cessLedgerName,
-            freightPackingLedgerId: freightPackingLedgerId,
-            freightPackingLedgerName: freightPackingLedgerName,
-            roundOffLedgerId: roundOffLedgerId,
-            roundOffLedgerName: roundOffLedgerName,
-            tcsPercentage: tcsPercentage,
-            tcsLedgerId: tcsLedgerId,
-            tcsLedgerName: tcsLedgerName);
+            igstLedgerName: igstLedgerName);
     replace(_$result);
     return _$result;
   }

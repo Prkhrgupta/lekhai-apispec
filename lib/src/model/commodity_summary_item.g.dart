@@ -16,9 +16,9 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
   @override
   final String? unitOfMeasurement;
   @override
-  final double? gstRateSale;
+  final double? gstRate;
   @override
-  final double? gstRatePurchase;
+  final double? cessPercentage;
 
   factory _$CommoditySummaryItem(
           [void Function(CommoditySummaryItemBuilder)? updates]) =>
@@ -29,8 +29,8 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
       this.name,
       this.hsnSacCode,
       this.unitOfMeasurement,
-      this.gstRateSale,
-      this.gstRatePurchase})
+      this.gstRate,
+      this.cessPercentage})
       : super._();
 
   @override
@@ -50,8 +50,8 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
         name == other.name &&
         hsnSacCode == other.hsnSacCode &&
         unitOfMeasurement == other.unitOfMeasurement &&
-        gstRateSale == other.gstRateSale &&
-        gstRatePurchase == other.gstRatePurchase;
+        gstRate == other.gstRate &&
+        cessPercentage == other.cessPercentage;
   }
 
   @override
@@ -61,8 +61,8 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
     _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, hsnSacCode.hashCode);
     _$hash = $jc(_$hash, unitOfMeasurement.hashCode);
-    _$hash = $jc(_$hash, gstRateSale.hashCode);
-    _$hash = $jc(_$hash, gstRatePurchase.hashCode);
+    _$hash = $jc(_$hash, gstRate.hashCode);
+    _$hash = $jc(_$hash, cessPercentage.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -74,8 +74,8 @@ class _$CommoditySummaryItem extends CommoditySummaryItem {
           ..add('name', name)
           ..add('hsnSacCode', hsnSacCode)
           ..add('unitOfMeasurement', unitOfMeasurement)
-          ..add('gstRateSale', gstRateSale)
-          ..add('gstRatePurchase', gstRatePurchase))
+          ..add('gstRate', gstRate)
+          ..add('cessPercentage', cessPercentage))
         .toString();
   }
 }
@@ -101,14 +101,14 @@ class CommoditySummaryItemBuilder
   set unitOfMeasurement(String? unitOfMeasurement) =>
       _$this._unitOfMeasurement = unitOfMeasurement;
 
-  double? _gstRateSale;
-  double? get gstRateSale => _$this._gstRateSale;
-  set gstRateSale(double? gstRateSale) => _$this._gstRateSale = gstRateSale;
+  double? _gstRate;
+  double? get gstRate => _$this._gstRate;
+  set gstRate(double? gstRate) => _$this._gstRate = gstRate;
 
-  double? _gstRatePurchase;
-  double? get gstRatePurchase => _$this._gstRatePurchase;
-  set gstRatePurchase(double? gstRatePurchase) =>
-      _$this._gstRatePurchase = gstRatePurchase;
+  double? _cessPercentage;
+  double? get cessPercentage => _$this._cessPercentage;
+  set cessPercentage(double? cessPercentage) =>
+      _$this._cessPercentage = cessPercentage;
 
   CommoditySummaryItemBuilder() {
     CommoditySummaryItem._defaults(this);
@@ -121,8 +121,8 @@ class CommoditySummaryItemBuilder
       _name = $v.name;
       _hsnSacCode = $v.hsnSacCode;
       _unitOfMeasurement = $v.unitOfMeasurement;
-      _gstRateSale = $v.gstRateSale;
-      _gstRatePurchase = $v.gstRatePurchase;
+      _gstRate = $v.gstRate;
+      _cessPercentage = $v.cessPercentage;
       _$v = null;
     }
     return this;
@@ -149,8 +149,8 @@ class CommoditySummaryItemBuilder
             name: name,
             hsnSacCode: hsnSacCode,
             unitOfMeasurement: unitOfMeasurement,
-            gstRateSale: gstRateSale,
-            gstRatePurchase: gstRatePurchase);
+            gstRate: gstRate,
+            cessPercentage: cessPercentage);
     replace(_$result);
     return _$result;
   }
