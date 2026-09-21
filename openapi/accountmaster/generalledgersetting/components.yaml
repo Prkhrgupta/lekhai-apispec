@@ -21,6 +21,12 @@ GeneralLedgerSettingRequest:
     tcsLedgerId:
       type: integer
       format: int64
+    outputCessLedgerId:
+      type: integer
+      format: int64
+    inputCessLedgerId:
+      type: integer
+      format: int64
 
 GeneralLedgerSettingResponse:
   type: object
@@ -53,4 +59,14 @@ GeneralLedgerSettingResponse:
       type: integer
       format: int64
     tcsLedgerName:
+      type: string
+    outputCessLedgerId:
+      type: integer
+      format: int64
+    outputCessLedgerName:
+      type: string
+    inputCessLedgerId:
+      type: integer
+      format: int64
+    inputCessLedgerName:
       type: string

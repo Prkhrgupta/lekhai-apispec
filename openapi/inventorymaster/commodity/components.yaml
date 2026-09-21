@@ -12,6 +12,10 @@ CommodityRequest:
     gst_rate:
       type: number
       format: double
+    cess_percentage:
+      type: number
+      format: double
+      default: 0.0
     unit_of_measurement:
       type: string
 
@@ -31,6 +35,10 @@ CommodityResponse:
     gst_rate:
       type: number
       format: double
+    cess_percentage:
+      type: number
+      format: double
+      default: 0.0
     unit_of_measurement:
       type: string
     is_active:
@@ -79,6 +87,10 @@ CommoditySummaryItem:
     gst_rate:
       type: number
       format: double
+    cess_percentage:
+      type: number
+      format: double
+      default: 0.0
 
 CommoditySearchableField:
   type: string
