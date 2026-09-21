@@ -36,6 +36,8 @@
   $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting~1{id}'
 /purchase-ledger-setting/summary:
   $ref: './accountmaster/purchaseledgersetting/paths.yaml#/paths/~1purchase-ledger-setting~1summary'
+/general-ledger-setting:
+  $ref: './accountmaster/generalledgersetting/paths.yaml#/paths/~1general-ledger-setting'
 /state:
   $ref: './accountmaster/state/paths.yaml#/paths/~1state'
 /transport:

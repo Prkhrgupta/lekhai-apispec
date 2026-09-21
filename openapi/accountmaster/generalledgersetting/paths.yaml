@@ -1,0 +1,44 @@
+paths:
+  /general-ledger-setting:
+    get:
+      tags: [GeneralLedgerSetting]
+      summary: Get general ledger setting for the current shop
+      operationId: getGeneralLedgerSetting
+      responses:
+        '200':
+          description: General ledger setting for the current shop
+          content:
+            application/json:
+              schema:
+                $ref: '../generalledgersetting/components.yaml#/GeneralLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+    put:
+      tags: [GeneralLedgerSetting]
+      summary: Create or update general ledger setting for the current shop
+      operationId: updateGeneralLedgerSetting
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../generalledgersetting/components.yaml#/GeneralLedgerSettingRequest'
+      responses:
+        '200':
+          description: General ledger setting saved
+          content:
+            application/json:
+              schema:
+                $ref: '../generalledgersetting/components.yaml#/GeneralLedgerSettingResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

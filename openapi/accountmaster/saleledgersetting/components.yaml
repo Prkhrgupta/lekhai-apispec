@@ -16,24 +16,12 @@ SaleLedgerSettingRequest:
       type: number
       format: double
       default: 0.0
-    cgstPercentage:
-      type: number
-      format: double
-      default: 0.0
     cgstLedgerId:
       type: integer
       format: int64
-    sgstPercentage:
-      type: number
-      format: double
-      default: 0.0
     sgstLedgerId:
       type: integer
       format: int64
-    igstPercentage:
-      type: number
-      format: double
-      default: 0.0
     igstLedgerId:
       type: integer
       format: int64
@@ -42,19 +30,6 @@ SaleLedgerSettingRequest:
       format: double
       default: 0.0
     cessLedgerId:
-      type: integer
-      format: int64
-    freightPackingLedgerId:
-      type: integer
-      format: int64
-    roundOffLedgerId:
-      type: integer
-      format: int64
-    tcsPercentage:
-      type: number
-      format: double
-      default: 0.0
-    tcsLedgerId:
       type: integer
       format: int64
 
@@ -74,25 +49,16 @@ SaleLedgerSettingResponse:
     gstRate:
       type: number
       format: double
-    cgstPercentage:
-      type: number
-      format: double
     cgstLedgerId:
       type: integer
       format: int64
     cgstLedgerName:
       type: string
-    sgstPercentage:
-      type: number
-      format: double
     sgstLedgerId:
       type: integer
       format: int64
     sgstLedgerName:
       type: string
-    igstPercentage:
-      type: number
-      format: double
     igstLedgerId:
       type: integer
       format: int64
@@ -106,28 +72,6 @@ SaleLedgerSettingResponse:
       format: int64
     cessLedgerName:
       type: string
-    freightPackingLedgerId:
-      type: integer
-      format: int64
-    freightPackingLedgerName:
-      type: string
-    roundOffLedgerId:
-      type: integer
-      format: int64
-    roundOffLedgerName:
-      type: string
-    tcsPercentage:
-      type: number
-      format: double
-    tcsLedgerId:
-      type: integer
-      format: int64
-    tcsLedgerName:
-      type: string
-
-SaleLedgerSettingSearchableField:
-  type: string
-  enum: [SALE_LEDGER_NAME]
 
 SaleLedgerSettingSummaryPageResponse:
   type: object
