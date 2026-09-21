@@ -25,13 +25,6 @@ SaleLedgerSettingRequest:
     igstLedgerId:
       type: integer
       format: int64
-    cessPercentage:
-      type: number
-      format: double
-      default: 0.0
-    cessLedgerId:
-      type: integer
-      format: int64
 
 SaleLedgerSettingResponse:
   type: object
@@ -63,14 +56,6 @@ SaleLedgerSettingResponse:
       type: integer
       format: int64
     igstLedgerName:
-      type: string
-    cessPercentage:
-      type: number
-      format: double
-    cessLedgerId:
-      type: integer
-      format: int64
-    cessLedgerName:
       type: string
 
 SaleLedgerSettingSummaryPageResponse:
