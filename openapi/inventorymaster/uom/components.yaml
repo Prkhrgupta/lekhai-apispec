@@ -1,0 +1,40 @@
+Uqc:
+  type: string
+  description: Closed GST quantity-code enum owned by the API contract. Quantity-code validation lives at contract and application level only, never as a database check, so list updates ship as contract releases. OTH is the escape hatch for units outside the official list.
+  enum: [BAG, BAL, BDL, BKL, BOU, BOX, BTL, BUN, CAN, CBM, CCM, CMS, CTN, DOZ, DRM, GGK, GMS, GRS, GYD, KGS, KLR, KME, LTR, MTR, MLT, MTS, NOS, OTH, PAC, PCS, PRS, QTL, ROL, SET, SQF, SQM, SQY, TBS, TGM, THD, TON, TUB, UGS, UNT, YDS]
+
+UomRequest:
+  type: object
+  required: [unit_name, quantity_code]
+  properties:
+    unit_name:
+      type: string
+      example: Gunny Bag
+    quantity_code:
+      $ref: '#/Uqc'
+
+UomResponse:
+  type: object
+  properties:
+    id:
+      type: integer
+      format: int64
+    unit_name:
+      type: string
+      example: Gunny Bag
+    quantity_code:
+      $ref: '#/Uqc'
+
+UomSearchableField:
+  type: string
+  enum: [NAME]
+
+UomSummaryPageResponse:
+  type: object
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/UomResponse'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'

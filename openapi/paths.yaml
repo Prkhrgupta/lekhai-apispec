@@ -70,6 +70,12 @@
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1{id}'
 /stock-item/summary:
   $ref: './inventorymaster/stockitem/paths.yaml#/paths/~1stock-item~1summary'
+/uom:
+  $ref: './inventorymaster/uom/paths.yaml#/paths/~1uom'
+/uom/{id}:
+  $ref: './inventorymaster/uom/paths.yaml#/paths/~1uom~1{id}'
+/uom/summary:
+  $ref: './inventorymaster/uom/paths.yaml#/paths/~1uom~1summary'
 /payment-voucher:
   $ref: './voucher/paths.yaml#/paths/~1payment-voucher'
 /receipt-voucher:
