@@ -2,13 +2,16 @@ FinishedRawMaterial:
   type: string
   enum: [FINISHED, RAW]
 
-RatePerUnit:
-  type: string
-  enum: [PCS, METER]
-
 StockItemRequest:
   type: object
-  required: [itemName]
+  description: >-
+    Primary UOM is the stock and rate unit of the item. Alternate UOM is an
+    optional packing/display unit. Cross-field rules: when alternateUomId is
+    absent, conversionFactor must be absent; when alternateUomId is present,
+    conversionFactor must be positive and alternateUomId must differ from
+    primaryUomId. Rates and opening values are always denominated in the
+    Primary UOM; the Alternate quantity is derived at runtime and never stored.
+  required: [itemName, primaryUomId]
   properties:
     finishedRawMaterial:
       $ref: '#/FinishedRawMaterial'
@@ -32,16 +35,24 @@ StockItemRequest:
     commodityId:
       type: integer
       format: int64
-    ratePer:
-      $ref: '#/RatePerUnit'
-    openingPcs:
+    primaryUomId:
+      type: integer
+      format: int64
+      description: Primary UOM of the item; stock and rate unit.
+    alternateUomId:
+      type: integer
+      format: int64
+      description: Optional Alternate UOM; must differ from primaryUomId when present.
+    conversionFactor:
+      type: number
+      format: double
+      exclusiveMinimum: 0
+      description: How many Alternate units sit inside 1 Primary unit. Required and positive when alternateUomId is present; absent otherwise.
+    openingQty:
       type: number
       format: double
       default: 0.0
-    openingMeter:
-      type: number
-      format: double
-      default: 0.0
+      description: Opening stock entered once in the Primary unit.
     openingRate:
       type: number
       format: double
@@ -88,12 +99,24 @@ StockItemResponse:
     gstPercentage:
       type: number
       format: double
-    ratePer:
-      $ref: '#/RatePerUnit'
-    openingPcs:
+    primaryUomId:
+      type: integer
+      format: int64
+    primaryUomName:
+      type: string
+    primaryQuantityCode:
+      $ref: '../uom/components.yaml#/Uqc'
+    alternateUomId:
+      type: integer
+      format: int64
+    alternateUomName:
+      type: string
+    alternateQuantityCode:
+      $ref: '../uom/components.yaml#/Uqc'
+    conversionFactor:
       type: number
       format: double
-    openingMeter:
+    openingQty:
       type: number
       format: double
     openingRate:
