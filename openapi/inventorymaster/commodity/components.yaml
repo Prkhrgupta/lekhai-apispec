@@ -16,8 +16,6 @@ CommodityRequest:
       type: number
       format: double
       default: 0.0
-    unit_of_measurement:
-      type: string
 
 CommodityResponse:
   type: object
@@ -39,8 +37,6 @@ CommodityResponse:
       type: number
       format: double
       default: 0.0
-    unit_of_measurement:
-      type: string
     is_active:
       type: boolean
     created_at:
@@ -81,8 +77,6 @@ CommoditySummaryItem:
     name:
       type: string
     hsn_sac_code:
-      type: string
-    unit_of_measurement:
       type: string
     gst_rate:
       type: number
