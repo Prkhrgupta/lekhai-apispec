@@ -27,6 +27,7 @@ import 'package:openapi/src/api/state_api.dart';
 import 'package:openapi/src/api/stock_item_api.dart';
 import 'package:openapi/src/api/transport_api.dart';
 import 'package:openapi/src/api/transporter_ewb_api.dart';
+import 'package:openapi/src/api/uom_api.dart';
 import 'package:openapi/src/api/voucher_api.dart';
 
 class Openapi {
@@ -189,6 +190,12 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   TransporterEWBApi getTransporterEWBApi() {
     return TransporterEWBApi(dio, serializers);
+  }
+
+  /// Get UomApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  UomApi getUomApi() {
+    return UomApi(dio, serializers);
   }
 
   /// Get VoucherApi instance, base route and serializer can be overridden by a given but be careful,

@@ -85,7 +85,6 @@ import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
 import 'package:openapi/src/model/purchase_type.dart';
-import 'package:openapi/src/model/rate_per_unit.dart';
 import 'package:openapi/src/model/receipt_voucher_request.dart';
 import 'package:openapi/src/model/registration_type.dart';
 import 'package:openapi/src/model/sale_ledger_setting_request.dart';
@@ -102,6 +101,11 @@ import 'package:openapi/src/model/transport_request.dart';
 import 'package:openapi/src/model/transport_response.dart';
 import 'package:openapi/src/model/transport_searchable_field.dart';
 import 'package:openapi/src/model/transport_summary_page_response.dart';
+import 'package:openapi/src/model/uom_request.dart';
+import 'package:openapi/src/model/uom_response.dart';
+import 'package:openapi/src/model/uom_searchable_field.dart';
+import 'package:openapi/src/model/uom_summary_page_response.dart';
+import 'package:openapi/src/model/uqc.dart';
 import 'package:openapi/src/model/vehicle_detail.dart';
 import 'package:openapi/src/model/voucher_entry.dart';
 import 'package:openapi/src/model/voucher_response.dart';
@@ -180,7 +184,6 @@ part 'serializers.g.dart';
   PurchaseLedgerSettingResponse,
   PurchaseLedgerSettingSummaryPageResponse,
   PurchaseType,
-  RatePerUnit,
   ReceiptVoucherRequest,
   RegistrationType,
   SaleLedgerSettingRequest,
@@ -197,6 +200,11 @@ part 'serializers.g.dart';
   TransportResponse,
   TransportSearchableField,
   TransportSummaryPageResponse,
+  UomRequest,
+  UomResponse,
+  UomSearchableField,
+  UomSummaryPageResponse,
+  Uqc,
   VehicleDetail,
   VoucherEntry,
   VoucherResponse,

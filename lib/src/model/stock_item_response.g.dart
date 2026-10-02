@@ -34,11 +34,21 @@ class _$StockItemResponse extends StockItemResponse {
   @override
   final double? gstPercentage;
   @override
-  final RatePerUnit? ratePer;
+  final int? primaryUomId;
   @override
-  final double? openingPcs;
+  final String? primaryUomName;
   @override
-  final double? openingMeter;
+  final Uqc? primaryQuantityCode;
+  @override
+  final int? alternateUomId;
+  @override
+  final String? alternateUomName;
+  @override
+  final Uqc? alternateQuantityCode;
+  @override
+  final double? conversionFactor;
+  @override
+  final double? openingQty;
   @override
   final double? openingRate;
   @override
@@ -62,9 +72,14 @@ class _$StockItemResponse extends StockItemResponse {
       this.commodityName,
       this.hsnCode,
       this.gstPercentage,
-      this.ratePer,
-      this.openingPcs,
-      this.openingMeter,
+      this.primaryUomId,
+      this.primaryUomName,
+      this.primaryQuantityCode,
+      this.alternateUomId,
+      this.alternateUomName,
+      this.alternateQuantityCode,
+      this.conversionFactor,
+      this.openingQty,
       this.openingRate,
       this.openingValue})
       : super._();
@@ -94,9 +109,14 @@ class _$StockItemResponse extends StockItemResponse {
         commodityName == other.commodityName &&
         hsnCode == other.hsnCode &&
         gstPercentage == other.gstPercentage &&
-        ratePer == other.ratePer &&
-        openingPcs == other.openingPcs &&
-        openingMeter == other.openingMeter &&
+        primaryUomId == other.primaryUomId &&
+        primaryUomName == other.primaryUomName &&
+        primaryQuantityCode == other.primaryQuantityCode &&
+        alternateUomId == other.alternateUomId &&
+        alternateUomName == other.alternateUomName &&
+        alternateQuantityCode == other.alternateQuantityCode &&
+        conversionFactor == other.conversionFactor &&
+        openingQty == other.openingQty &&
         openingRate == other.openingRate &&
         openingValue == other.openingValue;
   }
@@ -117,9 +137,14 @@ class _$StockItemResponse extends StockItemResponse {
     _$hash = $jc(_$hash, commodityName.hashCode);
     _$hash = $jc(_$hash, hsnCode.hashCode);
     _$hash = $jc(_$hash, gstPercentage.hashCode);
-    _$hash = $jc(_$hash, ratePer.hashCode);
-    _$hash = $jc(_$hash, openingPcs.hashCode);
-    _$hash = $jc(_$hash, openingMeter.hashCode);
+    _$hash = $jc(_$hash, primaryUomId.hashCode);
+    _$hash = $jc(_$hash, primaryUomName.hashCode);
+    _$hash = $jc(_$hash, primaryQuantityCode.hashCode);
+    _$hash = $jc(_$hash, alternateUomId.hashCode);
+    _$hash = $jc(_$hash, alternateUomName.hashCode);
+    _$hash = $jc(_$hash, alternateQuantityCode.hashCode);
+    _$hash = $jc(_$hash, conversionFactor.hashCode);
+    _$hash = $jc(_$hash, openingQty.hashCode);
     _$hash = $jc(_$hash, openingRate.hashCode);
     _$hash = $jc(_$hash, openingValue.hashCode);
     _$hash = $jf(_$hash);
@@ -142,9 +167,14 @@ class _$StockItemResponse extends StockItemResponse {
           ..add('commodityName', commodityName)
           ..add('hsnCode', hsnCode)
           ..add('gstPercentage', gstPercentage)
-          ..add('ratePer', ratePer)
-          ..add('openingPcs', openingPcs)
-          ..add('openingMeter', openingMeter)
+          ..add('primaryUomId', primaryUomId)
+          ..add('primaryUomName', primaryUomName)
+          ..add('primaryQuantityCode', primaryQuantityCode)
+          ..add('alternateUomId', alternateUomId)
+          ..add('alternateUomName', alternateUomName)
+          ..add('alternateQuantityCode', alternateQuantityCode)
+          ..add('conversionFactor', conversionFactor)
+          ..add('openingQty', openingQty)
           ..add('openingRate', openingRate)
           ..add('openingValue', openingValue))
         .toString();
@@ -215,17 +245,43 @@ class StockItemResponseBuilder
   set gstPercentage(double? gstPercentage) =>
       _$this._gstPercentage = gstPercentage;
 
-  RatePerUnit? _ratePer;
-  RatePerUnit? get ratePer => _$this._ratePer;
-  set ratePer(RatePerUnit? ratePer) => _$this._ratePer = ratePer;
+  int? _primaryUomId;
+  int? get primaryUomId => _$this._primaryUomId;
+  set primaryUomId(int? primaryUomId) => _$this._primaryUomId = primaryUomId;
 
-  double? _openingPcs;
-  double? get openingPcs => _$this._openingPcs;
-  set openingPcs(double? openingPcs) => _$this._openingPcs = openingPcs;
+  String? _primaryUomName;
+  String? get primaryUomName => _$this._primaryUomName;
+  set primaryUomName(String? primaryUomName) =>
+      _$this._primaryUomName = primaryUomName;
 
-  double? _openingMeter;
-  double? get openingMeter => _$this._openingMeter;
-  set openingMeter(double? openingMeter) => _$this._openingMeter = openingMeter;
+  Uqc? _primaryQuantityCode;
+  Uqc? get primaryQuantityCode => _$this._primaryQuantityCode;
+  set primaryQuantityCode(Uqc? primaryQuantityCode) =>
+      _$this._primaryQuantityCode = primaryQuantityCode;
+
+  int? _alternateUomId;
+  int? get alternateUomId => _$this._alternateUomId;
+  set alternateUomId(int? alternateUomId) =>
+      _$this._alternateUomId = alternateUomId;
+
+  String? _alternateUomName;
+  String? get alternateUomName => _$this._alternateUomName;
+  set alternateUomName(String? alternateUomName) =>
+      _$this._alternateUomName = alternateUomName;
+
+  Uqc? _alternateQuantityCode;
+  Uqc? get alternateQuantityCode => _$this._alternateQuantityCode;
+  set alternateQuantityCode(Uqc? alternateQuantityCode) =>
+      _$this._alternateQuantityCode = alternateQuantityCode;
+
+  double? _conversionFactor;
+  double? get conversionFactor => _$this._conversionFactor;
+  set conversionFactor(double? conversionFactor) =>
+      _$this._conversionFactor = conversionFactor;
+
+  double? _openingQty;
+  double? get openingQty => _$this._openingQty;
+  set openingQty(double? openingQty) => _$this._openingQty = openingQty;
 
   double? _openingRate;
   double? get openingRate => _$this._openingRate;
@@ -255,9 +311,14 @@ class StockItemResponseBuilder
       _commodityName = $v.commodityName;
       _hsnCode = $v.hsnCode;
       _gstPercentage = $v.gstPercentage;
-      _ratePer = $v.ratePer;
-      _openingPcs = $v.openingPcs;
-      _openingMeter = $v.openingMeter;
+      _primaryUomId = $v.primaryUomId;
+      _primaryUomName = $v.primaryUomName;
+      _primaryQuantityCode = $v.primaryQuantityCode;
+      _alternateUomId = $v.alternateUomId;
+      _alternateUomName = $v.alternateUomName;
+      _alternateQuantityCode = $v.alternateQuantityCode;
+      _conversionFactor = $v.conversionFactor;
+      _openingQty = $v.openingQty;
       _openingRate = $v.openingRate;
       _openingValue = $v.openingValue;
       _$v = null;
@@ -295,9 +356,14 @@ class StockItemResponseBuilder
             commodityName: commodityName,
             hsnCode: hsnCode,
             gstPercentage: gstPercentage,
-            ratePer: ratePer,
-            openingPcs: openingPcs,
-            openingMeter: openingMeter,
+            primaryUomId: primaryUomId,
+            primaryUomName: primaryUomName,
+            primaryQuantityCode: primaryQuantityCode,
+            alternateUomId: alternateUomId,
+            alternateUomName: alternateUomName,
+            alternateQuantityCode: alternateQuantityCode,
+            conversionFactor: conversionFactor,
+            openingQty: openingQty,
             openingRate: openingRate,
             openingValue: openingValue);
     replace(_$result);

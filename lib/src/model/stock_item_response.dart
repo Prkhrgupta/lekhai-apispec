@@ -4,7 +4,7 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/finished_raw_material.dart';
-import 'package:openapi/src/model/rate_per_unit.dart';
+import 'package:openapi/src/model/uqc.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -26,9 +26,14 @@ part 'stock_item_response.g.dart';
 /// * [commodityName] 
 /// * [hsnCode] 
 /// * [gstPercentage] 
-/// * [ratePer] 
-/// * [openingPcs] 
-/// * [openingMeter] 
+/// * [primaryUomId] 
+/// * [primaryUomName] 
+/// * [primaryQuantityCode] 
+/// * [alternateUomId] 
+/// * [alternateUomName] 
+/// * [alternateQuantityCode] 
+/// * [conversionFactor] 
+/// * [openingQty] 
 /// * [openingRate] 
 /// * [openingValue] 
 @BuiltValue()
@@ -73,15 +78,31 @@ abstract class StockItemResponse implements Built<StockItemResponse, StockItemRe
   @BuiltValueField(wireName: r'gstPercentage')
   double? get gstPercentage;
 
-  @BuiltValueField(wireName: r'ratePer')
-  RatePerUnit? get ratePer;
-  // enum ratePerEnum {  PCS,  METER,  };
+  @BuiltValueField(wireName: r'primaryUomId')
+  int? get primaryUomId;
 
-  @BuiltValueField(wireName: r'openingPcs')
-  double? get openingPcs;
+  @BuiltValueField(wireName: r'primaryUomName')
+  String? get primaryUomName;
 
-  @BuiltValueField(wireName: r'openingMeter')
-  double? get openingMeter;
+  @BuiltValueField(wireName: r'primaryQuantityCode')
+  Uqc? get primaryQuantityCode;
+  // enum primaryQuantityCodeEnum {  BAG,  BAL,  BDL,  BKL,  BOU,  BOX,  BTL,  BUN,  CAN,  CBM,  CCM,  CMS,  CTN,  DOZ,  DRM,  GGK,  GMS,  GRS,  GYD,  KGS,  KLR,  KME,  LTR,  MTR,  MLT,  MTS,  NOS,  OTH,  PAC,  PCS,  PRS,  QTL,  ROL,  SET,  SQF,  SQM,  SQY,  TBS,  TGM,  THD,  TON,  TUB,  UGS,  UNT,  YDS,  };
+
+  @BuiltValueField(wireName: r'alternateUomId')
+  int? get alternateUomId;
+
+  @BuiltValueField(wireName: r'alternateUomName')
+  String? get alternateUomName;
+
+  @BuiltValueField(wireName: r'alternateQuantityCode')
+  Uqc? get alternateQuantityCode;
+  // enum alternateQuantityCodeEnum {  BAG,  BAL,  BDL,  BKL,  BOU,  BOX,  BTL,  BUN,  CAN,  CBM,  CCM,  CMS,  CTN,  DOZ,  DRM,  GGK,  GMS,  GRS,  GYD,  KGS,  KLR,  KME,  LTR,  MTR,  MLT,  MTS,  NOS,  OTH,  PAC,  PCS,  PRS,  QTL,  ROL,  SET,  SQF,  SQM,  SQY,  TBS,  TGM,  THD,  TON,  TUB,  UGS,  UNT,  YDS,  };
+
+  @BuiltValueField(wireName: r'conversionFactor')
+  double? get conversionFactor;
+
+  @BuiltValueField(wireName: r'openingQty')
+  double? get openingQty;
 
   @BuiltValueField(wireName: r'openingRate')
   double? get openingRate;
@@ -203,24 +224,59 @@ class _$StockItemResponseSerializer implements PrimitiveSerializer<StockItemResp
         specifiedType: const FullType(double),
       );
     }
-    if (object.ratePer != null) {
-      yield r'ratePer';
+    if (object.primaryUomId != null) {
+      yield r'primaryUomId';
       yield serializers.serialize(
-        object.ratePer,
-        specifiedType: const FullType(RatePerUnit),
+        object.primaryUomId,
+        specifiedType: const FullType(int),
       );
     }
-    if (object.openingPcs != null) {
-      yield r'openingPcs';
+    if (object.primaryUomName != null) {
+      yield r'primaryUomName';
       yield serializers.serialize(
-        object.openingPcs,
+        object.primaryUomName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.primaryQuantityCode != null) {
+      yield r'primaryQuantityCode';
+      yield serializers.serialize(
+        object.primaryQuantityCode,
+        specifiedType: const FullType(Uqc),
+      );
+    }
+    if (object.alternateUomId != null) {
+      yield r'alternateUomId';
+      yield serializers.serialize(
+        object.alternateUomId,
+        specifiedType: const FullType(int),
+      );
+    }
+    if (object.alternateUomName != null) {
+      yield r'alternateUomName';
+      yield serializers.serialize(
+        object.alternateUomName,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.alternateQuantityCode != null) {
+      yield r'alternateQuantityCode';
+      yield serializers.serialize(
+        object.alternateQuantityCode,
+        specifiedType: const FullType(Uqc),
+      );
+    }
+    if (object.conversionFactor != null) {
+      yield r'conversionFactor';
+      yield serializers.serialize(
+        object.conversionFactor,
         specifiedType: const FullType(double),
       );
     }
-    if (object.openingMeter != null) {
-      yield r'openingMeter';
+    if (object.openingQty != null) {
+      yield r'openingQty';
       yield serializers.serialize(
-        object.openingMeter,
+        object.openingQty,
         specifiedType: const FullType(double),
       );
     }
@@ -352,26 +408,61 @@ class _$StockItemResponseSerializer implements PrimitiveSerializer<StockItemResp
           ) as double;
           result.gstPercentage = valueDes;
           break;
-        case r'ratePer':
+        case r'primaryUomId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RatePerUnit),
-          ) as RatePerUnit;
-          result.ratePer = valueDes;
+            specifiedType: const FullType(int),
+          ) as int;
+          result.primaryUomId = valueDes;
           break;
-        case r'openingPcs':
+        case r'primaryUomName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.primaryUomName = valueDes;
+          break;
+        case r'primaryQuantityCode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Uqc),
+          ) as Uqc;
+          result.primaryQuantityCode = valueDes;
+          break;
+        case r'alternateUomId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.alternateUomId = valueDes;
+          break;
+        case r'alternateUomName':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.alternateUomName = valueDes;
+          break;
+        case r'alternateQuantityCode':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(Uqc),
+          ) as Uqc;
+          result.alternateQuantityCode = valueDes;
+          break;
+        case r'conversionFactor':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.openingPcs = valueDes;
+          result.conversionFactor = valueDes;
           break;
-        case r'openingMeter':
+        case r'openingQty':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.openingMeter = valueDes;
+          result.openingQty = valueDes;
           break;
         case r'openingRate':
           final valueDes = serializers.deserialize(

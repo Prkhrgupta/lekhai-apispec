@@ -17,7 +17,6 @@ part 'commodity_response.g.dart';
 /// * [description] - Description for GSTR-1 / Eway Bill
 /// * [gstRate] 
 /// * [cessPercentage] 
-/// * [unitOfMeasurement] 
 /// * [isActive] 
 /// * [createdAt] 
 @BuiltValue()
@@ -40,9 +39,6 @@ abstract class CommodityResponse implements Built<CommodityResponse, CommodityRe
 
   @BuiltValueField(wireName: r'cess_percentage')
   double? get cessPercentage;
-
-  @BuiltValueField(wireName: r'unit_of_measurement')
-  String? get unitOfMeasurement;
 
   @BuiltValueField(wireName: r'is_active')
   bool? get isActive;
@@ -114,13 +110,6 @@ class _$CommodityResponseSerializer implements PrimitiveSerializer<CommodityResp
       yield serializers.serialize(
         object.cessPercentage,
         specifiedType: const FullType(double),
-      );
-    }
-    if (object.unitOfMeasurement != null) {
-      yield r'unit_of_measurement';
-      yield serializers.serialize(
-        object.unitOfMeasurement,
-        specifiedType: const FullType(String),
       );
     }
     if (object.isActive != null) {
@@ -201,13 +190,6 @@ class _$CommodityResponseSerializer implements PrimitiveSerializer<CommodityResp
             specifiedType: const FullType(double),
           ) as double;
           result.cessPercentage = valueDes;
-          break;
-        case r'unit_of_measurement':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.unitOfMeasurement = valueDes;
           break;
         case r'is_active':
           final valueDes = serializers.deserialize(

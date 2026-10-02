@@ -16,7 +16,6 @@ part 'commodity_request.g.dart';
 /// * [description] - Description for GSTR-1 / Eway Bill
 /// * [gstRate] 
 /// * [cessPercentage] 
-/// * [unitOfMeasurement] 
 @BuiltValue()
 abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequestBuilder> {
   @BuiltValueField(wireName: r'name')
@@ -34,9 +33,6 @@ abstract class CommodityRequest implements Built<CommodityRequest, CommodityRequ
 
   @BuiltValueField(wireName: r'cess_percentage')
   double? get cessPercentage;
-
-  @BuiltValueField(wireName: r'unit_of_measurement')
-  String? get unitOfMeasurement;
 
   CommodityRequest._();
 
@@ -93,13 +89,6 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
       yield serializers.serialize(
         object.cessPercentage,
         specifiedType: const FullType(double),
-      );
-    }
-    if (object.unitOfMeasurement != null) {
-      yield r'unit_of_measurement';
-      yield serializers.serialize(
-        object.unitOfMeasurement,
-        specifiedType: const FullType(String),
       );
     }
   }
@@ -159,13 +148,6 @@ class _$CommodityRequestSerializer implements PrimitiveSerializer<CommodityReque
             specifiedType: const FullType(double),
           ) as double;
           result.cessPercentage = valueDes;
-          break;
-        case r'unit_of_measurement':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.unitOfMeasurement = valueDes;
           break;
         default:
           unhandled.add(key);

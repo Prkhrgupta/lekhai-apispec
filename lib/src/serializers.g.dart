@@ -78,7 +78,6 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(PurchaseLedgerSettingResponse.serializer)
       ..add(PurchaseLedgerSettingSummaryPageResponse.serializer)
       ..add(PurchaseType.serializer)
-      ..add(RatePerUnit.serializer)
       ..add(ReceiptVoucherRequest.serializer)
       ..add(RegistrationType.serializer)
       ..add(SaleLedgerSettingRequest.serializer)
@@ -96,6 +95,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(TransportResponse.serializer)
       ..add(TransportSearchableField.serializer)
       ..add(TransportSummaryPageResponse.serializer)
+      ..add(UomRequest.serializer)
+      ..add(UomResponse.serializer)
+      ..add(UomSearchableField.serializer)
+      ..add(UomSummaryPageResponse.serializer)
+      ..add(Uqc.serializer)
       ..add(VehicleDetail.serializer)
       ..add(VoucherEntry.serializer)
       ..add(VoucherResponse.serializer)
@@ -162,6 +166,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TransportResponse)]),
           () => new ListBuilder<TransportResponse>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(UomResponse)]),
+          () => new ListBuilder<UomResponse>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(VehicleDetail)]),
           () => new ListBuilder<VehicleDetail>())

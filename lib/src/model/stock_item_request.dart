@@ -4,13 +4,12 @@
 
 // ignore_for_file: unused_element
 import 'package:openapi/src/model/finished_raw_material.dart';
-import 'package:openapi/src/model/rate_per_unit.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
 part 'stock_item_request.g.dart';
 
-/// StockItemRequest
+/// Primary UOM is the stock and rate unit of the item. Alternate UOM is an optional packing/display unit. Cross-field rules: when alternateUomId is absent, conversionFactor must be absent; when alternateUomId is present, conversionFactor must be positive and alternateUomId must differ from primaryUomId. Rates and opening values are always denominated in the Primary UOM; the Alternate quantity is derived at runtime and never stored.
 ///
 /// Properties:
 /// * [finishedRawMaterial] 
@@ -20,9 +19,10 @@ part 'stock_item_request.g.dart';
 /// * [purchasePrice] 
 /// * [salePrice] 
 /// * [commodityId] 
-/// * [ratePer] 
-/// * [openingPcs] 
-/// * [openingMeter] 
+/// * [primaryUomId] - Primary UOM of the item; stock and rate unit.
+/// * [alternateUomId] - Optional Alternate UOM; must differ from primaryUomId when present.
+/// * [conversionFactor] - How many Alternate units sit inside 1 Primary unit. Required and positive when alternateUomId is present; absent otherwise.
+/// * [openingQty] - Opening stock entered once in the Primary unit.
 /// * [openingRate] 
 /// * [openingValue] 
 @BuiltValue()
@@ -49,15 +49,21 @@ abstract class StockItemRequest implements Built<StockItemRequest, StockItemRequ
   @BuiltValueField(wireName: r'commodityId')
   int? get commodityId;
 
-  @BuiltValueField(wireName: r'ratePer')
-  RatePerUnit? get ratePer;
-  // enum ratePerEnum {  PCS,  METER,  };
+  /// Primary UOM of the item; stock and rate unit.
+  @BuiltValueField(wireName: r'primaryUomId')
+  int get primaryUomId;
 
-  @BuiltValueField(wireName: r'openingPcs')
-  double? get openingPcs;
+  /// Optional Alternate UOM; must differ from primaryUomId when present.
+  @BuiltValueField(wireName: r'alternateUomId')
+  int? get alternateUomId;
 
-  @BuiltValueField(wireName: r'openingMeter')
-  double? get openingMeter;
+  /// How many Alternate units sit inside 1 Primary unit. Required and positive when alternateUomId is present; absent otherwise.
+  @BuiltValueField(wireName: r'conversionFactor')
+  double? get conversionFactor;
+
+  /// Opening stock entered once in the Primary unit.
+  @BuiltValueField(wireName: r'openingQty')
+  double? get openingQty;
 
   @BuiltValueField(wireName: r'openingRate')
   double? get openingRate;
@@ -73,8 +79,7 @@ abstract class StockItemRequest implements Built<StockItemRequest, StockItemRequ
   static void _defaults(StockItemRequestBuilder b) => b
       ..purchasePrice = 0
       ..salePrice = 0
-      ..openingPcs = 0
-      ..openingMeter = 0
+      ..openingQty = 0
       ..openingRate = 0
       ..openingValue = 0;
 
@@ -141,24 +146,29 @@ class _$StockItemRequestSerializer implements PrimitiveSerializer<StockItemReque
         specifiedType: const FullType(int),
       );
     }
-    if (object.ratePer != null) {
-      yield r'ratePer';
+    yield r'primaryUomId';
+    yield serializers.serialize(
+      object.primaryUomId,
+      specifiedType: const FullType(int),
+    );
+    if (object.alternateUomId != null) {
+      yield r'alternateUomId';
       yield serializers.serialize(
-        object.ratePer,
-        specifiedType: const FullType(RatePerUnit),
+        object.alternateUomId,
+        specifiedType: const FullType(int),
       );
     }
-    if (object.openingPcs != null) {
-      yield r'openingPcs';
+    if (object.conversionFactor != null) {
+      yield r'conversionFactor';
       yield serializers.serialize(
-        object.openingPcs,
+        object.conversionFactor,
         specifiedType: const FullType(double),
       );
     }
-    if (object.openingMeter != null) {
-      yield r'openingMeter';
+    if (object.openingQty != null) {
+      yield r'openingQty';
       yield serializers.serialize(
-        object.openingMeter,
+        object.openingQty,
         specifiedType: const FullType(double),
       );
     }
@@ -248,26 +258,33 @@ class _$StockItemRequestSerializer implements PrimitiveSerializer<StockItemReque
           ) as int;
           result.commodityId = valueDes;
           break;
-        case r'ratePer':
+        case r'primaryUomId':
           final valueDes = serializers.deserialize(
             value,
-            specifiedType: const FullType(RatePerUnit),
-          ) as RatePerUnit;
-          result.ratePer = valueDes;
+            specifiedType: const FullType(int),
+          ) as int;
+          result.primaryUomId = valueDes;
           break;
-        case r'openingPcs':
+        case r'alternateUomId':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.alternateUomId = valueDes;
+          break;
+        case r'conversionFactor':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.openingPcs = valueDes;
+          result.conversionFactor = valueDes;
           break;
-        case r'openingMeter':
+        case r'openingQty':
           final valueDes = serializers.deserialize(
             value,
             specifiedType: const FullType(double),
           ) as double;
-          result.openingMeter = valueDes;
+          result.openingQty = valueDes;
           break;
         case r'openingRate':
           final valueDes = serializers.deserialize(

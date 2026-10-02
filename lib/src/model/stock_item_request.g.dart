@@ -22,11 +22,13 @@ class _$StockItemRequest extends StockItemRequest {
   @override
   final int? commodityId;
   @override
-  final RatePerUnit? ratePer;
+  final int primaryUomId;
   @override
-  final double? openingPcs;
+  final int? alternateUomId;
   @override
-  final double? openingMeter;
+  final double? conversionFactor;
+  @override
+  final double? openingQty;
   @override
   final double? openingRate;
   @override
@@ -44,14 +46,17 @@ class _$StockItemRequest extends StockItemRequest {
       this.purchasePrice,
       this.salePrice,
       this.commodityId,
-      this.ratePer,
-      this.openingPcs,
-      this.openingMeter,
+      required this.primaryUomId,
+      this.alternateUomId,
+      this.conversionFactor,
+      this.openingQty,
       this.openingRate,
       this.openingValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         itemName, r'StockItemRequest', 'itemName');
+    BuiltValueNullFieldError.checkNotNull(
+        primaryUomId, r'StockItemRequest', 'primaryUomId');
   }
 
   @override
@@ -73,9 +78,10 @@ class _$StockItemRequest extends StockItemRequest {
         purchasePrice == other.purchasePrice &&
         salePrice == other.salePrice &&
         commodityId == other.commodityId &&
-        ratePer == other.ratePer &&
-        openingPcs == other.openingPcs &&
-        openingMeter == other.openingMeter &&
+        primaryUomId == other.primaryUomId &&
+        alternateUomId == other.alternateUomId &&
+        conversionFactor == other.conversionFactor &&
+        openingQty == other.openingQty &&
         openingRate == other.openingRate &&
         openingValue == other.openingValue;
   }
@@ -90,9 +96,10 @@ class _$StockItemRequest extends StockItemRequest {
     _$hash = $jc(_$hash, purchasePrice.hashCode);
     _$hash = $jc(_$hash, salePrice.hashCode);
     _$hash = $jc(_$hash, commodityId.hashCode);
-    _$hash = $jc(_$hash, ratePer.hashCode);
-    _$hash = $jc(_$hash, openingPcs.hashCode);
-    _$hash = $jc(_$hash, openingMeter.hashCode);
+    _$hash = $jc(_$hash, primaryUomId.hashCode);
+    _$hash = $jc(_$hash, alternateUomId.hashCode);
+    _$hash = $jc(_$hash, conversionFactor.hashCode);
+    _$hash = $jc(_$hash, openingQty.hashCode);
     _$hash = $jc(_$hash, openingRate.hashCode);
     _$hash = $jc(_$hash, openingValue.hashCode);
     _$hash = $jf(_$hash);
@@ -109,9 +116,10 @@ class _$StockItemRequest extends StockItemRequest {
           ..add('purchasePrice', purchasePrice)
           ..add('salePrice', salePrice)
           ..add('commodityId', commodityId)
-          ..add('ratePer', ratePer)
-          ..add('openingPcs', openingPcs)
-          ..add('openingMeter', openingMeter)
+          ..add('primaryUomId', primaryUomId)
+          ..add('alternateUomId', alternateUomId)
+          ..add('conversionFactor', conversionFactor)
+          ..add('openingQty', openingQty)
           ..add('openingRate', openingRate)
           ..add('openingValue', openingValue))
         .toString();
@@ -154,17 +162,23 @@ class StockItemRequestBuilder
   int? get commodityId => _$this._commodityId;
   set commodityId(int? commodityId) => _$this._commodityId = commodityId;
 
-  RatePerUnit? _ratePer;
-  RatePerUnit? get ratePer => _$this._ratePer;
-  set ratePer(RatePerUnit? ratePer) => _$this._ratePer = ratePer;
+  int? _primaryUomId;
+  int? get primaryUomId => _$this._primaryUomId;
+  set primaryUomId(int? primaryUomId) => _$this._primaryUomId = primaryUomId;
 
-  double? _openingPcs;
-  double? get openingPcs => _$this._openingPcs;
-  set openingPcs(double? openingPcs) => _$this._openingPcs = openingPcs;
+  int? _alternateUomId;
+  int? get alternateUomId => _$this._alternateUomId;
+  set alternateUomId(int? alternateUomId) =>
+      _$this._alternateUomId = alternateUomId;
 
-  double? _openingMeter;
-  double? get openingMeter => _$this._openingMeter;
-  set openingMeter(double? openingMeter) => _$this._openingMeter = openingMeter;
+  double? _conversionFactor;
+  double? get conversionFactor => _$this._conversionFactor;
+  set conversionFactor(double? conversionFactor) =>
+      _$this._conversionFactor = conversionFactor;
+
+  double? _openingQty;
+  double? get openingQty => _$this._openingQty;
+  set openingQty(double? openingQty) => _$this._openingQty = openingQty;
 
   double? _openingRate;
   double? get openingRate => _$this._openingRate;
@@ -188,9 +202,10 @@ class StockItemRequestBuilder
       _purchasePrice = $v.purchasePrice;
       _salePrice = $v.salePrice;
       _commodityId = $v.commodityId;
-      _ratePer = $v.ratePer;
-      _openingPcs = $v.openingPcs;
-      _openingMeter = $v.openingMeter;
+      _primaryUomId = $v.primaryUomId;
+      _alternateUomId = $v.alternateUomId;
+      _conversionFactor = $v.conversionFactor;
+      _openingQty = $v.openingQty;
       _openingRate = $v.openingRate;
       _openingValue = $v.openingValue;
       _$v = null;
@@ -223,9 +238,11 @@ class StockItemRequestBuilder
             purchasePrice: purchasePrice,
             salePrice: salePrice,
             commodityId: commodityId,
-            ratePer: ratePer,
-            openingPcs: openingPcs,
-            openingMeter: openingMeter,
+            primaryUomId: BuiltValueNullFieldError.checkNotNull(
+                primaryUomId, r'StockItemRequest', 'primaryUomId'),
+            alternateUomId: alternateUomId,
+            conversionFactor: conversionFactor,
+            openingQty: openingQty,
             openingRate: openingRate,
             openingValue: openingValue);
     replace(_$result);

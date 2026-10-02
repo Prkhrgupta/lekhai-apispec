@@ -20,8 +20,6 @@ class _$CommodityResponse extends CommodityResponse {
   @override
   final double? cessPercentage;
   @override
-  final String? unitOfMeasurement;
-  @override
   final bool? isActive;
   @override
   final DateTime? createdAt;
@@ -37,7 +35,6 @@ class _$CommodityResponse extends CommodityResponse {
       this.description,
       this.gstRate,
       this.cessPercentage,
-      this.unitOfMeasurement,
       this.isActive,
       this.createdAt})
       : super._();
@@ -60,7 +57,6 @@ class _$CommodityResponse extends CommodityResponse {
         description == other.description &&
         gstRate == other.gstRate &&
         cessPercentage == other.cessPercentage &&
-        unitOfMeasurement == other.unitOfMeasurement &&
         isActive == other.isActive &&
         createdAt == other.createdAt;
   }
@@ -74,7 +70,6 @@ class _$CommodityResponse extends CommodityResponse {
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, gstRate.hashCode);
     _$hash = $jc(_$hash, cessPercentage.hashCode);
-    _$hash = $jc(_$hash, unitOfMeasurement.hashCode);
     _$hash = $jc(_$hash, isActive.hashCode);
     _$hash = $jc(_$hash, createdAt.hashCode);
     _$hash = $jf(_$hash);
@@ -90,7 +85,6 @@ class _$CommodityResponse extends CommodityResponse {
           ..add('description', description)
           ..add('gstRate', gstRate)
           ..add('cessPercentage', cessPercentage)
-          ..add('unitOfMeasurement', unitOfMeasurement)
           ..add('isActive', isActive)
           ..add('createdAt', createdAt))
         .toString();
@@ -126,11 +120,6 @@ class CommodityResponseBuilder
   set cessPercentage(double? cessPercentage) =>
       _$this._cessPercentage = cessPercentage;
 
-  String? _unitOfMeasurement;
-  String? get unitOfMeasurement => _$this._unitOfMeasurement;
-  set unitOfMeasurement(String? unitOfMeasurement) =>
-      _$this._unitOfMeasurement = unitOfMeasurement;
-
   bool? _isActive;
   bool? get isActive => _$this._isActive;
   set isActive(bool? isActive) => _$this._isActive = isActive;
@@ -152,7 +141,6 @@ class CommodityResponseBuilder
       _description = $v.description;
       _gstRate = $v.gstRate;
       _cessPercentage = $v.cessPercentage;
-      _unitOfMeasurement = $v.unitOfMeasurement;
       _isActive = $v.isActive;
       _createdAt = $v.createdAt;
       _$v = null;
@@ -183,7 +171,6 @@ class CommodityResponseBuilder
             description: description,
             gstRate: gstRate,
             cessPercentage: cessPercentage,
-            unitOfMeasurement: unitOfMeasurement,
             isActive: isActive,
             createdAt: createdAt);
     replace(_$result);

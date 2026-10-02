@@ -17,8 +17,6 @@ class _$CommodityRequest extends CommodityRequest {
   final double? gstRate;
   @override
   final double? cessPercentage;
-  @override
-  final String? unitOfMeasurement;
 
   factory _$CommodityRequest(
           [void Function(CommodityRequestBuilder)? updates]) =>
@@ -29,8 +27,7 @@ class _$CommodityRequest extends CommodityRequest {
       this.hsnSacCode,
       this.description,
       this.gstRate,
-      this.cessPercentage,
-      this.unitOfMeasurement})
+      this.cessPercentage})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(name, r'CommodityRequest', 'name');
   }
@@ -51,8 +48,7 @@ class _$CommodityRequest extends CommodityRequest {
         hsnSacCode == other.hsnSacCode &&
         description == other.description &&
         gstRate == other.gstRate &&
-        cessPercentage == other.cessPercentage &&
-        unitOfMeasurement == other.unitOfMeasurement;
+        cessPercentage == other.cessPercentage;
   }
 
   @override
@@ -63,7 +59,6 @@ class _$CommodityRequest extends CommodityRequest {
     _$hash = $jc(_$hash, description.hashCode);
     _$hash = $jc(_$hash, gstRate.hashCode);
     _$hash = $jc(_$hash, cessPercentage.hashCode);
-    _$hash = $jc(_$hash, unitOfMeasurement.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -75,8 +70,7 @@ class _$CommodityRequest extends CommodityRequest {
           ..add('hsnSacCode', hsnSacCode)
           ..add('description', description)
           ..add('gstRate', gstRate)
-          ..add('cessPercentage', cessPercentage)
-          ..add('unitOfMeasurement', unitOfMeasurement))
+          ..add('cessPercentage', cessPercentage))
         .toString();
   }
 }
@@ -106,11 +100,6 @@ class CommodityRequestBuilder
   set cessPercentage(double? cessPercentage) =>
       _$this._cessPercentage = cessPercentage;
 
-  String? _unitOfMeasurement;
-  String? get unitOfMeasurement => _$this._unitOfMeasurement;
-  set unitOfMeasurement(String? unitOfMeasurement) =>
-      _$this._unitOfMeasurement = unitOfMeasurement;
-
   CommodityRequestBuilder() {
     CommodityRequest._defaults(this);
   }
@@ -123,7 +112,6 @@ class CommodityRequestBuilder
       _description = $v.description;
       _gstRate = $v.gstRate;
       _cessPercentage = $v.cessPercentage;
-      _unitOfMeasurement = $v.unitOfMeasurement;
       _$v = null;
     }
     return this;
@@ -151,8 +139,7 @@ class CommodityRequestBuilder
             hsnSacCode: hsnSacCode,
             description: description,
             gstRate: gstRate,
-            cessPercentage: cessPercentage,
-            unitOfMeasurement: unitOfMeasurement);
+            cessPercentage: cessPercentage);
     replace(_$result);
     return _$result;
   }

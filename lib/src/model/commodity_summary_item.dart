@@ -14,7 +14,6 @@ part 'commodity_summary_item.g.dart';
 /// * [id] 
 /// * [name] 
 /// * [hsnSacCode] 
-/// * [unitOfMeasurement] 
 /// * [gstRate] 
 /// * [cessPercentage] 
 @BuiltValue()
@@ -27,9 +26,6 @@ abstract class CommoditySummaryItem implements Built<CommoditySummaryItem, Commo
 
   @BuiltValueField(wireName: r'hsn_sac_code')
   String? get hsnSacCode;
-
-  @BuiltValueField(wireName: r'unit_of_measurement')
-  String? get unitOfMeasurement;
 
   @BuiltValueField(wireName: r'gst_rate')
   double? get gstRate;
@@ -79,13 +75,6 @@ class _$CommoditySummaryItemSerializer implements PrimitiveSerializer<CommodityS
       yield r'hsn_sac_code';
       yield serializers.serialize(
         object.hsnSacCode,
-        specifiedType: const FullType(String),
-      );
-    }
-    if (object.unitOfMeasurement != null) {
-      yield r'unit_of_measurement';
-      yield serializers.serialize(
-        object.unitOfMeasurement,
         specifiedType: const FullType(String),
       );
     }
@@ -146,13 +135,6 @@ class _$CommoditySummaryItemSerializer implements PrimitiveSerializer<CommodityS
             specifiedType: const FullType(String),
           ) as String;
           result.hsnSacCode = valueDes;
-          break;
-        case r'unit_of_measurement':
-          final valueDes = serializers.deserialize(
-            value,
-            specifiedType: const FullType(String),
-          ) as String;
-          result.unitOfMeasurement = valueDes;
           break;
         case r'gst_rate':
           final valueDes = serializers.deserialize(
