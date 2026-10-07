@@ -213,4 +213,4 @@ CustomVoucherSeriesListResponse:
       items:
         $ref: '#/CustomVoucherSeries'
     pagination:
-      $ref: '../../common/components.yaml#/PaginationMeta'
+      $ref: '../common/components.yaml#/PaginationMeta'

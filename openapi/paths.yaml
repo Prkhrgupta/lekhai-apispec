@@ -84,6 +84,10 @@
   $ref: './voucher/paths.yaml#/paths/~1contra-voucher'
 /journal-voucher:
   $ref: './voucher/paths.yaml#/paths/~1journal-voucher'
+/voucher-series:
+  $ref: './voucher/paths.yaml#/paths/~1voucher-series'
+/voucher-series/{id}:
+  $ref: './voucher/paths.yaml#/paths/~1voucher-series~1{id}'
 /account-ledger/{ledgerId}:
   $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
 /login:
