@@ -95,3 +95,118 @@ paths:
           $ref: '../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
+  /voucher-series:
+    post:
+      tags: [Voucher]
+      summary: Create voucher series
+      operationId: createVoucherSeries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../voucher/components.yaml#/CreateSeriesRequest'
+      responses:
+        '200':
+          description: Voucher series created
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/CustomVoucherSeries'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+    get:
+      tags: [Voucher]
+      summary: List voucher series
+      operationId: listVoucherSeries
+      parameters:
+        - name: voucher_type
+          in: query
+          description: Filter by voucher type (e.g. SALES)
+          schema:
+            type: string
+          required: false
+        - name: financial_year
+          in: query
+          description: Filter by financial year in YYYY-YY format (e.g. 2025-26)
+          schema:
+            type: string
+          required: false
+        - name: page
+          in: query
+          description: Zero-based page index
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+            default: 0
+          required: false
+        - name: size
+          in: query
+          description: Number of records per page
+          schema:
+            type: integer
+            format: int32
+            minimum: 1
+            maximum: 100
+            default: 20
+          required: false
+        - name: sort
+          in: query
+          description: Sorting criteria in the format property(,asc|desc)
+          schema:
+            type: array
+            items:
+              type: string
+          required: false
+          explode: true
+      responses:
+        '200':
+          description: List of voucher series
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/CustomVoucherSeriesListResponse'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+  /voucher-series/{id}:
+    put:
+      tags: [Voucher]
+      summary: Update voucher series
+      operationId: updateVoucherSeries
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '../voucher/components.yaml#/UpdateSeriesRequest'
+      responses:
+        '200':
+          description: Voucher series updated
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/CustomVoucherSeries'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
