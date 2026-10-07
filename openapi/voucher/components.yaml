@@ -85,3 +85,132 @@ VoucherResponse:
       type: string
     amount:
       type: number
+
+CustomVoucherSeries:
+  type: object
+  description: >-
+    Bill-number series configured per voucher type and financial year
+    (e.g. SALES GST series for FY 2025-26). The printed bill number is
+    composed of prefix + running number + suffix and must fit the 16-character
+    Rule 46(b) total; the 16-character limit is documented only and enforced
+    by the backend, not pattern-enforced in this contract.
+  properties:
+    id:
+      type: integer
+      format: int64
+      description: Unique identifier of the series
+      example: 1
+    series_code:
+      type: string
+      description: >-
+        Unique code identifying the series within a voucher type and financial
+        year (e.g. GST, RETAIL). Uppercase alphanumeric recommended. Part of
+        the 16-character Rule 46(b) bill-number total; limit documented only,
+        enforced by the backend.
+      example: "GST"
+    voucher_type:
+      type: string
+      description: Voucher type this series belongs to (e.g. SALES). Immutable after creation.
+      example: "SALES"
+    financial_year:
+      type: string
+      description: >-
+        Financial year this series belongs to, in YYYY-YY format (e.g. 2025-26).
+        Format is documented, not pattern-enforced. Immutable after creation.
+      example: "2025-26"
+    prefix:
+      type: string
+      description: Prefix printed before the running bill number
+      example: "GST/"
+    suffix:
+      type: string
+      description: Suffix printed after the running bill number
+      example: "/25"
+    allow_manual_entry:
+      type: boolean
+      description: Whether manual bill-number entry is allowed for this series
+      example: false
+    print_metadata:
+      type: object
+      description: Free-form print metadata for this series (e.g. header/footer notes)
+      example:
+        footer_note: "Goods once sold are not returnable"
+    current_bill_no:
+      type: integer
+      format: int64
+      description: Last allotted running bill number for this series
+      example: 42
+
+CreateSeriesRequest:
+  type: object
+  required: [series_code, voucher_type, financial_year]
+  properties:
+    series_code:
+      type: string
+      description: >-
+        Unique code identifying the series within a voucher type and financial
+        year (e.g. GST, RETAIL). Uppercase alphanumeric recommended. Part of
+        the 16-character Rule 46(b) bill-number total; limit documented only,
+        enforced by the backend.
+      example: "GST"
+    voucher_type:
+      type: string
+      description: Voucher type this series belongs to (e.g. SALES)
+      example: "SALES"
+    financial_year:
+      type: string
+      description: Financial year this series belongs to, in YYYY-YY format (e.g. 2025-26)
+      example: "2025-26"
+    prefix:
+      type: string
+      description: Prefix printed before the running bill number
+      example: "GST/"
+    suffix:
+      type: string
+      description: Suffix printed after the running bill number
+      example: "/25"
+    allow_manual_entry:
+      type: boolean
+      description: Whether manual bill-number entry is allowed for this series
+      example: false
+    print_metadata:
+      type: object
+      description: Free-form print metadata for this series
+      example:
+        footer_note: "Goods once sold are not returnable"
+
+UpdateSeriesRequest:
+  type: object
+  description: >-
+    Only prefix, suffix, allow_manual_entry and print metadata are editable.
+    series_code, voucher_type and financial_year are immutable and therefore
+    absent from this schema.
+  properties:
+    prefix:
+      type: string
+      description: Prefix printed before the running bill number
+      example: "GST/"
+    suffix:
+      type: string
+      description: Suffix printed after the running bill number
+      example: "/25"
+    allow_manual_entry:
+      type: boolean
+      description: Whether manual bill-number entry is allowed for this series
+      example: false
+    print_metadata:
+      type: object
+      description: Free-form print metadata for this series
+      example:
+        footer_note: "Goods once sold are not returnable"
+
+CustomVoucherSeriesListResponse:
+  type: object
+  description: Paginated list of custom voucher series, filterable by voucher_type and financial_year
+  properties:
+    data:
+      type: array
+      items:
+        $ref: '#/CustomVoucherSeries'
+    pagination:
+      $ref: '../../common/components.yaml#/PaginationMeta'
