@@ -117,6 +117,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
     get:
@@ -175,6 +177,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
   /voucher-series/{id}:
