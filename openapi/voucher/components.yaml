@@ -85,6 +85,33 @@ VoucherResponse:
       type: string
     amount:
       type: number
+    warnings:
+      $ref: '#/VoucherWarnings'
+      nullable: true
+      description: >-
+        Optional gap warnings for the voucher-create response. There is no
+        sales-invoice path in this contract yet, so the shared VoucherResponse
+        carries the invoice-create warning contract (spec user story 3): every
+        voucher-create may return warnings.first_missing_bill_no and the UI
+        toasts "Bill no X is missing". Null/absent when no gap is detected;
+        optional so existing consumers don't break.
+
+VoucherWarnings:
+  type: object
+  description: >-
+    Gap warnings accompanying a voucher-create response. The backend detects
+    the first missing running bill number in the voucher series and surfaces
+    it here so the UI can toast "Bill no X is missing".
+  properties:
+    first_missing_bill_no:
+      type: integer
+      format: int64
+      nullable: true
+      description: >-
+        First missing running bill number detected in the voucher-series gap
+        scan. Null when no gap is detected; when present the UI toasts
+        "Bill no X is missing".
+      example: 5
 
 CustomVoucherSeries:
   type: object

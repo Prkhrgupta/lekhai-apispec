@@ -16,6 +16,41 @@ Error:
       type: string
       format: date-time
 
+SeriesFyMissingError:
+  type: object
+  description: >-
+    Structured SERIES_FY_MISSING error returned when no custom voucher-series
+    row exists for the requested voucher_type + financial_year. Follows the
+    shared Error envelope with a machine-readable code and the missing
+    voucher_type/financial_year echoed in data for actionable UI messaging.
+  properties:
+    success:
+      type: boolean
+      example: false
+    code:
+      type: string
+      description: Machine-readable error code
+      example: "SERIES_FY_MISSING"
+    message:
+      type: string
+      example: "No voucher series configured for voucher_type SALES in financial year 2025-26"
+    data:
+      type: object
+      description: Missing series context echoed for actionable handling
+      properties:
+        voucher_type:
+          type: string
+          example: "SALES"
+        financial_year:
+          type: string
+          example: "2025-26"
+    error:
+      type: string
+      example: "SERIES_FY_MISSING"
+    timestamp:
+      type: string
+      format: date-time
+
 DropdownItem:
   type: object
   required:
@@ -84,3 +119,9 @@ responses:
       application/json:
         schema:
           $ref: '#/Error'
+  SeriesFyMissingError:
+    description: No voucher series configured for the requested voucher type and financial year
+    content:
+      application/json:
+        schema:
+          $ref: '#/SeriesFyMissingError'
