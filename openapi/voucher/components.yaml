@@ -165,7 +165,7 @@ CustomVoucherSeries:
     current_bill_no:
       type: integer
       format: int64
-      description: Last allotted running bill number for this series
+      description: Last allotted running bill number for this series. Numbering is per financial year.
       example: 42
 
 CreateSeriesRequest:
