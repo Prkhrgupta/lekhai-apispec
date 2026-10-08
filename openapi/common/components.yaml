@@ -20,10 +20,12 @@ SeriesFyMissingError:
   type: object
   description: >-
     Structured SERIES_FY_MISSING error returned when no custom voucher-series
-    row exists for the requested voucher_type + financial_year. Follows the
-    shared Error envelope with the machine-readable code in error and the
-    missing voucher_type/financial_year echoed in data for actionable UI
-    messaging.
+    row exists for the requested voucher_type + financial_year — either a
+    series list filtered by financial_year that matches zero rows, or a
+    voucher create carrying a series_code with no matching series row.
+    Follows the shared Error envelope with the machine-readable code in
+    error and the missing voucher_type/financial_year echoed in data for
+    actionable UI messaging.
   properties:
     success:
       type: boolean
@@ -117,7 +119,7 @@ responses:
         schema:
           $ref: '#/Error'
   SeriesFyMissingError:
-    description: No voucher series row configured for the requested voucher_type and financial_year filter; returned when a financial_year filter matches no configured row
+    description: No voucher series row configured for the requested voucher_type and financial_year filter; returned when a financial_year filter matches no configured row, or when a voucher create carries a series_code with no matching series row
     content:
       application/json:
         schema:
