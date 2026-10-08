@@ -20,6 +20,27 @@ PaymentVoucherRequest:
       format: int64
     narration:
       type: string
+    series_code:
+      type: string
+      description: >-
+        Optional custom voucher-series code (e.g. CASH-1) scoping bill
+        numbering for voucher type PAYMENT and the voucher's financial year.
+        Absent = legacy counter behavior (backward compatible); present with
+        absent bill_no = auto-allocate the next running number; present with
+        bill_no = manual entry (backend checks the series'
+        allow_manual_entry flag). An unknown series_code, or no series row
+        for the voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
+      example: "CASH-1"
+    bill_no:
+      type: integer
+      format: int64
+      nullable: true
+      description: >-
+        Optional manual running bill number within series_code. Only
+        meaningful with series_code present; the backend rejects manual
+        numbers when the series disallows manual entry. Absent with
+        series_code present = auto-allocate.
+      example: 43
     items:
       type: array
       items:
@@ -36,6 +57,27 @@ ReceiptVoucherRequest:
       format: int64
     narration:
       type: string
+    series_code:
+      type: string
+      description: >-
+        Optional custom voucher-series code (e.g. RCPT-1) scoping bill
+        numbering for voucher type RECEIPT and the voucher's financial year.
+        Absent = legacy counter behavior (backward compatible); present with
+        absent bill_no = auto-allocate the next running number; present with
+        bill_no = manual entry (backend checks the series'
+        allow_manual_entry flag). An unknown series_code, or no series row
+        for the voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
+      example: "RCPT-1"
+    bill_no:
+      type: integer
+      format: int64
+      nullable: true
+      description: >-
+        Optional manual running bill number within series_code. Only
+        meaningful with series_code present; the backend rejects manual
+        numbers when the series disallows manual entry. Absent with
+        series_code present = auto-allocate.
+      example: 43
     items:
       type: array
       items:
@@ -49,6 +91,27 @@ ContraVoucherRequest:
       format: date
     narration:
       type: string
+    series_code:
+      type: string
+      description: >-
+        Optional custom voucher-series code (e.g. CONTRA-1) scoping bill
+        numbering for voucher type CONTRA and the voucher's financial year.
+        Absent = legacy counter behavior (backward compatible); present with
+        absent bill_no = auto-allocate the next running number; present with
+        bill_no = manual entry (backend checks the series'
+        allow_manual_entry flag). An unknown series_code, or no series row
+        for the voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
+      example: "CONTRA-1"
+    bill_no:
+      type: integer
+      format: int64
+      nullable: true
+      description: >-
+        Optional manual running bill number within series_code. Only
+        meaningful with series_code present; the backend rejects manual
+        numbers when the series disallows manual entry. Absent with
+        series_code present = auto-allocate.
+      example: 43
     debit_entries:
       type: array
       items:
@@ -66,6 +129,27 @@ JournalVoucherRequest:
       format: date
     narration:
       type: string
+    series_code:
+      type: string
+      description: >-
+        Optional custom voucher-series code (e.g. JV-1) scoping bill numbering
+        for voucher type JOURNAL and the voucher's financial year. Absent =
+        legacy counter behavior (backward compatible); present with absent
+        bill_no = auto-allocate the next running number; present with bill_no
+        = manual entry (backend checks the series' allow_manual_entry flag).
+        An unknown series_code, or no series row for the voucher_type +
+        financial_year, returns 422 SERIES_FY_MISSING.
+      example: "JV-1"
+    bill_no:
+      type: integer
+      format: int64
+      nullable: true
+      description: >-
+        Optional manual running bill number within series_code. Only
+        meaningful with series_code present; the backend rejects manual
+        numbers when the series disallows manual entry. Absent with
+        series_code present = auto-allocate.
+      example: 43
     debit_entries:
       type: array
       items:
@@ -117,10 +201,12 @@ CustomVoucherSeries:
   type: object
   description: >-
     Bill-number series configured per voucher type and financial year
-    (e.g. SALES GST series for FY 2025-26). The printed bill number is
-    composed of prefix + running number + suffix and must fit the 16-character
-    Rule 46(b) total; the 16-character limit is documented only and enforced
-    by the backend, not pattern-enforced in this contract.
+    (e.g. a SALES GST series or a PAYMENT CASH series for FY 2025-26).
+    Supported voucher types: SALES, PAYMENT, RECEIPT, CONTRA, JOURNAL. The
+    printed bill number is composed of prefix + running number + suffix and
+    must fit the 16-character Rule 46(b) total; the 16-character limit is
+    documented only and enforced by the backend, not pattern-enforced in
+    this contract.
   properties:
     id:
       type: integer
@@ -137,7 +223,9 @@ CustomVoucherSeries:
       example: "GST"
     voucher_type:
       type: string
-      description: Voucher type this series belongs to (e.g. SALES). Immutable after creation.
+      description: >-
+        Voucher type this series belongs to. Supported values: SALES,
+        PAYMENT, RECEIPT, CONTRA, JOURNAL. Immutable after creation.
       example: "SALES"
     financial_year:
       type: string
@@ -182,7 +270,9 @@ CreateSeriesRequest:
       example: "GST"
     voucher_type:
       type: string
-      description: Voucher type this series belongs to (e.g. SALES)
+      description: >-
+        Voucher type this series belongs to. Supported values: SALES,
+        PAYMENT, RECEIPT, CONTRA, JOURNAL.
       example: "SALES"
     financial_year:
       type: string

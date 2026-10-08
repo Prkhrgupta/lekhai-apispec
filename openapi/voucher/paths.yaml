@@ -12,7 +12,13 @@ paths:
               $ref: '../voucher/components.yaml#/PaymentVoucherRequest'
       responses:
         '200':
-          description: Payment voucher created
+          description: >-
+            Payment voucher created. When series_code is supplied, numbering
+            follows the custom voucher series (auto-allocate when bill_no is
+            absent, manual when present and allowed); the response may carry
+            warnings.first_missing_bill_no (UI toasts "Bill no X is
+            missing"). An unknown series_code, or no series row for the
+            voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
           content:
             application/json:
               schema:
@@ -21,6 +27,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
   /receipt-voucher:
@@ -36,7 +44,13 @@ paths:
               $ref: '../voucher/components.yaml#/ReceiptVoucherRequest'
       responses:
         '200':
-          description: Receipt voucher created
+          description: >-
+            Receipt voucher created. When series_code is supplied, numbering
+            follows the custom voucher series (auto-allocate when bill_no is
+            absent, manual when present and allowed); the response may carry
+            warnings.first_missing_bill_no (UI toasts "Bill no X is
+            missing"). An unknown series_code, or no series row for the
+            voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
           content:
             application/json:
               schema:
@@ -45,6 +59,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
   /contra-voucher:
@@ -60,7 +76,13 @@ paths:
               $ref: '../voucher/components.yaml#/ContraVoucherRequest'
       responses:
         '200':
-          description: Contra voucher created
+          description: >-
+            Contra voucher created. When series_code is supplied, numbering
+            follows the custom voucher series (auto-allocate when bill_no is
+            absent, manual when present and allowed); the response may carry
+            warnings.first_missing_bill_no (UI toasts "Bill no X is
+            missing"). An unknown series_code, or no series row for the
+            voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
           content:
             application/json:
               schema:
@@ -69,6 +91,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
   /journal-voucher:
@@ -84,7 +108,13 @@ paths:
               $ref: '../voucher/components.yaml#/JournalVoucherRequest'
       responses:
         '200':
-          description: Journal voucher created
+          description: >-
+            Journal voucher created. When series_code is supplied, numbering
+            follows the custom voucher series (auto-allocate when bill_no is
+            absent, manual when present and allowed); the response may carry
+            warnings.first_missing_bill_no (UI toasts "Bill no X is
+            missing"). An unknown series_code, or no series row for the
+            voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
           content:
             application/json:
               schema:
@@ -93,6 +123,8 @@ paths:
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
   /voucher-series:
@@ -126,7 +158,9 @@ paths:
       parameters:
         - name: voucher_type
           in: query
-          description: Filter by voucher type (e.g. SALES)
+          description: >-
+            Filter by voucher type. Supported values: SALES, PAYMENT, RECEIPT,
+            CONTRA, JOURNAL (e.g. SALES).
           schema:
             type: string
           required: false
@@ -157,7 +191,9 @@ paths:
           required: false
         - name: sort
           in: query
-          description: Sorting criteria in the format property(,asc|desc)
+          description: >-
+            Sorting criteria in the format property(,asc|desc). Only `id`
+            sorting is supported.
           schema:
             type: array
             items:
@@ -166,7 +202,10 @@ paths:
           explode: true
       responses:
         '200':
-          description: List of voucher series
+          description: >-
+            List of voucher series. When a financial_year filter matches no
+            configured series row, the backend returns 422 SERIES_FY_MISSING
+            instead of an empty page.
           content:
             application/json:
               schema:
