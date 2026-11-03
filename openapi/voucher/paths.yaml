@@ -23,10 +23,14 @@ paths:
             application/json:
               schema:
                 $ref: '../voucher/components.yaml#/VoucherResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
         '401':
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '409':
+          $ref: '../common/components.yaml#/responses/ConflictError'
         '422':
           $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
@@ -55,10 +59,14 @@ paths:
             application/json:
               schema:
                 $ref: '../voucher/components.yaml#/VoucherResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
         '401':
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '409':
+          $ref: '../common/components.yaml#/responses/ConflictError'
         '422':
           $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
@@ -87,10 +95,14 @@ paths:
             application/json:
               schema:
                 $ref: '../voucher/components.yaml#/VoucherResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
         '401':
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '409':
+          $ref: '../common/components.yaml#/responses/ConflictError'
         '422':
           $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
@@ -119,10 +131,14 @@ paths:
             application/json:
               schema:
                 $ref: '../voucher/components.yaml#/VoucherResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
         '401':
           $ref: '../common/components.yaml#/responses/UnauthorizedError'
         '403':
           $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '409':
+          $ref: '../common/components.yaml#/responses/ConflictError'
         '422':
           $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
         '500':
@@ -159,10 +175,9 @@ paths:
         - name: voucher_type
           in: query
           description: >-
-            Filter by voucher type. Supported values: SALES, PAYMENT, RECEIPT,
-            CONTRA, JOURNAL (e.g. SALES).
+            Filter by voucher type (e.g. SALES).
           schema:
-            type: string
+            $ref: '../voucher/components.yaml#/VoucherType'
           required: false
         - name: financial_year
           in: query
@@ -249,5 +264,70 @@ paths:
           $ref: '../common/components.yaml#/responses/ForbiddenError'
         '404':
           $ref: '../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+  /voucher-series/next-number:
+    get:
+      tags: [Voucher]
+      summary: Peek next bill number for a custom voucher series
+      operationId: getNextBillNo
+      parameters:
+        - name: series_code
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: voucher_type
+          in: query
+          required: true
+          schema:
+            $ref: '../voucher/components.yaml#/VoucherType'
+        - name: financial_year
+          in: query
+          required: true
+          description: Financial year in YYYY-YY format (e.g. 2025-26)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Next bill number preview (read-only, does not reserve)
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/NextBillNoResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '422':
+          $ref: '../common/components.yaml#/responses/SeriesFyMissingError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+  /vouchers/next-number:
+    get:
+      tags: [Voucher]
+      summary: Peek next legacy voucher number for a voucher type
+      operationId: getNextVoucherNumber
+      parameters:
+        - name: voucher_type
+          in: query
+          required: true
+          schema:
+            $ref: '../voucher/components.yaml#/VoucherType'
+      responses:
+        '200':
+          description: Next legacy voucher number preview (read-only, does not reserve)
+          content:
+            application/json:
+              schema:
+                $ref: '../voucher/components.yaml#/NextVoucherNumberResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'

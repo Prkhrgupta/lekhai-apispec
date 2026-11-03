@@ -124,3 +124,15 @@ responses:
       application/json:
         schema:
           $ref: '#/SeriesFyMissingError'
+  BadRequestError:
+    description: Bad request — manual bill entry not allowed, bill_no not positive, voucher date outside FY, or validation failed
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
+  ConflictError:
+    description: Conflict — bill no already exists in this series
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'
