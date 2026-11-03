@@ -1,3 +1,14 @@
+VoucherType:
+  type: string
+  description: >-
+    Closed voucher-type enum owned by the API contract. All voucher kinds
+    (PAYMENT, RECEIPT, CONTRA, JOURNAL, PURCHASE, SALES, CREDIT_NOTE,
+    DEBIT_NOTE). Series creation validates a supported subset at application
+    level (backend rejects unsupported types with 400/422); prefix mapping for
+    legacy display numbers lives in backend code, not in this contract, so
+    remember to update it when a new type is added. See docs in voucher module.
+  enum: [PAYMENT, RECEIPT, CONTRA, JOURNAL, PURCHASE, SALES, CREDIT_NOTE, DEBIT_NOTE]
+
 VoucherEntry:
   type: object
   properties:
@@ -34,12 +45,11 @@ PaymentVoucherRequest:
     bill_no:
       type: integer
       format: int64
-      nullable: true
       description: >-
         Optional manual running bill number within series_code. Only
         meaningful with series_code present; the backend rejects manual
-        numbers when the series disallows manual entry. Absent with
-        series_code present = auto-allocate.
+        numbers when the series disallows manual entry. Omitted or null
+        with series_code present = auto-allocate.
       example: 43
     items:
       type: array
@@ -71,12 +81,11 @@ ReceiptVoucherRequest:
     bill_no:
       type: integer
       format: int64
-      nullable: true
       description: >-
         Optional manual running bill number within series_code. Only
         meaningful with series_code present; the backend rejects manual
-        numbers when the series disallows manual entry. Absent with
-        series_code present = auto-allocate.
+        numbers when the series disallows manual entry. Omitted or null
+        with series_code present = auto-allocate.
       example: 43
     items:
       type: array
@@ -105,12 +114,11 @@ ContraVoucherRequest:
     bill_no:
       type: integer
       format: int64
-      nullable: true
       description: >-
         Optional manual running bill number within series_code. Only
         meaningful with series_code present; the backend rejects manual
-        numbers when the series disallows manual entry. Absent with
-        series_code present = auto-allocate.
+        numbers when the series disallows manual entry. Omitted or null
+        with series_code present = auto-allocate.
       example: 43
     debit_entries:
       type: array
@@ -143,12 +151,11 @@ JournalVoucherRequest:
     bill_no:
       type: integer
       format: int64
-      nullable: true
       description: >-
         Optional manual running bill number within series_code. Only
         meaningful with series_code present; the backend rejects manual
-        numbers when the series disallows manual entry. Absent with
-        series_code present = auto-allocate.
+        numbers when the series disallows manual entry. Omitted or null
+        with series_code present = auto-allocate.
       example: 43
     debit_entries:
       type: array
@@ -202,8 +209,7 @@ CustomVoucherSeries:
   description: >-
     Bill-number series configured per voucher type and financial year
     (e.g. a SALES GST series or a PAYMENT CASH series for FY 2025-26).
-    Supported voucher types: SALES, PAYMENT, RECEIPT, CONTRA, JOURNAL. The
-    printed bill number is composed of prefix + running number + suffix and
+    The printed bill number is composed of prefix + running number + suffix and
     must fit the 16-character Rule 46(b) total; the 16-character limit is
     documented only and enforced by the backend, not pattern-enforced in
     this contract.
@@ -222,10 +228,9 @@ CustomVoucherSeries:
         enforced by the backend.
       example: "GST"
     voucher_type:
-      type: string
+      $ref: '#/VoucherType'
       description: >-
-        Voucher type this series belongs to. Supported values: SALES,
-        PAYMENT, RECEIPT, CONTRA, JOURNAL. Immutable after creation.
+        Voucher type this series belongs to. Immutable after creation.
       example: "SALES"
     financial_year:
       type: string
@@ -269,10 +274,9 @@ CreateSeriesRequest:
         enforced by the backend.
       example: "GST"
     voucher_type:
-      type: string
+      $ref: '#/VoucherType'
       description: >-
-        Voucher type this series belongs to. Supported values: SALES,
-        PAYMENT, RECEIPT, CONTRA, JOURNAL.
+        Voucher type this series belongs to.
       example: "SALES"
     financial_year:
       type: string
@@ -331,3 +335,30 @@ CustomVoucherSeriesListResponse:
         $ref: '#/CustomVoucherSeries'
     pagination:
       $ref: '../common/components.yaml#/PaginationMeta'
+
+NextBillNoResponse:
+  type: object
+  description: >-
+    Peek at the next running bill number for a custom voucher series without
+    reserving it. Read-only preview for the unified Voucher No. field; the
+    number is allocated only on voucher POST. May be stale under concurrency —
+    a duplicate POST returns 409 and the UI refetches.
+  properties:
+    next_bill_no:
+      type: integer
+      format: int64
+      description: Next running bill number to display (raw number, without prefix/suffix)
+      example: 43
+
+NextVoucherNumberResponse:
+  type: object
+  description: >-
+    Peek at the next legacy voucher number for a voucher type without
+    reserving it. Read-only preview; the counter advances only on voucher
+    POST. May be stale under concurrency.
+  properties:
+    next_voucher_number:
+      type: integer
+      format: int64
+      description: Next legacy voucher number to display (raw counter value)
+      example: 7
