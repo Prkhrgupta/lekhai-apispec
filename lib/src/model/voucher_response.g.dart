@@ -13,11 +13,14 @@ class _$VoucherResponse extends VoucherResponse {
   final String? voucherNumber;
   @override
   final num? amount;
+  @override
+  final VoucherWarnings? warnings;
 
   factory _$VoucherResponse([void Function(VoucherResponseBuilder)? updates]) =>
       (new VoucherResponseBuilder()..update(updates))._build();
 
-  _$VoucherResponse._({this.id, this.voucherNumber, this.amount}) : super._();
+  _$VoucherResponse._({this.id, this.voucherNumber, this.amount, this.warnings})
+      : super._();
 
   @override
   VoucherResponse rebuild(void Function(VoucherResponseBuilder) updates) =>
@@ -33,7 +36,8 @@ class _$VoucherResponse extends VoucherResponse {
     return other is VoucherResponse &&
         id == other.id &&
         voucherNumber == other.voucherNumber &&
-        amount == other.amount;
+        amount == other.amount &&
+        warnings == other.warnings;
   }
 
   @override
@@ -42,6 +46,7 @@ class _$VoucherResponse extends VoucherResponse {
     _$hash = $jc(_$hash, id.hashCode);
     _$hash = $jc(_$hash, voucherNumber.hashCode);
     _$hash = $jc(_$hash, amount.hashCode);
+    _$hash = $jc(_$hash, warnings.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -51,7 +56,8 @@ class _$VoucherResponse extends VoucherResponse {
     return (newBuiltValueToStringHelper(r'VoucherResponse')
           ..add('id', id)
           ..add('voucherNumber', voucherNumber)
-          ..add('amount', amount))
+          ..add('amount', amount)
+          ..add('warnings', warnings))
         .toString();
   }
 }
@@ -73,6 +79,11 @@ class VoucherResponseBuilder
   num? get amount => _$this._amount;
   set amount(num? amount) => _$this._amount = amount;
 
+  VoucherWarningsBuilder? _warnings;
+  VoucherWarningsBuilder get warnings =>
+      _$this._warnings ??= new VoucherWarningsBuilder();
+  set warnings(VoucherWarningsBuilder? warnings) => _$this._warnings = warnings;
+
   VoucherResponseBuilder() {
     VoucherResponse._defaults(this);
   }
@@ -83,6 +94,7 @@ class VoucherResponseBuilder
       _id = $v.id;
       _voucherNumber = $v.voucherNumber;
       _amount = $v.amount;
+      _warnings = $v.warnings?.toBuilder();
       _$v = null;
     }
     return this;
@@ -103,9 +115,25 @@ class VoucherResponseBuilder
   VoucherResponse build() => _build();
 
   _$VoucherResponse _build() {
-    final _$result = _$v ??
-        new _$VoucherResponse._(
-            id: id, voucherNumber: voucherNumber, amount: amount);
+    _$VoucherResponse _$result;
+    try {
+      _$result = _$v ??
+          new _$VoucherResponse._(
+              id: id,
+              voucherNumber: voucherNumber,
+              amount: amount,
+              warnings: _warnings?.build());
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'warnings';
+        _warnings?.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'VoucherResponse', _$failedField, e.toString());
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

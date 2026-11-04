@@ -17,6 +17,8 @@ part 'receipt_voucher_request.g.dart';
 /// * [voucherDate] 
 /// * [receiptAccountId] 
 /// * [narration] 
+/// * [seriesCode] - Optional custom voucher-series code (e.g. RCPT-1) scoping bill numbering for voucher type RECEIPT and the voucher's financial year. Absent = legacy counter behavior (backward compatible); present with absent bill_no = auto-allocate the next running number; present with bill_no = manual entry (backend checks the series' allow_manual_entry flag). An unknown series_code, or no series row for the voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
+/// * [billNo] - Optional manual running bill number within series_code. Only meaningful with series_code present; the backend rejects manual numbers when the series disallows manual entry. Omitted or null with series_code present = auto-allocate.
 /// * [items] 
 @BuiltValue()
 abstract class ReceiptVoucherRequest implements Built<ReceiptVoucherRequest, ReceiptVoucherRequestBuilder> {
@@ -28,6 +30,14 @@ abstract class ReceiptVoucherRequest implements Built<ReceiptVoucherRequest, Rec
 
   @BuiltValueField(wireName: r'narration')
   String? get narration;
+
+  /// Optional custom voucher-series code (e.g. RCPT-1) scoping bill numbering for voucher type RECEIPT and the voucher's financial year. Absent = legacy counter behavior (backward compatible); present with absent bill_no = auto-allocate the next running number; present with bill_no = manual entry (backend checks the series' allow_manual_entry flag). An unknown series_code, or no series row for the voucher_type + financial_year, returns 422 SERIES_FY_MISSING.
+  @BuiltValueField(wireName: r'series_code')
+  String? get seriesCode;
+
+  /// Optional manual running bill number within series_code. Only meaningful with series_code present; the backend rejects manual numbers when the series disallows manual entry. Omitted or null with series_code present = auto-allocate.
+  @BuiltValueField(wireName: r'bill_no')
+  int? get billNo;
 
   @BuiltValueField(wireName: r'items')
   BuiltList<VoucherEntry>? get items;
@@ -74,6 +84,20 @@ class _$ReceiptVoucherRequestSerializer implements PrimitiveSerializer<ReceiptVo
       yield serializers.serialize(
         object.narration,
         specifiedType: const FullType(String),
+      );
+    }
+    if (object.seriesCode != null) {
+      yield r'series_code';
+      yield serializers.serialize(
+        object.seriesCode,
+        specifiedType: const FullType(String),
+      );
+    }
+    if (object.billNo != null) {
+      yield r'bill_no';
+      yield serializers.serialize(
+        object.billNo,
+        specifiedType: const FullType(int),
       );
     }
     if (object.items != null) {
@@ -126,6 +150,20 @@ class _$ReceiptVoucherRequestSerializer implements PrimitiveSerializer<ReceiptVo
             specifiedType: const FullType(String),
           ) as String;
           result.narration = valueDes;
+          break;
+        case r'series_code':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(String),
+          ) as String;
+          result.seriesCode = valueDes;
+          break;
+        case r'bill_no':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(int),
+          ) as int;
+          result.billNo = valueDes;
           break;
         case r'items':
           final valueDes = serializers.deserialize(

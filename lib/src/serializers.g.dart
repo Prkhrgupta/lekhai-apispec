@@ -31,6 +31,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CommoditySummaryItem.serializer)
       ..add(CommoditySummaryResponse.serializer)
       ..add(ContraVoucherRequest.serializer)
+      ..add(CreateSeriesRequest.serializer)
+      ..add(CustomVoucherSeries.serializer)
+      ..add(CustomVoucherSeriesListResponse.serializer)
       ..add(Day.serializer)
       ..add(DropdownItem.serializer)
       ..add(Error.serializer)
@@ -71,9 +74,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(MailTo.serializer)
       ..add(MenuItem.serializer)
       ..add(MenuResponse.serializer)
+      ..add(NextBillNoResponse.serializer)
+      ..add(NextVoucherNumberResponse.serializer)
       ..add(PaginationMeta.serializer)
       ..add(PartyType.serializer)
       ..add(PaymentVoucherRequest.serializer)
+      ..add(PlaceOfSupplySource.serializer)
       ..add(PurchaseLedgerSettingRequest.serializer)
       ..add(PurchaseLedgerSettingResponse.serializer)
       ..add(PurchaseLedgerSettingSummaryPageResponse.serializer)
@@ -84,8 +90,24 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(SaleLedgerSettingResponse.serializer)
       ..add(SaleLedgerSettingSummaryPageResponse.serializer)
       ..add(SaleType.serializer)
+      ..add(SalesInvoiceItemRequest.serializer)
+      ..add(SalesInvoiceItemResult.serializer)
+      ..add(SalesInvoiceParty.serializer)
+      ..add(SalesInvoicePreviewResponse.serializer)
+      ..add(SalesInvoiceRequest.serializer)
+      ..add(SalesInvoiceResponse.serializer)
+      ..add(SalesInvoiceStatus.serializer)
+      ..add(SalesInvoiceSupplyType.serializer)
+      ..add(SalesInvoiceTaxLine.serializer)
+      ..add(SalesInvoiceTaxType.serializer)
+      ..add(SalesInvoiceTotals.serializer)
+      ..add(SalesInvoiceWarning.serializer)
+      ..add(SalesInvoiceWarningCode.serializer)
+      ..add(SeriesFyMissingError.serializer)
+      ..add(SeriesFyMissingErrorData.serializer)
       ..add(ShopMenu.serializer)
       ..add(ShopMenuRoleEnum.serializer)
+      ..add(StockAvailabilityResponse.serializer)
       ..add(StockItemRequest.serializer)
       ..add(StockItemResponse.serializer)
       ..add(StockItemSearchableField.serializer)
@@ -99,10 +121,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(UomResponse.serializer)
       ..add(UomSearchableField.serializer)
       ..add(UomSummaryPageResponse.serializer)
+      ..add(UpdateSeriesRequest.serializer)
       ..add(Uqc.serializer)
       ..add(VehicleDetail.serializer)
       ..add(VoucherEntry.serializer)
       ..add(VoucherResponse.serializer)
+      ..add(VoucherType.serializer)
+      ..add(VoucherWarnings.serializer)
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(AccountGroupSummaryItem)]),
@@ -131,6 +156,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<CommoditySummaryItem>())
       ..addBuilderFactory(
           const FullType(
+              BuiltList, const [const FullType(CustomVoucherSeries)]),
+          () => new ListBuilder<CustomVoucherSeries>())
+      ..addBuilderFactory(
+          const FullType(
               BuiltList, const [const FullType(ItemCategoryResponse)]),
           () => new ListBuilder<ItemCategoryResponse>())
       ..addBuilderFactory(
@@ -157,6 +186,34 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(
               BuiltList, const [const FullType(SaleLedgerSettingResponse)]),
           () => new ListBuilder<SaleLedgerSettingResponse>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceItemRequest)]),
+          () => new ListBuilder<SalesInvoiceItemRequest>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceItemResult)]),
+          () => new ListBuilder<SalesInvoiceItemResult>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceTaxLine)]),
+          () => new ListBuilder<SalesInvoiceTaxLine>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceWarning)]),
+          () => new ListBuilder<SalesInvoiceWarning>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceItemResult)]),
+          () => new ListBuilder<SalesInvoiceItemResult>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceTaxLine)]),
+          () => new ListBuilder<SalesInvoiceTaxLine>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(SalesInvoiceWarning)]),
+          () => new ListBuilder<SalesInvoiceWarning>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(ShopMenu)]),
           () => new ListBuilder<ShopMenu>())

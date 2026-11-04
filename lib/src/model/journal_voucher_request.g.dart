@@ -12,6 +12,10 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
   @override
   final String? narration;
   @override
+  final String? seriesCode;
+  @override
+  final int? billNo;
+  @override
   final BuiltList<VoucherEntry>? debitEntries;
   @override
   final BuiltList<VoucherEntry>? creditEntries;
@@ -21,7 +25,12 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
       (new JournalVoucherRequestBuilder()..update(updates))._build();
 
   _$JournalVoucherRequest._(
-      {this.voucherDate, this.narration, this.debitEntries, this.creditEntries})
+      {this.voucherDate,
+      this.narration,
+      this.seriesCode,
+      this.billNo,
+      this.debitEntries,
+      this.creditEntries})
       : super._();
 
   @override
@@ -39,6 +48,8 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
     return other is JournalVoucherRequest &&
         voucherDate == other.voucherDate &&
         narration == other.narration &&
+        seriesCode == other.seriesCode &&
+        billNo == other.billNo &&
         debitEntries == other.debitEntries &&
         creditEntries == other.creditEntries;
   }
@@ -48,6 +59,8 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
     var _$hash = 0;
     _$hash = $jc(_$hash, voucherDate.hashCode);
     _$hash = $jc(_$hash, narration.hashCode);
+    _$hash = $jc(_$hash, seriesCode.hashCode);
+    _$hash = $jc(_$hash, billNo.hashCode);
     _$hash = $jc(_$hash, debitEntries.hashCode);
     _$hash = $jc(_$hash, creditEntries.hashCode);
     _$hash = $jf(_$hash);
@@ -59,6 +72,8 @@ class _$JournalVoucherRequest extends JournalVoucherRequest {
     return (newBuiltValueToStringHelper(r'JournalVoucherRequest')
           ..add('voucherDate', voucherDate)
           ..add('narration', narration)
+          ..add('seriesCode', seriesCode)
+          ..add('billNo', billNo)
           ..add('debitEntries', debitEntries)
           ..add('creditEntries', creditEntries))
         .toString();
@@ -76,6 +91,14 @@ class JournalVoucherRequestBuilder
   String? _narration;
   String? get narration => _$this._narration;
   set narration(String? narration) => _$this._narration = narration;
+
+  String? _seriesCode;
+  String? get seriesCode => _$this._seriesCode;
+  set seriesCode(String? seriesCode) => _$this._seriesCode = seriesCode;
+
+  int? _billNo;
+  int? get billNo => _$this._billNo;
+  set billNo(int? billNo) => _$this._billNo = billNo;
 
   ListBuilder<VoucherEntry>? _debitEntries;
   ListBuilder<VoucherEntry> get debitEntries =>
@@ -98,6 +121,8 @@ class JournalVoucherRequestBuilder
     if ($v != null) {
       _voucherDate = $v.voucherDate;
       _narration = $v.narration;
+      _seriesCode = $v.seriesCode;
+      _billNo = $v.billNo;
       _debitEntries = $v.debitEntries?.toBuilder();
       _creditEntries = $v.creditEntries?.toBuilder();
       _$v = null;
@@ -126,6 +151,8 @@ class JournalVoucherRequestBuilder
           new _$JournalVoucherRequest._(
               voucherDate: voucherDate,
               narration: narration,
+              seriesCode: seriesCode,
+              billNo: billNo,
               debitEntries: _debitEntries?.build(),
               creditEntries: _creditEntries?.build());
     } catch (_) {

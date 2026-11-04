@@ -3,6 +3,7 @@
 //
 
 // ignore_for_file: unused_element
+import 'package:openapi/src/model/voucher_warnings.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 
@@ -14,6 +15,7 @@ part 'voucher_response.g.dart';
 /// * [id] 
 /// * [voucherNumber] 
 /// * [amount] 
+/// * [warnings] 
 @BuiltValue()
 abstract class VoucherResponse implements Built<VoucherResponse, VoucherResponseBuilder> {
   @BuiltValueField(wireName: r'id')
@@ -24,6 +26,9 @@ abstract class VoucherResponse implements Built<VoucherResponse, VoucherResponse
 
   @BuiltValueField(wireName: r'amount')
   num? get amount;
+
+  @BuiltValueField(wireName: r'warnings')
+  VoucherWarnings? get warnings;
 
   VoucherResponse._();
 
@@ -69,6 +74,13 @@ class _$VoucherResponseSerializer implements PrimitiveSerializer<VoucherResponse
         specifiedType: const FullType(num),
       );
     }
+    if (object.warnings != null) {
+      yield r'warnings';
+      yield serializers.serialize(
+        object.warnings,
+        specifiedType: const FullType(VoucherWarnings),
+      );
+    }
   }
 
   @override
@@ -112,6 +124,13 @@ class _$VoucherResponseSerializer implements PrimitiveSerializer<VoucherResponse
             specifiedType: const FullType(num),
           ) as num;
           result.amount = valueDes;
+          break;
+        case r'warnings':
+          final valueDes = serializers.deserialize(
+            value,
+            specifiedType: const FullType(VoucherWarnings),
+          ) as VoucherWarnings;
+          result.warnings.replace(valueDes);
           break;
         default:
           unhandled.add(key);

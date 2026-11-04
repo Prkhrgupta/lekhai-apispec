@@ -38,6 +38,9 @@ import 'package:openapi/src/model/commodity_summary_column.dart';
 import 'package:openapi/src/model/commodity_summary_item.dart';
 import 'package:openapi/src/model/commodity_summary_response.dart';
 import 'package:openapi/src/model/contra_voucher_request.dart';
+import 'package:openapi/src/model/create_series_request.dart';
+import 'package:openapi/src/model/custom_voucher_series.dart';
+import 'package:openapi/src/model/custom_voucher_series_list_response.dart';
 import 'package:openapi/src/model/day.dart';
 import 'package:openapi/src/model/dropdown_item.dart';
 import 'package:openapi/src/model/error.dart';
@@ -78,9 +81,12 @@ import 'package:openapi/src/model/login_response.dart';
 import 'package:openapi/src/model/mail_to.dart';
 import 'package:openapi/src/model/menu_item.dart';
 import 'package:openapi/src/model/menu_response.dart';
+import 'package:openapi/src/model/next_bill_no_response.dart';
+import 'package:openapi/src/model/next_voucher_number_response.dart';
 import 'package:openapi/src/model/pagination_meta.dart';
 import 'package:openapi/src/model/party_type.dart';
 import 'package:openapi/src/model/payment_voucher_request.dart';
+import 'package:openapi/src/model/place_of_supply_source.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
@@ -91,7 +97,23 @@ import 'package:openapi/src/model/sale_ledger_setting_request.dart';
 import 'package:openapi/src/model/sale_ledger_setting_response.dart';
 import 'package:openapi/src/model/sale_ledger_setting_summary_page_response.dart';
 import 'package:openapi/src/model/sale_type.dart';
+import 'package:openapi/src/model/sales_invoice_item_request.dart';
+import 'package:openapi/src/model/sales_invoice_item_result.dart';
+import 'package:openapi/src/model/sales_invoice_party.dart';
+import 'package:openapi/src/model/sales_invoice_preview_response.dart';
+import 'package:openapi/src/model/sales_invoice_request.dart';
+import 'package:openapi/src/model/sales_invoice_response.dart';
+import 'package:openapi/src/model/sales_invoice_status.dart';
+import 'package:openapi/src/model/sales_invoice_supply_type.dart';
+import 'package:openapi/src/model/sales_invoice_tax_line.dart';
+import 'package:openapi/src/model/sales_invoice_tax_type.dart';
+import 'package:openapi/src/model/sales_invoice_totals.dart';
+import 'package:openapi/src/model/sales_invoice_warning.dart';
+import 'package:openapi/src/model/sales_invoice_warning_code.dart';
+import 'package:openapi/src/model/series_fy_missing_error.dart';
+import 'package:openapi/src/model/series_fy_missing_error_data.dart';
 import 'package:openapi/src/model/shop_menu.dart';
+import 'package:openapi/src/model/stock_availability_response.dart';
 import 'package:openapi/src/model/stock_item_request.dart';
 import 'package:openapi/src/model/stock_item_response.dart';
 import 'package:openapi/src/model/stock_item_searchable_field.dart';
@@ -105,10 +127,13 @@ import 'package:openapi/src/model/uom_request.dart';
 import 'package:openapi/src/model/uom_response.dart';
 import 'package:openapi/src/model/uom_searchable_field.dart';
 import 'package:openapi/src/model/uom_summary_page_response.dart';
+import 'package:openapi/src/model/update_series_request.dart';
 import 'package:openapi/src/model/uqc.dart';
 import 'package:openapi/src/model/vehicle_detail.dart';
 import 'package:openapi/src/model/voucher_entry.dart';
 import 'package:openapi/src/model/voucher_response.dart';
+import 'package:openapi/src/model/voucher_type.dart';
+import 'package:openapi/src/model/voucher_warnings.dart';
 
 part 'serializers.g.dart';
 
@@ -137,6 +162,9 @@ part 'serializers.g.dart';
   CommoditySummaryItem,
   CommoditySummaryResponse,
   ContraVoucherRequest,
+  CreateSeriesRequest,
+  CustomVoucherSeries,
+  CustomVoucherSeriesListResponse,
   Day,
   DropdownItem,
   Error,
@@ -177,9 +205,12 @@ part 'serializers.g.dart';
   MailTo,
   MenuItem,
   MenuResponse,
+  NextBillNoResponse,
+  NextVoucherNumberResponse,
   PaginationMeta,
   PartyType,
   PaymentVoucherRequest,
+  PlaceOfSupplySource,
   PurchaseLedgerSettingRequest,
   PurchaseLedgerSettingResponse,
   PurchaseLedgerSettingSummaryPageResponse,
@@ -190,7 +221,23 @@ part 'serializers.g.dart';
   SaleLedgerSettingResponse,
   SaleLedgerSettingSummaryPageResponse,
   SaleType,
+  SalesInvoiceItemRequest,
+  SalesInvoiceItemResult,
+  SalesInvoiceParty,
+  SalesInvoicePreviewResponse,
+  SalesInvoiceRequest,
+  SalesInvoiceResponse,
+  SalesInvoiceStatus,
+  SalesInvoiceSupplyType,
+  SalesInvoiceTaxLine,
+  SalesInvoiceTaxType,
+  SalesInvoiceTotals,
+  SalesInvoiceWarning,
+  SalesInvoiceWarningCode,
+  SeriesFyMissingError,
+  SeriesFyMissingErrorData,
   ShopMenu,
+  StockAvailabilityResponse,
   StockItemRequest,
   StockItemResponse,
   StockItemSearchableField,
@@ -204,10 +251,13 @@ part 'serializers.g.dart';
   UomResponse,
   UomSearchableField,
   UomSummaryPageResponse,
+  UpdateSeriesRequest,
   Uqc,
   VehicleDetail,
   VoucherEntry,
   VoucherResponse,
+  VoucherType,
+  VoucherWarnings,
 ])
 Serializers serializers = (_$serializers.toBuilder()
       ..addBuilderFactory(
