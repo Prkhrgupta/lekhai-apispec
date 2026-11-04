@@ -1,0 +1,104 @@
+paths:
+  /sales-invoice:
+    post:
+      tags: [SalesInvoice]
+      summary: Create sales invoice
+      operationId: createSalesInvoice
+      description: >-
+        Creates a GST sales invoice: validates the SALES series and party,
+        snapshots party/item/tax data, posts the SALES voucher, and writes the
+        invoice, item, tax and stock-ledger rows in one transaction. Bill number
+        is allocated from the series (auto when bill_no is absent, manual when
+        present and allowed). Stock is not blocked when insufficient; a
+        NEGATIVE_STOCK warning is returned instead.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/SalesInvoiceRequest'
+      responses:
+        '201':
+          description: Sales invoice created
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/SalesInvoiceResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../common/components.yaml#/responses/NotFoundError'
+        '409':
+          $ref: '../common/components.yaml#/responses/ConflictError'
+        '422':
+          $ref: '../common/components.yaml#/responses/UnprocessableEntityError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+  /sales-invoice/preview:
+    post:
+      tags: [SalesInvoice]
+      summary: Preview sales invoice totals and tax
+      operationId: previewSalesInvoice
+      description: >-
+        Same request body as create. Computes line amounts, tax rollup, round-off
+        and net amount without posting, persisting or reserving a bill number.
+        bill_no / bill_display in the response are a peek at the next number only.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/SalesInvoiceRequest'
+      responses:
+        '200':
+          description: Computed invoice preview
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/SalesInvoicePreviewResponse'
+        '400':
+          $ref: '../common/components.yaml#/responses/BadRequestError'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../common/components.yaml#/responses/NotFoundError'
+        '422':
+          $ref: '../common/components.yaml#/responses/UnprocessableEntityError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
+  /stock-item/{id}/availability:
+    get:
+      tags: [StockItem]
+      summary: Get current stock availability for a stock item
+      operationId: getStockItemAvailability
+      description: >-
+        available_qty = opening_qty + total_in - total_out. Used by clients to
+        warn about insufficient stock; the backend does not block negative stock.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Current stock availability
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/StockAvailabilityResponse'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
