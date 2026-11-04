@@ -136,3 +136,9 @@ responses:
       application/json:
         schema:
           $ref: '#/Error'
+  UnprocessableEntityError:
+    description: Unprocessable entity — a required configuration or business precondition is not met (e.g. round-off/sale/cess ledger not configured, party state missing, feature not supported yet)
+    content:
+      application/json:
+        schema:
+          $ref: '#/Error'

@@ -118,3 +118,9 @@
   $ref: './category/transporter(30)/ewb/paths.yaml#/paths/~1transporter~1ewb~1{ewbNo}~1extend'
 /gsp/ewb-credentials:
   $ref: './common/gsp/ewb/paths.yaml#/paths/~1gsp~1ewb-credentials'
+/sales-invoice:
+  $ref: './salesinvoice/paths.yaml#/paths/~1sales-invoice'
+/sales-invoice/preview:
+  $ref: './salesinvoice/paths.yaml#/paths/~1sales-invoice~1preview'
+/stock-item/{id}/availability:
+  $ref: './salesinvoice/paths.yaml#/paths/~1stock-item~1{id}~1availability'
