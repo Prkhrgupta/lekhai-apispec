@@ -120,6 +120,8 @@
   $ref: './common/gsp/ewb/paths.yaml#/paths/~1gsp~1ewb-credentials'
 /sales-invoice:
   $ref: './salesinvoice/paths.yaml#/paths/~1sales-invoice'
+/sales-invoice/{id}:
+  $ref: './salesinvoice/paths.yaml#/paths/~1sales-invoice~1{id}'
 /sales-invoice/preview:
   $ref: './salesinvoice/paths.yaml#/paths/~1sales-invoice~1preview'
 /stock-item/{id}/availability:
