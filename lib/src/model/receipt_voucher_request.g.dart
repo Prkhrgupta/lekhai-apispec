@@ -14,6 +14,10 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
   @override
   final String? narration;
   @override
+  final String? seriesCode;
+  @override
+  final int? billNo;
+  @override
   final BuiltList<VoucherEntry>? items;
 
   factory _$ReceiptVoucherRequest(
@@ -21,7 +25,12 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
       (new ReceiptVoucherRequestBuilder()..update(updates))._build();
 
   _$ReceiptVoucherRequest._(
-      {this.voucherDate, this.receiptAccountId, this.narration, this.items})
+      {this.voucherDate,
+      this.receiptAccountId,
+      this.narration,
+      this.seriesCode,
+      this.billNo,
+      this.items})
       : super._();
 
   @override
@@ -40,6 +49,8 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
         voucherDate == other.voucherDate &&
         receiptAccountId == other.receiptAccountId &&
         narration == other.narration &&
+        seriesCode == other.seriesCode &&
+        billNo == other.billNo &&
         items == other.items;
   }
 
@@ -49,6 +60,8 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
     _$hash = $jc(_$hash, voucherDate.hashCode);
     _$hash = $jc(_$hash, receiptAccountId.hashCode);
     _$hash = $jc(_$hash, narration.hashCode);
+    _$hash = $jc(_$hash, seriesCode.hashCode);
+    _$hash = $jc(_$hash, billNo.hashCode);
     _$hash = $jc(_$hash, items.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -60,6 +73,8 @@ class _$ReceiptVoucherRequest extends ReceiptVoucherRequest {
           ..add('voucherDate', voucherDate)
           ..add('receiptAccountId', receiptAccountId)
           ..add('narration', narration)
+          ..add('seriesCode', seriesCode)
+          ..add('billNo', billNo)
           ..add('items', items))
         .toString();
   }
@@ -82,6 +97,14 @@ class ReceiptVoucherRequestBuilder
   String? get narration => _$this._narration;
   set narration(String? narration) => _$this._narration = narration;
 
+  String? _seriesCode;
+  String? get seriesCode => _$this._seriesCode;
+  set seriesCode(String? seriesCode) => _$this._seriesCode = seriesCode;
+
+  int? _billNo;
+  int? get billNo => _$this._billNo;
+  set billNo(int? billNo) => _$this._billNo = billNo;
+
   ListBuilder<VoucherEntry>? _items;
   ListBuilder<VoucherEntry> get items =>
       _$this._items ??= new ListBuilder<VoucherEntry>();
@@ -97,6 +120,8 @@ class ReceiptVoucherRequestBuilder
       _voucherDate = $v.voucherDate;
       _receiptAccountId = $v.receiptAccountId;
       _narration = $v.narration;
+      _seriesCode = $v.seriesCode;
+      _billNo = $v.billNo;
       _items = $v.items?.toBuilder();
       _$v = null;
     }
@@ -125,6 +150,8 @@ class ReceiptVoucherRequestBuilder
               voucherDate: voucherDate,
               receiptAccountId: receiptAccountId,
               narration: narration,
+              seriesCode: seriesCode,
+              billNo: billNo,
               items: _items?.build());
     } catch (_) {
       late String _$failedField;
