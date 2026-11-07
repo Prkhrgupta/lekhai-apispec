@@ -38,6 +38,37 @@ paths:
           $ref: '../common/components.yaml#/responses/UnprocessableEntityError'
         '500':
           $ref: '../common/components.yaml#/responses/InternalServerError'
+  /sales-invoice/{id}:
+    get:
+      tags: [SalesInvoice]
+      summary: Get sales invoice by id
+      operationId: getSalesInvoice
+      description: >-
+        Returns the frozen invoice snapshot (header, party, items, taxes, totals)
+        exactly as it was created. Used to open an existing invoice for viewing
+        or editing.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Sales invoice snapshot
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/SalesInvoiceResponse'
+        '401':
+          $ref: '../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../common/components.yaml#/responses/ForbiddenError'
+        '404':
+          $ref: '../common/components.yaml#/responses/NotFoundError'
+        '500':
+          $ref: '../common/components.yaml#/responses/InternalServerError'
   /sales-invoice/preview:
     post:
       tags: [SalesInvoice]
