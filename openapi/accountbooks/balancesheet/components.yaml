@@ -1,0 +1,76 @@
+BalanceSheetLedgerItem:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    amount:
+      type: number
+    crdr:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+
+BalanceSheetSubGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    amount:
+      type: number
+    ledgers:
+      type: array
+      items:
+        $ref: '#/BalanceSheetLedgerItem'
+
+BalanceSheetGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    amount:
+      type: number
+    subGroups:
+      type: array
+      items:
+        $ref: '#/BalanceSheetSubGroupItem'
+    ledgers:
+      type: array
+      items:
+        $ref: '#/BalanceSheetLedgerItem'
+
+BalanceSheetResponse:
+  type: object
+  properties:
+    fromDate:
+      type: string
+    toDate:
+      type: string
+    booksClosed:
+      type: boolean
+    format:
+      type: string
+    liabilities:
+      type: array
+      items:
+        $ref: '#/BalanceSheetGroupItem'
+    assets:
+      type: array
+      items:
+        $ref: '#/BalanceSheetGroupItem'
+    totalLiabilities:
+      type: number
+    totalAssets:
+      type: number
+    netProfitLoss:
+      type: number
+    isProfit:
+      type: boolean
+    differenceInBalance:
+      type: number

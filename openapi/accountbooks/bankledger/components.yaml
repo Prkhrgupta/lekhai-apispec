@@ -1,0 +1,67 @@
+BankLedgerEntryItem:
+  type: object
+  properties:
+    date:
+      type: string
+      description: Transaction date
+    particulars:
+      type: string
+      description: Particulars description (e.g. To Opening Balance, To Customer Name, By Supplier Name)
+    vchType:
+      type: string
+      description: Short voucher type (Rcpt, Pymt, Ctra, Sales, etc.)
+    instrumentMode:
+      type: string
+      description: Payment / instrument mode (NEFT, UPI, NET T/F, CHQ, etc.)
+    debit:
+      type: number
+      description: Debit amount (Deposit / Inflow into bank)
+    credit:
+      type: number
+      description: Credit amount (Withdrawal / Outflow from bank)
+    balance:
+      type: number
+      description: Running bank balance
+    balanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    entryType:
+      type: string
+      description: Entry classification (OPENING, TRANSACTION, CLOSING)
+    narration:
+      type: string
+      description: Voucher narration / remarks
+
+BankLedgerResponse:
+  type: object
+  properties:
+    bankLedgerId:
+      type: integer
+      format: int64
+    bankName:
+      type: string
+      description: Name of the bank ledger (e.g. HDFC 0343)
+    accountGroup:
+      type: string
+      description: "Account group hierarchy (e.g. Bank Accounts Under : Current Assets)"
+    fromDate:
+      type: string
+      format: date
+    toDate:
+      type: string
+      format: date
+    openingBalance:
+      type: number
+    openingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    totalDebit:
+      type: number
+    totalCredit:
+      type: number
+    closingBalance:
+      type: number
+    closingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    entries:
+      type: array
+      items:
+        $ref: '#/BankLedgerEntryItem'

@@ -1,0 +1,72 @@
+CashBookEntryItem:
+  type: object
+  properties:
+    date:
+      type: string
+      description: Transaction date (omitted or null if hideTransactionDate is true)
+    particulars:
+      type: string
+      description: Contra ledger name, cash sale total, or opening/closing description
+    vchType:
+      type: string
+      description: Voucher type
+    vchNo:
+      type: string
+      description: Voucher number
+    received:
+      type: number
+      description: Cash received (Debit)
+    payment:
+      type: number
+      description: Cash paid (Credit)
+    balance:
+      type: number
+      description: Running cash balance
+    balanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    entryType:
+      type: string
+      description: Entry classification (OPENING, TRANSACTION, DAILY_TOTAL, DAILY_CLOSING, MONTHLY_TOTAL, MONTHLY_CLOSING, CLOSING)
+    narration:
+      type: string
+      description: Voucher narration / remarks
+    contraEntries:
+      type: array
+      items:
+        $ref: '../accountledger/components.yaml#/AccountLedgerContraItem'
+
+CashBookResponse:
+  type: object
+  properties:
+    fromDate:
+      type: string
+      format: date
+    toDate:
+      type: string
+      format: date
+    format:
+      type: string
+      enum: [SUMMARY, DETAIL, TITLE]
+    singleCashSaleEntry:
+      type: boolean
+    hideTransactionDate:
+      type: boolean
+    closingInterval:
+      type: string
+      enum: [DAILY, MONTHLY]
+    openingBalance:
+      type: number
+    openingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    totalReceived:
+      type: number
+    totalPayment:
+      type: number
+    closingBalance:
+      type: number
+    closingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    entries:
+      type: array
+      items:
+        $ref: '#/CashBookEntryItem'

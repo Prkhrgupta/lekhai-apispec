@@ -1,0 +1,34 @@
+paths:
+  /account-books/journal-book:
+    get:
+      tags: [JournalBook]
+      summary: Get Journal Book report
+      operationId: getJournalBook
+      parameters:
+        - name: fromDate
+          in: query
+          description: Financial period from date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Financial period to date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/JournalBookResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

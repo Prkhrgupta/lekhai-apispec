@@ -1,0 +1,64 @@
+paths:
+  /account-books/profit-and-loss:
+    get:
+      tags: [ProfitAndLoss]
+      summary: Get Profit and Loss Account report
+      operationId: getProfitAndLoss
+      parameters:
+        - name: fromDate
+          in: query
+          description: Financial period from date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Financial period to date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: stockMethod
+          in: query
+          description: Opening and closing stock calculation method (MANUAL or AUTO)
+          schema:
+            type: string
+            enum: [MANUAL, AUTO]
+            default: MANUAL
+          required: false
+        - name: openingStock
+          in: query
+          description: Manual opening stock value
+          schema:
+            type: number
+            default: 0
+          required: false
+        - name: closingStock
+          in: query
+          description: Manual closing stock value
+          schema:
+            type: number
+            default: 0
+          required: false
+        - name: format
+          in: query
+          description: Report format (SUMMARY or DETAIL)
+          schema:
+            type: string
+            enum: [SUMMARY, DETAIL]
+            default: SUMMARY
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/ProfitAndLossResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

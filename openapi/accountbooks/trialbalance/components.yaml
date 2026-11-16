@@ -1,0 +1,110 @@
+TrialBalanceLedgerItem:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    openingDr:
+      type: number
+    openingCr:
+      type: number
+    transactionsDr:
+      type: number
+    transactionsCr:
+      type: number
+    closingDr:
+      type: number
+    closingCr:
+      type: number
+
+TrialBalanceSubGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    openingDr:
+      type: number
+    openingCr:
+      type: number
+    transactionsDr:
+      type: number
+    transactionsCr:
+      type: number
+    closingDr:
+      type: number
+    closingCr:
+      type: number
+    ledgers:
+      type: array
+      items:
+        $ref: '#/TrialBalanceLedgerItem'
+
+TrialBalanceGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    openingDr:
+      type: number
+    openingCr:
+      type: number
+    transactionsDr:
+      type: number
+    transactionsCr:
+      type: number
+    closingDr:
+      type: number
+    closingCr:
+      type: number
+    subGroups:
+      type: array
+      items:
+        $ref: '#/TrialBalanceSubGroupItem'
+    ledgers:
+      type: array
+      items:
+        $ref: '#/TrialBalanceLedgerItem'
+
+TrialBalanceResponse:
+  type: object
+  properties:
+    fromDate:
+      type: string
+    toDate:
+      type: string
+    format:
+      type: string
+    withNilBalance:
+      type: boolean
+    groups:
+      type: array
+      items:
+        $ref: '#/TrialBalanceGroupItem'
+    totalOpeningDr:
+      type: number
+    totalOpeningCr:
+      type: number
+    openingDifference:
+      type: number
+    openingDifferenceType:
+      type: string
+    totalTransactionsDr:
+      type: number
+    totalTransactionsCr:
+      type: number
+    totalClosingDr:
+      type: number
+    totalClosingCr:
+      type: number
+    closingDifference:
+      type: number
+    closingDifferenceType:
+      type: string

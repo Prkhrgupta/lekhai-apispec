@@ -1,0 +1,47 @@
+JournalBookEntryItem:
+  type: object
+  properties:
+    date:
+      type: string
+      description: Transaction date displayed on the first row of each voucher
+    voucherNumber:
+      type: string
+      description: Formatted voucher number (e.g. JN-1)
+    voucherId:
+      type: integer
+      format: int64
+    particulars:
+      type: string
+      description: "Particulars description (e.g. 'BY HDFC 0343', 'TO VIVEK VASTRALAYA-HAIDARGARH', or narration)"
+    debitAmount:
+      type: number
+      description: Debit amount
+    creditAmount:
+      type: number
+      description: Credit amount
+    entryType:
+      type: string
+      description: Entry classification (ENTRY, NARRATION)
+    isNarration:
+      type: boolean
+      description: Whether this row is a narration line
+
+JournalBookResponse:
+  type: object
+  properties:
+    fromDate:
+      type: string
+      format: date
+    toDate:
+      type: string
+      format: date
+    totalDebit:
+      type: number
+      description: Total of all debit amounts
+    totalCredit:
+      type: number
+      description: Total of all credit amounts
+    entries:
+      type: array
+      items:
+        $ref: '#/JournalBookEntryItem'
