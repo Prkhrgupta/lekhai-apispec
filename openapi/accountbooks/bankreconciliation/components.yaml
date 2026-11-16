@@ -1,0 +1,131 @@
+BankReconciliationMode:
+  type: string
+  enum: [ALL, UNCLEARED, CLEARED, STATEMENT]
+  description: Mode for filtering bank reconciliation entries
+
+BankReconciliationEntryItem:
+  type: object
+  properties:
+    voucherEntryId:
+      type: integer
+      format: int64
+    voucherId:
+      type: integer
+      format: int64
+    inputDate:
+      type: string
+      format: date
+      description: Voucher transaction date
+    particulars:
+      type: string
+      description: Counterparty ledger name and optional narration
+    cheque:
+      type: string
+      description: Cheque / payment instrument mode or number (NEFT, UPI, NET T/F, etc.)
+    deposits:
+      type: number
+      nullable: true
+      description: Debit amount / deposit
+    withdrawals:
+      type: number
+      nullable: true
+      description: Credit amount / withdrawal
+    balance:
+      type: number
+      description: Running ledger balance
+    balanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    clearDate:
+      type: string
+      format: date
+      nullable: true
+      description: Date entry was cleared by bank
+    isCleared:
+      type: boolean
+      description: Whether the transaction has been cleared
+
+BankReconciliationStatementSummary:
+  type: object
+  properties:
+    balanceAsPerCompany:
+      type: number
+      description: Balance as per company books as of toDate
+    balanceAsPerCompanyType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    unclearedDeposits:
+      type: number
+      description: Total of uncleared deposits (amounts not credited by bank)
+    unclearedWithdrawals:
+      type: number
+      description: Total of uncleared withdrawals (cheques issued but not presented)
+    balanceAsPerBank:
+      type: number
+      description: Estimated balance as per bank statement
+    balanceAsPerBankType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+
+BankReconciliationResponse:
+  type: object
+  properties:
+    bankLedgerId:
+      type: integer
+      format: int64
+    bankName:
+      type: string
+    accountGroup:
+      type: string
+    mode:
+      $ref: '#/BankReconciliationMode'
+    fromDate:
+      type: string
+      format: date
+    toDate:
+      type: string
+      format: date
+    openingBalance:
+      type: number
+    openingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    totalDeposits:
+      type: number
+    totalWithdrawals:
+      type: number
+    closingBalance:
+      type: number
+    closingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    statementSummary:
+      $ref: '#/BankReconciliationStatementSummary'
+    entries:
+      type: array
+      items:
+        $ref: '#/BankReconciliationEntryItem'
+
+UpdateClearDateRequest:
+  type: object
+  required:
+    - voucherEntryId
+  properties:
+    voucherEntryId:
+      type: integer
+      format: int64
+    clearDate:
+      type: string
+      format: date
+      nullable: true
+      description: Clearance date or null to mark as uncleared
+
+UpdateClearDateResponse:
+  type: object
+  properties:
+    success:
+      type: boolean
+    message:
+      type: string
+    voucherEntryId:
+      type: integer
+      format: int64
+    clearDate:
+      type: string
+      format: date
+      nullable: true

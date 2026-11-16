@@ -1,0 +1,40 @@
+MultipleLedgerItem:
+  type: object
+  properties:
+    serialNumber:
+      type: integer
+      nullable: true
+      description: Sequential serial number of the ledger (null for group headers)
+    ledgerId:
+      type: integer
+      format: int64
+      nullable: true
+      description: Ledger ID (null for group headers)
+    particulars:
+      type: string
+      description: Group name or ledger name
+    isGroup:
+      type: boolean
+      description: Whether this row is an account group header
+    groupName:
+      type: string
+      nullable: true
+      description: Associated account group name
+    pageNo:
+      type: string
+      nullable: true
+      description: Page or folio number
+
+MultipleLedgerPrintingResponse:
+  type: object
+  properties:
+    title:
+      type: string
+      description: Report title
+    totalLedgers:
+      type: integer
+      description: Total number of ledgers
+    items:
+      type: array
+      items:
+        $ref: '#/MultipleLedgerItem'

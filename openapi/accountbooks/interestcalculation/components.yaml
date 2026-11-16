@@ -1,0 +1,229 @@
+ProductBasisInterestItem:
+  type: object
+  properties:
+    date:
+      type: string
+      format: date
+      description: Transaction date
+    balance:
+      type: number
+      description: Balance amount
+    balanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    days:
+      type: integer
+      description: Number of days until next transaction or end date
+    inttReceivable:
+      type: number
+      nullable: true
+      description: Interest receivable on debit balance
+    inttPayable:
+      type: number
+      nullable: true
+      description: Interest payable on credit balance
+    balanceInterest:
+      type: number
+      description: Net accumulated interest balance
+    balanceInterestType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+
+ProductBasisInterestResponse:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    calculationType:
+      type: string
+      enum: [YEARLY, MONTHLY]
+    fromDate:
+      type: string
+      format: date
+    toDate:
+      type: string
+      format: date
+    interestRate:
+      type: number
+    includeOpeningInterest:
+      type: number
+    totalInttReceivable:
+      type: number
+    totalInttPayable:
+      type: number
+    netInterestBalance:
+      type: number
+    netInterestBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    items:
+      type: array
+      items:
+        $ref: '#/ProductBasisInterestItem'
+
+DateWiseInterestItem:
+  type: object
+  properties:
+    date:
+      type: string
+      format: date
+    particulars:
+      type: string
+    debit:
+      type: number
+      nullable: true
+    credit:
+      type: number
+      nullable: true
+    balanceAmount:
+      type: number
+    balanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    daysDr:
+      type: integer
+      nullable: true
+    inttDr:
+      type: number
+      nullable: true
+    daysCr:
+      type: integer
+      nullable: true
+    inttCr:
+      type: number
+      nullable: true
+
+DateWiseInterestResponse:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    firstDrDate:
+      type: string
+      format: date
+    lastDrDate:
+      type: string
+      format: date
+    firstCrDate:
+      type: string
+      format: date
+    lastCrDate:
+      type: string
+      format: date
+    graceDays:
+      type: integer
+    yearlyRate:
+      type: number
+    asOnDate:
+      type: string
+      format: date
+    includeOpening:
+      type: boolean
+    totalDebit:
+      type: number
+    totalCredit:
+      type: number
+    closingBalance:
+      type: number
+    closingBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    totalInttDr:
+      type: number
+    totalInttCr:
+      type: number
+    netInterestBalance:
+      type: number
+    netInterestBalanceType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    averageDays:
+      type: integer
+    items:
+      type: array
+      items:
+        $ref: '#/DateWiseInterestItem'
+
+ManualInterestEntryRequest:
+  type: object
+  properties:
+    drCr:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    date:
+      type: string
+      format: date
+    particulars:
+      type: string
+    amount:
+      type: number
+
+ManualInterestCalculateRequest:
+  type: object
+  required:
+    - ledgerId
+    - yearlyRate
+    - asOnDate
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    graceDays:
+      type: integer
+    yearlyRate:
+      type: number
+    asOnDate:
+      type: string
+      format: date
+    entries:
+      type: array
+      items:
+        $ref: '#/ManualInterestEntryRequest'
+
+ManualInterestItem:
+  type: object
+  properties:
+    drCr:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    date:
+      type: string
+      format: date
+    particulars:
+      type: string
+    amount:
+      type: number
+    days:
+      type: integer
+    interest:
+      type: number
+
+ManualInterestResponse:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    graceDays:
+      type: integer
+    yearlyRate:
+      type: number
+    asOnDate:
+      type: string
+      format: date
+    totalDebit:
+      type: number
+    totalCredit:
+      type: number
+    totalDebitInterest:
+      type: number
+    totalCreditInterest:
+      type: number
+    netInterest:
+      type: number
+    netInterestType:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+    items:
+      type: array
+      items:
+        $ref: '#/ManualInterestItem'

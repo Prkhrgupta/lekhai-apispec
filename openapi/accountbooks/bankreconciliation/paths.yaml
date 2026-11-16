@@ -1,0 +1,72 @@
+paths:
+  /account-books/bank-reconciliation:
+    get:
+      tags: [BankReconciliation]
+      summary: Get Bank Reconciliation entries
+      operationId: getBankReconciliation
+      parameters:
+        - name: bankLedgerId
+          in: query
+          description: Bank ledger ID
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fromDate
+          in: query
+          description: From date (inclusive)
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: toDate
+          in: query
+          description: To date (inclusive)
+          required: false
+          schema:
+            type: string
+            format: date
+        - name: mode
+          in: query
+          description: Reconciliation view mode (ALL, UNCLEARED, CLEARED, STATEMENT)
+          required: false
+          schema:
+            $ref: './components.yaml#/BankReconciliationMode'
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/BankReconciliationResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
+
+  /account-books/bank-reconciliation/clear-date:
+    put:
+      tags: [BankReconciliation]
+      summary: Update bank transaction clearance date
+      operationId: updateClearDate
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: './components.yaml#/UpdateClearDateRequest'
+      responses:
+        '200':
+          description: Clearance date updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/UpdateClearDateResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'
