@@ -1,0 +1,49 @@
+paths:
+  /account-books/balance-sheet:
+    get:
+      tags: [BalanceSheet]
+      summary: Get Balance Sheet report
+      operationId: getBalanceSheet
+      parameters:
+        - name: fromDate
+          in: query
+          description: Financial period from date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Financial period to date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: booksClosed
+          in: query
+          description: Whether financial year books are closed
+          schema:
+            type: boolean
+            default: false
+          required: false
+        - name: format
+          in: query
+          description: Report format (SUMMARY or DETAIL)
+          schema:
+            type: string
+            enum: [SUMMARY, DETAIL]
+            default: SUMMARY
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/BalanceSheetResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

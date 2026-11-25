@@ -1,0 +1,82 @@
+ProfitAndLossLedgerItem:
+  type: object
+  properties:
+    ledgerId:
+      type: integer
+      format: int64
+    ledgerName:
+      type: string
+    amount:
+      type: number
+    crdr:
+      $ref: '../../accountmaster/ledger/components.yaml#/AccountEntryType'
+
+ProfitAndLossSubGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    amount:
+      type: number
+    ledgers:
+      type: array
+      items:
+        $ref: '#/ProfitAndLossLedgerItem'
+
+ProfitAndLossGroupItem:
+  type: object
+  properties:
+    groupId:
+      type: integer
+      format: int64
+    groupName:
+      type: string
+    amount:
+      type: number
+    subGroups:
+      type: array
+      items:
+        $ref: '#/ProfitAndLossSubGroupItem'
+    ledgers:
+      type: array
+      items:
+        $ref: '#/ProfitAndLossLedgerItem'
+
+ProfitAndLossResponse:
+  type: object
+  properties:
+    fromDate:
+      type: string
+    toDate:
+      type: string
+    stockMethod:
+      type: string
+    openingStock:
+      type: number
+    closingStock:
+      type: number
+    format:
+      type: string
+    expenses:
+      type: array
+      items:
+        $ref: '#/ProfitAndLossGroupItem'
+    income:
+      type: array
+      items:
+        $ref: '#/ProfitAndLossGroupItem'
+    totalExpenses:
+      type: number
+    totalIncome:
+      type: number
+    grossProfit:
+      type: number
+    isGrossProfit:
+      type: boolean
+    netProfit:
+      type: number
+    isNetProfit:
+      type: boolean

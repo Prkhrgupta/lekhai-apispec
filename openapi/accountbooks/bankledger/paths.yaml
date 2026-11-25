@@ -1,0 +1,41 @@
+paths:
+  /account-books/bank-ledger:
+    get:
+      tags: [BankLedger]
+      summary: Get Bank Ledger report
+      operationId: getBankLedger
+      parameters:
+        - name: bankLedgerId
+          in: query
+          description: Selected bank ledger id
+          required: true
+          schema:
+            type: integer
+            format: int64
+        - name: fromDate
+          in: query
+          description: Financial period from date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Financial period to date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/BankLedgerResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

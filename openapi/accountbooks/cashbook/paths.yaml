@@ -1,0 +1,71 @@
+paths:
+  /account-books/cash-book:
+    get:
+      tags: [CashBook]
+      summary: Get Cash Book report
+      operationId: getCashBook
+      parameters:
+        - name: fromDate
+          in: query
+          description: Financial period from date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: toDate
+          in: query
+          description: Financial period to date (inclusive)
+          schema:
+            type: string
+            format: date
+          required: false
+        - name: format
+          in: query
+          description: Report format (SUMMARY, DETAIL, or TITLE)
+          schema:
+            type: string
+            enum: [SUMMARY, DETAIL, TITLE]
+            default: DETAIL
+          required: false
+        - name: singleCashSaleEntry
+          in: query
+          description: Show single entry (date-wise total) for cash sales
+          schema:
+            type: boolean
+            default: false
+          required: false
+        - name: hideTransactionDate
+          in: query
+          description: Whether transaction date should not be printed
+          schema:
+            type: boolean
+            default: false
+          required: false
+        - name: closingInterval
+          in: query
+          description: Calculate closing daily or monthly
+          schema:
+            type: string
+            enum: [DAILY, MONTHLY]
+            default: DAILY
+          required: false
+        - name: ledgerId
+          in: query
+          description: Optional specific cash ledger id
+          schema:
+            type: integer
+            format: int64
+          required: false
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: './components.yaml#/CashBookResponse'
+        '401':
+          $ref: '../../common/components.yaml#/responses/UnauthorizedError'
+        '403':
+          $ref: '../../common/components.yaml#/responses/ForbiddenError'
+        '500':
+          $ref: '../../common/components.yaml#/responses/InternalServerError'

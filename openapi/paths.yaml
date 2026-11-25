@@ -94,6 +94,30 @@
   $ref: './voucher/paths.yaml#/paths/~1vouchers~1next-number'
 /account-ledger/{ledgerId}:
   $ref: './accountbooks/accountledger/paths.yaml#/paths/~1account-ledger~1{ledgerId}'
+/account-books/balance-sheet:
+  $ref: './accountbooks/balancesheet/paths.yaml#/paths/~1account-books~1balance-sheet'
+/account-books/profit-and-loss:
+  $ref: './accountbooks/profitandloss/paths.yaml#/paths/~1account-books~1profit-and-loss'
+/account-books/trial-balance:
+  $ref: './accountbooks/trialbalance/paths.yaml#/paths/~1account-books~1trial-balance'
+/account-books/cash-book:
+  $ref: './accountbooks/cashbook/paths.yaml#/paths/~1account-books~1cash-book'
+/account-books/bank-ledger:
+  $ref: './accountbooks/bankledger/paths.yaml#/paths/~1account-books~1bank-ledger'
+/account-books/journal-book:
+  $ref: './accountbooks/journalbook/paths.yaml#/paths/~1account-books~1journal-book'
+/account-books/multiple-ledger-printing:
+  $ref: './accountbooks/multipleledgerprinting/paths.yaml#/paths/~1account-books~1multiple-ledger-printing'
+/account-books/bank-reconciliation:
+  $ref: './accountbooks/bankreconciliation/paths.yaml#/paths/~1account-books~1bank-reconciliation'
+/account-books/bank-reconciliation/clear-date:
+  $ref: './accountbooks/bankreconciliation/paths.yaml#/paths/~1account-books~1bank-reconciliation~1clear-date'
+/account-books/interest-calculation/product-basis:
+  $ref: './accountbooks/interestcalculation/paths.yaml#/paths/~1account-books~1interest-calculation~1product-basis'
+/account-books/interest-calculation/date-wise:
+  $ref: './accountbooks/interestcalculation/paths.yaml#/paths/~1account-books~1interest-calculation~1date-wise'
+/account-books/interest-calculation/manual:
+  $ref: './accountbooks/interestcalculation/paths.yaml#/paths/~1account-books~1interest-calculation~1manual'
 /login:
   $ref: './auth/paths.yaml#/paths/~1login'
 /auth/shop-token:
