@@ -27,10 +27,22 @@ import 'package:openapi/src/model/area_request.dart';
 import 'package:openapi/src/model/area_response.dart';
 import 'package:openapi/src/model/area_searchable_field.dart';
 import 'package:openapi/src/model/area_summary_page_response.dart';
+import 'package:openapi/src/model/balance_sheet_group_item.dart';
+import 'package:openapi/src/model/balance_sheet_ledger_item.dart';
+import 'package:openapi/src/model/balance_sheet_response.dart';
+import 'package:openapi/src/model/balance_sheet_sub_group_item.dart';
+import 'package:openapi/src/model/bank_ledger_entry_item.dart';
+import 'package:openapi/src/model/bank_ledger_response.dart';
+import 'package:openapi/src/model/bank_reconciliation_entry_item.dart';
+import 'package:openapi/src/model/bank_reconciliation_mode.dart';
+import 'package:openapi/src/model/bank_reconciliation_response.dart';
+import 'package:openapi/src/model/bank_reconciliation_statement_summary.dart';
 import 'package:openapi/src/model/broker_request.dart';
 import 'package:openapi/src/model/broker_response.dart';
 import 'package:openapi/src/model/broker_searchable_field.dart';
 import 'package:openapi/src/model/broker_summary_page_response.dart';
+import 'package:openapi/src/model/cash_book_entry_item.dart';
+import 'package:openapi/src/model/cash_book_response.dart';
 import 'package:openapi/src/model/commodity_request.dart';
 import 'package:openapi/src/model/commodity_response.dart';
 import 'package:openapi/src/model/commodity_searchable_field.dart';
@@ -41,6 +53,8 @@ import 'package:openapi/src/model/contra_voucher_request.dart';
 import 'package:openapi/src/model/create_series_request.dart';
 import 'package:openapi/src/model/custom_voucher_series.dart';
 import 'package:openapi/src/model/custom_voucher_series_list_response.dart';
+import 'package:openapi/src/model/date_wise_interest_item.dart';
+import 'package:openapi/src/model/date_wise_interest_response.dart';
 import 'package:openapi/src/model/day.dart';
 import 'package:openapi/src/model/dropdown_item.dart';
 import 'package:openapi/src/model/error.dart';
@@ -66,6 +80,8 @@ import 'package:openapi/src/model/item_factory_request.dart';
 import 'package:openapi/src/model/item_factory_response.dart';
 import 'package:openapi/src/model/item_factory_searchable_field.dart';
 import 'package:openapi/src/model/item_factory_summary_page_response.dart';
+import 'package:openapi/src/model/journal_book_entry_item.dart';
+import 'package:openapi/src/model/journal_book_response.dart';
 import 'package:openapi/src/model/journal_voucher_request.dart';
 import 'package:openapi/src/model/ledger_address.dart';
 import 'package:openapi/src/model/ledger_area.dart';
@@ -79,14 +95,26 @@ import 'package:openapi/src/model/ledger_summary_page_response.dart';
 import 'package:openapi/src/model/ledger_transport.dart';
 import 'package:openapi/src/model/login_response.dart';
 import 'package:openapi/src/model/mail_to.dart';
+import 'package:openapi/src/model/manual_interest_calculate_request.dart';
+import 'package:openapi/src/model/manual_interest_entry_request.dart';
+import 'package:openapi/src/model/manual_interest_item.dart';
+import 'package:openapi/src/model/manual_interest_response.dart';
 import 'package:openapi/src/model/menu_item.dart';
 import 'package:openapi/src/model/menu_response.dart';
+import 'package:openapi/src/model/multiple_ledger_item.dart';
+import 'package:openapi/src/model/multiple_ledger_printing_response.dart';
 import 'package:openapi/src/model/next_bill_no_response.dart';
 import 'package:openapi/src/model/next_voucher_number_response.dart';
 import 'package:openapi/src/model/pagination_meta.dart';
 import 'package:openapi/src/model/party_type.dart';
 import 'package:openapi/src/model/payment_voucher_request.dart';
 import 'package:openapi/src/model/place_of_supply_source.dart';
+import 'package:openapi/src/model/product_basis_interest_item.dart';
+import 'package:openapi/src/model/product_basis_interest_response.dart';
+import 'package:openapi/src/model/profit_and_loss_group_item.dart';
+import 'package:openapi/src/model/profit_and_loss_ledger_item.dart';
+import 'package:openapi/src/model/profit_and_loss_response.dart';
+import 'package:openapi/src/model/profit_and_loss_sub_group_item.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_request.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_response.dart';
 import 'package:openapi/src/model/purchase_ledger_setting_summary_page_response.dart';
@@ -123,10 +151,16 @@ import 'package:openapi/src/model/transport_request.dart';
 import 'package:openapi/src/model/transport_response.dart';
 import 'package:openapi/src/model/transport_searchable_field.dart';
 import 'package:openapi/src/model/transport_summary_page_response.dart';
+import 'package:openapi/src/model/trial_balance_group_item.dart';
+import 'package:openapi/src/model/trial_balance_ledger_item.dart';
+import 'package:openapi/src/model/trial_balance_response.dart';
+import 'package:openapi/src/model/trial_balance_sub_group_item.dart';
 import 'package:openapi/src/model/uom_request.dart';
 import 'package:openapi/src/model/uom_response.dart';
 import 'package:openapi/src/model/uom_searchable_field.dart';
 import 'package:openapi/src/model/uom_summary_page_response.dart';
+import 'package:openapi/src/model/update_clear_date_request.dart';
+import 'package:openapi/src/model/update_clear_date_response.dart';
 import 'package:openapi/src/model/update_series_request.dart';
 import 'package:openapi/src/model/uqc.dart';
 import 'package:openapi/src/model/vehicle_detail.dart';
@@ -151,10 +185,22 @@ part 'serializers.g.dart';
   AreaResponse,
   AreaSearchableField,
   AreaSummaryPageResponse,
+  BalanceSheetGroupItem,
+  BalanceSheetLedgerItem,
+  BalanceSheetResponse,
+  BalanceSheetSubGroupItem,
+  BankLedgerEntryItem,
+  BankLedgerResponse,
+  BankReconciliationEntryItem,
+  BankReconciliationMode,
+  BankReconciliationResponse,
+  BankReconciliationStatementSummary,
   BrokerRequest,
   BrokerResponse,
   BrokerSearchableField,
   BrokerSummaryPageResponse,
+  CashBookEntryItem,
+  CashBookResponse,
   CommodityRequest,
   CommodityResponse,
   CommoditySearchableField,
@@ -165,6 +211,8 @@ part 'serializers.g.dart';
   CreateSeriesRequest,
   CustomVoucherSeries,
   CustomVoucherSeriesListResponse,
+  DateWiseInterestItem,
+  DateWiseInterestResponse,
   Day,
   DropdownItem,
   Error,
@@ -190,6 +238,8 @@ part 'serializers.g.dart';
   ItemFactoryResponse,
   ItemFactorySearchableField,
   ItemFactorySummaryPageResponse,
+  JournalBookEntryItem,
+  JournalBookResponse,
   JournalVoucherRequest,
   LedgerAddress,
   LedgerArea,
@@ -203,14 +253,26 @@ part 'serializers.g.dart';
   LedgerTransport,
   LoginResponse,
   MailTo,
+  ManualInterestCalculateRequest,
+  ManualInterestEntryRequest,
+  ManualInterestItem,
+  ManualInterestResponse,
   MenuItem,
   MenuResponse,
+  MultipleLedgerItem,
+  MultipleLedgerPrintingResponse,
   NextBillNoResponse,
   NextVoucherNumberResponse,
   PaginationMeta,
   PartyType,
   PaymentVoucherRequest,
   PlaceOfSupplySource,
+  ProductBasisInterestItem,
+  ProductBasisInterestResponse,
+  ProfitAndLossGroupItem,
+  ProfitAndLossLedgerItem,
+  ProfitAndLossResponse,
+  ProfitAndLossSubGroupItem,
   PurchaseLedgerSettingRequest,
   PurchaseLedgerSettingResponse,
   PurchaseLedgerSettingSummaryPageResponse,
@@ -247,10 +309,16 @@ part 'serializers.g.dart';
   TransportResponse,
   TransportSearchableField,
   TransportSummaryPageResponse,
+  TrialBalanceGroupItem,
+  TrialBalanceLedgerItem,
+  TrialBalanceResponse,
+  TrialBalanceSubGroupItem,
   UomRequest,
   UomResponse,
   UomSearchableField,
   UomSummaryPageResponse,
+  UpdateClearDateRequest,
+  UpdateClearDateResponse,
   UpdateSeriesRequest,
   Uqc,
   VehicleDetail,

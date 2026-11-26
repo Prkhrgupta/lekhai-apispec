@@ -13,14 +13,22 @@ import 'package:openapi/src/api/account_group_api.dart';
 import 'package:openapi/src/api/account_ledger_api.dart';
 import 'package:openapi/src/api/area_api.dart';
 import 'package:openapi/src/api/auth_api.dart';
+import 'package:openapi/src/api/balance_sheet_api.dart';
+import 'package:openapi/src/api/bank_ledger_api.dart';
+import 'package:openapi/src/api/bank_reconciliation_api.dart';
 import 'package:openapi/src/api/broker_api.dart';
+import 'package:openapi/src/api/cash_book_api.dart';
 import 'package:openapi/src/api/commodity_api.dart';
 import 'package:openapi/src/api/gsp_credentials_api.dart';
 import 'package:openapi/src/api/general_ledger_setting_api.dart';
+import 'package:openapi/src/api/interest_calculation_api.dart';
 import 'package:openapi/src/api/item_category_api.dart';
 import 'package:openapi/src/api/item_factory_api.dart';
+import 'package:openapi/src/api/journal_book_api.dart';
 import 'package:openapi/src/api/ledger_api.dart';
 import 'package:openapi/src/api/menu_api.dart';
+import 'package:openapi/src/api/multiple_ledger_printing_api.dart';
+import 'package:openapi/src/api/profit_and_loss_api.dart';
 import 'package:openapi/src/api/purchase_ledger_setting_api.dart';
 import 'package:openapi/src/api/sale_ledger_setting_api.dart';
 import 'package:openapi/src/api/sales_invoice_api.dart';
@@ -28,6 +36,7 @@ import 'package:openapi/src/api/state_api.dart';
 import 'package:openapi/src/api/stock_item_api.dart';
 import 'package:openapi/src/api/transport_api.dart';
 import 'package:openapi/src/api/transporter_ewb_api.dart';
+import 'package:openapi/src/api/trial_balance_api.dart';
 import 'package:openapi/src/api/uom_api.dart';
 import 'package:openapi/src/api/voucher_api.dart';
 
@@ -109,10 +118,34 @@ class Openapi {
     return AuthApi(dio, serializers);
   }
 
+  /// Get BalanceSheetApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BalanceSheetApi getBalanceSheetApi() {
+    return BalanceSheetApi(dio, serializers);
+  }
+
+  /// Get BankLedgerApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BankLedgerApi getBankLedgerApi() {
+    return BankLedgerApi(dio, serializers);
+  }
+
+  /// Get BankReconciliationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  BankReconciliationApi getBankReconciliationApi() {
+    return BankReconciliationApi(dio, serializers);
+  }
+
   /// Get BrokerApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   BrokerApi getBrokerApi() {
     return BrokerApi(dio, serializers);
+  }
+
+  /// Get CashBookApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  CashBookApi getCashBookApi() {
+    return CashBookApi(dio, serializers);
   }
 
   /// Get CommodityApi instance, base route and serializer can be overridden by a given but be careful,
@@ -133,6 +166,12 @@ class Openapi {
     return GeneralLedgerSettingApi(dio, serializers);
   }
 
+  /// Get InterestCalculationApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  InterestCalculationApi getInterestCalculationApi() {
+    return InterestCalculationApi(dio, serializers);
+  }
+
   /// Get ItemCategoryApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   ItemCategoryApi getItemCategoryApi() {
@@ -145,6 +184,12 @@ class Openapi {
     return ItemFactoryApi(dio, serializers);
   }
 
+  /// Get JournalBookApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  JournalBookApi getJournalBookApi() {
+    return JournalBookApi(dio, serializers);
+  }
+
   /// Get LedgerApi instance, base route and serializer can be overridden by a given but be careful,
   /// by doing that all interceptors will not be executed
   LedgerApi getLedgerApi() {
@@ -155,6 +200,18 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   MenuApi getMenuApi() {
     return MenuApi(dio, serializers);
+  }
+
+  /// Get MultipleLedgerPrintingApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  MultipleLedgerPrintingApi getMultipleLedgerPrintingApi() {
+    return MultipleLedgerPrintingApi(dio, serializers);
+  }
+
+  /// Get ProfitAndLossApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  ProfitAndLossApi getProfitAndLossApi() {
+    return ProfitAndLossApi(dio, serializers);
   }
 
   /// Get PurchaseLedgerSettingApi instance, base route and serializer can be overridden by a given but be careful,
@@ -197,6 +254,12 @@ class Openapi {
   /// by doing that all interceptors will not be executed
   TransporterEWBApi getTransporterEWBApi() {
     return TransporterEWBApi(dio, serializers);
+  }
+
+  /// Get TrialBalanceApi instance, base route and serializer can be overridden by a given but be careful,
+  /// by doing that all interceptors will not be executed
+  TrialBalanceApi getTrialBalanceApi() {
+    return TrialBalanceApi(dio, serializers);
   }
 
   /// Get UomApi instance, base route and serializer can be overridden by a given but be careful,

@@ -20,10 +20,24 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(AreaResponse.serializer)
       ..add(AreaSearchableField.serializer)
       ..add(AreaSummaryPageResponse.serializer)
+      ..add(BalanceSheetGroupItem.serializer)
+      ..add(BalanceSheetLedgerItem.serializer)
+      ..add(BalanceSheetResponse.serializer)
+      ..add(BalanceSheetSubGroupItem.serializer)
+      ..add(BankLedgerEntryItem.serializer)
+      ..add(BankLedgerResponse.serializer)
+      ..add(BankReconciliationEntryItem.serializer)
+      ..add(BankReconciliationMode.serializer)
+      ..add(BankReconciliationResponse.serializer)
+      ..add(BankReconciliationStatementSummary.serializer)
       ..add(BrokerRequest.serializer)
       ..add(BrokerResponse.serializer)
       ..add(BrokerSearchableField.serializer)
       ..add(BrokerSummaryPageResponse.serializer)
+      ..add(CashBookEntryItem.serializer)
+      ..add(CashBookResponse.serializer)
+      ..add(CashBookResponseClosingIntervalEnum.serializer)
+      ..add(CashBookResponseFormatEnum.serializer)
       ..add(CommodityRequest.serializer)
       ..add(CommodityResponse.serializer)
       ..add(CommoditySearchableField.serializer)
@@ -34,6 +48,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(CreateSeriesRequest.serializer)
       ..add(CustomVoucherSeries.serializer)
       ..add(CustomVoucherSeriesListResponse.serializer)
+      ..add(DateWiseInterestItem.serializer)
+      ..add(DateWiseInterestResponse.serializer)
       ..add(Day.serializer)
       ..add(DropdownItem.serializer)
       ..add(Error.serializer)
@@ -59,6 +75,8 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(ItemFactoryResponse.serializer)
       ..add(ItemFactorySearchableField.serializer)
       ..add(ItemFactorySummaryPageResponse.serializer)
+      ..add(JournalBookEntryItem.serializer)
+      ..add(JournalBookResponse.serializer)
       ..add(JournalVoucherRequest.serializer)
       ..add(LedgerAddress.serializer)
       ..add(LedgerArea.serializer)
@@ -72,14 +90,27 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(LedgerTransport.serializer)
       ..add(LoginResponse.serializer)
       ..add(MailTo.serializer)
+      ..add(ManualInterestCalculateRequest.serializer)
+      ..add(ManualInterestEntryRequest.serializer)
+      ..add(ManualInterestItem.serializer)
+      ..add(ManualInterestResponse.serializer)
       ..add(MenuItem.serializer)
       ..add(MenuResponse.serializer)
+      ..add(MultipleLedgerItem.serializer)
+      ..add(MultipleLedgerPrintingResponse.serializer)
       ..add(NextBillNoResponse.serializer)
       ..add(NextVoucherNumberResponse.serializer)
       ..add(PaginationMeta.serializer)
       ..add(PartyType.serializer)
       ..add(PaymentVoucherRequest.serializer)
       ..add(PlaceOfSupplySource.serializer)
+      ..add(ProductBasisInterestItem.serializer)
+      ..add(ProductBasisInterestResponse.serializer)
+      ..add(ProductBasisInterestResponseCalculationTypeEnum.serializer)
+      ..add(ProfitAndLossGroupItem.serializer)
+      ..add(ProfitAndLossLedgerItem.serializer)
+      ..add(ProfitAndLossResponse.serializer)
+      ..add(ProfitAndLossSubGroupItem.serializer)
       ..add(PurchaseLedgerSettingRequest.serializer)
       ..add(PurchaseLedgerSettingResponse.serializer)
       ..add(PurchaseLedgerSettingSummaryPageResponse.serializer)
@@ -117,10 +148,16 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(TransportResponse.serializer)
       ..add(TransportSearchableField.serializer)
       ..add(TransportSummaryPageResponse.serializer)
+      ..add(TrialBalanceGroupItem.serializer)
+      ..add(TrialBalanceLedgerItem.serializer)
+      ..add(TrialBalanceResponse.serializer)
+      ..add(TrialBalanceSubGroupItem.serializer)
       ..add(UomRequest.serializer)
       ..add(UomResponse.serializer)
       ..add(UomSearchableField.serializer)
       ..add(UomSummaryPageResponse.serializer)
+      ..add(UpdateClearDateRequest.serializer)
+      ..add(UpdateClearDateResponse.serializer)
       ..add(UpdateSeriesRequest.serializer)
       ..add(Uqc.serializer)
       ..add(VehicleDetail.serializer)
@@ -138,14 +175,49 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<AccountLedgerContraItem>())
       ..addBuilderFactory(
           const FullType(
+              BuiltList, const [const FullType(AccountLedgerContraItem)]),
+          () => new ListBuilder<AccountLedgerContraItem>())
+      ..addBuilderFactory(
+          const FullType(
               BuiltList, const [const FullType(AccountLedgerEntryItem)]),
           () => new ListBuilder<AccountLedgerEntryItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(AreaResponse)]),
           () => new ListBuilder<AreaResponse>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BalanceSheetGroupItem)]),
+          () => new ListBuilder<BalanceSheetGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BalanceSheetGroupItem)]),
+          () => new ListBuilder<BalanceSheetGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BalanceSheetLedgerItem)]),
+          () => new ListBuilder<BalanceSheetLedgerItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BalanceSheetSubGroupItem)]),
+          () => new ListBuilder<BalanceSheetSubGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BalanceSheetLedgerItem)]),
+          () => new ListBuilder<BalanceSheetLedgerItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BankLedgerEntryItem)]),
+          () => new ListBuilder<BankLedgerEntryItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(BankReconciliationEntryItem)]),
+          () => new ListBuilder<BankReconciliationEntryItem>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(BrokerResponse)]),
           () => new ListBuilder<BrokerResponse>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(CashBookEntryItem)]),
+          () => new ListBuilder<CashBookEntryItem>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(CommoditySummaryColumn)]),
@@ -160,6 +232,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<CustomVoucherSeries>())
       ..addBuilderFactory(
           const FullType(
+              BuiltList, const [const FullType(DateWiseInterestItem)]),
+          () => new ListBuilder<DateWiseInterestItem>())
+      ..addBuilderFactory(
+          const FullType(
               BuiltList, const [const FullType(ItemCategoryResponse)]),
           () => new ListBuilder<ItemCategoryResponse>())
       ..addBuilderFactory(
@@ -167,17 +243,55 @@ Serializers _$serializers = (new Serializers().toBuilder()
               BuiltList, const [const FullType(ItemFactoryResponse)]),
           () => new ListBuilder<ItemFactoryResponse>())
       ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(JournalBookEntryItem)]),
+          () => new ListBuilder<JournalBookEntryItem>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(LedgerSummaryItem)]),
           () => new ListBuilder<LedgerSummaryItem>())
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(MenuItem)]),
-          () => new ListBuilder<MenuItem>())
+          const FullType(
+              BuiltList, const [const FullType(ManualInterestEntryRequest)]),
+          () => new ListBuilder<ManualInterestEntryRequest>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(ManualInterestItem)]),
+          () => new ListBuilder<ManualInterestItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
           () => new ListBuilder<MenuItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(MenuItem)]),
           () => new ListBuilder<MenuItem>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(MenuItem)]),
+          () => new ListBuilder<MenuItem>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(MultipleLedgerItem)]),
+          () => new ListBuilder<MultipleLedgerItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProductBasisInterestItem)]),
+          () => new ListBuilder<ProductBasisInterestItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProfitAndLossGroupItem)]),
+          () => new ListBuilder<ProfitAndLossGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProfitAndLossGroupItem)]),
+          () => new ListBuilder<ProfitAndLossGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProfitAndLossLedgerItem)]),
+          () => new ListBuilder<ProfitAndLossLedgerItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProfitAndLossSubGroupItem)]),
+          () => new ListBuilder<ProfitAndLossSubGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(ProfitAndLossLedgerItem)]),
+          () => new ListBuilder<ProfitAndLossLedgerItem>())
       ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(PurchaseLedgerSettingResponse)]),
@@ -223,6 +337,22 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(TransportResponse)]),
           () => new ListBuilder<TransportResponse>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(TrialBalanceGroupItem)]),
+          () => new ListBuilder<TrialBalanceGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(TrialBalanceLedgerItem)]),
+          () => new ListBuilder<TrialBalanceLedgerItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(TrialBalanceSubGroupItem)]),
+          () => new ListBuilder<TrialBalanceSubGroupItem>())
+      ..addBuilderFactory(
+          const FullType(
+              BuiltList, const [const FullType(TrialBalanceLedgerItem)]),
+          () => new ListBuilder<TrialBalanceLedgerItem>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(UomResponse)]),
           () => new ListBuilder<UomResponse>())
